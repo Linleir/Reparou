@@ -1,0 +1,104 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #a79e9e;
+}
+
+/* TOPO */
+.topo {
+    background: black;
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.topo input {
+    flex: 1;
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+}
+
+.filtro-btn,
+.perfil-btn {
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+}
+
+/* CONTEÚDO */
+main {
+    padding: 15px;
+    padding-bottom: 80px;
+}
+
+.lista-lojas {
+    background: white;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.card-loja {
+    background: #d9d9d9;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.top-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ESTRELA */
+.estrela {
+    font-size: 22px;
+    cursor: pointer;
+    color: #ccc;
+}
+
+/* Quando checkbox estiver marcado */
+#fav1:checked ~ main .lista-lojas label[for="fav1"],
+#fav2:checked ~ main .lista-lojas label[for="fav2"],
+#fav3:checked ~ main .lista-lojas label[for="fav3"] {
+    color: gold;
+}
+
+/* FAVORITOS */
+.favoritos {
+    margin-top: 30px;
+}
+
+.fav-card {
+    display: none;
+    background: gold;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Mostrar favoritos quando marcado */
+#fav1:checked ~ main .fav1,
+#fav2:checked ~ main .fav2,
+#fav3:checked ~ main .fav3 {
+    display: block;
+}
+
+/* MENU INFERIOR */
+.menu-inferior {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: black;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+}
+
+.menu-inferior a {
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+}

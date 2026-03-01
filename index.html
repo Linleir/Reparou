@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReparoTech</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topo">
+    <input type="text" placeholder="Pesquisar">
+    <button class="filtro-btn">Filtro</button>
+    <div class="perfil-btn">👤</div>
+</header>
+
+<!-- CHECKBOXES INVISÍVEIS -->
+<input type="checkbox" id="fav1" hidden>
+<input type="checkbox" id="fav2" hidden>
+<input type="checkbox" id="fav3" hidden>
+
+<main>
+
+    <h3 class="recomendacoes">Recomendações baseadas no seu local</h3>
+
+    <div class="lista-lojas">
+
+        <div class="card-loja">
+            <div class="top-card">
+                <h4>Loja X</h4>
+                <label for="fav1" class="estrela">★</label>
+            </div>
+            <p>Rua Tecnológica, 286</p>
+            <p>Meier, RJ</p>
+        </div>
+
+        <div class="card-loja">
+            <div class="top-card">
+                <h4>Loja Y</h4>
+                <label for="fav2" class="estrela">★</label>
+            </div>
+            <p>Rua Tecnológica, 286</p>
+            <p>Meier, RJ</p>
+        </div>
+
+        <div class="card-loja">
+            <div class="top-card">
+                <h4>Loja Z</h4>
+                <label for="fav3" class="estrela">★</label>
+            </div>
+            <p>Rua Tecnológica, 286</p>
+            <p>Meier, RJ</p>
+        </div>
+
+    </div>
+
+    <!-- SEÇÃO FAVORITOS -->
+    <div class="favoritos">
+        <h3>Favoritos</h3>
+
+        <div class="fav-card fav1">Loja X</div>
+        <div class="fav-card fav2">Loja Y</div>
+        <div class="fav-card fav3">Loja Z</div>
+
+    </div>
+
+</main>
+
+<nav class="menu-inferior">
+    <a href="#">🏠</a>
+    <a href="#favoritos">⭐</a>
+    <a href="#">💬</a>
+</nav>
+
+</body>
+</html>
