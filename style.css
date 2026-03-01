@@ -1,0 +1,171 @@
+/* style.css */
+:root {
+    --bg-gray: #a8a1a1;
+    --card-gray: #d9d9d9;
+    --white: #ffffff;
+    --black: #000000;
+    --star-yellow: #f1c40f;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+body {
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Links globais para remover o sublinhado azul padrão */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.mobile-screen {
+    width: 360px;
+    height: 700px;
+    background-color: var(--bg-gray);
+    border: 4px solid #111;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.top-bar-black {
+    background-color: var(--black);
+    color: var(--white);
+    padding: 20px 15px;
+}
+
+.search-bar {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.white-container {
+    background-color: var(--white);
+    border-radius: 10px;
+    margin: 15px;
+    padding: 15px;
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 70px; 
+}
+
+.card {
+    background-color: var(--card-gray);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+.star { color: var(--star-yellow); font-size: 18px; margin-left: 5px;}
+
+/* TELA 1 */
+.store-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+.store-header img {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.store-info h3 { font-size: 16px; margin-bottom: 5px; }
+.store-info p { font-size: 12px; line-height: 1.2; }
+
+/* TELA 2 */
+.filter-header { text-align: center; padding: 15px; }
+.filter-body { padding: 20px; flex-grow: 1; }
+.filter-body h3 { margin-bottom: 15px; font-size: 18px; }
+.radio-group { display: flex; gap: 20px; margin-bottom: 25px; align-items: center; font-weight: bold;}
+.radio-btn {
+    width: 20px; height: 20px;
+    background-color: var(--card-gray);
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+/* TELA 3 */
+.home-top {
+    padding: 20px 15px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.btn-filtro {
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: none;
+    background-color: var(--card-gray);
+    font-weight: bold;
+    font-family: sans-serif;
+    color: var(--black);
+    cursor: pointer;
+}
+.avatar-circle {
+    width: 35px; height: 35px;
+    background-color: var(--card-gray);
+    border-radius: 50%;
+}
+.title-pink {
+    border: 2px solid #ff007f;
+    display: inline-block;
+    margin: 0 15px;
+    padding: 2px 5px;
+    font-size: 16px;
+}
+
+.card-loja { justify-content: flex-start; gap: 15px; cursor: pointer; }
+.card-loja img {
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    background-color: white;
+    object-fit: cover;
+}
+.card-loja-info { flex-grow: 1; }
+.card-loja-info h4 { font-size: 16px; }
+.card-loja-info p { font-size: 11px; line-height: 1.2; }
+.card-loja-rating { text-align: right; font-size: 12px;}
+
+/* MENU INFERIOR */
+.bottom-nav {
+    background-color: var(--black);
+    color: var(--white);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    font-size: 24px;
+}
+.bottom-nav a { color: var(--white); }
