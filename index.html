@@ -1,76 +1,87 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <title>Reparou - Início</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ReparoTech</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<header class="topo">
-    <input type="text" placeholder="Pesquisar">
-    <button class="filtro-btn">Filtro</button>
-    <div class="perfil-btn">👤</div>
-</header>
+<div class="mobile-container">
 
-<!-- CHECKBOXES INVISÍVEIS -->
-<input type="checkbox" id="fav1" hidden>
-<input type="checkbox" id="fav2" hidden>
-<input type="checkbox" id="fav3" hidden>
+    <!-- TOPO -->
+    <header class="top-bar">
+        <input type="text" class="search-input" placeholder="Pesquisar">
 
-<main>
+        <a href="#" class="filter-btn">
+            Filtro
+        </a>
 
-    <h3 class="recomendacoes">Recomendações baseadas no seu local</h3>
+        <a href="perfil_lojista.html" class="profile-btn">
+            <svg viewBox="0 0 24 24" fill="black" width="30" height="30">
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+            </svg>
+        </a>
+    </header>
 
-    <div class="lista-lojas">
+    <!-- TÍTULO -->
+    <h2 class="page-title">
+        Recomendações baseadas no seu local
+    </h2>
 
-        <div class="card-loja">
-            <div class="top-card">
-                <h4>Loja X</h4>
-                <label for="fav1" class="estrela">★</label>
+    <!-- JANELA BRANCA -->
+    <main class="white-window">
+
+        <!-- LOJA 1 -->
+        <a href="#" class="item-card">
+            <img src="https://via.placeholder.com/80" class="item-img">
+
+            <div class="item-info">
+                <h3>Loja X</h3>
+                <p>Rua Tecnológica, 286<br>Méier, RJ</p>
+                <p>(21) 99999 - 9999<br>(21) 98888 - 8888</p>
             </div>
-            <p>Rua Tecnológica, 286</p>
-            <p>Meier, RJ</p>
-        </div>
 
-        <div class="card-loja">
-            <div class="top-card">
-                <h4>Loja Y</h4>
-                <label for="fav2" class="estrela">★</label>
+            <span class="star-icon">⭐</span>
+        </a>
+
+        <!-- LOJA 2 -->
+        <a href="#" class="item-card">
+            <img src="https://via.placeholder.com/80" class="item-img">
+
+            <div class="item-info">
+                <h3>Loja Y</h3>
+                <p>Rua das Placas, 120<br>Centro, RJ</p>
+                <p>(21) 97777 - 7777<br>(21) 96666 - 6666</p>
             </div>
-            <p>Rua Tecnológica, 286</p>
-            <p>Meier, RJ</p>
-        </div>
 
-        <div class="card-loja">
-            <div class="top-card">
-                <h4>Loja Z</h4>
-                <label for="fav3" class="estrela">★</label>
+            <span class="star-icon">⭐</span>
+        </a>
+
+        <!-- LOJA 3 -->
+        <a href="#" class="item-card">
+            <img src="https://via.placeholder.com/80" class="item-img">
+
+            <div class="item-info">
+                <h3>Loja Z</h3>
+                <p>Av. Tecnologia, 55<br>Tijuca, RJ</p>
+                <p>(21) 95555 - 5555<br>(21) 94444 - 4444</p>
             </div>
-            <p>Rua Tecnológica, 286</p>
-            <p>Meier, RJ</p>
-        </div>
 
-    </div>
+            <span class="star-icon">⭐</span>
+        </a>
 
-    <!-- SEÇÃO FAVORITOS -->
-    <div class="favoritos">
-        <h3>Favoritos</h3>
+    </main>
 
-        <div class="fav-card fav1">Loja X</div>
-        <div class="fav-card fav2">Loja Y</div>
-        <div class="fav-card fav3">Loja Z</div>
+    <!-- RODAPÉ FIXO -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item">🏠</a>
+        <a href="#" class="nav-item">★</a>
+        <a href="#" class="nav-item">💬</a>
+    </nav>
 
-    </div>
-
-</main>
-
-<nav class="menu-inferior">
-    <a href="#">🏠</a>
-    <a href="#favoritos">⭐</a>
-    <a href="#">💬</a>
-</nav>
+</div>
 
 </body>
 </html>
