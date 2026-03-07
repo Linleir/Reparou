@@ -1,0 +1,102 @@
+<!DOCTYPE html> <!-- tipo do documento HTML-->
+<html lang="pt-BR"> <!-- linguagem da pagina-->
+<head> <!-- informações sobre a página -->
+    <meta charset="UTF-8"> <!-- tipo de caracteres -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Chat UI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+
+
+
+
+
+<body>
+
+    <div class="mobile-container">
+        
+        <header class="black-header">
+            <a href="index.html" class="back-arrow">←</a>
+            <h1 class="page-title" style="text-align: left; margin-top: 10px;">Chat</h1>
+            
+            <div class="shop-profile" style="background: white; border-radius: 50px; padding: 5px 15px; width: fit-content; color: black;">
+                <img src="imgtst.jpg" alt="Loja X" class="shop-img" style="width: 30px; height: 30px; margin-right: 10px; border-radius: 50%;">
+                <span style="font-weight: bold;">Loja X</span>
+            </div>
+        </header>
+
+        <main class="content-area">
+
+    <div id="chat-area" class="chat-area"></div>
+
+    <div class="chat-input">
+        <input id="msg" class="search-input" placeholder="Digite uma mensagem" />
+        <button onclick="enviar()">Enviar</button>
+    </div>
+
+</main>
+
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item"><img src="Casa e lupa minimalista_edited.png" class="home"></a>
+            <a href="Historico_de_Avaliacao.html" class="nav-item"><img src="star.png" class="home"></a>
+            <a href="Mensagems.html" class="nav-item"><img src="chat.png" class="home"></a>
+        </nav>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script>
+
+let chatArea = document.getElementById("chat-area")
+
+function enviar(){
+
+    let input = document.getElementById("msg")
+    let texto = input.value
+
+    if(texto === "") return
+
+    // mensagem do usuário
+    chatArea.innerHTML += `
+    <div style="display:flex; justify-content:flex-end;">
+        <div style="background:#666; color:white; padding:12px; border-radius:15px; max-width:70%;">
+            ${texto}
+        </div>
+    </div>
+    `
+
+    input.value = ""
+
+    // resposta automática da loja
+    setTimeout(respostaLoja,1000)
+}
+
+function respostaLoja(){
+
+    chatArea.innerHTML += `
+    <div style="display:flex; justify-content:flex-start;">
+        <div style="background:white; padding:12px; border-radius:15px; max-width:70%;">
+            Recebemos sua mensagem.
+        </div>
+    </div>
+    `
+
+}
+
+</script>  
+</body>
+</html>

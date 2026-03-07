@@ -1,0 +1,367 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+/* BODY */
+body {
+    display: flex;
+    justify-content: center;
+    background: #333;
+    height: 100vh;
+}
+
+/* CONTAINER MOBILE */
+.mobile-container {
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    background: #a09797;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+/* ================= TOPO PADRÃO ================= */
+
+.top-bar {
+    display: flex;
+    align-items: center;
+    padding: 20px 15px;
+    gap: 10px;
+}
+
+.black-header {
+    background: black;
+    color: white;
+    padding: 20px;
+    position: relative;
+}
+
+.back-btn,
+.back-arrow {
+    color: white;
+    text-decoration: none;
+    font-size: 28px;
+}
+
+.back-btn {
+    position: absolute;
+    left: 15px;
+    top: 20px;
+}
+
+/* ================= PERFIL ================= */
+
+.profile-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.profile-img,
+.shop-img,
+.item-img,
+.profile2-img {
+    border-radius: 30%;
+}
+
+.profile-img {
+    width: 75px;
+    height: 75px;
+    margin-bottom: 10px;
+}
+
+.profile2-img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.shop-img {
+    width: 70px;
+    height: 70px;
+    margin-right: 15px;
+}
+
+.item-img {
+    width: 65px;
+    height: 65px;
+    margin-right: 15px;
+}
+
+.shop-profile {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+.home{
+    display: flex;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+/* ================= TÍTULOS ================= */
+
+.page-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.services-title {
+    margin: 15px;
+}
+
+/* ================= ÁREA DE CONTEÚDO ================= */
+
+.content-area {
+    padding: 20px;
+    flex: 1;
+}
+
+.white-window {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 0 15px 80px 15px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* ================= INPUTS ================= */
+
+.search-input {
+    flex: 1;
+    width: 100%;
+    padding: 12px;
+    border-radius: 15px;
+    border: none;
+    margin-bottom: 20px;
+}
+.search-input2 {
+    width: 100%;
+    padding: 12px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+
+
+.input-field {
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+}
+
+/* ================= BOTÕES ================= */
+
+.filter-btn {
+    padding: 10px 15px;
+    border-radius: 10px;
+    background: #d4d0d0;
+    text-decoration: none;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.profile-btn {
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+.service-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #dbd8d8;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.main-btn {
+    flex: 1;
+    padding: 18px;
+    border-radius: 30px;
+    border: none;
+    background: #d9d9d9;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+.cancel-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ================= CARDS ================= */
+
+.item-card {
+    display: flex;
+    align-items: center;
+    background: #dbd8d8;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 15px;
+    text-decoration: none;
+    color: black;
+    position: relative;
+}
+
+.star-icon {
+    position: absolute;
+    bottom: 10px;
+    right: 5px;
+    font-size: 13px;
+    color: #fffb00;
+}
+
+/* ================= UTILITÁRIOS ================= */
+
+.space-between {
+    justify-content: space-between;
+}
+
+.center {
+    justify-content: center;
+}
+
+.big-plus {
+    font-size: 40px;
+    color: white;
+    background: #888;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* ================= FORM ================= */
+
+.form-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* ================= TAGS ================= */
+
+.tag-container {
+     padding: 10px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    flex-direction: column
+}
+
+.tag-container input {
+    display: none;
+}
+
+.tag {
+    background: #d9d9d9;
+    padding: 5px 5px;
+    border-radius: 20px;
+    cursor: pointer;
+    position: relative;
+    font-size: 14px;
+}
+
+.tag .x {
+    font-size: 10px;
+    margin-left: 6px;
+    opacity: 0;
+}
+
+.tag-container input:checked + .tag {
+    background: #00a8ff;
+    color: white;
+}
+
+.tag-container input:checked + .tag .x {
+    opacity: 1;
+}
+
+/* ================= SHOP HEADER ================= */
+
+.shop-header {
+    background: black;
+    color: white;
+    padding: 20px;
+}
+
+/* ================= BOTTOM NAV ================= */
+
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 400px;
+    height: 60px;
+    background: black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.nav-item {
+    color: white;
+    text-decoration: none;
+    font-size: 26px;
+}
+
+.name-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: 15px;
+}
+.chat-area {
+    overflow-y: auto;
+    padding-bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.chat-input {
+    position: absolute;
+    bottom: 60px; /* altura da bottom-nav */
+    left: 0;
+    width: 100%;
+    max-width: 400px;
+
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+
+    background: #a09797;
+}
+.content-area {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
