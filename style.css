@@ -365,3 +365,258 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+/* ================= TELAS DE LOGIN E CADASTRO ================= */
+
+.auth-screen {
+  min-height: 100vh;
+}
+
+.auth-header {
+  text-align: center;
+  padding: 40px 20px 20px;
+}
+
+.auth-header h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.auth-header p {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.auth-header-center {
+  margin-top: 20px;
+}
+
+.auth-window {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+
+.auth-inline-text {
+  display: flex;
+  gap: 4px;
+  font-size: 13px;
+  margin-top: -8px;
+  margin-bottom: 4px;
+}
+
+.auth-inline-text a,
+.auth-link {
+  color: #00a8ff;
+  text-decoration: none;
+}
+
+.auth-primary-btn,
+.auth-secondary-btn,
+.auth-btn-link {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.auth-primary-btn {
+  background: #00a8ff;
+  color: white;
+  padding: 14px;
+  margin-top: 8px;
+}
+
+.auth-secondary-btn {
+  background: #d9d9d9;
+  color: black;
+  padding: 10px;
+}
+
+.auth-top-bar {
+  position: relative;
+  text-align: center;
+}
+
+.auth-title {
+  margin: 0;
+}
+
+.back-btn {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  text-decoration: none;
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.auth-toggle {
+  display: flex;
+  border: 3px solid black;
+  border-radius: 30px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.auth-toggle-btn {
+  flex: 1;
+  padding: 14px 10px;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  background: white;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.auth-toggle-btn:first-child {
+  border-right: 3px solid black;
+}
+
+.auth-toggle-btn.active {
+  background: #d9d9d9;
+}
+
+.success-box {
+  text-align: center;
+  gap: 20px;
+}
+
+.success-box h2 {
+  margin-bottom: 10px;
+}
+
+/* ================= TELAS DE LOGIN E CADASTRO ================= */
+.auth-screen {
+  min-height: 100vh;
+}
+
+.auth-header {
+  text-align: center;
+  padding: 40px 20px 20px;
+}
+
+.auth-header h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.auth-header p {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.auth-header-center {
+  margin-top: 20px;
+}
+
+.auth-window {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+
+.auth-inline-text {
+  display: flex;
+  gap: 4px;
+  font-size: 13px;
+  margin-top: -8px;
+  margin-bottom: 4px;
+}
+
+.auth-inline-text a,
+.auth-link {
+  color: #00a8ff;
+  text-decoration: none;
+}
+
+.auth-primary-btn,
+.auth-secondary-btn,
+.auth-btn-link {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.auth-primary-btn {
+  background: #00a8ff;
+  color: white;
+  padding: 14px;
+  margin-top: 8px;
+}
+
+.auth-secondary-btn {
+  background: #d9d9d9;
+  color: black;
+  padding: 10px;
+}
+
+.auth-top-bar {
+  position: relative;
+  text-align: center;
+}
+
+.auth-title {
+  margin: 0;
+}
+
+.back-btn {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  text-decoration: none;
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.auth-toggle {
+  display: flex;
+  border: 3px solid black;
+  border-radius: 30px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.auth-toggle-btn {
+  flex: 1;
+  padding: 14px 10px;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  background: white;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.auth-toggle-btn:first-child {
+  border-right: 3px solid black;
+}
+
+.auth-toggle-btn.active {
+  background: #d9d9d9;
+}
+
+.success-box {
+  text-align: center;
+  gap: 20px;
+}
+
+.success-box h2 {
+  margin-bottom: 10px;
+}
