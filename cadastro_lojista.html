@@ -21,24 +21,28 @@
         </div>
 
         <form class="form-container">
-          <label><strong>Login</strong></label>
+          <label for="cadastro-documento-lojista"><strong>Login</strong></label>
           <input
             type="text"
             class="search-input2"
-            placeholder="11.222.333/4444-55"
+            id="cadastro-documento-lojista"
+            placeholder="CNPJ"
+            maxlength="18"
           >
 
-          <label><strong>Senha</strong></label>
+          <label for="cadastro-senha-lojista"><strong>Senha</strong></label>
           <input
             type="password"
             class="search-input2"
+            id="cadastro-senha-lojista"
             placeholder="123"
           >
 
-          <label><strong>Confirmar senha</strong></label>
+          <label for="cadastro-confirmar-lojista"><strong>Confirmar senha</strong></label>
           <input
             type="password"
             class="search-input2"
+            id="cadastro-confirmar-lojista"
             placeholder="123"
           >
 
@@ -47,5 +51,7 @@
       </div>
     </div>
   </div>
+
+  <script src="auth.js"></script>
 </body>
 </html>
