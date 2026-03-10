@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reparou - Cadastro Lojista</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="mobile-container auth-screen">
+    <div class="black-header auth-top-bar">
+      <a href="index.html" class="back-btn">←</a>
+      <h1 class="auth-title">CADASTRO</h1>
+    </div>
+
+    <div class="content-area">
+      <div class="white-window auth-window">
+        <div class="auth-toggle">
+          <a href="cadastro.html" class="auth-toggle-btn">Cliente</a>
+          <a href="cadastro_lojista.html" class="auth-toggle-btn active">Lojista</a>
+        </div>
+
+        <form class="form-container">
+          <label for="cadastro-documento-lojista"><strong>Login</strong></label>
+          <input
+            type="text"
+            class="search-input2"
+            id="cadastro-documento-lojista"
+            placeholder="CNPJ"
+            maxlength="18"
+          >
+
+          <label for="cadastro-senha-lojista"><strong>Senha</strong></label>
+          <input
+            type="password"
+            class="search-input2"
+            id="cadastro-senha-lojista"
+            placeholder="123"
+          >
+
+          <label for="cadastro-confirmar-lojista"><strong>Confirmar senha</strong></label>
+          <input
+            type="password"
+            class="search-input2"
+            id="cadastro-confirmar-lojista"
+            placeholder="123"
+          >
+
+          <a href="cadastro_sucesso.html" class="auth-primary-btn auth-btn-link">CADASTRAR</a>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="dados.js"></script>
+  <script src="auth.js"></script>
+</body>
+</html>

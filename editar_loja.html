@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Editar Loja</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<div class="mobile-container pagina-form-loja">
+
+    <!-- HEADER -->
+    <div class="black-header">
+
+        <a id="voltar-loja-link" href="perfil_lojista.html" class="back-btn">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+
+        <div class="profile-center">
+            <img src="imgtst.jpg" class="profile2-img" alt="Editar loja">
+            <h2 id="titulo-pagina-loja">Editar Loja</h2>
+        </div>
+
+    </div>
+
+    <!-- CONTEÚDO -->
+    <div class="content-area">
+
+        <div class="white-window">
+
+            <form class="form-container" id="form-editar-loja">
+                <label for="editar-nome-loja"><strong>Nome da loja</strong></label>
+                <input type="text" id="editar-nome-loja" class="search-input2" placeholder="Nome da loja">
+
+                <div class="campo-com-acao">
+                  <label><strong>Endereço</strong></label>
+                  <button type="button" id="adicionar-endereco" class="mini-add-btn">
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                </div>
+                <div id="lista-enderecos"></div>
+
+                <div class="campo-com-acao">
+                  <label><strong>Telefone</strong></label>
+                  <button type="button" id="adicionar-telefone" class="mini-add-btn">
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                </div>
+                <div id="lista-telefones"></div>
+
+                <label><strong>Tags</strong></label>
+                <div id="tags-selecionadas" class="tags-selecionadas"></div>
+
+                <input
+                  type="text"
+                  id="pesquisa-tags"
+                  class="search-input2"
+                  placeholder="Pesquisar tags"
+                >
+
+                <div id="tags-disponiveis" class="tags-disponiveis-box"></div>
+
+                <p id="mensagem-edicao" class="auth-error" style="color: green;"></p>
+
+                <div class="botoes-form-loja">
+                  <button type="submit" class="auth-primary-btn" id="botao-salvar-loja">
+                      Salvar alterações
+                  </button>
+
+                  <a href="perfil_lojista.html" id="botao-cancelar-loja" class="auth-secondary-btn auth-btn-link">
+                    Cancelar
+                  </a>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav">
+        <a href="perfil_lojista.html" class="nav-item"><img src="Casa e lupa minimalista_edited.png" class="home"></a>
+        <a href="chat_lojista.html" class="nav-item"><img src="chat.png" class="home"></a>
+        <a href="agendamento_lojista.html" class="nav-item"><img src="star.png" class="home"></a>
+    </nav>
+
+</div>
+
+<script src="dados.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const parametros = new URLSearchParams(window.location.search);
+  const lojaId = parametros.get("id");
+  const novaLoja = parametros.get("nova");
+
+  const campoNome = document.getElementById("editar-nome-loja");
+  const mensagem = document.getElementById("mensagem-edicao");
+  const form = document.getElementById("form-editar-loja");
+  const voltarLink = document.getElementById("voltar-loja-link");
+  const tituloPagina = document.getElementById("titulo-pagina-loja");
+  const botaoSalvar = document.getElementById("botao-salvar-loja");
+  const botaoCancelar = document.getElementById("botao-cancelar-loja");
+
+  const listaEnderecos = document.getElementById("lista-enderecos");
+  const listaTelefones = document.getElementById("lista-telefones");
+  const tagsSelecionadasContainer = document.getElementById("tags-selecionadas");
+  const tagsDisponiveisContainer = document.getElementById("tags-disponiveis");
+  const campoPesquisaTags = document.getElementById("pesquisa-tags");
+
+  const botaoAdicionarEndereco = document.getElementById("adicionar-endereco");
+  const botaoAdicionarTelefone = document.getElementById("adicionar-telefone");
+
+  const idLojistaLogado = localStorage.getItem("lojistaLogado");
+
+  if (!idLojistaLogado) {
+    window.location.href = "index.html";
+    return;
+  }
+
+  const lojista = lojistas.find(function (item) {
+    return item.id === idLojistaLogado;
+  });
+
+  if (!lojista) {
+    window.location.href = "index.html";
+    return;
+  }
+
+  let loja = null;
+  let modoCriacao = false;
+  let tagsSelecionadas = [];
+
+  function criarCampoRemovivel(container, valor, classeInput, placeholder) {
+    const wrapper = document.createElement("div");
+    wrapper.className = "campo-removivel";
+
+    const input = document.createElement("input");
+    input.type = "text";
+    input.className = "search-input2 " + classeInput;
+    input.placeholder = placeholder;
+    input.value = valor || "";
+
+    const botaoRemover = document.createElement("button");
+    botaoRemover.type = "button";
+    botaoRemover.className = "remove-item-btn";
+    botaoRemover.innerHTML = "&times;";
+    botaoRemover.addEventListener("click", function () {
+      wrapper.remove();
+    });
+
+    wrapper.appendChild(input);
+    wrapper.appendChild(botaoRemover);
+    container.appendChild(wrapper);
+  }
+
+  function renderizarTags() {
+    const termoPesquisa = campoPesquisaTags.value.toLowerCase().trim();
+
+    tagsSelecionadasContainer.innerHTML = "";
+    tagsDisponiveisContainer.innerHTML = "";
+
+    tagsSelecionadas.forEach(function (tag) {
+      tagsSelecionadasContainer.innerHTML += `
+        <button type="button" class="tag-selecionada-btn" data-tag="${tag}">
+          <span>${tag}</span>
+          <span>&times;</span>
+        </button>
+      `;
+    });
+
+    tagsDisponiveis
+      .filter(function (tag) {
+        const naoSelecionada = !tagsSelecionadas.includes(tag);
+        const batePesquisa = tag.toLowerCase().includes(termoPesquisa);
+        return naoSelecionada && batePesquisa;
+      })
+      .forEach(function (tag) {
+        tagsDisponiveisContainer.innerHTML += `
+          <button type="button" class="tag-disponivel-btn" data-tag="${tag}">
+            <span>${tag}</span>
+            <span>+</span>
+          </button>
+        `;
+      });
+
+    document.querySelectorAll(".tag-selecionada-btn").forEach(function (botao) {
+      botao.addEventListener("click", function () {
+        const tag = botao.dataset.tag;
+        tagsSelecionadas = tagsSelecionadas.filter(function (item) {
+          return item !== tag;
+        });
+        renderizarTags();
+      });
+    });
+
+    document.querySelectorAll(".tag-disponivel-btn").forEach(function (botao) {
+      botao.addEventListener("click", function () {
+        const tag = botao.dataset.tag;
+        if (!tagsSelecionadas.includes(tag)) {
+          tagsSelecionadas.push(tag);
+        }
+        renderizarTags();
+      });
+    });
+  }
+
+  botaoAdicionarEndereco.addEventListener("click", function () {
+    criarCampoRemovivel(listaEnderecos, "", "campo-endereco-loja", "Endereço");
+  });
+
+  botaoAdicionarTelefone.addEventListener("click", function () {
+    criarCampoRemovivel(listaTelefones, "", "campo-telefone-loja", "Telefone");
+  });
+
+  campoPesquisaTags.addEventListener("input", function () {
+    renderizarTags();
+  });
+
+  if (novaLoja === "1") {
+    modoCriacao = true;
+    tituloPagina.textContent = "Adicionar Loja";
+    botaoSalvar.textContent = "Adicionar loja";
+    voltarLink.href = "perfil_lojista.html";
+    botaoCancelar.href = "perfil_lojista.html";
+
+    criarCampoRemovivel(listaEnderecos, "", "campo-endereco-loja", "Endereço");
+    criarCampoRemovivel(listaTelefones, "", "campo-telefone-loja", "Telefone");
+  } else if (lojaId) {
+    loja = lojas.find(function (item) {
+      return item.id === lojaId;
+    });
+
+    if (!loja) {
+      window.location.href = "perfil_lojista.html";
+      return;
+    }
+
+    tituloPagina.textContent = "Editar Loja";
+    botaoSalvar.textContent = "Salvar alterações";
+    voltarLink.href = `loja.html?id=${loja.id}`;
+    botaoCancelar.href = `loja.html?id=${loja.id}`;
+
+    campoNome.value = loja.nome;
+
+    const enderecos = loja.enderecos || (loja.endereco ? [loja.endereco] : []);
+    const telefones = loja.telefones || (loja.telefone ? [loja.telefone] : []);
+
+    enderecos.forEach(function (endereco) {
+      criarCampoRemovivel(listaEnderecos, endereco, "campo-endereco-loja", "Endereço");
+    });
+
+    telefones.forEach(function (telefone) {
+      criarCampoRemovivel(listaTelefones, telefone, "campo-telefone-loja", "Telefone");
+    });
+
+    if (enderecos.length === 0) {
+      criarCampoRemovivel(listaEnderecos, "", "campo-endereco-loja", "Endereço");
+    }
+
+    if (telefones.length === 0) {
+      criarCampoRemovivel(listaTelefones, "", "campo-telefone-loja", "Telefone");
+    }
+
+    tagsSelecionadas = Array.isArray(loja.tags) ? [...loja.tags] : [];
+  } else {
+    window.location.href = "perfil_lojista.html";
+    return;
+  }
+
+  renderizarTags();
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const nome = campoNome.value.trim();
+
+    const enderecos = Array.from(document.querySelectorAll(".campo-endereco-loja"))
+      .map(function (input) { return input.value.trim(); })
+      .filter(function (valor) { return valor !== ""; });
+
+    const telefones = Array.from(document.querySelectorAll(".campo-telefone-loja"))
+      .map(function (input) { return input.value.trim(); })
+      .filter(function (valor) { return valor !== ""; });
+
+    if (!nome || enderecos.length === 0 || telefones.length === 0) {
+      mensagem.style.color = "red";
+      mensagem.textContent = "Preencha nome, ao menos um endereço e ao menos um telefone.";
+      return;
+    }
+
+    if (modoCriacao) {
+      let novoId = nome
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9\s-]/g, "")
+        .trim()
+        .replace(/\s+/g, "-");
+
+      if (!novoId) {
+        novoId = "nova-loja";
+      }
+
+      let contador = 1;
+      let idBase = novoId;
+      while (lojas.some(function (item) { return item.id === novoId; })) {
+        novoId = idBase + "-" + contador;
+        contador++;
+      }
+
+      const lojaNova = {
+        id: novoId,
+        nome: nome,
+        lojistaId: lojista.id,
+        enderecos: enderecos,
+        telefones: telefones,
+        tags: [...tagsSelecionadas]
+      };
+
+      lojas.push(lojaNova);
+
+      if (!lojista.lojas.includes(lojaNova.id)) {
+        lojista.lojas.push(lojaNova.id);
+      }
+
+      mensagem.style.color = "green";
+      mensagem.textContent = "Loja adicionada com sucesso.";
+
+      setTimeout(function () {
+        window.location.href = "perfil_lojista.html";
+      }, 1000);
+
+      return;
+    }
+
+    loja.nome = nome;
+    loja.enderecos = enderecos;
+    loja.telefones = telefones;
+    loja.tags = [...tagsSelecionadas];
+
+    mensagem.style.color = "green";
+    mensagem.textContent = "Alterações salvas com sucesso.";
+
+    setTimeout(function () {
+      window.location.href = `loja.html?id=${loja.id}`;
+    }, 1000);
+  });
+});
+</script>
+
+</body>
+</html>

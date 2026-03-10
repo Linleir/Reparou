@@ -15,14 +15,12 @@
 
     <div class="content-area">
       <div class="white-window auth-window">
-        <form class="form-container" id="login-form">
-          <label for="login-documento"><strong>Login</strong></label>
+        <form class="form-container">
+          <label><strong>Login</strong></label>
           <input
             type="text"
             class="search-input2"
-            id="login-documento"
-            placeholder="CPF ou CNPJ"
-            maxlength="18"
+            placeholder="CPF/CNPJ"
           >
 
           <div class="auth-inline-text">
@@ -30,29 +28,23 @@
             <a href="cadastro.html">CRIAR CONTA</a>
           </div>
 
-          <label for="login-senha"><strong>Senha</strong></label>
+          <label><strong>Senha</strong></label>
           <input
             type="password"
             class="search-input2"
-            id="login-senha"
             placeholder="Senha"
           >
 
           <a href="#" class="auth-link">Esqueceu sua senha?</a>
 
-          <p id="login-erro" class="auth-error"></p>
-
-          <button type="submit" class="auth-primary-btn">LOGIN</button>
+          <a href="acessos.html" class="auth-primary-btn auth-btn-link">LOGIN</a>
         </form>
 
-        <a href="inicio_sem_conta.html" class="auth-secondary-btn auth-btn-link">
+        <a href="index.html" class="auth-secondary-btn auth-btn-link">
           Entrar sem conta
         </a>
       </div>
     </div>
   </div>
-
-  <script src="dados.js"></script>
-  <script src="auth.js"></script>
 </body>
 </html>

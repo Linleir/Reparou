@@ -1,58 +1,111 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Perfil Lojista</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil do Lojista</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
 
 <div class="mobile-container">
 
-<header class="black-header">
-    <a href="index.html" class="back-btn">←</a>
+    <!-- HEADER -->
+    <div class="black-header perfil-lojista-header">
 
-    <div class="profile-center">
-        <img src="imgtst.jpg" class="profile-img">
-        <p>
-            Rua Tecnológica, 286<br>
-            Méier, RJ<br>
-            (21) 99999 - 9999
-        </p>
-    </div>
-</header>
+        <div class="perfil-lojista-header-centro">
+            <img src="imgtst.jpg" class="profile2-img" alt="Foto do lojista">
 
-<div class="content-area">
-
-    <input type="text" placeholder="Pesquisar" class="search-input">
-
-    <div class="white-window">
-
-        <div class="item-card space-between">
-            <span>Loja X</span>
-            <a href="Editar Loja.html">⋮</a>
+            <h2 id="nome-lojista">Lojista</h2>
+            <p id="info-lojista" class="perfil-lojista-subinfo">Informações do lojista</p>
         </div>
 
-        <div class="item-card space-between">
-            <span>Loja Y</span>
-            <a href="Editar Loja.html">⋮</a>
-        </div>
-
-        <a href="Editar Loja.html" class="item-card center big-plus">
-            +
+        <a href="config_lojista.html" class="perfil-lojista-gear-btn">
+            <i class="fa-solid fa-gear"></i>
         </a>
 
     </div>
 
+    <!-- CONTEÚDO -->
+    <div class="content-area">
+
+        <div class="white-window perfil-lojista-window">
+
+            <div class="perfil-lojista-titulo-box">
+                <h3>Suas lojas</h3>
+            </div>
+
+            <div id="lista-lojas-lojista" class="perfil-lojista-lista">
+                <!-- renderizado por JS -->
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav">
+        <a href="perfil_lojista.html" class="nav-item"><img src="Casa e lupa minimalista_edited.png" class="home"></a>
+        <a href="chat_lojista.html" class="nav-item"><img src="chat.png" class="home"></a>
+        <a href="agendamento_lojista.html" class="nav-item"><img src="star.png" class="home"></a>
+    </nav>
+
 </div>
 
-<nav class="bottom-nav">
-            <a href="index.html" class="nav-item"><img src="Casa e lupa minimalista_edited.png" class="home"></a>
-            <a href="favoritos.html" class="nav-item"><img src="star.png" class="home"></a>
-            <a href="Mensagems.html" class="nav-item"><img src="chat.png" class="home"></a>
-</nav>
+<script src="dados.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const idLojistaLogado = localStorage.getItem("lojistaLogado");
 
-</div>
+  if (!idLojistaLogado) {
+    window.location.href = "index.html";
+    return;
+  }
+
+  const lojista = lojistas.find(function (item) {
+    return item.id === idLojistaLogado;
+  });
+
+  if (!lojista) {
+    window.location.href = "index.html";
+    return;
+  }
+
+  document.getElementById("nome-lojista").textContent = lojista.responsavel;
+  document.getElementById("info-lojista").textContent = lojista.nomeLojaPrincipal;
+
+  const containerLojas = document.getElementById("lista-lojas-lojista");
+  containerLojas.innerHTML = "";
+
+  const lojasDoLojista = lojas.filter(function (loja) {
+    return loja.lojistaId === lojista.id;
+  });
+
+  lojasDoLojista.forEach(function (loja) {
+    containerLojas.innerHTML += `
+      <div class="perfil-lojista-card">
+        <a href="loja.html?id=${loja.id}" class="perfil-lojista-card-link">
+          <span>${loja.nome}</span>
+        </a>
+
+        <a href="editar_loja.html?id=${loja.id}" class="perfil-lojista-card-menu">
+          <i class="fa-solid fa-ellipsis-vertical"></i>
+        </a>
+      </div>
+    `;
+  });
+
+  containerLojas.innerHTML += `
+    <a href="editar_loja.html?nova=1" class="perfil-lojista-add-btn">
+      <i class="fa-solid fa-plus"></i>
+    </a>
+  `;
+});
+</script>
+
 </body>
 </html>
