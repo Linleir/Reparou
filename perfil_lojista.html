@@ -2,12 +2,12 @@
 <html lang="pt-BR">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Perfil do Lojista</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil do Lojista</title>
 
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
@@ -15,45 +15,33 @@
 <div class="mobile-container">
 
     <!-- HEADER -->
-    <div class="black-header">
+    <div class="black-header lojista-header-ajustado">
 
-        <a href="index.html" class="back-btn">
-            <i class="fa-solid fa-arrow-left"></i>
-        </a>
+        <div class="lojista-topo-esquerda">
+            <img src="imgtst.jpg" class="profile2-img" alt="Foto do lojista">
 
-        <div class="profile-center">
-            <img src="imgtst.jpg" class="profile2-img" alt="Perfil do lojista">
-            <h2 id="nome-lojista">Nome do Lojista</h2>
+            <div class="lojista-topo-texto">
+                <h2 id="nome-lojista">Lojista</h2>
+                <p id="info-lojista">Informações do lojista</p>
+            </div>
         </div>
+
+        <a href="config_lojista.html" class="gear-btn">
+            <i class="fa-solid fa-gear"></i>
+        </a>
 
     </div>
 
     <!-- CONTEÚDO -->
     <div class="content-area">
 
-        <div class="white-window">
+        <div class="white-window lojista-window">
 
-            <div class="perfil-info-bloco">
-                <p><strong>Loja principal:</strong> <span id="nome-loja-principal"></span></p>
-                <p><strong>CNPJ:</strong> <span id="cnpj-lojista"></span></p>
-                <p><strong>Telefone:</strong> <span id="telefone-lojista"></span></p>
-                <p><strong>Email:</strong> <span id="email-lojista"></span></p>
-                <p><strong>Endereço base:</strong> <span id="endereco-lojista"></span></p>
+            <h3 class="lojista-subtitulo">Suas Lojas</h3>
+
+            <div id="lista-lojas-lojista" class="lista-lojas-lojista">
+                <!-- renderizado por JS -->
             </div>
-
-            <div class="perfil-tags-bloco">
-                <h3>Tags</h3>
-                <div id="tags-lojista" class="tags-container"></div>
-            </div>
-
-            <div class="perfil-lojas-bloco">
-                <h3>Lojas associadas</h3>
-                <div id="lista-lojas-lojista"></div>
-            </div>
-
-            <a href="editar_loja.html" class="item-card">
-                <span>Editar perfil / loja</span>
-            </a>
 
         </div>
 
@@ -61,9 +49,15 @@
 
     <!-- BOTTOM NAV -->
     <nav class="bottom-nav">
-        <a href="perfil_lojista.html" class="nav-item"><img src="Casa e lupa minimalista_edited.png" class="home"></a>
-        <a href="#" class="nav-item"><img src="star.png" class="home"></a>
-        <a href="#" class="nav-item"><img src="chat.png" class="home"></a>
+        <a href="perfil_lojista.html" class="nav-item">
+            <img src="Casa e lupa minimalista_edited.png" class="home">
+        </a>
+        <a href="chat_lojista.html" class="nav-item">
+            <img src="chat.png" class="home">
+        </a>
+        <a href="agendamento_lojista.html" class="nav-item">
+            <img src="star.png" class="home">
+        </a>
     </nav>
 
 </div>
@@ -88,18 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   document.getElementById("nome-lojista").textContent = lojista.responsavel;
-  document.getElementById("nome-loja-principal").textContent = lojista.nomeLojaPrincipal;
-  document.getElementById("cnpj-lojista").textContent = lojista.cnpj;
-  document.getElementById("telefone-lojista").textContent = lojista.telefone;
-  document.getElementById("email-lojista").textContent = lojista.email;
-  document.getElementById("endereco-lojista").textContent = lojista.enderecoBase;
-
-  const containerTags = document.getElementById("tags-lojista");
-  containerTags.innerHTML = "";
-
-  lojista.tags.forEach(function (tag) {
-    containerTags.innerHTML += `<span class="tag-item">${tag}</span>`;
-  });
+  document.getElementById("info-lojista").textContent = lojista.nomeLojaPrincipal;
 
   const containerLojas = document.getElementById("lista-lojas-lojista");
   containerLojas.innerHTML = "";
@@ -110,17 +93,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
   lojasDoLojista.forEach(function (loja) {
     containerLojas.innerHTML += `
-      <a href="loja.html?id=${loja.id}" class="item-card">
-        <div>
-          <h3>${loja.nome}</h3>
-          <p>${loja.endereco}</p>
-          <p>${loja.telefone}</p>
-          <p><strong>Categoria:</strong> ${loja.categoria}</p>
-          <p><strong>Tags:</strong> ${loja.tags.join(", ")}</p>
-        </div>
-      </a>
+      <div class="loja-lojista-card">
+        <a href="loja.html?id=${loja.id}" class="loja-lojista-link">
+          <span>${loja.nome}</span>
+        </a>
+
+        <a href="editar_loja.html?id=${loja.id}" class="loja-lojista-menu">
+          <i class="fa-solid fa-ellipsis-vertical"></i>
+        </a>
+      </div>
     `;
   });
+
+  containerLojas.innerHTML += `
+    <a href="editar_loja.html?nova=1" class="add-loja-btn">
+      <i class="fa-solid fa-plus"></i>
+    </a>
+  `;
 });
 </script>
 

@@ -23,7 +23,7 @@
 
         <div class="profile-center">
             <img src="imgtst.jpg" class="profile2-img" alt="Editar loja">
-            <h2>Editar Loja</h2>
+            <h2 id="titulo-pagina-loja">Editar Loja</h2>
         </div>
 
     </div>
@@ -51,12 +51,21 @@
 
                 <p id="mensagem-edicao" class="auth-error" style="color: green;"></p>
 
-                <button type="submit" class="auth-primary-btn">Salvar alterações</button>
+                <button type="submit" class="auth-primary-btn" id="botao-salvar-loja">
+                    Salvar alterações
+                </button>
             </form>
 
         </div>
 
     </div>
+
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav">
+        <a href="perfil_lojista.html" class="nav-item"><img src="Casa e lupa minimalista_edited.png" class="home"></a>
+        <a href="chat_lojista.html" class="nav-item"><img src="chat.png" class="home"></a>
+        <a href="agendamento_lojista.html" class="nav-item"><img src="star.png" class="home"></a>
+    </nav>
 
 </div>
 
@@ -65,20 +74,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   const parametros = new URLSearchParams(window.location.search);
   const lojaId = parametros.get("id");
-
-  if (!lojaId) {
-    window.location.href = "perfil_lojista.html";
-    return;
-  }
-
-  const loja = lojas.find(function (item) {
-    return item.id === lojaId;
-  });
-
-  if (!loja) {
-    window.location.href = "perfil_lojista.html";
-    return;
-  }
+  const novaLoja = parametros.get("nova");
 
   const campoNome = document.getElementById("editar-nome-loja");
   const campoEndereco = document.getElementById("editar-endereco-loja");
@@ -88,23 +84,65 @@ document.addEventListener("DOMContentLoaded", function () {
   const mensagem = document.getElementById("mensagem-edicao");
   const form = document.getElementById("form-editar-loja");
   const voltarLink = document.getElementById("voltar-loja-link");
+  const tituloPagina = document.getElementById("titulo-pagina-loja");
+  const botaoSalvar = document.getElementById("botao-salvar-loja");
 
-  campoNome.value = loja.nome;
-  campoEndereco.value = loja.endereco;
-  campoTelefone.value = loja.telefone;
-  campoCategoria.value = loja.categoria;
-  campoTags.value = loja.tags.join(", ");
+  const idLojistaLogado = localStorage.getItem("lojistaLogado");
 
-  voltarLink.href = `loja.html?id=${loja.id}`;
+  if (!idLojistaLogado) {
+    window.location.href = "index.html";
+    return;
+  }
+
+  const lojista = lojistas.find(function (item) {
+    return item.id === idLojistaLogado;
+  });
+
+  if (!lojista) {
+    window.location.href = "index.html";
+    return;
+  }
+
+  let loja = null;
+  let modoCriacao = false;
+
+  if (novaLoja === "1") {
+    modoCriacao = true;
+    tituloPagina.textContent = "Adicionar Loja";
+    botaoSalvar.textContent = "Adicionar loja";
+    voltarLink.href = "perfil_lojista.html";
+  } else if (lojaId) {
+    loja = lojas.find(function (item) {
+      return item.id === lojaId;
+    });
+
+    if (!loja) {
+      window.location.href = "perfil_lojista.html";
+      return;
+    }
+
+    tituloPagina.textContent = "Editar Loja";
+    botaoSalvar.textContent = "Salvar alterações";
+    voltarLink.href = `loja.html?id=${loja.id}`;
+
+    campoNome.value = loja.nome;
+    campoEndereco.value = loja.endereco;
+    campoTelefone.value = loja.telefone;
+    campoCategoria.value = loja.categoria;
+    campoTags.value = loja.tags.join(", ");
+  } else {
+    window.location.href = "perfil_lojista.html";
+    return;
+  }
 
   form.addEventListener("submit", function (event) {
     event.preventDefault();
 
-    loja.nome = campoNome.value.trim();
-    loja.endereco = campoEndereco.value.trim();
-    loja.telefone = campoTelefone.value.trim();
-    loja.categoria = campoCategoria.value.trim();
-    loja.tags = campoTags.value
+    const nome = campoNome.value.trim();
+    const endereco = campoEndereco.value.trim();
+    const telefone = campoTelefone.value.trim();
+    const categoria = campoCategoria.value.trim();
+    const tags = campoTags.value
       .split(",")
       .map(function (tag) {
         return tag.trim();
@@ -113,6 +151,52 @@ document.addEventListener("DOMContentLoaded", function () {
         return tag !== "";
       });
 
+    if (!nome || !endereco || !telefone || !categoria) {
+      mensagem.style.color = "red";
+      mensagem.textContent = "Preencha todos os campos obrigatórios.";
+      return;
+    }
+
+    if (modoCriacao) {
+      const novoId = nome
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/\s+/g, "-");
+
+      const lojaNova = {
+        id: novoId,
+        nome: nome,
+        lojistaId: lojista.id,
+        endereco: endereco,
+        telefone: telefone,
+        categoria: categoria,
+        tags: tags
+      };
+
+      lojas.push(lojaNova);
+
+      if (!lojista.lojas.includes(lojaNova.id)) {
+        lojista.lojas.push(lojaNova.id);
+      }
+
+      mensagem.style.color = "green";
+      mensagem.textContent = "Loja adicionada com sucesso.";
+
+      setTimeout(function () {
+        window.location.href = "perfil_lojista.html";
+      }, 1000);
+
+      return;
+    }
+
+    loja.nome = nome;
+    loja.endereco = endereco;
+    loja.telefone = telefone;
+    loja.categoria = categoria;
+    loja.tags = tags;
+
+    mensagem.style.color = "green";
     mensagem.textContent = "Alterações salvas com sucesso.";
 
     setTimeout(function () {
