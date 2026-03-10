@@ -31,21 +31,28 @@
     <!-- CONTEÚDO -->
     <div class="content-area">
 
-        <div class="white-window">
+        <div class="white-window loja-window-ajustada">
 
-            <div class="perfil-info-bloco">
+            <div class="loja-info-card">
                 <p><strong>Lojista responsável:</strong> <span id="nome-lojista"></span></p>
-                <p><strong>Endereço:</strong> <span id="endereco-loja"></span></p>
-                <p><strong>Telefone:</strong> <span id="telefone-loja"></span></p>
-                <p><strong>Categoria:</strong> <span id="categoria-loja"></span></p>
             </div>
 
-            <div class="perfil-tags-bloco">
+            <div class="loja-info-card">
+                <h3>Endereços</h3>
+                <div id="enderecos-loja" class="loja-info-lista"></div>
+            </div>
+
+            <div class="loja-info-card">
+                <h3>Telefones</h3>
+                <div id="telefones-loja" class="loja-info-lista"></div>
+            </div>
+
+            <div class="loja-info-card">
                 <h3>Tags da loja</h3>
                 <div id="tags-loja" class="tags-container"></div>
             </div>
 
-            <a id="editar-loja-link" href="#" class="item-card">
+            <a id="editar-loja-link" href="#" class="item-card loja-editar-card">
                 <span>Editar loja</span>
             </a>
 
@@ -56,8 +63,8 @@
     <!-- BOTTOM NAV -->
     <nav class="bottom-nav">
         <a href="perfil_lojista.html" class="nav-item"><img src="Casa e lupa minimalista_edited.png" class="home"></a>
-        <a href="#" class="nav-item"><img src="star.png" class="home"></a>
-        <a href="#" class="nav-item"><img src="chat.png" class="home"></a>
+        <a href="chat_lojista.html" class="nav-item"><img src="chat.png" class="home"></a>
+        <a href="agendamento_lojista.html" class="nav-item"><img src="star.png" class="home"></a>
     </nav>
 
 </div>
@@ -88,15 +95,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
   document.getElementById("nome-loja").textContent = loja.nome;
   document.getElementById("nome-lojista").textContent = lojista ? lojista.responsavel : "Não encontrado";
-  document.getElementById("endereco-loja").textContent = loja.endereco;
-  document.getElementById("telefone-loja").textContent = loja.telefone;
-  document.getElementById("categoria-loja").textContent = loja.categoria;
 
-  const containerTags = document.getElementById("tags-loja");
-  containerTags.innerHTML = "";
+  const enderecosContainer = document.getElementById("enderecos-loja");
+  const telefonesContainer = document.getElementById("telefones-loja");
+  const tagsContainer = document.getElementById("tags-loja");
+
+  enderecosContainer.innerHTML = "";
+  telefonesContainer.innerHTML = "";
+  tagsContainer.innerHTML = "";
+
+  const enderecos = loja.enderecos || (loja.endereco ? [loja.endereco] : []);
+  const telefones = loja.telefones || (loja.telefone ? [loja.telefone] : []);
+
+  enderecos.forEach(function (endereco) {
+    enderecosContainer.innerHTML += `<p class="loja-info-item">${endereco}</p>`;
+  });
+
+  telefones.forEach(function (telefone) {
+    telefonesContainer.innerHTML += `<p class="loja-info-item">${telefone}</p>`;
+  });
 
   loja.tags.forEach(function (tag) {
-    containerTags.innerHTML += `<span class="tag-item">${tag}</span>`;
+    tagsContainer.innerHTML += `<span class="tag-item">${tag}</span>`;
   });
 
   document.getElementById("editar-loja-link").href = `editar_loja.html?id=${loja.id}`;
