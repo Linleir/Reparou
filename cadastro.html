@@ -21,24 +21,28 @@
         </div>
 
         <form class="form-container">
-          <label><strong>Login</strong></label>
+          <label for="cadastro-documento-cliente"><strong>Login</strong></label>
           <input
             type="text"
             class="search-input2"
-            placeholder="111.222.333-44"
+            id="cadastro-documento-cliente"
+            placeholder="CPF"
+            maxlength="14"
           >
 
-          <label><strong>Senha</strong></label>
+          <label for="cadastro-senha-cliente"><strong>Senha</strong></label>
           <input
             type="password"
             class="search-input2"
+            id="cadastro-senha-cliente"
             placeholder="123"
           >
 
-          <label><strong>Confirmar senha</strong></label>
+          <label for="cadastro-confirmar-cliente"><strong>Confirmar senha</strong></label>
           <input
             type="password"
             class="search-input2"
+            id="cadastro-confirmar-cliente"
             placeholder="123"
           >
 
@@ -47,5 +51,7 @@
       </div>
     </div>
   </div>
+
+  <script src="auth.js"></script>
 </body>
 </html>

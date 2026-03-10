@@ -1,58 +1,128 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Perfil Lojista</title>
+<title>Perfil do Lojista</title>
+
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
 
 <div class="mobile-container">
 
-<header class="black-header">
-    <a href="index.html" class="back-btn">←</a>
+    <!-- HEADER -->
+    <div class="black-header">
 
-    <div class="profile-center">
-        <img src="imgtst.jpg" class="profile-img">
-        <p>
-            Rua Tecnológica, 286<br>
-            Méier, RJ<br>
-            (21) 99999 - 9999
-        </p>
-    </div>
-</header>
-
-<div class="content-area">
-
-    <input type="text" placeholder="Pesquisar" class="search-input">
-
-    <div class="white-window">
-
-        <div class="item-card space-between">
-            <span>Loja X</span>
-            <a href="Editar Loja.html">⋮</a>
-        </div>
-
-        <div class="item-card space-between">
-            <span>Loja Y</span>
-            <a href="Editar Loja.html">⋮</a>
-        </div>
-
-        <a href="Editar Loja.html" class="item-card center big-plus">
-            +
+        <a href="index.html" class="back-btn">
+            <i class="fa-solid fa-arrow-left"></i>
         </a>
 
+        <div class="profile-center">
+            <img src="imgtst.jpg" class="profile2-img" alt="Perfil do lojista">
+            <h2 id="nome-lojista">Nome do Lojista</h2>
+        </div>
+
     </div>
 
+    <!-- CONTEÚDO -->
+    <div class="content-area">
+
+        <div class="white-window">
+
+            <div class="perfil-info-bloco">
+                <p><strong>Loja principal:</strong> <span id="nome-loja-principal"></span></p>
+                <p><strong>CNPJ:</strong> <span id="cnpj-lojista"></span></p>
+                <p><strong>Telefone:</strong> <span id="telefone-lojista"></span></p>
+                <p><strong>Email:</strong> <span id="email-lojista"></span></p>
+                <p><strong>Endereço base:</strong> <span id="endereco-lojista"></span></p>
+            </div>
+
+            <div class="perfil-tags-bloco">
+                <h3>Tags</h3>
+                <div id="tags-lojista" class="tags-container"></div>
+            </div>
+
+            <div class="perfil-lojas-bloco">
+                <h3>Lojas associadas</h3>
+                <div id="lista-lojas-lojista"></div>
+            </div>
+
+            <a href="editar_loja.html" class="item-card">
+                <span>Editar perfil / loja</span>
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav">
+        <a href="perfil_lojista.html" class="nav-item"><img src="Casa e lupa minimalista_edited.png" class="home"></a>
+        <a href="#" class="nav-item"><img src="star.png" class="home"></a>
+        <a href="#" class="nav-item"><img src="chat.png" class="home"></a>
+    </nav>
+
 </div>
 
-<nav class="bottom-nav">
-            <a href="index.html" class="nav-item"><img src="Casa e lupa minimalista_edited.png" class="home"></a>
-            <a href="favoritos.html" class="nav-item"><img src="star.png" class="home"></a>
-            <a href="Mensagems.html" class="nav-item"><img src="chat.png" class="home"></a>
-</nav>
+<script src="dados.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const idLojistaLogado = localStorage.getItem("lojistaLogado");
 
-</div>
+  if (!idLojistaLogado) {
+    window.location.href = "index.html";
+    return;
+  }
+
+  const lojista = lojistas.find(function (item) {
+    return item.id === idLojistaLogado;
+  });
+
+  if (!lojista) {
+    window.location.href = "index.html";
+    return;
+  }
+
+  document.getElementById("nome-lojista").textContent = lojista.responsavel;
+  document.getElementById("nome-loja-principal").textContent = lojista.nomeLojaPrincipal;
+  document.getElementById("cnpj-lojista").textContent = lojista.cnpj;
+  document.getElementById("telefone-lojista").textContent = lojista.telefone;
+  document.getElementById("email-lojista").textContent = lojista.email;
+  document.getElementById("endereco-lojista").textContent = lojista.enderecoBase;
+
+  const containerTags = document.getElementById("tags-lojista");
+  containerTags.innerHTML = "";
+
+  lojista.tags.forEach(function (tag) {
+    containerTags.innerHTML += `<span class="tag-item">${tag}</span>`;
+  });
+
+  const containerLojas = document.getElementById("lista-lojas-lojista");
+  containerLojas.innerHTML = "";
+
+  const lojasDoLojista = lojas.filter(function (loja) {
+    return loja.lojistaId === lojista.id;
+  });
+
+  lojasDoLojista.forEach(function (loja) {
+    containerLojas.innerHTML += `
+      <a href="loja.html?id=${loja.id}" class="item-card">
+        <div>
+          <h3>${loja.nome}</h3>
+          <p>${loja.endereco}</p>
+          <p>${loja.telefone}</p>
+          <p><strong>Categoria:</strong> ${loja.categoria}</p>
+          <p><strong>Tags:</strong> ${loja.tags.join(", ")}</p>
+        </div>
+      </a>
+    `;
+  });
+});
+</script>
+
 </body>
 </html>

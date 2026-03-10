@@ -492,7 +492,6 @@ body {
 
 .success-box h2 {
   margin-bottom: 10px;
-<<<<<<< HEAD
 }
 
 /* ================= TELAS DE LOGIN E CADASTRO ================= */
@@ -620,8 +619,6 @@ body {
 
 .success-box h2 {
   margin-bottom: 10px;
-=======
->>>>>>> 8c28ecdcaba42a1dc6feaec00cad62f05dc1d62b
 }
 
 /* ================= INÍCIO SEM CONTA ================= */
@@ -634,4 +631,45 @@ body {
   text-decoration: none;
   font-size: 22px;
   font-weight: bold;
+}
+
+/* ================= MENSAGEM DE ERRO NO LOGIN ================= */
+.auth-error {
+  color: red;
+  font-size: 14px;
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* ================= PERFIL UNIVERSAL DO LOJISTA ================= */
+.perfil-info-bloco {
+  margin-bottom: 20px;
+}
+
+.perfil-info-bloco p {
+  margin-bottom: 10px;
+}
+
+.perfil-tags-bloco {
+  margin-bottom: 20px;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.tag-item {
+  background: #d9d9d9;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.perfil-lojas-bloco h3,
+.perfil-tags-bloco h3 {
+  margin-bottom: 10px;
 }

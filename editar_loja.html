@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Editar Loja</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<div class="mobile-container">
+
+    <!-- HEADER -->
+    <div class="black-header">
+
+        <a id="voltar-loja-link" href="perfil_lojista.html" class="back-btn">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+
+        <div class="profile-center">
+            <img src="imgtst.jpg" class="profile2-img" alt="Editar loja">
+            <h2>Editar Loja</h2>
+        </div>
+
+    </div>
+
+    <!-- CONTEÚDO -->
+    <div class="content-area">
+
+        <div class="white-window">
+
+            <form class="form-container" id="form-editar-loja">
+                <label for="editar-nome-loja"><strong>Nome da loja</strong></label>
+                <input type="text" id="editar-nome-loja" class="search-input2" placeholder="Nome da loja">
+
+                <label for="editar-endereco-loja"><strong>Endereço</strong></label>
+                <input type="text" id="editar-endereco-loja" class="search-input2" placeholder="Endereço">
+
+                <label for="editar-telefone-loja"><strong>Telefone</strong></label>
+                <input type="text" id="editar-telefone-loja" class="search-input2" placeholder="Telefone">
+
+                <label for="editar-categoria-loja"><strong>Categoria</strong></label>
+                <input type="text" id="editar-categoria-loja" class="search-input2" placeholder="Categoria">
+
+                <label for="editar-tags-loja"><strong>Tags</strong></label>
+                <input type="text" id="editar-tags-loja" class="search-input2" placeholder="Ex.: SSD, Formatação, Limpeza">
+
+                <p id="mensagem-edicao" class="auth-error" style="color: green;"></p>
+
+                <button type="submit" class="auth-primary-btn">Salvar alterações</button>
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="dados.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const parametros = new URLSearchParams(window.location.search);
+  const lojaId = parametros.get("id");
+
+  if (!lojaId) {
+    window.location.href = "perfil_lojista.html";
+    return;
+  }
+
+  const loja = lojas.find(function (item) {
+    return item.id === lojaId;
+  });
+
+  if (!loja) {
+    window.location.href = "perfil_lojista.html";
+    return;
+  }
+
+  const campoNome = document.getElementById("editar-nome-loja");
+  const campoEndereco = document.getElementById("editar-endereco-loja");
+  const campoTelefone = document.getElementById("editar-telefone-loja");
+  const campoCategoria = document.getElementById("editar-categoria-loja");
+  const campoTags = document.getElementById("editar-tags-loja");
+  const mensagem = document.getElementById("mensagem-edicao");
+  const form = document.getElementById("form-editar-loja");
+  const voltarLink = document.getElementById("voltar-loja-link");
+
+  campoNome.value = loja.nome;
+  campoEndereco.value = loja.endereco;
+  campoTelefone.value = loja.telefone;
+  campoCategoria.value = loja.categoria;
+  campoTags.value = loja.tags.join(", ");
+
+  voltarLink.href = `loja.html?id=${loja.id}`;
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    loja.nome = campoNome.value.trim();
+    loja.endereco = campoEndereco.value.trim();
+    loja.telefone = campoTelefone.value.trim();
+    loja.categoria = campoCategoria.value.trim();
+    loja.tags = campoTags.value
+      .split(",")
+      .map(function (tag) {
+        return tag.trim();
+      })
+      .filter(function (tag) {
+        return tag !== "";
+      });
+
+    mensagem.textContent = "Alterações salvas com sucesso.";
+
+    setTimeout(function () {
+      window.location.href = `loja.html?id=${loja.id}`;
+    }, 1000);
+  });
+});
+</script>
+
+</body>
+</html>
