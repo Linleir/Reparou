@@ -922,3 +922,675 @@ body {
   text-decoration: none;
   font-size: 28px;
 }
+
+/* ================= ADIÇÃO E EDIÇÃO DE LOJA ================= */
+.campo-com-acao {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.mini-add-btn {
+  width: 28px;
+  height: 28px;
+  border: 3px solid #000;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.campo-removivel {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.campo-removivel .search-input2 {
+  padding-right: 38px;
+}
+
+.remove-item-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  color: #000;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.tags-selecionadas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.tag-selecionada-btn,
+.tag-disponivel-btn {
+  border: 3px solid #000;
+  border-radius: 10px;
+  background: #d9d9d9;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.tags-disponiveis-box {
+  border: 3px solid #000;
+  border-radius: 18px;
+  padding: 14px 10px;
+  background: #efefef;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* ================= ADIÇÃO E EDIÇÃO DE LOJA ================= */
+.campo-com-acao {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.mini-add-btn {
+  width: 28px;
+  height: 28px;
+  border: 3px solid #000;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.campo-removivel {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.campo-removivel .search-input2 {
+  padding-right: 38px;
+}
+
+.remove-item-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  color: #000;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.tags-selecionadas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.tag-selecionada-btn,
+.tag-disponivel-btn {
+  border: 3px solid #000;
+  border-radius: 10px;
+  background: #d9d9d9;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.tags-disponiveis-box {
+  border: 3px solid #000;
+  border-radius: 18px;
+  padding: 10px;
+  background: #efefef;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.botoes-form-loja {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.info-multipla-bloco {
+  margin-bottom: 12px;
+}
+
+.item-info-lista {
+  margin: 4px 0;
+}
+
+/* ================= ROLAGEM DA PÁGINA DE EDIÇÃO DE LOJA ================= */
+.pagina-form-loja {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.pagina-form-loja .content-area {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 24px;
+}
+
+.pagina-form-loja .white-window {
+  margin-bottom: 20px;
+}
+
+.pagina-form-loja .bottom-nav {
+  flex-shrink: 0;
+}
+
+.pagina-form-loja .form-container {
+  padding-bottom: 20px;
+}
+
+/* ================= PERFIL DO LOJISTA AJUSTADO AO DESIGN ================= */
+.lojista-header-ajustado {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.lojista-topo-esquerda {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.lojista-topo-texto {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.lojista-topo-texto h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.lojista-topo-texto p {
+  margin: 6px 0 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.gear-btn {
+  color: black;
+  text-decoration: none;
+  font-size: 24px;
+  margin-left: 10px;
+}
+
+.lojista-window {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.lojista-subtitulo {
+  margin: 0;
+  font-size: 18px;
+}
+
+.lista-lojas-lojista {
+  border: 3px solid black;
+  border-radius: 20px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.loja-lojista-card {
+  border: 3px solid black;
+  border-radius: 18px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 60px;
+  padding: 0 14px;
+}
+
+.loja-lojista-link {
+  flex: 1;
+  color: black;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  min-height: 60px;
+}
+
+.loja-lojista-menu {
+  color: black;
+  text-decoration: none;
+  font-size: 22px;
+  padding-left: 12px;
+}
+
+.add-loja-btn {
+  border: 3px solid black;
+  border-radius: 18px;
+  background: white;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  text-decoration: none;
+  font-size: 28px;
+}
+
+/* ================= AJUSTE VISUAL DAS PÁGINAS DO LOJISTA ================= */
+.perfil-info-bloco,
+.perfil-tags-bloco,
+.perfil-lojas-bloco,
+.info-multipla-bloco {
+  margin-bottom: 18px;
+}
+
+.perfil-info-bloco p,
+.info-multipla-bloco p,
+.item-info-lista {
+  font-size: 15px;
+  line-height: 1.35;
+  margin-bottom: 8px;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.tag-item {
+  background: #dbd8d8;
+  border-radius: 14px;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.white-window h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.item-card h3 {
+  font-size: 17px;
+  margin-bottom: 6px;
+}
+
+.item-card p {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.pagina-form-loja .white-window {
+  padding: 18px;
+  border-radius: 20px;
+}
+
+.pagina-form-loja .form-container {
+  padding: 0;
+  gap: 12px;
+}
+
+.pagina-form-loja label {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.pagina-form-loja .search-input2 {
+  border: none;
+  background: #dbd8d8;
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+}
+
+/* ================= ADIÇÃO E EDIÇÃO DE LOJA ================= */
+.campo-com-acao {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+  margin-bottom: 6px;
+}
+
+.mini-add-btn {
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 10px;
+  background: #dbd8d8;
+  color: black;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.campo-removivel {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.campo-removivel .search-input2 {
+  padding-right: 42px;
+}
+
+.remove-item-btn {
+  position: absolute;
+  right: 12px;
+  top: 46%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  color: #444;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.tags-selecionadas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.tag-selecionada-btn,
+.tag-disponivel-btn {
+  border: none;
+  border-radius: 14px;
+  background: #dbd8d8;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tag-selecionada-btn {
+  background: #bfc7cf;
+}
+
+#pesquisa-tags.search-input2 {
+  margin-bottom: 12px;
+}
+
+.tags-disponiveis-box {
+  background: #f0eeee;
+  border-radius: 16px;
+  padding: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-height: 110px;
+  overflow-y: auto;
+  margin-bottom: 18px;
+}
+
+.botoes-form-loja {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.botoes-form-loja .auth-primary-btn,
+.botoes-form-loja .auth-secondary-btn {
+  margin-top: 0;
+}
+
+.info-multipla-bloco {
+  margin-bottom: 12px;
+}
+
+.item-info-lista {
+  margin: 4px 0;
+}
+
+/* ================= ROLAGEM DA PÁGINA DE EDIÇÃO DE LOJA ================= */
+.pagina-form-loja {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.pagina-form-loja .content-area {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 24px;
+}
+
+.pagina-form-loja .white-window {
+  margin-bottom: 20px;
+}
+
+.pagina-form-loja .bottom-nav {
+  flex-shrink: 0;
+}
+
+.pagina-form-loja .form-container {
+  padding-bottom: 20px;
+}
+
+/* remove visual antigo de categoria, caso ainda exista em alguma versão */
+#categoria-loja,
+label[for="editar-categoria-loja"],
+#editar-categoria-loja {
+  display: none;
+}
+
+/* ================= AJUSTE VISUAL MAIS FORTE DO PERFIL DO LOJISTA ================= */
+.perfil-lojista-header {
+  position: relative;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+.perfil-lojista-header-centro {
+  width: 100%;
+  text-align: center;
+}
+
+.perfil-lojista-header-centro h2 {
+  margin: 10px 0 4px;
+  font-size: 20px;
+}
+
+.perfil-lojista-subinfo {
+  margin: 0;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.perfil-lojista-gear-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  color: black;
+  text-decoration: none;
+  font-size: 24px;
+}
+
+.perfil-lojista-window {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.perfil-lojista-titulo-box {
+  background: #dbd8d8;
+  border-radius: 16px;
+  padding: 12px 14px;
+}
+
+.perfil-lojista-titulo-box h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.perfil-lojista-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.perfil-lojista-card {
+  background: #dbd8d8;
+  border-radius: 16px;
+  min-height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+}
+
+.perfil-lojista-card-link {
+  flex: 1;
+  min-height: 62px;
+  display: flex;
+  align-items: center;
+  color: black;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.perfil-lojista-card-menu {
+  color: black;
+  text-decoration: none;
+  font-size: 22px;
+  padding-left: 12px;
+}
+
+.perfil-lojista-add-btn {
+  background: #dbd8d8;
+  border-radius: 16px;
+  min-height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  text-decoration: none;
+  font-size: 28px;
+}
+
+/* ================= AJUSTE VISUAL MAIS FORTE DA PÁGINA DA LOJA ================= */
+.loja-window-ajustada {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.loja-info-card {
+  background: #dbd8d8;
+  border-radius: 16px;
+  padding: 14px;
+}
+
+.loja-info-card h3 {
+  margin: 0 0 10px;
+  font-size: 17px;
+}
+
+.loja-info-card p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.loja-info-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.loja-info-item {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.loja-editar-card {
+  margin-top: 4px;
+}
+
+/* ================= AJUSTE VISUAL MAIS FORTE DO PERFIL DO LOJISTA ================= */
+.perfil-lojista-header {
+  position: relative;
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+.perfil-lojista-header-centro {
+  width: 100%;
+  text-align: center;
+}
+
+.perfil-lojista-header-centro h2 {
+  margin: 10px 0 4px;
+  font-size: 20px;
+}
+
+.perfil-lojista-subinfo {
+  margin: 0;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.perfil-lojista-gear-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  color: white;
+  text-decoration: none;
+  font-size: 24px;
+  z-index: 5;
+}
+
+.perfil-lojista-gear-btn i {
+  color: white;
+}

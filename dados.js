@@ -45,63 +45,82 @@ const lojas = [
     id: "loja-a",
     nome: "Loja A",
     lojistaId: "huguinho",
-    endereco: "Rua do Processador, 15 - Méier, RJ",
-    telefone: "(21) 99111-1001",
-    categoria: "Notebook",
+    enderecos: ["Rua do Processador, 15 - Méier, RJ"],
+    telefones: ["(21) 99111-1001"],
     tags: ["Formatação", "SSD", "Memória RAM"]
   },
   {
     id: "loja-x",
     nome: "Loja X",
     lojistaId: "huguinho",
-    endereco: "Rua Tecnológica, 286 - Méier, RJ",
-    telefone: "(21) 99999-9999",
-    categoria: "Desktop",
+    enderecos: ["Rua Tecnológica, 286 - Méier, RJ"],
+    telefones: ["(21) 99999-9999"],
     tags: ["Fonte", "Placa de vídeo", "Limpeza"]
   },
   {
     id: "loja-b",
     nome: "Loja B",
     lojistaId: "zezinho",
-    endereco: "Avenida da Manutenção, 77 - Tijuca, RJ",
-    telefone: "(21) 99222-2002",
-    categoria: "Desktop",
+    enderecos: ["Avenida da Manutenção, 77 - Tijuca, RJ"],
+    telefones: ["(21) 99222-2002"],
     tags: ["Placa-mãe", "BIOS", "Formatação"]
   },
   {
     id: "loja-y",
     nome: "Loja Y",
     lojistaId: "zezinho",
-    endereco: "Av. Central, 145 - Copacabana, RJ",
-    telefone: "(21) 97777-7777",
-    categoria: "Periféricos",
+    enderecos: ["Av. Central, 145 - Copacabana, RJ"],
+    telefones: ["(21) 97777-7777"],
     tags: ["Mouse", "Teclado", "Headset"]
   },
   {
     id: "loja-c",
     nome: "Loja C",
     lojistaId: "luizinho",
-    endereco: "Rua do Upgrade, 300 - Copacabana, RJ",
-    telefone: "(21) 99333-3003",
-    categoria: "Notebook",
+    enderecos: ["Rua do Upgrade, 300 - Copacabana, RJ"],
+    telefones: ["(21) 99333-3003"],
     tags: ["Tela", "Bateria", "Teclado"]
   },
   {
     id: "loja-z",
     nome: "Loja Z",
     lojistaId: "luizinho",
-    endereco: "Rua das Inovações, 52 - Tijuca, RJ",
-    telefone: "(21) 95555-5555",
-    categoria: "Games",
+    enderecos: ["Rua das Inovações, 52 - Tijuca, RJ"],
+    telefones: ["(21) 95555-5555"],
     tags: ["Console", "Controle", "HDMI"]
   },
   {
     id: "loja-d",
     nome: "Loja D",
     lojistaId: "luizinho",
-    endereco: "Praça do Gabinete, 40 - Centro, RJ",
-    telefone: "(21) 99444-4004",
-    categoria: "Desktop",
+    enderecos: ["Praça do Gabinete, 40 - Centro, RJ"],
+    telefones: ["(21) 99444-4004"],
     tags: ["Gabinete", "Cooler", "Setup Gamer"]
   }
+];
+
+const tagsDisponiveis = [
+  "Formatação",
+  "Limpeza",
+  "Upgrade",
+  "SSD",
+  "HD",
+  "Memória RAM",
+  "Placa-mãe",
+  "Fonte",
+  "Placa de vídeo",
+  "Notebook",
+  "Desktop",
+  "Periféricos",
+  "Teclado",
+  "Mouse",
+  "Headset",
+  "Tela",
+  "Bateria",
+  "BIOS",
+  "Cooler",
+  "Setup Gamer",
+  "Console",
+  "Controle",
+  "HDMI"
 ];

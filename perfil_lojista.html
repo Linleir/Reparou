@@ -15,18 +15,16 @@
 <div class="mobile-container">
 
     <!-- HEADER -->
-    <div class="black-header lojista-header-ajustado">
+    <div class="black-header perfil-lojista-header">
 
-        <div class="lojista-topo-esquerda">
+        <div class="perfil-lojista-header-centro">
             <img src="imgtst.jpg" class="profile2-img" alt="Foto do lojista">
 
-            <div class="lojista-topo-texto">
-                <h2 id="nome-lojista">Lojista</h2>
-                <p id="info-lojista">Informações do lojista</p>
-            </div>
+            <h2 id="nome-lojista">Lojista</h2>
+            <p id="info-lojista" class="perfil-lojista-subinfo">Informações do lojista</p>
         </div>
 
-        <a href="config_lojista.html" class="gear-btn">
+        <a href="config_lojista.html" class="perfil-lojista-gear-btn">
             <i class="fa-solid fa-gear"></i>
         </a>
 
@@ -35,11 +33,13 @@
     <!-- CONTEÚDO -->
     <div class="content-area">
 
-        <div class="white-window lojista-window">
+        <div class="white-window perfil-lojista-window">
 
-            <h3 class="lojista-subtitulo">Suas Lojas</h3>
+            <div class="perfil-lojista-titulo-box">
+                <h3>Suas lojas</h3>
+            </div>
 
-            <div id="lista-lojas-lojista" class="lista-lojas-lojista">
+            <div id="lista-lojas-lojista" class="perfil-lojista-lista">
                 <!-- renderizado por JS -->
             </div>
 
@@ -49,15 +49,9 @@
 
     <!-- BOTTOM NAV -->
     <nav class="bottom-nav">
-        <a href="perfil_lojista.html" class="nav-item">
-            <img src="Casa e lupa minimalista_edited.png" class="home">
-        </a>
-        <a href="chat_lojista.html" class="nav-item">
-            <img src="chat.png" class="home">
-        </a>
-        <a href="agendamento_lojista.html" class="nav-item">
-            <img src="star.png" class="home">
-        </a>
+        <a href="perfil_lojista.html" class="nav-item"><img src="Casa e lupa minimalista_edited.png" class="home"></a>
+        <a href="chat_lojista.html" class="nav-item"><img src="chat.png" class="home"></a>
+        <a href="agendamento_lojista.html" class="nav-item"><img src="star.png" class="home"></a>
     </nav>
 
 </div>
@@ -93,12 +87,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   lojasDoLojista.forEach(function (loja) {
     containerLojas.innerHTML += `
-      <div class="loja-lojista-card">
-        <a href="loja.html?id=${loja.id}" class="loja-lojista-link">
+      <div class="perfil-lojista-card">
+        <a href="loja.html?id=${loja.id}" class="perfil-lojista-card-link">
           <span>${loja.nome}</span>
         </a>
 
-        <a href="editar_loja.html?id=${loja.id}" class="loja-lojista-menu">
+        <a href="editar_loja.html?id=${loja.id}" class="perfil-lojista-card-menu">
           <i class="fa-solid fa-ellipsis-vertical"></i>
         </a>
       </div>
@@ -106,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   containerLojas.innerHTML += `
-    <a href="editar_loja.html?nova=1" class="add-loja-btn">
+    <a href="editar_loja.html?nova=1" class="perfil-lojista-add-btn">
       <i class="fa-solid fa-plus"></i>
     </a>
   `;
