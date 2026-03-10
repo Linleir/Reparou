@@ -623,3 +623,15 @@ body {
 =======
 >>>>>>> 8c28ecdcaba42a1dc6feaec00cad62f05dc1d62b
 }
+
+/* ================= INÍCIO SEM CONTA ================= */
+.single-login-nav {
+  justify-content: center;
+}
+
+.login-nav-btn {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
