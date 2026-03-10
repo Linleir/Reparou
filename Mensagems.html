@@ -1,11 +1,18 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html> <!-- tipo do documento HTML-->
+<html lang="pt-BR"> <!-- linguagem da pagina-->
+<head> <!-- informações sobre a página -->
+    <meta charset="UTF-8"> <!-- tipo de caracteres -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>Chat UI</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
+
+
+
+
+
+
 <body>
 
     <div class="mobile-container">
@@ -21,28 +28,75 @@
         </header>
 
         <main class="content-area">
-            
-            <div style="display: flex; flex-direction: column; gap: 10px; align-items: flex-start; margin-bottom: 20px;">
-                <div style="background: white; padding: 15px; border-radius: 15px; width: 80%; height: 40px;"></div>
-                <div style="background: white; padding: 15px; border-radius: 15px; width: 80%; height: 80px;"></div>
-                <div style="background: white; padding: 15px; border-radius: 15px; width: 40%; height: 35px;"></div>
-            </div>
 
-            <div style="display: flex; flex-direction: column; gap: 10px; align-items: flex-end;">
-                <div style="background: #666; padding: 15px; border-radius: 15px; width: 45%; height: 35px;"></div>
-                <div style="background: #666; padding: 15px; border-radius: 15px; width: 85%; height: 40px;"></div>
-                <div style="background: #666; padding: 15px; border-radius: 15px; width: 85%; height: 40px;"></div>
-            </div>
+    <div id="chat-area" class="chat-area"></div>
 
-        </main>
+    <div class="chat-input">
+        <input id="msg" class="search-input" placeholder="Digite uma mensagem" />
+        <button onclick="enviar()">Enviar</button>
+    </div>
+
+</main>
 
         <nav class="bottom-nav">
             <a href="index.html" class="nav-item"><img src="Casa e lupa minimalista_edited.png" class="home"></a>
-            <a href="favoritos.html" class="nav-item"><img src="star.png" class="home"></a>
+            <a href="Historico_de_Avaliacao.html" class="nav-item"><img src="star.png" class="home"></a>
             <a href="Mensagems.html" class="nav-item"><img src="chat.png" class="home"></a>
         </nav>
 
     </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script>
+
+let chatArea = document.getElementById("chat-area")
+
+function enviar(){
+
+    let input = document.getElementById("msg")
+    let texto = input.value
+
+    if(texto === "") return
+
+    // mensagem do usuário
+    chatArea.innerHTML += `
+    <div style="display:flex; justify-content:flex-end;">
+        <div style="background:#666; color:white; padding:12px; border-radius:15px; max-width:70%;">
+            ${texto}
+        </div>
+    </div>
+    `
+
+    input.value = ""
+
+    // resposta automática da loja
+    setTimeout(respostaLoja,1000)
+}
+
+function respostaLoja(){
+
+    chatArea.innerHTML += `
+    <div style="display:flex; justify-content:flex-start;">
+        <div style="background:white; padding:12px; border-radius:15px; max-width:70%;">
+            Recebemos sua mensagem.
+        </div>
+    </div>
+    `
+
+}
+
+</script>  
 </body>
 </html>
