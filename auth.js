@@ -1,107 +1,112 @@
-const lojistas = [
-  {
-    id: "huguinho",
-    nomeLojaPrincipal: "Huguinho Informática",
-    responsavel: "Huguinho Silva",
-    cnpj: "22.222.222/2222-22",
-    cnpjNumeros: "22222222222222",
-    senha: "123",
-    telefone: "(21) 98811-2200",
-    email: "huguinho@reparou.com",
-    enderecoBase: "Rua do Hardware, 120 - Méier, RJ",
-    tags: ["Notebook", "Formatação", "Upgrade"],
-    lojas: ["loja-a", "loja-x"]
-  },
-  {
-    id: "zezinho",
-    nomeLojaPrincipal: "Zezinho Tech Center",
-    responsavel: "Zezinho Oliveira",
-    cnpj: "33.333.333/3333-33",
-    cnpjNumeros: "33333333333333",
-    senha: "123",
-    telefone: "(21) 97722-3300",
-    email: "zezinho@reparou.com",
-    enderecoBase: "Avenida Digital, 455 - Tijuca, RJ",
-    tags: ["Desktop", "Placa-mãe", "Limpeza"],
-    lojas: ["loja-b", "loja-y"]
-  },
-  {
-    id: "luizinho",
-    nomeLojaPrincipal: "Luizinho Solutions",
-    responsavel: "Luizinho Pereira",
-    cnpj: "44.444.444/4444-44",
-    cnpjNumeros: "44444444444444",
-    senha: "123",
-    telefone: "(21) 96633-4400",
-    email: "luizinho@reparou.com",
-    enderecoBase: "Rua da Tecnologia, 890 - Copacabana, RJ",
-    tags: ["Games", "Notebook", "Periféricos"],
-    lojas: ["loja-c", "loja-z", "loja-d"]
-  }
-];
+document.addEventListener("DOMContentLoaded", function () {
+  inicializarMascaraDocumento();
+  inicializarLogin();
+});
 
-const lojas = [
-  {
-    id: "loja-a",
-    nome: "Loja A",
-    lojistaId: "huguinho",
-    endereco: "Rua do Processador, 15 - Méier, RJ",
-    telefone: "(21) 99111-1001",
-    categoria: "Notebook",
-    tags: ["Formatação", "SSD", "Memória RAM"]
-  },
-  {
-    id: "loja-x",
-    nome: "Loja X",
-    lojistaId: "huguinho",
-    endereco: "Rua Tecnológica, 286 - Méier, RJ",
-    telefone: "(21) 99999-9999",
-    categoria: "Desktop",
-    tags: ["Fonte", "Placa de vídeo", "Limpeza"]
-  },
-  {
-    id: "loja-b",
-    nome: "Loja B",
-    lojistaId: "zezinho",
-    endereco: "Avenida da Manutenção, 77 - Tijuca, RJ",
-    telefone: "(21) 99222-2002",
-    categoria: "Desktop",
-    tags: ["Placa-mãe", "BIOS", "Formatação"]
-  },
-  {
-    id: "loja-y",
-    nome: "Loja Y",
-    lojistaId: "zezinho",
-    endereco: "Av. Central, 145 - Copacabana, RJ",
-    telefone: "(21) 97777-7777",
-    categoria: "Periféricos",
-    tags: ["Mouse", "Teclado", "Headset"]
-  },
-  {
-    id: "loja-c",
-    nome: "Loja C",
-    lojistaId: "luizinho",
-    endereco: "Rua do Upgrade, 300 - Copacabana, RJ",
-    telefone: "(21) 99333-3003",
-    categoria: "Notebook",
-    tags: ["Tela", "Bateria", "Teclado"]
-  },
-  {
-    id: "loja-z",
-    nome: "Loja Z",
-    lojistaId: "luizinho",
-    endereco: "Rua das Inovações, 52 - Tijuca, RJ",
-    telefone: "(21) 95555-5555",
-    categoria: "Games",
-    tags: ["Console", "Controle", "HDMI"]
-  },
-  {
-    id: "loja-d",
-    nome: "Loja D",
-    lojistaId: "luizinho",
-    endereco: "Praça do Gabinete, 40 - Centro, RJ",
-    telefone: "(21) 99444-4004",
-    categoria: "Desktop",
-    tags: ["Gabinete", "Cooler", "Setup Gamer"]
+function inicializarMascaraDocumento() {
+  const campoLogin = document.getElementById("login-documento");
+  const campoCadastroCliente = document.getElementById("cadastro-documento-cliente");
+  const campoCadastroLojista = document.getElementById("cadastro-documento-lojista");
+
+  if (campoLogin) {
+    campoLogin.addEventListener("input", function () {
+      campoLogin.value = aplicarMascaraCpfOuCnpj(campoLogin.value);
+    });
   }
-];
+
+  if (campoCadastroCliente) {
+    campoCadastroCliente.addEventListener("input", function () {
+      campoCadastroCliente.value = aplicarMascaraCPF(campoCadastroCliente.value);
+    });
+  }
+
+  if (campoCadastroLojista) {
+    campoCadastroLojista.addEventListener("input", function () {
+      campoCadastroLojista.value = aplicarMascaraCNPJ(campoCadastroLojista.value);
+    });
+  }
+}
+
+function inicializarLogin() {
+  const form = document.getElementById("login-form");
+
+  if (!form) return;
+
+  const campoDocumento = document.getElementById("login-documento");
+  const campoSenha = document.getElementById("login-senha");
+  const erro = document.getElementById("login-erro");
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const documentoDigitado = campoDocumento.value.trim();
+    const senhaDigitada = campoSenha.value.trim();
+
+    erro.textContent = "";
+
+    if (documentoDigitado === "111.222.333-44" && senhaDigitada === "123") {
+      localStorage.setItem("tipoUsuarioLogado", "cliente");
+      localStorage.removeItem("lojistaLogado");
+      window.location.href = "inicio_cliente.html";
+      return;
+    }
+
+    const documentoNumeros = documentoDigitado.replace(/\D/g, "");
+
+    const lojistaEncontrado = lojistas.find(function (lojista) {
+      return lojista.cnpjNumeros === documentoNumeros && lojista.senha === senhaDigitada;
+    });
+
+    if (lojistaEncontrado) {
+      localStorage.setItem("tipoUsuarioLogado", "lojista");
+      localStorage.setItem("lojistaLogado", lojistaEncontrado.id);
+      window.location.href = "perfil_lojista.html";
+      return;
+    }
+
+    erro.textContent = "Login ou senha inválidos.";
+  });
+}
+
+function aplicarMascaraCpfOuCnpj(valor) {
+  let numeros = valor.replace(/\D/g, "");
+
+  if (numeros.length > 14) {
+    numeros = numeros.slice(0, 14);
+  }
+
+  if (numeros.length <= 11) {
+    return aplicarMascaraCPF(numeros);
+  }
+
+  return aplicarMascaraCNPJ(numeros);
+}
+
+function aplicarMascaraCPF(valor) {
+  let numeros = valor.replace(/\D/g, "");
+
+  if (numeros.length > 11) {
+    numeros = numeros.slice(0, 11);
+  }
+
+  numeros = numeros.replace(/^(\d{3})(\d)/, "$1.$2");
+  numeros = numeros.replace(/^(\d{3})\.(\d{3})(\d)/, "$1.$2.$3");
+  numeros = numeros.replace(/^(\d{3})\.(\d{3})\.(\d{3})(\d)/, "$1.$2.$3-$4");
+
+  return numeros;
+}
+
+function aplicarMascaraCNPJ(valor) {
+  let numeros = valor.replace(/\D/g, "");
+
+  if (numeros.length > 14) {
+    numeros = numeros.slice(0, 14);
+  }
+
+  numeros = numeros.replace(/^(\d{2})(\d)/, "$1.$2");
+  numeros = numeros.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
+  numeros = numeros.replace(/^(\d{2})\.(\d{3})\.(\d{3})(\d)/, "$1.$2.$3/$4");
+  numeros = numeros.replace(/^(\d{2})\.(\d{3})\.(\d{3})\/(\d{4})(\d)/, "$1.$2.$3/$4-$5");
+
+  return numeros;
+}
