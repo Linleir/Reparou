@@ -1594,3 +1594,194 @@ label[for="editar-categoria-loja"],
 .perfil-lojista-gear-btn i {
   color: white;
 }
+
+/* ================= BOOTSTRAP INTEGRAÇÃO ================= */
+:root {
+    --reparou-bg: #6f6f76;
+    --reparou-surface: #ffffff;
+    --reparou-panel: #a09797;
+    --reparou-dark: #111111;
+    --reparou-muted: #f2f4f7;
+    --reparou-border: #d0d5dd;
+    --reparou-primary: #212529;
+}
+
+body.bootstrap-app {
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(180deg, #4d4d52 0%, #2f3136 100%);
+    padding: 16px 0;
+}
+
+.bootstrap-app .mobile-container {
+    background: linear-gradient(180deg, #9d9494 0%, #8c8484 100%);
+    border-radius: 28px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+    border: 1px solid rgba(255,255,255,0.18);
+}
+
+.bootstrap-app .black-header {
+    background: linear-gradient(180deg, #121212 0%, #1f1f1f 100%);
+}
+
+.bootstrap-app .white-window {
+    background: rgba(255,255,255,0.98);
+    box-shadow: 0 10px 30px rgba(17, 24, 39, 0.12);
+    border: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.bootstrap-app .search-input,
+.bootstrap-app .search-input2,
+.bootstrap-app .input-field,
+.bootstrap-app input[type="text"],
+.bootstrap-app input[type="password"],
+.bootstrap-app input[type="email"],
+.bootstrap-app input[type="tel"],
+.bootstrap-app textarea,
+.bootstrap-app select {
+    width: 100%;
+    border: 1px solid var(--reparou-border);
+    background: #fff;
+    border-radius: 14px;
+    padding: 12px 14px;
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.bootstrap-app .search-input:focus,
+.bootstrap-app .search-input2:focus,
+.bootstrap-app .input-field:focus,
+.bootstrap-app input:focus,
+.bootstrap-app textarea:focus,
+.bootstrap-app select:focus {
+    outline: none;
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 .2rem rgba(13,110,253,.15);
+}
+
+.bootstrap-app .auth-primary-btn,
+.bootstrap-app .auth-secondary-btn,
+.bootstrap-app .main-btn,
+.bootstrap-app .filter-btn,
+.bootstrap-app .service-btn,
+.bootstrap-app .mini-add-btn,
+.bootstrap-app button,
+.bootstrap-app .btn-bootstrap-like {
+    border: none;
+    border-radius: 14px;
+}
+
+.bootstrap-app .auth-primary-btn,
+.bootstrap-app .main-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 48px;
+    background: var(--reparou-primary);
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 12px 16px;
+}
+
+.bootstrap-app .auth-secondary-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 48px;
+    background: #e9ecef;
+    color: #111;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 12px 16px;
+    border: 1px solid #d0d5dd;
+}
+
+.bootstrap-app .auth-primary-btn:hover,
+.bootstrap-app .main-btn:hover {
+    background: #343a40;
+    color: #fff;
+}
+
+.bootstrap-app .auth-secondary-btn:hover {
+    background: #dde2e6;
+    color: #111;
+}
+
+.bootstrap-app .perfil-lojista-card,
+.bootstrap-app .item-card,
+.bootstrap-app .shop-card,
+.bootstrap-app .service-btn {
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+    border: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.bootstrap-app .bottom-nav {
+    backdrop-filter: blur(6px);
+    background: rgba(255,255,255,0.92);
+    border-top: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.bootstrap-app .perfil-lojista-add-btn,
+.bootstrap-app .mini-add-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #212529;
+    color: #fff;
+    text-decoration: none;
+}
+
+.bootstrap-app .tag,
+.bootstrap-app .tag-item,
+.bootstrap-app .tags-selecionadas span,
+.bootstrap-app .tags-disponiveis-box button {
+    border-radius: 999px;
+}
+
+.bootstrap-app .form-container label {
+    display: inline-block;
+    margin-bottom: 6px;
+}
+
+.bootstrap-app .auth-inline-text,
+.bootstrap-app .campo-com-acao,
+.bootstrap-app .botoes-form-loja {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.bootstrap-app .botoes-form-loja {
+    flex-direction: column;
+}
+
+.bootstrap-app .auth-btn-link {
+    text-decoration: none;
+}
+
+.bootstrap-app .back-btn,
+.bootstrap-app .back-arrow {
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+}
+
+@media (max-width: 480px) {
+    body.bootstrap-app {
+        padding: 0;
+    }
+
+    .bootstrap-app .mobile-container {
+        max-width: 100%;
+        border-radius: 0;
+        min-height: 100vh;
+    }
+}
