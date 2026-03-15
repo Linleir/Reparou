@@ -5,48 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reparou - Favoritos</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 <div class="mobile-container">
     <header class="black-header">
-        <a href="Perfil Usuario.html" class="back-btn">←</a>
+        <a href="Perfil Usuario.html" class="back-btn" aria-label="Voltar"><i class="fa-solid fa-arrow-left"></i></a>
         <h2 class="page-title">Favoritos</h2>
     </header>
 
     <div class="content-area">
         <input type="text" class="search-input2" placeholder="Pesquisar">
 
-        <main class="white-window">
-            <a href="Loja_XV2.html?id=loja-x" class="item-card">
-                <img src="imgtst.jpg" class="item-img">
-                <div class="item-info">
-                    <h3>Loja X</h3>
-                    <p>Rua Tecnológica, 286<br>Méier, RJ</p>
-                    <p>(21) 99999-9999<br>(21) 98888-8888</p>
-                </div>
-                <span class="star-icon">⭐</span>
-            </a>
-
-            <a href="Loja_XV2.html?id=loja-y" class="item-card">
-                <img src="imgtst.jpg" class="item-img">
-                <div class="item-info">
-                    <h3>Loja Y</h3>
-                    <p>Av. Central, 145<br>Copacabana, RJ</p>
-                    <p>(21) 97777-7777<br>(21) 96666-6666</p>
-                </div>
-                <span class="star-icon">⭐</span>
-            </a>
-
-            <a href="Loja_XV2.html?id=loja-z" class="item-card">
-                <img src="imgtst.jpg" class="item-img">
-                <div class="item-info">
-                    <h3>Loja Z</h3>
-                    <p>Rua das Inovações, 52<br>Tijuca, RJ</p>
-                    <p>(21) 95555-5555<br>(21) 94444-4444</p>
-                </div>
-                <span class="star-icon">⭐</span>
-            </a>
-        </main>
+        <main class="white-window" id="listaFavoritos"></main>
     </div>
 
     <nav class="bottom-nav">
@@ -55,5 +26,23 @@
         <a href="Mensagems.html" class="nav-item"><img src="chat.png" class="home"></a>
     </nav>
 </div>
+<script src="dados.js"></script>
+<script>
+    const listaFavoritos = document.getElementById('listaFavoritos');
+
+    function renderizarFavoritos() {
+        const favoritas = obterLojasFavoritasDetalhadas();
+        if (!favoritas.length) {
+            listaFavoritos.innerHTML = '<div class="chat-empty-state">Você ainda não favoritou nenhuma loja.</div>';
+            return;
+        }
+
+        listaFavoritos.innerHTML = favoritas.map((loja) => criarCardLojaHtml(loja, 'favoritos')).join('');
+        conectarFavoritosNoEscopo(listaFavoritos);
+    }
+
+    document.addEventListener('favoritosAtualizados', renderizarFavoritos);
+    renderizarFavoritos();
+</script>
 </body>
 </html>

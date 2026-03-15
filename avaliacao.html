@@ -15,6 +15,9 @@
         </a>
 
         <div class="shop-profile loja-profile-card">
+            <button type="button" id="favoritoLojaBtn" class="favorite-toggle store-page-favorite" aria-label="Alternar favorito">
+                <i class="fa-regular fa-heart"></i>
+            </button>
             <img src="imgtst.jpg" class="shop-img" id="lojaImagem" alt="Imagem da loja">
             <div>
                 <h3 id="lojaTitulo">LOJA DE REPARO X</h3>
@@ -67,6 +70,21 @@ document.getElementById('lojaEndereco2').textContent = lojaAtual.enderecoLinhas[
 document.getElementById('lojaTelefone1').textContent = lojaAtual.telefones[0] || '';
 document.getElementById('lojaTelefone2').textContent = lojaAtual.telefones[1] || '';
 
+const favoritoLojaBtn = document.getElementById('favoritoLojaBtn');
+function atualizarBotaoFavoritoLoja() {
+    const ativo = lojaEhFavorita(lojaAtualId);
+    favoritoLojaBtn.classList.toggle('active', ativo);
+    favoritoLojaBtn.innerHTML = `<i class="fa-${ativo ? 'solid' : 'regular'} fa-heart"></i>`;
+}
+
+favoritoLojaBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    alternarFavorito(lojaAtualId);
+    atualizarBotaoFavoritoLoja();
+});
+
+atualizarBotaoFavoritoLoja();
+
 document.getElementById('listaAvaliacoes').innerHTML = lojaAtual.avaliacoes.map((avaliacao) => `
     <div class="item-card loja-card-avaliacao">
         <img src="${lojaAtual.imagem}" class="item-img" alt="Imagem da loja">
@@ -74,7 +92,7 @@ document.getElementById('listaAvaliacoes').innerHTML = lojaAtual.avaliacoes.map(
             <h4>${avaliacao.cliente}</h4>
             <p>${avaliacao.comentario}</p>
         </div>
-        <div class="star-icon">${avaliacao.nota}</div>
+        <div class="star-icon review-score-badge">★ ${formatarNota(avaliacao.nota)}</div>
     </div>
 `).join('');
 </script>

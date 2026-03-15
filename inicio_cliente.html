@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reparou - Início</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
     <div class="mobile-container">
@@ -23,37 +24,7 @@
 
         <h2 class="page-title">Recomendações baseadas no seu local</h2>
 
-        <main class="white-window">
-            <a href="Loja_XV2.html?id=loja-x" class="item-card">
-                <img src="imgtst.jpg" class="item-img">
-                <div class="item-info">
-                    <h3>Loja X</h3>
-                    <p>Rua Tecnológica, 286<br>Méier, RJ</p>
-                    <p>(21) 99999-9999<br>(21) 98888-8888</p>
-                </div>
-                <span class="star-icon">⭐</span>
-            </a>
-
-            <a href="Loja_XV2.html?id=loja-y" class="item-card">
-                <img src="imgtst.jpg" class="item-img">
-                <div class="item-info">
-                    <h3>Loja Y</h3>
-                    <p>Av. Central, 145<br>Copacabana, RJ</p>
-                    <p>(21) 97777-7777<br>(21) 96666-6666</p>
-                </div>
-                <span class="star-icon">⭐</span>
-            </a>
-
-            <a href="Loja_XV2.html?id=loja-z" class="item-card">
-                <img src="imgtst.jpg" class="item-img">
-                <div class="item-info">
-                    <h3>Loja Z</h3>
-                    <p>Rua das Inovações, 52<br>Tijuca, RJ</p>
-                    <p>(21) 95555-5555<br>(21) 94444-4444</p>
-                </div>
-                <span class="star-icon">⭐</span>
-            </a>
-        </main>
+        <main class="white-window" id="listaLojasInicio"></main>
 
         <nav class="bottom-nav">
             <a href="inicio_cliente.html" class="nav-item"><img src="Casa e lupa minimalista_edited.png" class="home"></a>
@@ -62,5 +33,18 @@
         </nav>
 
     </div>
+
+    <script src="dados.js"></script>
+    <script>
+        const listaLojasInicio = document.getElementById('listaLojasInicio');
+
+        function renderizarInicio() {
+            listaLojasInicio.innerHTML = obterLojasDestaque().map((loja) => criarCardLojaHtml(loja, 'inicio')).join('');
+            conectarFavoritosNoEscopo(listaLojasInicio);
+        }
+
+        document.addEventListener('favoritosAtualizados', renderizarInicio);
+        renderizarInicio();
+    </script>
 </body>
 </html>
