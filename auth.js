@@ -1,13 +1,20 @@
+
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
   inicializarMascaraDocumento();
   inicializarLogin();
 });
 
+
+
+
 function inicializarMascaraDocumento() {
   const campoLogin = document.getElementById("login-documento");
   const campoCadastroCliente = document.getElementById("cadastro-documento-cliente");
   const campoCadastroLojista = document.getElementById("cadastro-documento-lojista");
-
+  
   if (campoLogin) {
     campoLogin.addEventListener("input", function () {
       campoLogin.value = aplicarMascaraCpfOuCnpj(campoLogin.value);

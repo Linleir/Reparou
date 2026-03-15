@@ -41,6 +41,14 @@ body {
     padding: 20px;
     position: relative;
 }
+.black-header2 {
+    background: black;
+    color: white;
+    padding: 20px;
+    position: relative;
+
+}
+
 
 .back-btn,
 .back-arrow {
@@ -445,6 +453,10 @@ body {
 
 .auth-title {
   margin: 0;
+}
+.auth-title2 {
+  margin: 0;
+   text-align: center;
 }
 
 .back-btn {
