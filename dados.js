@@ -132,14 +132,14 @@ const dadosLojasUI = {
     enderecoLinhas: ["Rua do Processador, 15", "Méier, RJ"],
     telefones: ["(21) 99111 - 1001"],
     servicos: [
-      { nome: "Upgrade de SSD", preco: "R$ 180 - 260" },
-      { nome: "Formatação Completa", preco: "R$ 120 - 180" },
-      { nome: "Instalação de Memória RAM", preco: "R$ 80 - 120" },
-      { nome: "Diagnóstico", preco: "R$ 70 - 110" }
+      { nome: "Upgrade de SSD", preco: "R$ 180 - 260", media: 4.6 },
+      { nome: "Formatação Completa", preco: "R$ 120 - 180", media: 4.4 },
+      { nome: "Instalação de Memória RAM", preco: "R$ 80 - 120", media: 4.7 },
+      { nome: "Diagnóstico", preco: "R$ 70 - 110", media: 4.3 }
     ],
     avaliacoes: [
-      { cliente: "Cliente 1", comentario: "Meu notebook voltou bem mais rápido depois do upgrade.", nota: "★ 4,5" },
-      { cliente: "Cliente 2", comentario: "Atendimento educado e serviço entregue no prazo.", nota: "★ 4,0" }
+      { cliente: "Cliente 1", comentario: "Meu notebook voltou bem mais rápido depois do upgrade.", nota: 4.5 },
+      { cliente: "Cliente 2", comentario: "Atendimento educado e serviço entregue no prazo.", nota: 4.0 }
     ]
   },
   "loja-x": {
@@ -148,14 +148,14 @@ const dadosLojasUI = {
     enderecoLinhas: ["Rua Tecnológica, 286", "Méier, RJ"],
     telefones: ["(21) 99999 - 9999", "(21) 98888 - 8888"],
     servicos: [
-      { nome: "Conserto de Placas de Vídeo", preco: "R$ 400 - 500" },
-      { nome: "Manutenção", preco: "R$ 150 - 220" },
-      { nome: "Diagnóstico", preco: "R$ 100 - 200" },
-      { nome: "Troca de Peças", preco: "R$ 100 - 150" }
+      { nome: "Conserto de Placas de Vídeo", preco: "R$ 400 - 500", media: 4.8 },
+      { nome: "Manutenção", preco: "R$ 150 - 220", media: 4.2 },
+      { nome: "Diagnóstico", preco: "R$ 100 - 200", media: 4.4 },
+      { nome: "Troca de Peças", preco: "R$ 100 - 150", media: 4.1 }
     ],
     avaliacoes: [
-      { cliente: "Cliente 1", comentario: "Ótimo atendimento e explicação clara do problema.", nota: "★ 4,5" },
-      { cliente: "Cliente 2", comentario: "Serviço rápido e preço dentro do esperado.", nota: "★ 4,0" }
+      { cliente: "Cliente 1", comentario: "Ótimo atendimento e explicação clara do problema.", nota: 4.5 },
+      { cliente: "Cliente 2", comentario: "Serviço rápido e preço dentro do esperado.", nota: 4.0 }
     ]
   },
   "loja-y": {
@@ -164,14 +164,14 @@ const dadosLojasUI = {
     enderecoLinhas: ["Av. Central, 145", "Copacabana, RJ"],
     telefones: ["(21) 97777 - 7777", "(21) 96666 - 6666"],
     servicos: [
-      { nome: "Conserto de Placas de Vídeo", preco: "R$ 350 - 400" },
-      { nome: "Manutenção", preco: "R$ 250 - 320" },
-      { nome: "Troca de Periféricos", preco: "R$ 80 - 140" },
-      { nome: "Diagnóstico", preco: "R$ 90 - 170" }
+      { nome: "Conserto de Placas de Vídeo", preco: "R$ 350 - 400", media: 4.1 },
+      { nome: "Manutenção", preco: "R$ 250 - 320", media: 4.3 },
+      { nome: "Troca de Periféricos", preco: "R$ 80 - 140", media: 4.6 },
+      { nome: "Diagnóstico", preco: "R$ 90 - 170", media: 4.2 }
     ],
     avaliacoes: [
-      { cliente: "Cliente 1", comentario: "Resolveram meu problema com teclado no mesmo dia.", nota: "★ 4,0" },
-      { cliente: "Cliente 2", comentario: "Equipe atenciosa e loja organizada.", nota: "★ 4,5" }
+      { cliente: "Cliente 1", comentario: "Resolveram meu problema com teclado no mesmo dia.", nota: 4.0 },
+      { cliente: "Cliente 2", comentario: "Equipe atenciosa e loja organizada.", nota: 4.5 }
     ]
   },
   "loja-z": {
@@ -180,20 +180,31 @@ const dadosLojasUI = {
     enderecoLinhas: ["Rua das Inovações, 52", "Tijuca, RJ"],
     telefones: ["(21) 95555 - 5555", "(21) 94444 - 4444"],
     servicos: [
-      { nome: "Conserto de Console", preco: "R$ 200 - 350" },
-      { nome: "Manutenção", preco: "R$ 180 - 260" },
-      { nome: "Troca de HDMI", preco: "R$ 60 - 110" },
-      { nome: "Diagnóstico", preco: "R$ 100 - 180" }
+      { nome: "Conserto de Console", preco: "R$ 200 - 350", media: 4.9 },
+      { nome: "Manutenção", preco: "R$ 180 - 260", media: 4.5 },
+      { nome: "Troca de HDMI", preco: "R$ 60 - 110", media: 4.1 },
+      { nome: "Diagnóstico", preco: "R$ 100 - 180", media: 4.4 }
     ],
     avaliacoes: [
-      { cliente: "Cliente 1", comentario: "Meu console voltou funcionando perfeitamente.", nota: "★ 5,0" },
-      { cliente: "Cliente 2", comentario: "Bom custo-benefício e atendimento cordial.", nota: "★ 4,0" }
+      { cliente: "Cliente 1", comentario: "Meu console voltou funcionando perfeitamente.", nota: 5.0 },
+      { cliente: "Cliente 2", comentario: "Bom custo-benefício e atendimento cordial.", nota: 4.0 }
     ]
   }
 };
 
+function calcularMediaLoja(servicos = []) {
+  if (!servicos.length) return 0;
+  const total = servicos.reduce((soma, servico) => soma + Number(servico.media || 0), 0);
+  return Number((total / servicos.length).toFixed(1));
+}
+
+Object.values(dadosLojasUI).forEach((loja) => {
+  loja.media = calcularMediaLoja(loja.servicos);
+});
+
 const DEMO_CHAT_STORE_IDS = ["loja-a", "loja-y", "loja-z", "loja-x"];
-const STORAGE_CHATS_KEY = 'reparouChatsDemoV1';
+const STORAGE_CHATS_KEY = 'reparouChatsDemoV2';
+const STORAGE_FAVORITOS_KEY = 'reparouFavoritosV1';
 
 function obterLojaAtualId() {
   const params = new URLSearchParams(window.location.search);
@@ -227,8 +238,97 @@ function obterInformacoesLoja(lojaId) {
     enderecoLinhas: dadosUI.enderecoLinhas || quebrarEnderecoEmLinhas(lojaBase.enderecos?.[0]),
     telefones: dadosUI.telefones || lojaBase.telefones || [],
     servicos: dadosUI.servicos || [],
-    avaliacoes: dadosUI.avaliacoes || []
+    avaliacoes: dadosUI.avaliacoes || [],
+    media: dadosUI.media || calcularMediaLoja(dadosUI.servicos || [])
   };
+}
+
+function formatarNota(nota) {
+  return Number(nota || 0).toFixed(1).replace('.', ',');
+}
+
+function obterFavoritos() {
+  try {
+    const favoritosSalvos = localStorage.getItem(STORAGE_FAVORITOS_KEY);
+    if (!favoritosSalvos) {
+      const favoritosPadrao = ['loja-x', 'loja-y', 'loja-z'];
+      salvarFavoritos(favoritosPadrao);
+      return favoritosPadrao;
+    }
+    return JSON.parse(favoritosSalvos || '[]');
+  } catch (error) {
+    return ['loja-x', 'loja-y', 'loja-z'];
+  }
+}
+
+function salvarFavoritos(favoritos) {
+  localStorage.setItem(STORAGE_FAVORITOS_KEY, JSON.stringify(favoritos));
+}
+
+function lojaEhFavorita(lojaId) {
+  return obterFavoritos().includes(lojaId);
+}
+
+function alternarFavorito(lojaId) {
+  const favoritos = obterFavoritos();
+  const indice = favoritos.indexOf(lojaId);
+  if (indice >= 0) {
+    favoritos.splice(indice, 1);
+  } else {
+    favoritos.push(lojaId);
+  }
+  salvarFavoritos(favoritos);
+  return favoritos.includes(lojaId);
+}
+
+function obterLojasDestaque() {
+  return ['loja-x', 'loja-y', 'loja-z'].map((id) => obterInformacoesLoja(id));
+}
+
+function obterLojasFavoritasDetalhadas() {
+  return obterFavoritos().map((id) => obterInformacoesLoja(id));
+}
+
+function criarCardLojaHtml(loja, contexto = 'inicio') {
+  const favorita = lojaEhFavorita(loja.id);
+  const endereco1 = loja.enderecoLinhas?.[0] || '';
+  const endereco2 = loja.enderecoLinhas?.[1] || '';
+  const telefone1 = loja.telefones?.[0] || '';
+  const telefone2 = loja.telefones?.[1] || '';
+
+  return `
+    <a href="Loja_XV2.html?id=${encodeURIComponent(loja.id)}" class="item-card store-link-card" data-loja-card="${loja.id}">
+      <img src="${loja.imagem}" class="item-img" alt="${loja.nome}">
+      <div class="item-info">
+        <h3>${loja.nome}</h3>
+        <p>${endereco1}${endereco2 ? `<br>${endereco2}` : ''}</p>
+        <p>${telefone1}${telefone2 ? `<br>${telefone2}` : ''}</p>
+      </div>
+      <div class="store-card-actions">
+        <button type="button" class="favorite-toggle ${favorita ? 'active' : ''}" data-favorito-loja="${loja.id}" aria-label="Alternar favorito">
+          <i class="fa-${favorita ? 'solid' : 'regular'} fa-heart"></i>
+        </button>
+        <span class="star-icon loja-rating-badge">★ ${formatarNota(loja.media)}</span>
+      </div>
+    </a>
+  `;
+}
+
+function conectarFavoritosNoEscopo(root = document) {
+  root.querySelectorAll('[data-favorito-loja]').forEach((botao) => {
+    botao.onclick = (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const lojaId = botao.getAttribute('data-favorito-loja');
+      const ativo = alternarFavorito(lojaId);
+      botao.classList.toggle('active', ativo);
+      const icon = botao.querySelector('i');
+      if (icon) {
+        icon.className = ativo ? 'fa-solid fa-heart' : 'fa-regular fa-heart';
+      }
+      document.dispatchEvent(new CustomEvent('favoritosAtualizados', { detail: { lojaId, ativo } }));
+    };
+  });
 }
 
 function construirMensagem(texto, autor, horario) {
@@ -435,7 +535,23 @@ function obterAvaliacaoPorId(avaliacaoId) {
   };
 }
 
-function criarNovoChat(lojaId, tipo = 'generico') {
+function criarRascunhoChat(lojaId, tipo = 'generico') {
+  const dataAgora = new Date().toISOString();
+  return {
+    id: `rascunho-${Date.now()}`,
+    lojaId,
+    tituloServico: 'Novo atendimento',
+    status: 'ativo',
+    mensagens: [],
+    criadoEm: dataAgora,
+    atualizadoEm: dataAgora,
+    avaliacao: null,
+    autoTipo: tipo === 'agradecimento' ? 'agradecimento' : 'generico',
+    rascunho: true
+  };
+}
+
+function criarNovoChat(lojaId, tipo = 'generico', primeiraMensagem = '') {
   const chats = obterChats();
   const chatId = `chat-${Date.now()}`;
   const dataAgora = new Date().toISOString();
@@ -444,7 +560,7 @@ function criarNovoChat(lojaId, tipo = 'generico') {
     id: chatId,
     lojaId,
     tituloServico: 'Novo atendimento',
-    status: tipo === 'agradecimento' ? 'finalizado-sem-avaliacao' : 'ativo',
+    status: 'ativo',
     mensagens: [],
     criadoEm: dataAgora,
     atualizadoEm: dataAgora,
@@ -452,9 +568,19 @@ function criarNovoChat(lojaId, tipo = 'generico') {
     autoTipo: tipo === 'agradecimento' ? 'agradecimento' : 'generico'
   };
 
-  if (tipo === 'agradecimento') {
-    novoChat.mensagens.push(construirMensagem('Obrigado por escolher nosso serviço. Seu atendimento foi concluído e sua avaliação já pode ser enviada.', 'loja', dataAgora));
+  if (primeiraMensagem && primeiraMensagem.trim()) {
+    novoChat.mensagens.push(construirMensagem(primeiraMensagem.trim(), 'cliente', dataAgora));
     novoChat.atualizadoEm = dataAgora;
+
+    let resposta = 'Recebemos sua mensagem.';
+    if (tipo === 'agradecimento') {
+      resposta = 'Obrigado por escolher nosso serviço. Seu atendimento foi concluído e sua avaliação já pode ser enviada.';
+      novoChat.status = 'finalizado-sem-avaliacao';
+    }
+
+    const horarioLoja = new Date(Date.now() + 1000).toISOString();
+    novoChat.mensagens.push(construirMensagem(resposta, 'loja', horarioLoja));
+    novoChat.atualizadoEm = horarioLoja;
   }
 
   chats.push(novoChat);

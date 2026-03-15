@@ -2078,3 +2078,125 @@ body {
 .store-chat-fab span {
     display: none;
 }
+
+
+/* ===== AJUSTES FINOS 2 ===== */
+.black-header,
+.shop-header,
+.loja-header,
+.denuncia-header,
+.chat-history-header,
+.chat-header-v2 {
+    position: relative;
+}
+
+.black-header .back-btn,
+.shop-header .back-btn,
+.loja-header .back-btn,
+.denuncia-header .back-btn,
+.chat-history-header .back-btn,
+.chat-header-v2 .back-btn {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    transform: none;
+    line-height: 1;
+    z-index: 6;
+}
+
+.chat-history-window .search-input,
+.white-window .search-input,
+.chat-review-input {
+    flex: 0 0 auto;
+}
+
+.chat-history-window {
+    min-height: 0;
+}
+
+.chat-empty-state {
+    flex: 0 0 auto;
+    min-height: 72px;
+}
+
+.store-link-card {
+    padding-right: 72px;
+}
+
+.store-card-actions {
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.favorite-toggle {
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.9);
+    color: #2b2b2b;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.favorite-toggle.active {
+    color: #e53935;
+}
+
+.store-page-favorite {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 7;
+}
+
+.loja-profile-card {
+    position: relative;
+    padding-right: 44px;
+}
+
+.loja-rating-badge,
+.review-score-badge,
+.service-rating-badge,
+.service-rating-value,
+.star-icon,
+.star-select.active {
+    color: #ffe100;
+    -webkit-text-stroke: 0.4px #111;
+    text-shadow: 0 1px 0 #111, 1px 0 0 #111;
+}
+
+.service-rating-card {
+    gap: 12px;
+}
+
+.service-rating-badge {
+    min-width: 58px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+    font-weight: 700;
+}
+
+.store-rating-star {
+    color: #ffe100;
+    -webkit-text-stroke: 0.4px #111;
+    text-shadow: 0 1px 0 #111, 1px 0 0 #111;
+}
+
+.review-history-card .star-icon,
+.loja-card-avaliacao .star-icon,
+.store-link-card .star-icon {
+    right: 10px;
+    bottom: 10px;
+    font-weight: 700;
+}

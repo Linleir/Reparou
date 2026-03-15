@@ -15,6 +15,9 @@
         </a>
 
         <div class="shop-profile loja-profile-card">
+            <button type="button" id="favoritoLojaBtn" class="favorite-toggle store-page-favorite" aria-label="Alternar favorito">
+                <i class="fa-regular fa-heart"></i>
+            </button>
             <img src="imgtst.jpg" class="shop-img" id="lojaImagem" alt="Imagem da loja">
             <div>
                 <h3 id="lojaTitulo">LOJA DE REPARO X</h3>
@@ -69,6 +72,21 @@ document.getElementById('lojaTelefone2').textContent = lojaAtual.telefones[1] ||
 
 const listaServicos = document.getElementById('listaServicos');
 const pesquisaServico = document.getElementById('pesquisaServico');
+
+const favoritoLojaBtn = document.getElementById('favoritoLojaBtn');
+function atualizarBotaoFavoritoLoja() {
+    const ativo = lojaEhFavorita(lojaAtualId);
+    favoritoLojaBtn.classList.toggle('active', ativo);
+    favoritoLojaBtn.innerHTML = `<i class="fa-${ativo ? 'solid' : 'regular'} fa-heart"></i>`;
+}
+
+favoritoLojaBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    alternarFavorito(lojaAtualId);
+    atualizarBotaoFavoritoLoja();
+});
+
+atualizarBotaoFavoritoLoja();
 
 function renderizarServicos(filtro = '') {
     const termo = filtro.trim().toLowerCase();

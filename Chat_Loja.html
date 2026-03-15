@@ -63,17 +63,16 @@
         const lojaIdOrigem = params.get('id') || 'loja-x';
         let chatId = params.get('chat');
 
+        let chat = null;
+
         if (!chatId && params.get('nova') === '1') {
-            chatId = criarNovoChat(lojaIdOrigem, 'generico');
-            const novaUrl = construirLinkChat(chatId, origem);
-            window.history.replaceState({}, '', novaUrl);
+            chat = criarRascunhoChat(lojaIdOrigem, 'generico');
+        } else {
+            chat = obterChatPorId(chatId);
         }
 
-        let chat = obterChatPorId(chatId);
         if (!chat) {
-            chatId = criarNovoChat('loja-x', 'generico');
-            chat = obterChatPorId(chatId);
-            window.history.replaceState({}, '', construirLinkChat(chatId, origem));
+            chat = criarRascunhoChat(lojaIdOrigem || 'loja-x', 'generico');
         }
 
         const loja = obterInformacoesLoja(chat.lojaId);
@@ -151,8 +150,16 @@
         function enviarMensagem() {
             const texto = msgInput.value.trim();
             if (!texto) return;
-            adicionarMensagemAoChat(chat.id, texto);
-            chat = obterChatPorId(chat.id);
+
+            if (chat.rascunho) {
+                chatId = criarNovoChat(chat.lojaId, chat.autoTipo || 'generico', texto);
+                chat = obterChatPorId(chatId);
+                window.history.replaceState({}, '', construirLinkChat(chatId, origem));
+            } else {
+                const resultado = adicionarMensagemAoChat(chat.id, texto);
+                chat = resultado.chat;
+            }
+
             msgInput.value = '';
             renderizarMensagens();
             renderizarStatus();
@@ -178,8 +185,7 @@
         });
 
         novoChatBtn.addEventListener('click', () => {
-            const novoId = criarNovoChat(chat.lojaId, 'generico');
-            window.location.href = construirLinkChat(novoId, origem);
+            window.location.href = construirLinkNovoChat(chat.lojaId, origem);
         });
 
         renderizarEstrelas();
