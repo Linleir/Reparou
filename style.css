@@ -1774,3 +1774,307 @@ body {
     color: #991b1b;
     border: 1px solid #fca5a5;
 }
+
+/* ================= CHAT E AVALIAÇÕES DO CLIENTE ================= */
+.chat-history-header {
+    padding-top: 24px;
+}
+
+.chat-subtitle {
+    font-size: 14px;
+    color: #d5d5d5;
+    line-height: 1.4;
+}
+
+.chat-history-content {
+    overflow: hidden;
+}
+
+.chat-history-window {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.chat-history-card,
+.review-history-card {
+    align-items: flex-start;
+}
+
+.chat-history-main,
+.review-history-main {
+    flex: 1;
+    min-width: 0;
+}
+
+.chat-history-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.chat-date,
+.review-date,
+.chat-service-label {
+    font-size: 12px;
+    color: #444;
+}
+
+.chat-service-label {
+    display: block;
+    margin: 6px 0 4px;
+    font-weight: 700;
+}
+
+.chat-preview,
+.review-history-main p {
+    font-size: 14px;
+    line-height: 1.35;
+    color: #222;
+    margin-top: 6px;
+}
+
+.chat-status-badge {
+    display: inline-flex;
+    margin-top: 10px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.chat-status-badge.ativo,
+.chat-top-status.ativo {
+    background: rgba(22, 163, 74, 0.16);
+    color: #0f6c2f;
+}
+
+.chat-status-badge.ativo-avaliavel,
+.chat-top-status.ativo-avaliavel {
+    background: rgba(234, 179, 8, 0.18);
+    color: #8a6500;
+}
+
+.chat-status-badge.finalizado-sem-avaliacao,
+.chat-top-status.finalizado-sem-avaliacao {
+    background: rgba(59, 130, 246, 0.16);
+    color: #174ea6;
+}
+
+.chat-status-badge.finalizado-avaliado,
+.chat-top-status.finalizado-avaliado {
+    background: rgba(107, 114, 128, 0.18);
+    color: #374151;
+}
+
+.chat-empty-state {
+    background: #dbd8d8;
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+    color: #444;
+}
+
+.chat-screen {
+    overflow: hidden;
+}
+
+.chat-header-v2 {
+    padding-bottom: 18px;
+}
+
+.chat-title {
+    margin-bottom: 14px;
+}
+
+.chat-shop-card {
+    background: white;
+    border-radius: 22px;
+    padding: 10px 14px;
+    width: 100%;
+    color: black;
+}
+
+.chat-shop-card h3 {
+    margin-bottom: 4px;
+}
+
+.chat-shop-card p {
+    font-size: 12px;
+    line-height: 1.3;
+}
+
+.chat-shop-img {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+}
+
+.chat-content-area-v2 {
+    padding: 14px 14px 150px;
+    overflow: hidden;
+}
+
+.chat-top-status {
+    align-self: flex-start;
+    border-radius: 999px;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.chat-area-v2 {
+    flex: 1;
+    overflow-y: auto;
+    padding: 6px 2px 16px;
+}
+
+.chat-row {
+    display: flex;
+}
+
+.chat-row.msg-out {
+    justify-content: flex-end;
+}
+
+.chat-row.msg-in {
+    justify-content: flex-start;
+}
+
+.chat-bubble {
+    max-width: 78%;
+    border-radius: 18px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.chat-bubble p {
+    line-height: 1.35;
+}
+
+.chat-bubble span {
+    font-size: 11px;
+    opacity: 0.8;
+    align-self: flex-end;
+}
+
+.chat-bubble.cliente {
+    background: #666;
+    color: white;
+}
+
+.chat-bubble.loja {
+    background: white;
+    color: black;
+}
+
+.chat-input-v2 {
+    position: absolute;
+    bottom: 60px;
+    left: 0;
+    width: 100%;
+    max-width: 400px;
+    padding: 10px 12px;
+    background: linear-gradient(to top, #a09797 78%, rgba(160, 151, 151, 0));
+    align-items: center;
+}
+
+.chat-message-input {
+    margin-bottom: 0;
+}
+
+.chat-send-btn {
+    border: none;
+    border-radius: 999px;
+    padding: 12px 16px;
+    background: black;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.chat-send-btn:disabled,
+.main-btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.chat-evaluation-card,
+.chat-finished-actions,
+.review-summary-box {
+    background: white;
+    border-radius: 18px;
+    padding: 16px;
+    margin-top: 10px;
+}
+
+.chat-evaluation-card h3,
+.review-summary-box h4 {
+    margin-bottom: 8px;
+}
+
+.chat-review-input {
+    background: #efefef;
+    border: 1px solid #d3d3d3;
+}
+
+.rating-stars {
+    display: flex;
+    gap: 8px;
+    margin: 14px 0;
+}
+
+.star-select {
+    border: none;
+    background: transparent;
+    font-size: 28px;
+    color: #a5a5a5;
+    cursor: pointer;
+}
+
+.star-select.active {
+    color: #f1c40f;
+}
+
+.review-detail-window {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.review-detail-header {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.review-edit-stars {
+    margin-bottom: -4px;
+}
+
+.store-chat-fab {
+    position: absolute;
+    right: 18px;
+    bottom: 84px;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 22px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+    z-index: 20;
+}
+
+.store-chat-fab span {
+    display: none;
+}
