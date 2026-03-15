@@ -11,21 +11,19 @@ body {
     display: flex;
     justify-content: center;
     background: #333;
-    min-height: 100vh;
-    overflow-y: auto;
+    height: 100vh;
 }
 
 /* CONTAINER MOBILE */
 .mobile-container {
     width: 100%;
     max-width: 400px;
-    min-height: 100vh;
+    height: 100vh;
     background: #a09797;
     display: flex;
     flex-direction: column;
     position: relative;
-    overflow-x: hidden;
-    overflow-y: visible;
+    overflow: hidden;
 }
 
 /* ================= TOPO PADRÃO ================= */
@@ -366,8 +364,6 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
-    padding-bottom: 90px;
 }
 
 /* ================= TELAS DE LOGIN E CADASTRO ================= */
@@ -1597,4 +1593,184 @@ label[for="editar-categoria-loja"],
 
 .perfil-lojista-gear-btn i {
   color: white;
+}
+
+/* ================= AJUSTES ÁREA DAS LOJAS ================= */
+
+body {
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+.mobile-container {
+    min-height: 100vh;
+}
+
+.loja-header,
+.denuncia-header {
+    padding-top: 56px;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+}
+
+.loja-profile-card {
+    align-items: flex-start;
+}
+
+.loja-tabs {
+    gap: 8px;
+    margin-top: 22px;
+}
+
+.loja-tab {
+    flex: 1;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 10px 8px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.loja-tab-active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.loja-content-area {
+    padding-top: 16px;
+    padding-bottom: 90px;
+    overflow-y: auto;
+}
+
+.loja-window {
+    margin: 0 15px 0 15px;
+}
+
+.item-info,
+.item-info-text {
+    flex: 1;
+    min-width: 0;
+    padding-right: 26px;
+}
+
+.item-info h3,
+.item-info-text h4 {
+    margin-bottom: 6px;
+}
+
+.item-info p,
+.item-info-text p,
+.shop-profile p {
+    line-height: 1.35;
+}
+
+.loja-card-avaliacao {
+    align-items: flex-start;
+    padding-right: 52px;
+}
+
+.feedback-box {
+    margin-bottom: 16px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.denuncia-form-container {
+    padding: 20px 0;
+}
+
+.denuncia-content-area .search-input {
+    border: none;
+}
+
+.loja-empty-state {
+    text-align: center;
+    padding: 20px 0 8px;
+    color: #555;
+}
+
+.back-btn {
+    z-index: 3;
+}
+
+.page-title {
+    margin-bottom: 16px;
+}
+
+
+/* ================= AJUSTES FINAIS ÁREA DAS LOJAS ================= */
+
+.mobile-container {
+    height: auto;
+    overflow: visible;
+}
+
+.loja-header,
+.denuncia-header {
+    position: relative;
+}
+
+.loja-header .back-btn,
+.denuncia-header .back-btn {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    transform: none;
+    font-size: 24px;
+    line-height: 1;
+}
+
+.loja-content-area,
+.denuncia-content-area {
+    overflow: visible;
+}
+
+.loja-window {
+    overflow: visible;
+}
+
+
+/* ================= FEEDBACK OVERLAY DENÚNCIA ================= */
+.denuncia-content-area {
+    position: relative;
+}
+
+.feedback-box {
+    position: fixed;
+    left: 50%;
+    bottom: 120px;
+    transform: translateX(-50%) translateY(12px);
+    width: min(340px, calc(100vw - 32px));
+    margin: 0;
+    padding: 12px 14px;
+    border-radius: 12px;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+}
+
+.feedback-box.feedback-visivel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.feedback-box.feedback-sucesso {
+    background: #d1fae5;
+    color: #065f46;
+    border: 1px solid #6ee7b7;
+}
+
+.feedback-box.feedback-erro {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
 }

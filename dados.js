@@ -54,7 +54,7 @@ const lojas = [
     nome: "Loja X",
     lojistaId: "huguinho",
     enderecos: ["Rua Tecnológica, 286 - Méier, RJ"],
-    telefones: ["(21) 99999-9999"],
+    telefones: ["(21) 99999-9999", "(21) 98888-8888"],
     tags: ["Fonte", "Placa de vídeo", "Limpeza"]
   },
   {
@@ -70,7 +70,7 @@ const lojas = [
     nome: "Loja Y",
     lojistaId: "zezinho",
     enderecos: ["Av. Central, 145 - Copacabana, RJ"],
-    telefones: ["(21) 97777-7777"],
+    telefones: ["(21) 97777-7777", "(21) 96666-6666"],
     tags: ["Mouse", "Teclado", "Headset"]
   },
   {
@@ -86,7 +86,7 @@ const lojas = [
     nome: "Loja Z",
     lojistaId: "luizinho",
     enderecos: ["Rua das Inovações, 52 - Tijuca, RJ"],
-    telefones: ["(21) 95555-5555"],
+    telefones: ["(21) 95555-5555", "(21) 94444-4444"],
     tags: ["Console", "Controle", "HDMI"]
   },
   {
@@ -124,3 +124,68 @@ const tagsDisponiveis = [
   "Controle",
   "HDMI"
 ];
+
+const dadosLojasUI = {
+  "loja-x": {
+    titulo: "LOJA DE REPARO X",
+    imagem: "imgtst.jpg",
+    enderecoLinhas: ["Rua Tecnológica, 286", "Méier, RJ"],
+    telefones: ["(21) 99999 - 9999", "(21) 98888 - 8888"],
+    servicos: [
+      { nome: "Conserto de Placas de Vídeo", preco: "R$ 400 - 500" },
+      { nome: "Manutenção", preco: "R$ 150 - 220" },
+      { nome: "Diagnóstico", preco: "R$ 100 - 200" },
+      { nome: "Troca de Peças", preco: "R$ 100 - 150" }
+    ],
+    avaliacoes: [
+      { cliente: "Cliente 1", comentario: "Ótimo atendimento e explicação clara do problema.", nota: "★ 4,5" },
+      { cliente: "Cliente 2", comentario: "Serviço rápido e preço dentro do esperado.", nota: "★ 4,0" }
+    ]
+  },
+  "loja-y": {
+    titulo: "LOJA DE REPARO Y",
+    imagem: "imgtst.jpg",
+    enderecoLinhas: ["Av. Central, 145", "Copacabana, RJ"],
+    telefones: ["(21) 97777 - 7777", "(21) 96666 - 6666"],
+    servicos: [
+      { nome: "Conserto de Placas de Vídeo", preco: "R$ 350 - 400" },
+      { nome: "Manutenção", preco: "R$ 250 - 320" },
+      { nome: "Troca de Periféricos", preco: "R$ 80 - 140" },
+      { nome: "Diagnóstico", preco: "R$ 90 - 170" }
+    ],
+    avaliacoes: [
+      { cliente: "Cliente 1", comentario: "Resolveram meu problema com teclado no mesmo dia.", nota: "★ 4,0" },
+      { cliente: "Cliente 2", comentario: "Equipe atenciosa e loja organizada.", nota: "★ 4,5" }
+    ]
+  },
+  "loja-z": {
+    titulo: "LOJA DE REPARO Z",
+    imagem: "imgtst.jpg",
+    enderecoLinhas: ["Rua das Inovações, 52", "Tijuca, RJ"],
+    telefones: ["(21) 95555 - 5555", "(21) 94444 - 4444"],
+    servicos: [
+      { nome: "Conserto de Console", preco: "R$ 200 - 350" },
+      { nome: "Manutenção", preco: "R$ 180 - 260" },
+      { nome: "Troca de HDMI", preco: "R$ 60 - 110" },
+      { nome: "Diagnóstico", preco: "R$ 100 - 180" }
+    ],
+    avaliacoes: [
+      { cliente: "Cliente 1", comentario: "Meu console voltou funcionando perfeitamente.", nota: "★ 5,0" },
+      { cliente: "Cliente 2", comentario: "Bom custo-benefício e atendimento cordial.", nota: "★ 4,0" }
+    ]
+  }
+};
+
+function obterLojaAtualId() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('id') || 'loja-x';
+}
+
+function obterDadosLojaAtual() {
+  const id = obterLojaAtualId();
+  return dadosLojasUI[id] || dadosLojasUI['loja-x'];
+}
+
+function montarLinkLoja(pagina) {
+  return `${pagina}?id=${obterLojaAtualId()}`;
+}
