@@ -72,6 +72,8 @@
         </div>
     </div>
 
+    <a href="Mensagems.html" id="chatRapidoBtn" class="store-chat-fab" aria-label="Abrir chat com a loja"><i class="fa-solid fa-comments"></i><span>Chat</span></a>
+
     <nav class="bottom-nav">
         <a href="inicio_cliente.html" class="nav-item">
             <img src="Casa e lupa minimalista_edited.png" class="home">
@@ -88,6 +90,7 @@
 <script src="dados.js"></script>
 <script>
 const lojaAtual = obterDadosLojaAtual();
+const lojaAtualId = obterLojaAtualId();
 const mensagemFeedback = document.getElementById('mensagemFeedback');
 const btnSalvarDenuncia = document.getElementById('btnSalvarDenuncia');
 const btnCancelarDenuncia = document.getElementById('btnCancelarDenuncia');
@@ -98,6 +101,7 @@ document.getElementById('linkVoltar').href = montarLinkLoja('Loja_XV2.html');
 document.getElementById('linkServicos').href = montarLinkLoja('Loja_XV2.html');
 document.getElementById('linkAvaliacoes').href = montarLinkLoja('avaliacao.html');
 document.getElementById('linkDenuncia').href = montarLinkLoja('Denuncia.html');
+document.getElementById('chatRapidoBtn').href = construirLinkNovoChat(lojaAtualId, 'loja');
 
 document.getElementById('lojaImagem').src = lojaAtual.imagem;
 document.getElementById('lojaTitulo').textContent = lojaAtual.titulo;
