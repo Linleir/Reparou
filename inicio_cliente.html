@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <div class="mobile-container">
+    <div class="mobile-container pagina-inicio-cliente">
 
-        <header class="top-bar">
-            <input type="text" class="search-input" placeholder="Pesquisar">
+        <header class="top-bar inicio-top-bar">
+            <input type="text" id="pesquisa-lojas" class="search-input" placeholder="Pesquisar loja, bairro ou serviço">
 
-            <a href="filtro2.html" class="filter-btn">Filtro</a>
+            <button type="button" id="abrir-filtros-lojas" class="filter-btn filter-btn-action">Filtro</button>
 
             <a href="Perfil Usuario.html" class="profile-btn">
                 <svg viewBox="0 0 24 24" fill="black" width="30" height="30">
@@ -22,9 +22,24 @@
             </a>
         </header>
 
-        <h2 class="page-title">Recomendações baseadas no seu local</h2>
+        <section id="painel-filtros-lojas" class="inicio-filtros-panel" hidden>
+            <div class="inicio-filtros-card">
+                <div class="inicio-filtros-header">
+                    <h3>Filtrar por tags e serviços</h3>
+                    <button type="button" id="limpar-filtros-lojas" class="limpar-filtros-btn">Limpar</button>
+                </div>
 
-        <main class="white-window" id="listaLojasInicio"></main>
+                <div id="tags-selecionadas-inicio" class="tags-selecionadas"></div>
+
+                <input type="text" id="pesquisa-tags-inicio" class="search-input2" placeholder="Pesquisar tags ou serviços">
+
+                <div id="tags-disponiveis-inicio" class="tags-disponiveis-box"></div>
+            </div>
+        </section>
+
+        <h2 class="page-title" id="titulo-lista-lojas">Recomendações baseadas no seu local</h2>
+
+        <main class="white-window white-window-lojas" id="listaLojasInicio"></main>
 
         <nav class="bottom-nav">
             <a href="inicio_cliente.html" class="nav-item"><img src="Casa e lupa minimalista_edited.png" class="home"></a>
@@ -37,13 +52,106 @@
     <script src="dados.js"></script>
     <script>
         const listaLojasInicio = document.getElementById('listaLojasInicio');
+        const campoPesquisaLojas = document.getElementById('pesquisa-lojas');
+        const tituloListaLojas = document.getElementById('titulo-lista-lojas');
+        const botaoAbrirFiltros = document.getElementById('abrir-filtros-lojas');
+        const painelFiltros = document.getElementById('painel-filtros-lojas');
+        const tagsSelecionadasContainer = document.getElementById('tags-selecionadas-inicio');
+        const tagsDisponiveisContainer = document.getElementById('tags-disponiveis-inicio');
+        const campoPesquisaTags = document.getElementById('pesquisa-tags-inicio');
+        const botaoLimparFiltros = document.getElementById('limpar-filtros-lojas');
+
+        let tagsSelecionadas = [];
+
+        function atualizarTituloLista(total) {
+            const haBusca = campoPesquisaLojas.value.trim().length > 0;
+            const haFiltros = tagsSelecionadas.length > 0;
+            tituloListaLojas.textContent = (haBusca || haFiltros)
+                ? `${total} loja${total === 1 ? '' : 's'} encontrada${total === 1 ? '' : 's'}`
+                : 'Recomendações baseadas no seu local';
+        }
+
+        function renderizarTagsFiltro() {
+            const termoPesquisa = normalizarTexto(campoPesquisaTags.value);
+            const todasTags = obterTagsPesquisaInicio();
+
+            tagsSelecionadasContainer.innerHTML = '';
+            tagsDisponiveisContainer.innerHTML = '';
+
+            tagsSelecionadas.forEach((tag) => {
+                tagsSelecionadasContainer.innerHTML += `
+                    <button type="button" class="tag-selecionada-btn" data-tag="${tag}">
+                        <span>${tag}</span>
+                        <span>&times;</span>
+                    </button>
+                `;
+            });
+
+            todasTags
+                .filter((tag) => !tagsSelecionadas.includes(tag))
+                .filter((tag) => !termoPesquisa || normalizarTexto(tag).includes(termoPesquisa))
+                .forEach((tag) => {
+                    tagsDisponiveisContainer.innerHTML += `
+                        <button type="button" class="tag-disponivel-btn" data-tag="${tag}">
+                            <span>${tag}</span>
+                            <span>+</span>
+                        </button>
+                    `;
+                });
+
+            tagsSelecionadasContainer.querySelectorAll('[data-tag]').forEach((botao) => {
+                botao.onclick = () => {
+                    tagsSelecionadas = tagsSelecionadas.filter((tag) => tag !== botao.dataset.tag);
+                    renderizarTagsFiltro();
+                    renderizarInicio();
+                };
+            });
+
+            tagsDisponiveisContainer.querySelectorAll('[data-tag]').forEach((botao) => {
+                botao.onclick = () => {
+                    if (!tagsSelecionadas.includes(botao.dataset.tag)) {
+                        tagsSelecionadas.push(botao.dataset.tag);
+                    }
+                    renderizarTagsFiltro();
+                    renderizarInicio();
+                };
+            });
+        }
 
         function renderizarInicio() {
-            listaLojasInicio.innerHTML = obterLojasDestaque().map((loja) => criarCardLojaHtml(loja, 'inicio')).join('');
+            const lojasFiltradas = pesquisarLojasInicio(campoPesquisaLojas.value, tagsSelecionadas);
+            atualizarTituloLista(lojasFiltradas.length);
+
+            listaLojasInicio.innerHTML = lojasFiltradas.length
+                ? lojasFiltradas.map((loja) => criarCardLojaHtml(loja, 'inicio')).join('')
+                : '<div class="empty-state-lojas">Nenhuma loja encontrada com esses filtros.</div>';
+
             conectarFavoritosNoEscopo(listaLojasInicio);
         }
 
+        botaoAbrirFiltros.addEventListener('click', () => {
+            const abrir = painelFiltros.hasAttribute('hidden');
+            if (abrir) {
+                painelFiltros.removeAttribute('hidden');
+                botaoAbrirFiltros.classList.add('active');
+            } else {
+                painelFiltros.setAttribute('hidden', 'hidden');
+                botaoAbrirFiltros.classList.remove('active');
+            }
+        });
+
+        botaoLimparFiltros.addEventListener('click', () => {
+            tagsSelecionadas = [];
+            campoPesquisaTags.value = '';
+            renderizarTagsFiltro();
+            renderizarInicio();
+        });
+
+        campoPesquisaTags.addEventListener('input', renderizarTagsFiltro);
+        campoPesquisaLojas.addEventListener('input', renderizarInicio);
         document.addEventListener('favoritosAtualizados', renderizarInicio);
+
+        renderizarTagsFiltro();
         renderizarInicio();
     </script>
 </body>
