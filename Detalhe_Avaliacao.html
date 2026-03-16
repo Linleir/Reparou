@@ -23,6 +23,7 @@
                 <div>
                     <h3 id="reviewLojaNome">Loja</h3>
                     <p id="reviewServico"></p>
+                    <div id="reviewTags" class="review-chip-row review-chip-row-inline"></div>
                     <p id="reviewData"></p>
                 </div>
             </div>
@@ -54,6 +55,10 @@
     const avaliacao = obterAvaliacaoPorId(params.get('avaliacao'));
     let notaSelecionada = avaliacao?.nota || 0;
 
+    function renderizarTags(tags = []) {
+        return (tags || []).slice(0, 3).map((tag) => `<span class="review-service-chip">${tag}</span>`).join('');
+    }
+
     if (!avaliacao) {
         window.location.href = 'Historico_de_Avaliacao.html';
     } else {
@@ -61,6 +66,7 @@
         document.getElementById('reviewLojaImagem').src = loja.imagem;
         document.getElementById('reviewLojaNome').textContent = loja.nome;
         document.getElementById('reviewServico').textContent = avaliacao.tituloServico;
+        document.getElementById('reviewTags').innerHTML = renderizarTags(avaliacao.tags || [avaliacao.serviceTag]);
         document.getElementById('reviewData').textContent = `Escrito em ${formatarDataHora(avaliacao.dataIso)}`;
         document.getElementById('reviewTexto').value = avaliacao.texto;
 

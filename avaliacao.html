@@ -15,6 +15,7 @@
         </a>
 
         <div class="shop-profile loja-profile-card">
+            <div class="store-page-rating" id="storePageRating"></div>
             <button type="button" id="favoritoLojaBtn" class="favorite-toggle store-page-favorite" aria-label="Alternar favorito">
                 <i class="fa-regular fa-heart"></i>
             </button>
@@ -35,11 +36,16 @@
         </div>
     </div>
 
-    <div class="content-area loja-content-area">
+    <div class="content-area loja-content-area loja-avaliacoes-area">
         <h1 class="services-title">Avaliações</h1>
 
-        <div class="white-window loja-window">
-            <div id="listaAvaliacoes"></div>
+        <div class="review-filter-box">
+            <div class="review-filter-title">Filtrar por serviços / tags</div>
+            <div id="filtrosTagsAvaliacao" class="review-filter-chips"></div>
+        </div>
+
+        <div class="white-window loja-window avaliacoes-scroll-window">
+            <div id="listaAvaliacoes" class="avaliacoes-lista-scroll"></div>
         </div>
     </div>
 
@@ -69,6 +75,7 @@ document.getElementById('lojaEndereco1').textContent = lojaAtual.enderecoLinhas[
 document.getElementById('lojaEndereco2').textContent = lojaAtual.enderecoLinhas[1] || '';
 document.getElementById('lojaTelefone1').textContent = lojaAtual.telefones[0] || '';
 document.getElementById('lojaTelefone2').textContent = lojaAtual.telefones[1] || '';
+document.getElementById('storePageRating').innerHTML = montarMarkupNotaLoja(lojaAtual.media, lojaAtual.quantidadeAvaliacoes);
 
 const favoritoLojaBtn = document.getElementById('favoritoLojaBtn');
 function atualizarBotaoFavoritoLoja() {
@@ -85,16 +92,79 @@ favoritoLojaBtn.addEventListener('click', (event) => {
 
 atualizarBotaoFavoritoLoja();
 
-document.getElementById('listaAvaliacoes').innerHTML = lojaAtual.avaliacoes.map((avaliacao) => `
-    <div class="item-card loja-card-avaliacao">
-        <img src="${lojaAtual.imagem}" class="item-img" alt="Imagem da loja">
-        <div class="item-info-text">
-            <h4>${avaliacao.cliente}</h4>
-            <p>${avaliacao.comentario}</p>
+const listaAvaliacoes = document.getElementById('listaAvaliacoes');
+const filtrosTagsAvaliacao = document.getElementById('filtrosTagsAvaliacao');
+let tagsSelecionadas = [];
+
+function renderizarTagsAvaliacao(tags = []) {
+    return (tags || []).slice(0, 3).map((tag) => `<span class="review-service-chip">${tag}</span>`).join('');
+}
+
+function obterTagsDisponiveis() {
+    const tags = new Set((lojaAtual.servicos || []).map((servico) => String(servico.tag)).filter(Boolean));
+    return Array.from(tags).sort((a, b) => a.localeCompare(b, 'pt-BR'));
+}
+
+function alternarTagFiltro(tag) {
+    if (tagsSelecionadas.includes(tag)) {
+        tagsSelecionadas = tagsSelecionadas.filter((item) => item !== tag);
+    } else {
+        tagsSelecionadas.push(tag);
+    }
+    renderizarFiltrosTags();
+    renderizarAvaliacoes();
+}
+
+function renderizarFiltrosTags() {
+    const tags = obterTagsDisponiveis();
+    filtrosTagsAvaliacao.innerHTML = `
+        <button type="button" class="review-filter-chip ${tagsSelecionadas.length === 0 ? 'active' : ''}" data-tag="__all__">Todas</button>
+        ${tags.map((tag) => `<button type="button" class="review-filter-chip ${tagsSelecionadas.includes(tag) ? 'active' : ''}" data-tag="${tag}">${tag}</button>`).join('')}
+    `;
+
+    filtrosTagsAvaliacao.querySelectorAll('[data-tag]').forEach((botao) => {
+        botao.addEventListener('click', () => {
+            if (botao.dataset.tag === '__all__') {
+                tagsSelecionadas = [];
+                renderizarFiltrosTags();
+                renderizarAvaliacoes();
+                return;
+            }
+            alternarTagFiltro(botao.dataset.tag);
+        });
+    });
+}
+
+function avaliacaoCombinaTags(avaliacao) {
+    if (!tagsSelecionadas.length) return true;
+    const tags = (avaliacao.tags || [avaliacao.servicoTag]).map((tag) => String(tag));
+    return tagsSelecionadas.some((tag) => tags.includes(tag));
+}
+
+function renderizarAvaliacoes() {
+    const avaliacoesFiltradas = (lojaAtual.avaliacoes || []).filter(avaliacaoCombinaTags);
+
+    if (!avaliacoesFiltradas.length) {
+        listaAvaliacoes.innerHTML = '<p class="loja-empty-state">Nenhuma avaliação encontrada para as tags selecionadas.</p>';
+        return;
+    }
+
+    listaAvaliacoes.innerHTML = avaliacoesFiltradas.map((avaliacao) => `
+        <div class="item-card loja-card-avaliacao loja-card-avaliacao-compacta">
+            <img src="${lojaAtual.imagem}" class="item-img" alt="Imagem da loja">
+            <div class="item-info-text">
+                <h4>${avaliacao.cliente}</h4>
+                <p class="review-service-chip review-service-chip-principal">${avaliacao.servicoNome}</p>
+                <div class="review-chip-row">${renderizarTagsAvaliacao(avaliacao.tags)}</div>
+                <p>${avaliacao.comentario}</p>
+            </div>
+            <div class="star-icon review-score-badge">${formatarNota(avaliacao.nota)}★</div>
         </div>
-        <div class="star-icon review-score-badge">★ ${formatarNota(avaliacao.nota)}</div>
-    </div>
-`).join('');
+    `).join('');
+}
+
+renderizarFiltrosTags();
+renderizarAvaliacoes();
 </script>
 </body>
 </html>

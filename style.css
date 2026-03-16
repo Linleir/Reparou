@@ -2200,3 +2200,293 @@ body {
     bottom: 10px;
     font-weight: 700;
 }
+
+
+.store-card-actions {
+    top: 10px;
+    right: 10px;
+    gap: 8px;
+}
+
+.store-link-card {
+    padding-right: 64px;
+}
+
+.store-inline-rating,
+.store-page-rating,
+.service-rating-badge,
+.review-score-badge,
+.loja-rating-badge,
+.service-rating-value,
+.service-rating-count,
+.store-rating-star {
+    color: #ffe100;
+    -webkit-text-stroke: 0.4px #111;
+    text-shadow: 0 1px 0 #111, 1px 0 0 #111;
+}
+
+.store-inline-rating {
+    display: inline-flex;
+    margin-top: 6px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.store-page-rating {
+    position: absolute;
+    right: 58px;
+    top: 12px;
+    z-index: 6;
+    font-size: 13px;
+    font-weight: 700;
+    background: rgba(0,0,0,0.22);
+    padding: 4px 8px;
+    border-radius: 999px;
+}
+
+.loja-profile-card {
+    position: relative;
+    padding-right: 110px;
+}
+
+.service-rating-card {
+    gap: 10px;
+}
+
+.service-rating-badge {
+    min-width: 92px;
+    justify-content: flex-end;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.service-rating-count {
+    font-size: 12px;
+}
+
+.review-service-chip,
+.chat-service-chip-header {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.14);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    margin: 6px 0;
+}
+
+.review-service-chip {
+    background: #ece9e9;
+    color: #222;
+    margin-bottom: 8px;
+}
+
+.chat-tags-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+.chat-service-tag-mini {
+    margin: 0;
+    padding: 3px 8px;
+    font-size: 11px;
+}
+
+
+/* ===== AJUSTES FINOS LOJAS / AVALIAÇÕES ===== */
+.store-page-rating {
+    position: absolute;
+    right: 70px;
+    top: 18px;
+    z-index: 6;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 3px;
+    min-width: 58px;
+}
+
+.store-page-rating-main {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.store-page-rating-count {
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1;
+    margin-right: 8px;
+}
+
+.loja-profile-card {
+    padding-right: 122px;
+}
+
+.loja-avaliacoes-area {
+    overflow: hidden;
+}
+
+.review-filter-box {
+    margin: 0 15px 12px;
+    padding: 10px 12px;
+    border-radius: 18px;
+    background: rgba(255,255,255,0.9);
+    flex: 0 0 auto;
+}
+
+.review-filter-title {
+    font-size: 13px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: #222;
+}
+
+.review-filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.review-filter-chip {
+    border: none;
+    border-radius: 999px;
+    padding: 7px 11px;
+    font-size: 12px;
+    font-weight: 700;
+    background: #ece9e9;
+    color: #222;
+    cursor: pointer;
+}
+
+.review-filter-chip.active {
+    background: #111;
+    color: #fff;
+}
+
+.avaliacoes-scroll-window {
+    margin: 0 15px;
+    padding: 12px 12px 10px;
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: calc(100vh - 318px);
+    overflow: hidden;
+}
+
+.avaliacoes-lista-scroll {
+    height: 100%;
+    overflow-y: auto;
+    padding-right: 4px;
+    scrollbar-width: none;
+}
+
+.avaliacoes-lista-scroll::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.loja-card-avaliacao-compacta {
+    padding: 14px 44px 14px 14px;
+    gap: 12px;
+    margin-bottom: 14px;
+    border-radius: 18px;
+}
+
+.loja-card-avaliacao-compacta .item-img {
+    width: 66px;
+    height: 66px;
+    min-width: 66px;
+}
+
+.loja-card-avaliacao-compacta .item-info-text {
+    padding-right: 8px;
+}
+
+.loja-card-avaliacao-compacta .item-info-text h4 {
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.loja-card-avaliacao-compacta .item-info-text p {
+    font-size: 13px;
+    line-height: 1.25;
+    margin-bottom: 4px;
+}
+
+.review-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 2px 0 6px;
+}
+
+.review-service-chip {
+    margin: 0;
+    padding: 4px 9px;
+    font-size: 11px;
+}
+
+.review-service-chip-principal {
+    display: inline-flex;
+    margin-bottom: 4px;
+}
+
+.review-score-badge {
+    position: absolute;
+    right: 12px;
+    bottom: 10px;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.service-rating-badge {
+    min-width: 96px;
+    gap: 4px;
+}
+
+.service-rating-value,
+.service-rating-count,
+.store-page-rating-value,
+.store-page-rating-count,
+.review-score-badge,
+.store-inline-rating,
+.service-rating-badge {
+    font-weight: 800;
+}
+
+/* ==== AJUSTES DE TAGS/CHAT/AVALIAÇÃO ==== */
+.review-chip-row-inline {
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+.chat-tags-row-review {
+    margin: 8px 0 12px;
+}
+
+.chat-history-card .review-service-chip,
+.review-history-card .review-service-chip,
+.review-chip-row-inline .review-service-chip {
+    margin-right: 6px;
+    margin-bottom: 6px;
+}
+
+.chat-history-card .chat-service-label {
+    margin-bottom: 6px;
+}
+
+.loja-empty-state,
+.chat-empty-state {
+    padding: 24px 12px;
+    text-align: center;
+}

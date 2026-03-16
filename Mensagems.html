@@ -41,6 +41,10 @@
             return ultimaMensagem ? ultimaMensagem.texto : 'Sem mensagens ainda.';
         }
 
+        function renderizarTags(tags = []) {
+            return (tags || []).slice(0, 3).map((tag) => `<span class="review-service-chip">${tag}</span>`).join('');
+        }
+
         function renderizarChats(termo = '') {
             const chats = buscarChatsPorMensagemDoCliente(termo);
 
@@ -61,6 +65,7 @@
                                 <span class="chat-date">${ultimaMensagem ? formatarDataHora(ultimaMensagem.horario) : ''}</span>
                             </div>
                             <p class="chat-service-label">${chat.tituloServico}</p>
+                            <div class="review-chip-row review-chip-row-inline">${renderizarTags(chat.tags)}</div>
                             <p class="chat-preview">${criarResumo(chat)}</p>
                             <span class="chat-status-badge ${chat.status}">${obterStatusChatLabel(chat.status)}</span>
                         </div>
