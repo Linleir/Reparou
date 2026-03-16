@@ -3,125 +3,161 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Denúncia</title>
-
 <link rel="stylesheet" href="style.css">
-
-<!-- ICONES -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 </head>
-
 <body>
-
 <div class="mobile-container">
-
-    <!-- HEADER -->
-    <div class="black-header">
-        <h2 class="page-title">Denuncia</h2>
-        
-             <div class="shop-profile">
-
-            <img src="imgtst.jpg" class="shop-img">
-
-            <div>
-                <h3>LOJA DE REPARO X</h3>
-                <p>Rua Tecnologica, 286</p>
-                <p>Meier, RJ</p>
-                <p>(21) 99999 - 9999</p>
-                <p>(21) 98888 - 8888</p>
-            </div>
-
-        </div>
-            
-
-        
-
-
-
-        
-<div class="row space-between" style="margin-top:20px;font-weight:bold;font-size:18px;">
-            <a href="Loja_XV2.html" style="text-decoration:none;color:white;">
-            Serviços
-            </a>     
-
-            <a href="avaliacao.html" style="text-decoration:none;color:white;">
-            Avaliações
-            </a>
-
-            <a href="Denuncia.html" style="text-decoration:none;color:white;">
-            Denuncia
-            </a>
-       
-         </div>
-    </div>
-    <!-- CONTEÚDO -->
-    <div class="content-area">
-
-  
-
-        <div class="form-container">
-
-<h2>Tipo de Denuncia:</h2>
-
-<div class="tag-container">
-
-<input type="checkbox" id="racismo">
-<label class="tag" for="racismo">Racismo <span class="x">✕</span></label>
-
-<input type="checkbox" id="fraude">
-<label class="tag" for="fraude">Fraude <span class="x">✕</span></label>
-
-<input type="checkbox" id="assedio">
-<label class="tag" for="assedio">Assédio <span class="x">✕</span></label>
-
-<input type="checkbox" id="furto">
-<label class="tag" for="furto">Furto <span class="x">✕</span></label>
-
-<input type="checkbox" id="servico">
-<label class="tag" for="servico">Não Gostou do Serviço <span class="x">✕</span></label>
-
-<input type="checkbox" id="outro">
-<label class="tag" for="outro">Outro <span class="x">✕</span></label>
-
-</div>
-
-</div>
-
-        <!-- DESCRIÇÃO -->
-               <h2>O que aconteceu:</h2>
-        <div style="margin-top:20px;">
-            <textarea class="search-input" rows="4" placeholder="Descrição da Denuncia"></textarea>
-        </div>
-
-        <!-- BOTÕES -->
-        <div class="btn-group">
-
-            <button class="main-btn">Salvar</button>
-
-            <button class="main-btn cancel-btn">Cancelar</button>
-
-        </div>
-
-    </div>
-
-    <!-- BOTTOM NAV -->
-    <nav class="bottom-nav">
-        <a href="index.html" class="nav-item">
-            <img src="Casa e lupa minimalista_edited.png" class="home">
+    <div class="black-header loja-header denuncia-header">
+        <a href="Loja_XV2.html" class="back-btn" id="linkVoltar" aria-label="Voltar">
+            <i class="fa-solid fa-arrow-left"></i>
         </a>
 
+        <h2 class="page-title">Denúncia</h2>
+
+        <div class="shop-profile loja-profile-card">
+            <img src="imgtst.jpg" class="shop-img" id="lojaImagem" alt="Imagem da loja">
+            <div>
+                <h3 id="lojaTitulo">LOJA DE REPARO X</h3>
+                <p id="lojaEndereco1">Rua Tecnológica, 286</p>
+                <p id="lojaEndereco2">Méier, RJ</p>
+                <p id="lojaTelefone1">(21) 99999 - 9999</p>
+                <p id="lojaTelefone2">(21) 98888 - 8888</p>
+            </div>
+        </div>
+
+        <div class="row space-between loja-tabs">
+            <a id="linkServicos" href="Loja_XV2.html" class="loja-tab">Serviços</a>
+            <a id="linkAvaliacoes" href="avaliacao.html" class="loja-tab">Avaliações</a>
+            <a id="linkDenuncia" href="Denuncia.html" class="loja-tab loja-tab-active">Denúncia</a>
+        </div>
+    </div>
+
+    <div class="content-area loja-content-area denuncia-content-area">
+        <div id="mensagemFeedback" class="feedback-box" aria-live="polite"></div>
+
+        <div class="form-container denuncia-form-container">
+            <h2>Tipo de Denúncia:</h2>
+
+            <div class="tag-container">
+                <input type="checkbox" id="racismo">
+                <label class="tag" for="racismo">Racismo <span class="x">✕</span></label>
+
+                <input type="checkbox" id="fraude">
+                <label class="tag" for="fraude">Fraude <span class="x">✕</span></label>
+
+                <input type="checkbox" id="assedio">
+                <label class="tag" for="assedio">Assédio <span class="x">✕</span></label>
+
+                <input type="checkbox" id="furto">
+                <label class="tag" for="furto">Furto <span class="x">✕</span></label>
+
+                <input type="checkbox" id="servico">
+                <label class="tag" for="servico">Não Gostou do Serviço <span class="x">✕</span></label>
+
+                <input type="checkbox" id="outro">
+                <label class="tag" for="outro">Outro <span class="x">✕</span></label>
+            </div>
+        </div>
+
+        <h2>O que aconteceu:</h2>
+        <div style="margin-top:20px;">
+            <textarea id="descricaoDenuncia" class="search-input" rows="4" placeholder="Descrição da Denúncia"></textarea>
+        </div>
+
+        <div class="btn-group">
+            <button id="btnSalvarDenuncia" class="main-btn" type="button">Salvar</button>
+            <button id="btnCancelarDenuncia" class="main-btn cancel-btn" type="button">Cancelar</button>
+        </div>
+    </div>
+
+    <a href="Mensagems.html" id="chatRapidoBtn" class="store-chat-fab" aria-label="Abrir chat com a loja"><i class="fa-solid fa-comments"></i><span>Chat</span></a>
+
+    <nav class="bottom-nav">
+        <a href="inicio_cliente.html" class="nav-item">
+            <img src="Casa e lupa minimalista_edited.png" class="home">
+        </a>
         <a href="Historico_de_Avaliacao.html" class="nav-item">
             <img src="star.png" class="home">
         </a>
-
         <a href="Mensagems.html" class="nav-item">
             <img src="chat.png" class="home">
         </a>
-        </a>
-
+    </nav>
 </div>
 
+<script src="dados.js"></script>
+<script>
+const lojaAtual = obterDadosLojaAtual();
+const lojaAtualId = obterLojaAtualId();
+const mensagemFeedback = document.getElementById('mensagemFeedback');
+const btnSalvarDenuncia = document.getElementById('btnSalvarDenuncia');
+const btnCancelarDenuncia = document.getElementById('btnCancelarDenuncia');
+const checkboxesMotivos = document.querySelectorAll('.tag-container input[type="checkbox"]');
+let timeoutMensagem = null;
+
+document.getElementById('linkVoltar').href = montarLinkLoja('Loja_XV2.html');
+document.getElementById('linkServicos').href = montarLinkLoja('Loja_XV2.html');
+document.getElementById('linkAvaliacoes').href = montarLinkLoja('avaliacao.html');
+document.getElementById('linkDenuncia').href = montarLinkLoja('Denuncia.html');
+document.getElementById('chatRapidoBtn').href = construirLinkNovoChat(lojaAtualId, 'loja');
+
+document.getElementById('lojaImagem').src = lojaAtual.imagem;
+document.getElementById('lojaTitulo').textContent = lojaAtual.titulo;
+document.getElementById('lojaEndereco1').textContent = lojaAtual.enderecoLinhas[0] || '';
+document.getElementById('lojaEndereco2').textContent = lojaAtual.enderecoLinhas[1] || '';
+document.getElementById('lojaTelefone1').textContent = lojaAtual.telefones[0] || '';
+document.getElementById('lojaTelefone2').textContent = lojaAtual.telefones[1] || '';
+
+function mostrarMensagem(texto, tipo) {
+    if (timeoutMensagem) {
+        clearTimeout(timeoutMensagem);
+        timeoutMensagem = null;
+    }
+
+    mensagemFeedback.textContent = texto;
+    mensagemFeedback.classList.remove('feedback-sucesso', 'feedback-erro', 'feedback-visivel');
+
+    if (tipo === 'sucesso') {
+        mensagemFeedback.classList.add('feedback-sucesso');
+    } else {
+        mensagemFeedback.classList.add('feedback-erro');
+    }
+
+    mensagemFeedback.classList.add('feedback-visivel');
+
+    if (tipo === 'erro') {
+        timeoutMensagem = setTimeout(() => {
+            mensagemFeedback.classList.remove('feedback-visivel');
+        }, 3000);
+    }
+}
+
+function temMotivoSelecionado() {
+    return Array.from(checkboxesMotivos).some((checkbox) => checkbox.checked);
+}
+
+function voltarParaLoja() {
+    setTimeout(() => {
+        window.location.href = montarLinkLoja('Loja_XV2.html');
+    }, 1300);
+}
+
+btnSalvarDenuncia.addEventListener('click', () => {
+    if (!temMotivoSelecionado()) {
+        mostrarMensagem('Selecione pelo menos 1 motivo para enviar a denúncia.', 'erro');
+        return;
+    }
+
+    mostrarMensagem('Sua denúncia foi salva com sucesso.', 'sucesso');
+    voltarParaLoja();
+});
+
+btnCancelarDenuncia.addEventListener('click', () => {
+    mostrarMensagem('Denúncia cancelada com sucesso.', 'sucesso');
+    voltarParaLoja();
+});
+</script>
 </body>
 </html>

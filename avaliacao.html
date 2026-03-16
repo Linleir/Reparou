@@ -3,105 +3,168 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Perfil da Loja</title>
-
+<title>Avaliações da Loja</title>
 <link rel="stylesheet" href="style.css">
-
-<!-- ICONES -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 </head>
-
 <body>
-
 <div class="mobile-container">
-
-    <!-- HEADER -->
-    <div class="shop-header">
-
-        <a href="Loja_XV2.html" class="back-btn">
+    <div class="shop-header loja-header">
+        <a href="Loja_XV2.html" class="back-btn" id="linkVoltar" aria-label="Voltar">
             <i class="fa-solid fa-arrow-left"></i>
         </a>
 
-        <div class="shop-profile">
-
-            <img src="imgtst.jpg" class="shop-img">
-
+        <div class="shop-profile loja-profile-card">
+            <div class="store-page-rating" id="storePageRating"></div>
+            <button type="button" id="favoritoLojaBtn" class="favorite-toggle store-page-favorite" aria-label="Alternar favorito">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+            <img src="imgtst.jpg" class="shop-img" id="lojaImagem" alt="Imagem da loja">
             <div>
-                <h3>LOJA DE REPARO X</h3>
-                <p>Rua Tecnologica, 286</p>
-                <p>Meier, RJ</p>
-                <p>(21) 99999 - 9999</p>
-                <p>(21) 98888 - 8888</p>
+                <h3 id="lojaTitulo">LOJA DE REPARO X</h3>
+                <p id="lojaEndereco1">Rua Tecnológica, 286</p>
+                <p id="lojaEndereco2">Méier, RJ</p>
+                <p id="lojaTelefone1">(21) 99999 - 9999</p>
+                <p id="lojaTelefone2">(21) 98888 - 8888</p>
             </div>
-
         </div>
-<div class="row space-between" style="margin-top:20px;font-weight:bold;font-size:18px;">
-            <a href="Loja_XV2.html" style="text-decoration:none;color:white;">
-            Serviços
-            </a>     
 
-            <a href="avaliacao.html" style="text-decoration:none;color:white;">
-            Avaliações
-            </a>
-
-            <a href="Denuncia.html" style="text-decoration:none;color:white;">
-            Denuncia
-            </a>
-       
+        <div class="row space-between loja-tabs">
+            <a id="linkServicos" href="Loja_XV2.html" class="loja-tab">Serviços</a>
+            <a id="linkAvaliacoes" href="avaliacao.html" class="loja-tab loja-tab-active">Avaliações</a>
+            <a id="linkDenuncia" href="Denuncia.html" class="loja-tab">Denúncia</a>
         </div>
     </div>
 
-    <!-- CONTEUDO -->
-    <div class="content-area">
-
+    <div class="content-area loja-content-area loja-avaliacoes-area">
         <h1 class="services-title">Avaliações</h1>
 
-        <div class="white-window">
-     
-            <!-- CARD 1 -->
-            <div class="item-card">
-
-                <img src="imgtst.jpg" class="item-img">
-
-                <div>
-                    <h4>Cliente 1</h4>
-                    <p>Comentario Acerca da Loja de Manutenção X</p>
-                </div>
-
-                <div class="star-icon">
-                    ★ 3,0
-                </div>
-
-            </div>
-
-            <!-- CARD 2 -->
-            <div class="item-card">
-
-                <img src="imgtst.jpg" class="item-img">
-
-                <div>
-                    <h4>Cliente 2</h4>
-                    <p>Comentario 2 Acerca da Loja de Manutenção X</p>
-                </div>
-
-                <div class="star-icon">
-                    ★ 3,0
-                </div>
-
-            </div>
+        <div class="review-filter-box">
+            <div class="review-filter-title">Filtrar por serviços / tags</div>
+            <div id="filtrosTagsAvaliacao" class="review-filter-chips"></div>
         </div>
 
+        <div class="white-window loja-window avaliacoes-scroll-window">
+            <div id="listaAvaliacoes" class="avaliacoes-lista-scroll"></div>
+        </div>
     </div>
 
-    <!-- BOTTOM NAV -->
-    <nav class="bottom-nav">
-            <a href="index.html" class="nav-item"><img src="Casa e lupa minimalista_edited.png" class="home"></a>
-            <a href="Historico_de_Avaliacao.html" class="nav-item"><img src="star.png" class="home"></a>
-            <a href="Mensagems.html" class="nav-item"><img src="chat.png" class="home"></a>
-        </nav>
+    <a href="Mensagems.html" id="chatRapidoBtn" class="store-chat-fab" aria-label="Abrir chat com a loja"><i class="fa-solid fa-comments"></i><span>Chat</span></a>
 
+    <nav class="bottom-nav">
+        <a href="inicio_cliente.html" class="nav-item"><img src="Casa e lupa minimalista_edited.png" class="home"></a>
+        <a href="Historico_de_Avaliacao.html" class="nav-item"><img src="star.png" class="home"></a>
+        <a href="Mensagems.html" class="nav-item"><img src="chat.png" class="home"></a>
+    </nav>
 </div>
 
+<script src="dados.js"></script>
+<script>
+const lojaAtual = obterDadosLojaAtual();
+const lojaAtualId = obterLojaAtualId();
+
+document.getElementById('linkVoltar').href = montarLinkLoja('Loja_XV2.html');
+document.getElementById('linkServicos').href = montarLinkLoja('Loja_XV2.html');
+document.getElementById('linkAvaliacoes').href = montarLinkLoja('avaliacao.html');
+document.getElementById('linkDenuncia').href = montarLinkLoja('Denuncia.html');
+document.getElementById('chatRapidoBtn').href = construirLinkNovoChat(lojaAtualId, 'loja');
+
+document.getElementById('lojaImagem').src = lojaAtual.imagem;
+document.getElementById('lojaTitulo').textContent = lojaAtual.titulo;
+document.getElementById('lojaEndereco1').textContent = lojaAtual.enderecoLinhas[0] || '';
+document.getElementById('lojaEndereco2').textContent = lojaAtual.enderecoLinhas[1] || '';
+document.getElementById('lojaTelefone1').textContent = lojaAtual.telefones[0] || '';
+document.getElementById('lojaTelefone2').textContent = lojaAtual.telefones[1] || '';
+document.getElementById('storePageRating').innerHTML = montarMarkupNotaLoja(lojaAtual.media, lojaAtual.quantidadeAvaliacoes);
+
+const favoritoLojaBtn = document.getElementById('favoritoLojaBtn');
+function atualizarBotaoFavoritoLoja() {
+    const ativo = lojaEhFavorita(lojaAtualId);
+    favoritoLojaBtn.classList.toggle('active', ativo);
+    favoritoLojaBtn.innerHTML = `<i class="fa-${ativo ? 'solid' : 'regular'} fa-heart"></i>`;
+}
+
+favoritoLojaBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    alternarFavorito(lojaAtualId);
+    atualizarBotaoFavoritoLoja();
+});
+
+atualizarBotaoFavoritoLoja();
+
+const listaAvaliacoes = document.getElementById('listaAvaliacoes');
+const filtrosTagsAvaliacao = document.getElementById('filtrosTagsAvaliacao');
+let tagsSelecionadas = [];
+
+function renderizarTagsAvaliacao(tags = []) {
+    return (tags || []).slice(0, 3).map((tag) => `<span class="review-service-chip">${tag}</span>`).join('');
+}
+
+function obterTagsDisponiveis() {
+    const tags = new Set((lojaAtual.servicos || []).map((servico) => String(servico.tag)).filter(Boolean));
+    return Array.from(tags).sort((a, b) => a.localeCompare(b, 'pt-BR'));
+}
+
+function alternarTagFiltro(tag) {
+    if (tagsSelecionadas.includes(tag)) {
+        tagsSelecionadas = tagsSelecionadas.filter((item) => item !== tag);
+    } else {
+        tagsSelecionadas.push(tag);
+    }
+    renderizarFiltrosTags();
+    renderizarAvaliacoes();
+}
+
+function renderizarFiltrosTags() {
+    const tags = obterTagsDisponiveis();
+    filtrosTagsAvaliacao.innerHTML = `
+        <button type="button" class="review-filter-chip ${tagsSelecionadas.length === 0 ? 'active' : ''}" data-tag="__all__">Todas</button>
+        ${tags.map((tag) => `<button type="button" class="review-filter-chip ${tagsSelecionadas.includes(tag) ? 'active' : ''}" data-tag="${tag}">${tag}</button>`).join('')}
+    `;
+
+    filtrosTagsAvaliacao.querySelectorAll('[data-tag]').forEach((botao) => {
+        botao.addEventListener('click', () => {
+            if (botao.dataset.tag === '__all__') {
+                tagsSelecionadas = [];
+                renderizarFiltrosTags();
+                renderizarAvaliacoes();
+                return;
+            }
+            alternarTagFiltro(botao.dataset.tag);
+        });
+    });
+}
+
+function avaliacaoCombinaTags(avaliacao) {
+    if (!tagsSelecionadas.length) return true;
+    const tags = (avaliacao.tags || [avaliacao.servicoTag]).map((tag) => String(tag));
+    return tagsSelecionadas.some((tag) => tags.includes(tag));
+}
+
+function renderizarAvaliacoes() {
+    const avaliacoesFiltradas = (lojaAtual.avaliacoes || []).filter(avaliacaoCombinaTags);
+
+    if (!avaliacoesFiltradas.length) {
+        listaAvaliacoes.innerHTML = '<p class="loja-empty-state">Nenhuma avaliação encontrada para as tags selecionadas.</p>';
+        return;
+    }
+
+    listaAvaliacoes.innerHTML = avaliacoesFiltradas.map((avaliacao) => `
+        <div class="item-card loja-card-avaliacao loja-card-avaliacao-compacta">
+            <img src="${lojaAtual.imagem}" class="item-img" alt="Imagem da loja">
+            <div class="item-info-text">
+                <h4>${avaliacao.cliente}</h4>
+                <p class="review-service-chip review-service-chip-principal">${avaliacao.servicoNome}</p>
+                <div class="review-chip-row">${renderizarTagsAvaliacao(avaliacao.tags)}</div>
+                <p>${avaliacao.comentario}</p>
+            </div>
+            <div class="star-icon review-score-badge">${formatarNota(avaliacao.nota)}★</div>
+        </div>
+    `).join('');
+}
+
+renderizarFiltrosTags();
+renderizarAvaliacoes();
+</script>
 </body>
 </html>

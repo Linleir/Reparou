@@ -3,100 +3,66 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Histórico de Avaliações</title>
-
 <link rel="stylesheet" href="style.css">
-
-<!-- ICONES -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 </head>
-
 <body>
-
 <div class="mobile-container">
-
-    <!-- HEADER -->
     <div class="black-header">
-
-       <a href="#" class="back-btn">
+       <a href="inicio_cliente.html" class="back-btn" aria-label="Voltar">
             <i class="fa-solid fa-arrow-left"></i>
         </a>
 
-
-        
         <div class="profile-center">
-
             <img src="imgtst.jpg" class="profile2-img">
-
-            
-            <h2>  Nome do UsuarioX</h2>
-           
-
+            <h2>Nome do UsuarioX</h2>
         </div>
-
     </div>
 
-    <!-- CONTEÚDO -->
     <div class="content-area">
-
         <h2 class="services-title">Histórico de Avaliações</h2>
-
         <div class="white-window">
-
-            <!-- AVALIAÇÃO 1 -->
-            <div class="item-card">
-
-                <img src="imgtst.jpg" class="item-img">
-
-                <div>
-                    <h4>Sobre a Loja X</h4>
-                    <p>Comentario Acerca da Loja de Manutenção X</p>
-                </div>
-
-                <div class="star-icon">
-                    ★ 3,0
-                </div>
-
-            </div>
-
-            <!-- AVALIAÇÃO 2 -->
-            <div class="item-card">
-
-                <img src="imgtst.jpg" class="item-img">
-
-                <div>
-                    <h4>Sobre a Loja Y</h4>
-                    <p>Comentario 2 Acerca da Loja de Manutenção Y</p>
-                </div>
-
-                <div class="star-icon">
-                    ★ 3,0
-                </div>
-
-            </div>
-
+            <div id="listaAvaliacoesCliente"></div>
         </div>
-
     </div>
 
-    <!-- BOTTOM NAV -->
     <nav class="bottom-nav">
-        <a href="index.html" class="nav-item">
-            <img src="Casa e lupa minimalista_edited.png" class="home">
-        </a>
-
-        <a href="Historico_de_Avaliacao.html" class="nav-item">
-            <img src="star.png" class="home">
-        </a>
-
-        <a href="Mensagems.html" class="nav-item">
-            <img src="chat.png" class="home">
-        </a>
+        <a href="inicio_cliente.html" class="nav-item"><img src="Casa e lupa minimalista_edited.png" class="home"></a>
+        <a href="Historico_de_Avaliacao.html" class="nav-item"><img src="star.png" class="home"></a>
+        <a href="Mensagems.html" class="nav-item"><img src="chat.png" class="home"></a>
     </nav>
-
 </div>
 
+<script src="dados.js"></script>
+<script>
+    const listaAvaliacoesCliente = document.getElementById('listaAvaliacoesCliente');
+    const avaliacoes = obterAvaliacoesCliente();
+
+    function renderizarTags(tags = []) {
+        return (tags || []).slice(0, 3).map((tag) => `<span class="review-service-chip">${tag}</span>`).join('');
+    }
+
+    if (!avaliacoes.length) {
+        listaAvaliacoesCliente.innerHTML = '<div class="chat-empty-state">Você ainda não avaliou nenhum atendimento.</div>';
+    } else {
+        listaAvaliacoesCliente.innerHTML = avaliacoes.map((avaliacao) => {
+            const loja = obterInformacoesLoja(avaliacao.lojaId);
+            return `
+                <a href="${construirLinkDetalheAvaliacao(avaliacao.id)}" class="item-card review-history-card">
+                    <img src="${loja.imagem}" class="item-img" alt="${loja.nome}">
+                    <div class="review-history-main">
+                        <h4>Sobre a ${loja.nome}</h4>
+                        <p class="review-service-chip review-service-chip-principal">${avaliacao.tituloServico}</p>
+                        <div class="review-chip-row review-chip-row-inline">${renderizarTags(avaliacao.tags || [avaliacao.serviceTag])}</div>
+                        <p>${avaliacao.texto}</p>
+                        <span class="review-date">${formatarDataSimples(avaliacao.dataIso)}</span>
+                    </div>
+                    <div class="star-icon">★ ${avaliacao.nota.toFixed(1).replace('.', ',')}</div>
+                </a>
+            `;
+        }).join('');
+    }
+</script>
 </body>
 </html>

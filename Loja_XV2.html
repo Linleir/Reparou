@@ -1,124 +1,121 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Serviços da Loja</title>
-
 <link rel="stylesheet" href="style.css">
-
-<!-- ICONES -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 </head>
-
 <body>
-
 <div class="mobile-container">
-
-    <!-- HEADER DA LOJA -->
-    <div class="shop-header">
-
-        <a href="#" class="back-btn">
+    <div class="shop-header loja-header">
+        <a href="inicio_cliente.html" class="back-btn" aria-label="Voltar">
             <i class="fa-solid fa-arrow-left"></i>
         </a>
 
-        <div class="shop-profile">
-
-            <img src="imgtst.jpg" class="shop-img">
-
+        <div class="shop-profile loja-profile-card">
+            <div class="store-page-rating" id="storePageRating"></div>
+            <button type="button" id="favoritoLojaBtn" class="favorite-toggle store-page-favorite" aria-label="Alternar favorito">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+            <img src="imgtst.jpg" class="shop-img" id="lojaImagem" alt="Imagem da loja">
             <div>
-                <h3>LOJA DE REPARO X</h3>
-                <p>Rua Tecnologica, 286</p>
-                <p>Meier, RJ</p>
-                <p>(21) 99999 - 9999</p>
-                <p>(21) 98888 - 8888</p>
+                <h3 id="lojaTitulo">LOJA DE REPARO X</h3>
+                <p id="lojaEndereco1">Rua Tecnológica, 286</p>
+                <p id="lojaEndereco2">Méier, RJ</p>
+                <p id="lojaTelefone1">(21) 99999 - 9999</p>
+                <p id="lojaTelefone2">(21) 98888 - 8888</p>
             </div>
-
         </div>
 
-        <!-- MENU -->
-        <div class="row space-between" style="margin-top:20px;font-weight:bold;font-size:18px;">
-            <a href="Loja_XV2.html" style="text-decoration:none;color:white;">
-            Serviços
-            </a>     
-
-            <a href="avaliacao.html" style="text-decoration:none;color:white;">
-            Avaliações
-            </a>
-
-            <a href="Denuncia.html" style="text-decoration:none;color:white;">
-            Denuncia
-            </a>
-       
+        <div class="row space-between loja-tabs">
+            <a id="linkServicos" href="Loja_XV2.html" class="loja-tab loja-tab-active">Serviços</a>
+            <a id="linkAvaliacoes" href="avaliacao.html" class="loja-tab">Avaliações</a>
+            <a id="linkDenuncia" href="Denuncia.html" class="loja-tab">Denúncia</a>
         </div>
-
     </div>
 
-    <!-- CONTEUDO -->
-    <div class="content-area">
-
+    <div class="content-area loja-content-area">
         <h1 class="services-title">Serviços</h1>
 
-        <div class="white-window">
-
-            <!-- PESQUISA -->
-            <input class="search-input" type="text" placeholder="Pesquisar">
-
-            <!-- SERVIÇO 1 -->
-            <div class="service-btn">
-                <div>
-                    <strong>Conserto Placas de Video</strong>
-                    <p>R$ 500 - 400</p>
-                </div>
-
-                <i class="fa-solid fa-star" style="color:#e5ff00;"></i>
-            </div>
-
-            <!-- SERVIÇO 2 -->
-            <div class="service-btn">
-                <div>
-                    <strong>Manutenção</strong>
-                    <p>R$150 - 220</p>
-                </div>
-
-                <i class="fa-solid fa-star" style="color:#e5ff00;"></i>
-            </div>
-
-            <!-- SERVIÇO 3 -->
-            <div class="service-btn">
-                <div>
-                    <strong>Diagnostico</strong>
-                    <p>R$100 - 200</p>
-                </div>
-
-                <i class="fa-solid fa-star" style="color:#e5ff00;"></i>
-            </div>
-
-            <!-- SERVIÇO 4 -->
-            <div class="service-btn">
-                <div>
-                    <strong>Troca de Peças</strong>
-                    <p>R$ 100 - 150</p>
-                </div>
-
-                <i class="fa-solid fa-star" style="color:#e5ff00;"></i>
-            </div>
-
+        <div class="white-window loja-window">
+            <input id="pesquisaServico" class="search-input" type="text" placeholder="Pesquisar">
+            <div id="listaServicos"></div>
         </div>
-
     </div>
 
-    <!-- BOTTOM NAV -->
-    <nav class="bottom-nav">
-            <a href="index.html" class="nav-item"><img src="Casa e lupa minimalista_edited.png" class="home"></a>
-            <a href="Historico_de_Avaliacao.html" class="nav-item"><img src="star.png" class="home"></a>
-            <a href="Mensagems.html" class="nav-item"><img src="chat.png" class="home"></a>
-        </nav>
+    <a href="Mensagems.html" id="chatRapidoBtn" class="store-chat-fab" aria-label="Abrir chat com a loja"><i class="fa-solid fa-comments"></i><span>Chat</span></a>
 
+    <nav class="bottom-nav">
+        <a href="inicio_cliente.html" class="nav-item"><img src="Casa e lupa minimalista_edited.png" class="home"></a>
+        <a href="Historico_de_Avaliacao.html" class="nav-item"><img src="star.png" class="home"></a>
+        <a href="Mensagems.html" class="nav-item"><img src="chat.png" class="home"></a>
+    </nav>
 </div>
 
+<script src="dados.js"></script>
+<script>
+const lojaAtual = obterDadosLojaAtual();
+const lojaAtualId = obterLojaAtualId();
+
+document.getElementById('linkServicos').href = montarLinkLoja('Loja_XV2.html');
+document.getElementById('linkAvaliacoes').href = montarLinkLoja('avaliacao.html');
+document.getElementById('linkDenuncia').href = montarLinkLoja('Denuncia.html');
+document.getElementById('chatRapidoBtn').href = construirLinkNovoChat(lojaAtualId, 'loja');
+
+document.getElementById('lojaImagem').src = lojaAtual.imagem;
+document.getElementById('lojaTitulo').textContent = lojaAtual.titulo;
+document.getElementById('lojaEndereco1').textContent = lojaAtual.enderecoLinhas[0] || '';
+document.getElementById('lojaEndereco2').textContent = lojaAtual.enderecoLinhas[1] || '';
+document.getElementById('lojaTelefone1').textContent = lojaAtual.telefones[0] || '';
+document.getElementById('lojaTelefone2').textContent = lojaAtual.telefones[1] || '';
+document.getElementById('storePageRating').innerHTML = montarMarkupNotaLoja(lojaAtual.media, lojaAtual.quantidadeAvaliacoes);
+
+const listaServicos = document.getElementById('listaServicos');
+const pesquisaServico = document.getElementById('pesquisaServico');
+
+const favoritoLojaBtn = document.getElementById('favoritoLojaBtn');
+function atualizarBotaoFavoritoLoja() {
+    const ativo = lojaEhFavorita(lojaAtualId);
+    favoritoLojaBtn.classList.toggle('active', ativo);
+    favoritoLojaBtn.innerHTML = `<i class="fa-${ativo ? 'solid' : 'regular'} fa-heart"></i>`;
+}
+
+favoritoLojaBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    alternarFavorito(lojaAtualId);
+    atualizarBotaoFavoritoLoja();
+});
+
+atualizarBotaoFavoritoLoja();
+
+function renderizarServicos(filtro = '') {
+    const termo = filtro.trim().toLowerCase();
+    const servicosFiltrados = lojaAtual.servicos.filter((servico) => servico.nome.toLowerCase().includes(termo));
+
+    if (!servicosFiltrados.length) {
+        listaServicos.innerHTML = '<p class="loja-empty-state">Nenhum serviço encontrado.</p>';
+        return;
+    }
+
+    listaServicos.innerHTML = servicosFiltrados.map((servico) => `
+        <div class="service-btn service-rating-card">
+            <div>
+                <strong>${servico.nome}</strong>
+                <p>${servico.preco}</p>
+            </div>
+            <div class="service-rating-badge" aria-label="Média do serviço">
+                <span class="service-rating-value">${formatarNota(servico.media)}</span>
+                <span class="store-rating-star">★</span>
+                <span class="service-rating-count">(${servico.quantidadeAvaliacoes})</span>
+            </div>
+        </div>
+    `).join('');
+}
+
+pesquisaServico.addEventListener('input', (event) => renderizarServicos(event.target.value));
+renderizarServicos();
+</script>
 </body>
 </html>
