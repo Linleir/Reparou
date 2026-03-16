@@ -6,6 +6,28 @@
     <title>Reparou - Favoritos</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        .content-area.favoritos-page {
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            overflow: hidden;
+        }
+
+        .content-area.favoritos-page .white-window {
+            flex: 1 1 auto;
+            min-height: 0;
+            overflow-y: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .content-area.favoritos-page .white-window::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+
 </head>
 <body>
 <div class="mobile-container">
@@ -14,8 +36,8 @@
         <h2 class="page-title">Favoritos</h2>
     </header>
 
-    <div class="content-area">
-        <input type="text" class="search-input2" placeholder="Pesquisar">
+    <div class="content-area favoritos-page">
+        <input type="text" class="search-input2" id="campoPesquisaFavoritos" placeholder="Pesquisar">
 
         <main class="white-window" id="listaFavoritos"></main>
     </div>
@@ -29,16 +51,38 @@
 <script src="dados.js"></script>
 <script>
     const listaFavoritos = document.getElementById('listaFavoritos');
+    const campoPesquisaFavoritos = document.getElementById('campoPesquisaFavoritos');
+
+    function lojaCombinaPesquisaFavoritos(loja, textoDigitado = '') {
+        const busca = normalizarTexto(textoDigitado || '');
+        if (!busca) return true;
+        const base = normalizarTexto(obterTermosFiltroDaLoja(loja).join(' | '));
+        const termos = obterTermosPesquisa(textoDigitado || '');
+        return base.includes(busca) || termos.every((termo) => base.includes(termo));
+    }
 
     function renderizarFavoritos() {
         const favoritas = obterLojasFavoritasDetalhadas();
+        const termo = (campoPesquisaFavoritos?.value || '').trim();
+
         if (!favoritas.length) {
             listaFavoritos.innerHTML = '<div class="chat-empty-state">Você ainda não favoritou nenhuma loja.</div>';
             return;
         }
 
-        listaFavoritos.innerHTML = favoritas.map((loja) => criarCardLojaHtml(loja, 'favoritos')).join('');
+        const favoritasFiltradas = favoritas.filter((loja) => lojaCombinaPesquisaFavoritos(loja, termo));
+
+        if (!favoritasFiltradas.length) {
+            listaFavoritos.innerHTML = '<div class="chat-empty-state">Nenhuma loja favorita encontrada.</div>';
+            return;
+        }
+
+        listaFavoritos.innerHTML = favoritasFiltradas.map((loja) => criarCardLojaHtml(loja, 'favoritos')).join('');
         conectarFavoritosNoEscopo(listaFavoritos);
+    }
+
+    if (campoPesquisaFavoritos) {
+        campoPesquisaFavoritos.addEventListener('input', renderizarFavoritos);
     }
 
     document.addEventListener('favoritosAtualizados', renderizarFavoritos);
