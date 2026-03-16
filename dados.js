@@ -459,6 +459,68 @@ function obterDadosLojaAtual() {
   return obterInformacoesLoja(obterLojaAtualId());
 }
 
+
+function normalizarTexto(valor) {
+  return String(valor || '')
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .trim();
+}
+
+function obterTermosPesquisa(valor) {
+  const normalizado = normalizarTexto(valor);
+  if (!normalizado) return [];
+  return normalizado.split(/\s+/).filter(Boolean);
+}
+
+function obterTagsPesquisaInicio() {
+  const tagsServicos = Object.values(dadosLojasUI)
+    .flatMap((loja) => (loja.servicos || []).flatMap((servico) => [servico.tag, servico.nome]));
+  return [...new Set([...tagsDisponiveis, ...tagsServicos].filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+}
+
+function obterTermosFiltroDaLoja(loja) {
+  const info = obterInformacoesLoja(loja.id);
+  const servicos = info.servicos || [];
+  return [
+    loja.nome,
+    info.titulo,
+    ...(info.enderecoLinhas || []),
+    ...(info.telefones || []),
+    ...(loja.tags || []),
+    ...servicos.map((servico) => servico.tag),
+    ...servicos.map((servico) => servico.nome)
+  ].filter(Boolean);
+}
+
+function lojaAtendeTagsSelecionadas(loja, tagsSelecionadas = []) {
+  if (!tagsSelecionadas.length) return true;
+  const termos = obterTermosFiltroDaLoja(loja).map(normalizarTexto);
+  return tagsSelecionadas.every((tag) => {
+    const alvo = normalizarTexto(tag);
+    return termos.some((termo) => termo.includes(alvo) || alvo.includes(termo));
+  });
+}
+
+function lojaCombinaTextoPesquisa(loja, textoDigitado = '') {
+  const busca = normalizarTexto(textoDigitado);
+  if (!busca) return true;
+  const termos = obterTermosPesquisa(textoDigitado);
+  const base = normalizarTexto(obterTermosFiltroDaLoja(loja).join(' | '));
+  return base.includes(busca) || termos.every((termo) => base.includes(termo));
+}
+
+function obterTodasLojasDetalhadas() {
+  return lojas.map((loja) => obterInformacoesLoja(loja.id));
+}
+
+function pesquisarLojasInicio(textoDigitado = '', tagsSelecionadas = []) {
+  const haBusca = Boolean(String(textoDigitado || '').trim());
+  const haTags = Array.isArray(tagsSelecionadas) && tagsSelecionadas.length > 0;
+  const baseLojas = (haBusca || haTags) ? obterTodasLojasDetalhadas() : obterLojasDestaque();
+  return baseLojas.filter((loja) => lojaAtendeTagsSelecionadas(loja, tagsSelecionadas) && lojaCombinaTextoPesquisa(loja, textoDigitado));
+}
 function obterLojasDestaque() {
   return ['loja-x', 'loja-y', 'loja-z'].map((id) => obterInformacoesLoja(id));
 }
