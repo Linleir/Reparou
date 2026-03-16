@@ -1,78 +1,96 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Perfil</title>
-
 <link rel="stylesheet" href="style.css">
-
-<!-- ICONES -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 </head>
-
 <body>
-
 <div class="mobile-container">
-
-    <!-- HEADER -->
-    <div class="black-header">
-
-        <a href="inicio_cliente.html" class="back-btn">
+    <div class="black-header profile-user-header">
+        <a href="inicio_cliente.html" class="back-btn" aria-label="Voltar">
             <i class="fa-solid fa-arrow-left"></i>
         </a>
 
-        <div class="profile-center">
-
-            <img src="imgtst.jpg" class="profile2-img">
-
-            
-            <h2>  Nome do UsuarioX</h2>
-           
-
+        <div class="profile-center profile-user-center">
+            <img src="imgtst.jpg" class="profile2-img" alt="Foto de perfil">
+            <h2 id="perfil-usuario-nome">Nome do UsuarioX</h2>
+            <p id="perfil-usuario-local" class="profile-user-subinfo">Base de busca local não definida</p>
         </div>
-
     </div>
 
-    <!-- CONTEUDO -->
     <div class="content-area">
-
-        <div class="white-window">
-
-            <!-- PESQUISAR -->
-            <input class="search-input" type="text" placeholder="Pesquisar">
-
-            <!-- FAVORITOS -->
+        <div class="white-window profile-user-window">
             <a href="Favoritos.html" class="item-card">
                 <span>Favoritos</span>
             </a>
 
-            <!-- CONFIGURAÇÕES -->
-            <a href="#" class="item-card">
-                <span>Configurações</span>
+            <a href="Editar_Perfil_Usuario.html" class="item-card">
+                <span>Editar perfil</span>
             </a>
 
-            <!-- SAIR -->
             <a href="index.html" class="item-card">
                 <span>Sair da Conta</span>
             </a>
-
         </div>
-
     </div>
 
-    <!-- BOTTOM NAV -->
     <nav class="bottom-nav">
-            <a href="inicio_cliente.html" class="nav-item"><img src="Casa e lupa minimalista_edited.png" class="home"></a>
-            <a href="Historico_de_Avaliacao.html" class="nav-item"><img src="star.png" class="home"></a>
-            <a href="Mensagems.html" class="nav-item"><img src="chat.png" class="home"></a>
-        </nav>
-
+        <a href="inicio_cliente.html" class="nav-item"><img src="Casa e lupa minimalista_edited.png" class="home"></a>
+        <a href="Historico_de_Avaliacao.html" class="nav-item"><img src="star.png" class="home"></a>
+        <a href="Mensagems.html" class="nav-item"><img src="chat.png" class="home"></a>
+    </nav>
 </div>
 
-</body>
+<script>
+(function () {
+  const STORAGE_KEY = 'reparouPerfilCliente';
+  const perfilPadrao = {
+    nome: 'Nome',
+    sobrenome: 'do UsuarioX',
+    dataNascimento: '',
+    localizacao: {
+      bairro: 'Méier',
+      municipio: 'Rio de Janeiro',
+      rua: '',
+      numero: '',
+      complemento: ''
+    }
+  };
 
+  function lerPerfil() {
+    try {
+      const salvo = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+      if (!salvo) return perfilPadrao;
+      return {
+        ...perfilPadrao,
+        ...salvo,
+        localizacao: {
+          ...perfilPadrao.localizacao,
+          ...(salvo.localizacao || {})
+        }
+      };
+    } catch {
+      return perfilPadrao;
+    }
+  }
+
+  function nomeCompleto(perfil) {
+    return [perfil.nome, perfil.sobrenome].filter(Boolean).join(' ').trim() || 'Nome do UsuarioX';
+  }
+
+  function resumoLocal(perfil) {
+    const local = perfil.localizacao || {};
+    const partes = [local.bairro, local.municipio].filter(Boolean);
+    return partes.length ? partes.join(' • ') : 'Base de busca local não definida';
+  }
+
+  const perfil = lerPerfil();
+  document.getElementById('perfil-usuario-nome').textContent = nomeCompleto(perfil);
+  document.getElementById('perfil-usuario-local').textContent = resumoLocal(perfil);
+})();
+</script>
+</body>
 </html>
