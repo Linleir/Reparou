@@ -39,6 +39,10 @@
     const listaAvaliacoesCliente = document.getElementById('listaAvaliacoesCliente');
     const avaliacoes = obterAvaliacoesCliente();
 
+    function renderizarTags(tags = []) {
+        return (tags || []).slice(0, 3).map((tag) => `<span class="review-service-chip">${tag}</span>`).join('');
+    }
+
     if (!avaliacoes.length) {
         listaAvaliacoesCliente.innerHTML = '<div class="chat-empty-state">Você ainda não avaliou nenhum atendimento.</div>';
     } else {
@@ -49,6 +53,8 @@
                     <img src="${loja.imagem}" class="item-img" alt="${loja.nome}">
                     <div class="review-history-main">
                         <h4>Sobre a ${loja.nome}</h4>
+                        <p class="review-service-chip review-service-chip-principal">${avaliacao.tituloServico}</p>
+                        <div class="review-chip-row review-chip-row-inline">${renderizarTags(avaliacao.tags || [avaliacao.serviceTag])}</div>
                         <p>${avaliacao.texto}</p>
                         <span class="review-date">${formatarDataSimples(avaliacao.dataIso)}</span>
                     </div>

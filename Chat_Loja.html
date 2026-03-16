@@ -21,6 +21,8 @@
                     <h3 id="chatLojaNome">Loja</h3>
                     <p id="chatLojaEndereco"></p>
                     <p id="chatLojaTelefone"></p>
+                    <span id="chatServiceChip" class="chat-service-chip-header"></span>
+                    <div id="chatTagsRow" class="chat-tags-row"></div>
                 </div>
             </div>
         </header>
@@ -32,6 +34,7 @@
             <div id="avaliacaoCard" class="chat-evaluation-card" style="display:none;">
                 <h3>Avaliar serviço</h3>
                 <p>Deixe sua nota de 1 a 5 estrelas e um comentário sobre o atendimento.</p>
+                <div id="avaliacaoTagsRow" class="chat-tags-row chat-tags-row-review"></div>
                 <div class="rating-stars" id="ratingStars"></div>
                 <textarea id="avaliacaoTexto" class="search-input chat-review-input" rows="3" placeholder="Descreva como foi o serviço"></textarea>
                 <div class="btn-group">
@@ -86,15 +89,28 @@
         const salvarAvaliacaoBtn = document.getElementById('salvarAvaliacaoBtn');
         const chatFinalizadoCard = document.getElementById('chatFinalizadoCard');
         const novoChatBtn = document.getElementById('novoChatBtn');
+        const chatTagsRow = document.getElementById('chatTagsRow');
+        const avaliacaoTagsRow = document.getElementById('avaliacaoTagsRow');
         let notaSelecionada = chat.avaliacao?.nota || 0;
 
         document.getElementById('chatLojaImagem').src = loja.imagem;
         document.getElementById('chatLojaNome').textContent = loja.nome;
         document.getElementById('chatLojaEndereco').textContent = loja.enderecoLinhas.join(' • ');
         document.getElementById('chatLojaTelefone').textContent = loja.telefones.join(' • ');
+        document.getElementById('chatServiceChip').textContent = chat.tituloServico;
 
         const chatBackLink = document.getElementById('chatBackLink');
         chatBackLink.href = origem === 'loja' ? `Loja_XV2.html?id=${encodeURIComponent(chat.lojaId)}` : 'Mensagems.html';
+
+        function renderizarTagChips(tags = []) {
+            return (tags || []).slice(0, 3).map((tag) => `<span class="chat-service-chip-header chat-service-tag-mini">${tag}</span>`).join('');
+        }
+
+        function renderizarTagsDoChat() {
+            const tags = Array.isArray(chat.tags) && chat.tags.length ? chat.tags.slice(0, 3) : [chat.serviceTag];
+            chatTagsRow.innerHTML = renderizarTagChips(tags);
+            avaliacaoTagsRow.innerHTML = renderizarTagChips(tags);
+        }
 
         function renderizarMensagens() {
             chatArea.innerHTML = chat.mensagens.map((mensagem) => {
@@ -161,6 +177,7 @@
             }
 
             msgInput.value = '';
+            renderizarTagsDoChat();
             renderizarMensagens();
             renderizarStatus();
         }
@@ -181,6 +198,7 @@
             }
             salvarAvaliacaoDoChat(chat.id, notaSelecionada, texto);
             chat = obterChatPorId(chat.id);
+            renderizarTagsDoChat();
             renderizarStatus();
         });
 
@@ -189,6 +207,7 @@
         });
 
         renderizarEstrelas();
+        renderizarTagsDoChat();
         renderizarMensagens();
         renderizarStatus();
     </script>

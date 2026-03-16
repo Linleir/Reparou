@@ -15,6 +15,7 @@
         </a>
 
         <div class="shop-profile loja-profile-card">
+            <div class="store-page-rating" id="storePageRating"></div>
             <button type="button" id="favoritoLojaBtn" class="favorite-toggle store-page-favorite" aria-label="Alternar favorito">
                 <i class="fa-regular fa-heart"></i>
             </button>
@@ -69,6 +70,7 @@ document.getElementById('lojaEndereco1').textContent = lojaAtual.enderecoLinhas[
 document.getElementById('lojaEndereco2').textContent = lojaAtual.enderecoLinhas[1] || '';
 document.getElementById('lojaTelefone1').textContent = lojaAtual.telefones[0] || '';
 document.getElementById('lojaTelefone2').textContent = lojaAtual.telefones[1] || '';
+document.getElementById('storePageRating').innerHTML = montarMarkupNotaLoja(lojaAtual.media, lojaAtual.quantidadeAvaliacoes);
 
 const listaServicos = document.getElementById('listaServicos');
 const pesquisaServico = document.getElementById('pesquisaServico');
@@ -98,12 +100,16 @@ function renderizarServicos(filtro = '') {
     }
 
     listaServicos.innerHTML = servicosFiltrados.map((servico) => `
-        <div class="service-btn">
+        <div class="service-btn service-rating-card">
             <div>
                 <strong>${servico.nome}</strong>
                 <p>${servico.preco}</p>
             </div>
-            <i class="fa-solid fa-star" style="color:#e5ff00;"></i>
+            <div class="service-rating-badge" aria-label="Média do serviço">
+                <span class="service-rating-value">${formatarNota(servico.media)}</span>
+                <span class="store-rating-star">★</span>
+                <span class="service-rating-count">(${servico.quantidadeAvaliacoes})</span>
+            </div>
         </div>
     `).join('');
 }
