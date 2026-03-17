@@ -1,3 +1,20 @@
+// --- UTILIZADORES DO SISTEMA ---
+const administradores = [
+  { 
+    id: "00000000000000", 
+    senha: "123", 
+    nome: "Admin Supremo" 
+  }
+];
+
+const clientes = [
+  { 
+    id: "11122233344", 
+    senha: "123", 
+    nome: "Cliente Teste" 
+  }
+];
+
 const lojistas = [
   {
     id: "huguinho",
@@ -40,6 +57,7 @@ const lojistas = [
   }
 ];
 
+// --- DADOS DAS LOJAS E SERVIÇOS ---
 const lojas = [
   { id: "loja-a", nome: "Loja A", lojistaId: "huguinho", enderecos: ["Rua do Processador, 15 - Méier, RJ"], telefones: ["(21) 99111-1001"], tags: ["Formatação", "SSD", "Memória RAM"] },
   { id: "loja-x", nome: "Loja X", lojistaId: "huguinho", enderecos: ["Rua Tecnológica, 286 - Méier, RJ"], telefones: ["(21) 99999-9999", "(21) 98888-8888"], tags: ["Fonte", "Placa de vídeo", "Limpeza"] },
@@ -103,9 +121,9 @@ const dadosLojasUI = {
       { tag: "Limpeza", nome: "Manutenção", preco: "R$ 180 - 260" }
     ]
   }
-
 };
 
+// --- FUNÇÕES DE SISTEMA E LÓGICA ---
 function obterTagsDeServicoDaLoja(lojaId) {
   const servicos = dadosLojasUI[lojaId]?.servicos || [];
   return [...new Set(servicos.map((servico) => servico.tag).filter(Boolean))];
@@ -459,7 +477,6 @@ function obterDadosLojaAtual() {
   return obterInformacoesLoja(obterLojaAtualId());
 }
 
-
 function normalizarTexto(valor) {
   return String(valor || '')
     .normalize('NFD')
@@ -521,6 +538,7 @@ function pesquisarLojasInicio(textoDigitado = '', tagsSelecionadas = []) {
   const baseLojas = (haBusca || haTags) ? obterTodasLojasDetalhadas() : obterLojasDestaque();
   return baseLojas.filter((loja) => lojaAtendeTagsSelecionadas(loja, tagsSelecionadas) && lojaCombinaTextoPesquisa(loja, textoDigitado));
 }
+
 function obterLojasDestaque() {
   return ['loja-x', 'loja-y', 'loja-z'].map((id) => obterInformacoesLoja(id));
 }

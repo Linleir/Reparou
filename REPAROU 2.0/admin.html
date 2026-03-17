@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Administrador - Reparou</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* Estilos específicos para o painel de Admin */
+        .admin-kpi-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .admin-kpi-card {
+            flex: 1;
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+        .admin-kpi-card h3 { margin: 0; font-size: 24px; color: #333; }
+        .admin-kpi-card p { margin: 0; font-size: 12px; color: #666; font-weight: bold; text-transform: uppercase; }
+        
+        .admin-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .admin-tab-btn {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            background: #eee;
+            color: #555;
+            font-weight: bold;
+        }
+        .admin-tab-btn.active {
+            background: #333;
+            color: white;
+        }
+        
+        .admin-list-item {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+        .admin-list-item h4 { margin: 0 0 5px 0; font-size: 16px; }
+        .admin-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .badge-danger { background: #ffebee; color: #c62828; }
+        .badge-warning { background: #fff8e1; color: #f57f17; }
+        .badge-info { background: #e3f2fd; color: #1565c0; }
+        
+        .admin-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        .admin-action-btn {
+            flex: 1;
+            padding: 8px;
+            border-radius: 6px;
+            border: none;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        .btn-ban { background: #ffebee; color: #c62828; }
+        .btn-ignore { background: #e0e0e0; color: #333; }
+    </style>
+</head>
+<body class="bootstrap-app">
+    <div class="mobile-container">
+        
+        <header class="black-header">
+            <a href="acessos.html" class="back-btn" aria-label="Sair">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+            <div class="profile-center">
+                <h2>ADMINISTRAÇÃO</h2>
+                <p class="profile-user-subinfo" style="color: #ccc;">Painel de Controle Central</p>
+            </div>
+        </header>
+
+        <main class="content-area">
+            <div class="white-window" style="padding: 20px;">
+                
+                <div class="admin-kpi-row">
+                    <div class="admin-kpi-card">
+                        <h3 id="total-lojas">0</h3>
+                        <p>Lojas</p>
+                    </div>
+                    <div class="admin-kpi-card">
+                        <h3 id="total-denuncias">0</h3>
+                        <p>Denúncias</p>
+                    </div>
+                </div>
+
+                <div class="admin-tabs">
+                    <button class="admin-tab-btn active" id="tab-btn-denuncias">Denúncias</button>
+                    <button class="admin-tab-btn" id="tab-btn-lojas">Gestão de Lojas</button>
+                </div>
+
+                <div id="secao-denuncias">
+                    <h3 style="font-size: 18px; margin-bottom: 15px;">Denúncias Recentes</h3>
+                    <div id="lista-denuncias">
+                        </div>
+                </div>
+
+                <div id="secao-lojas" style="display: none;">
+                    <h3 style="font-size: 18px; margin-bottom: 15px;">Lojas Registadas</h3>
+                    <div id="lista-todas-lojas">
+                        </div>
+                </div>
+
+            </div>
+        </main>
+
+    </div>
+
+    <script src="dados.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            
+            // --- DADOS FALSOS DE DENÚNCIAS (MOCK) ---
+            // Como o 'Denuncia.html' apenas simulava o salvamento, criamos dados de exemplo aqui.
+            let denunciasMock = [
+                { id: 1, lojaNome: "LOJA DE REPARO X", lojaId: "loja-x", motivos: ["Fraude", "Não Gostou do Serviço"], descricao: "Cobraram por uma peça que não foi trocada.", data: "17/03/2026", status: "Pendente" },
+                { id: 2, lojaNome: "LOJA DE REPARO Y", lojaId: "loja-y", motivos: ["Assédio"], descricao: "Fui maltratado durante o atendimento no balcão.", data: "15/03/2026", status: "Pendente" }
+            ];
+
+            // 1. CARREGAR MÉTRICAS
+            const totalLojas = typeof lojas !== 'undefined' ? lojas.length : 0;
+            document.getElementById('total-lojas').textContent = totalLojas;
+            document.getElementById('total-denuncias').textContent = denunciasMock.length;
+
+            // 2. ALTERNAR ABAS
+            const btnDenuncias = document.getElementById('tab-btn-denuncias');
+            const btnLojas = document.getElementById('tab-btn-lojas');
+            const secaoDenuncias = document.getElementById('secao-denuncias');
+            const secaoLojas = document.getElementById('secao-lojas');
+
+            btnDenuncias.addEventListener('click', () => {
+                btnDenuncias.classList.add('active');
+                btnLojas.classList.remove('active');
+                secaoDenuncias.style.display = 'block';
+                secaoLojas.style.display = 'none';
+            });
+
+            btnLojas.addEventListener('click', () => {
+                btnLojas.classList.add('active');
+                btnDenuncias.classList.remove('active');
+                secaoLojas.style.display = 'block';
+                secaoDenuncias.style.display = 'none';
+            });
+
+            // 3. RENDERIZAR DENÚNCIAS
+            function renderizarDenuncias() {
+                const container = document.getElementById('lista-denuncias');
+                
+                if (denunciasMock.length === 0) {
+                    container.innerHTML = '<p style="text-align:center; color:#888; margin-top:30px;">Não há denúncias pendentes. 🎉</p>';
+                    return;
+                }
+
+                container.innerHTML = denunciasMock.map(d => `
+                    <div class="admin-list-item" id="denuncia-${d.id}">
+                        <div style="display:flex; justify-content:space-between;">
+                            <span class="admin-badge badge-danger">Denúncia #${d.id}</span>
+                            <span style="font-size:12px; color:#888;">${d.data}</span>
+                        </div>
+                        <h4>${d.lojaNome}</h4>
+                        <p style="font-size:13px; color:#666; margin-bottom:5px;"><strong>Motivos:</strong> ${d.motivos.join(', ')}</p>
+                        <p style="font-size:14px; background:#f9f9f9; padding:10px; border-radius:6px; border-left:3px solid #c62828;">"${d.descricao}"</p>
+                        
+                        <div class="admin-actions">
+                            <button class="admin-action-btn btn-ignore" onclick="resolverDenuncia(${d.id}, 'Ignorada')">Ignorar / Falsa</button>
+                            <button class="admin-action-btn btn-ban" onclick="resolverDenuncia(${d.id}, 'Suspensa')">Suspender Loja</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // 4. RENDERIZAR LOJAS (Puxando do dados.js)
+            function renderizarLojas() {
+                const container = document.getElementById('lista-todas-lojas');
+                if (typeof lojas === 'undefined' || lojas.length === 0) {
+                    container.innerHTML = '<p style="text-align:center; color:#888;">Nenhuma loja registada.</p>';
+                    return;
+                }
+
+                container.innerHTML = lojas.map(loja => {
+                    const avaliacoes = loja.avaliacoes ? loja.avaliacoes.length : (loja.quantidadeAvaliacoes || 0);
+                    return `
+                    <div class="admin-list-item">
+                        <span class="admin-badge badge-info">ID: ${loja.id}</span>
+                        <h4>${loja.nome}</h4>
+                        <p style="font-size:13px; color:#666; margin-bottom:0;">
+                            <i class="fa-solid fa-star" style="color:#fbc02d;"></i> ${loja.media || 'S/N'} (${avaliacoes} avaliações)
+                        </p>
+                        <p style="font-size:13px; color:#666; margin-bottom:0;">
+                            <i class="fa-solid fa-tags"></i> ${loja.tags ? loja.tags.length : 0} serviços/tags registadas
+                        </p>
+                        <div class="admin-actions">
+                            <button class="admin-action-btn btn-ban" onclick="alert('Esta ação bloquearia a loja ${loja.nome} permanentemente no sistema real.')">Bloquear Loja</button>
+                        </div>
+                    </div>
+                `}).join('');
+            }
+
+            // Função global para lidar com o clique na denúncia
+            window.resolverDenuncia = function(id, acao) {
+                if(confirm(`Tem certeza que deseja marcar esta denúncia como: ${acao}?`)) {
+                    // Remove do array visual
+                    denunciasMock = denunciasMock.filter(d => d.id !== id);
+                    document.getElementById('total-denuncias').textContent = denunciasMock.length;
+                    renderizarDenuncias();
+                    alert(`Ação '${acao}' aplicada com sucesso!`);
+                }
+            };
+
+            // Inicializar
+            renderizarDenuncias();
+            renderizarLojas();
+        });
+    </script>
+</body>
+</html>
