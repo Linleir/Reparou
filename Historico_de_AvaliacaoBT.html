@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Histórico de Avaliações</title>
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- CSS compatível -->
+<link rel="stylesheet" href="custom.css">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<div class="container py-3">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10 col-md-6 col-lg-4">
+
+      <!-- HEADER -->
+      <div class="profile-header mb-3 shadow-soft text-center position-relative">
+
+        <a href="inicio_clienteBT.html"
+           class="position-absolute top-0 start-0 m-3 text-white fs-4">
+          <i class="fa-solid fa-arrow-left"></i>
+        </a>
+
+        <img src="imgtst.jpg" class="profile-img mb-2">
+
+        <h5>Nome do UsuarioX</h5>
+
+      </div>
+
+      <!-- TÍTULO -->
+      <h5 class="mb-3">Histórico de Avaliações</h5>
+
+      <!-- LISTA -->
+      <div class="card p-2 mb-5">
+        <div id="listaAvaliacoesCliente" class="list-group">
+          <!-- renderizado por JS -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR INFERIOR -->
+<nav class="navbar bottom-nav fixed-bottom">
+  <div class="container d-flex justify-content-around">
+
+    <a href="inicio_clienteBT.html">
+      <img src="Casa e lupa minimalista_edited.png">
+    </a>
+
+    <a href="Historico_de_AvaliacaoBT.html">
+      <img src="star.png">
+    </a>
+
+    <a href="MensagensBT.html">
+      <img src="chat.png">
+    </a>
+
+  </div>
+</nav>
+
+<!-- JS -->
+<script src="dados.js"></script>
+
+<!-- JS ORIGINAL (INALTERADO) -->
+<script>
+const listaAvaliacoesCliente = document.getElementById('listaAvaliacoesCliente');
+const avaliacoes = obterAvaliacoesCliente();
+
+function renderizarTags(tags = []) {
+    return (tags || []).slice(0, 3).map((tag) => `<span class="review-service-chip">${tag}</span>`).join('');
+}
+
+if (!avaliacoes.length) {
+    listaAvaliacoesCliente.innerHTML = '<div class="text-center text-muted p-3">Você ainda não avaliou nenhum atendimento.</div>';
+} else {
+    listaAvaliacoesCliente.innerHTML = avaliacoes.map((avaliacao) => {
+        const loja = obterInformacoesLoja(avaliacao.lojaId);
+        return `
+            <a href="${construirLinkDetalheAvaliacao(avaliacao.id)}"
+               class="list-group-item d-flex gap-3 align-items-start">
+
+                <img src="${loja.imagem}" class="rounded" width="70" height="70" alt="${loja.nome}">
+
+                <div class="flex-grow-1">
+                    <h6 class="mb-1">Sobre a ${loja.nome}</h6>
+
+                    <div class="mb-1">
+                        <span class="review-service-chip">${avaliacao.tituloServico}</span>
+                    </div>
+
+                    <div class="mb-1">
+                        ${renderizarTags(avaliacao.tags || [avaliacao.serviceTag])}
+                    </div>
+
+                    <p class="mb-1 small">${avaliacao.texto}</p>
+
+                    <small class="text-muted">
+                        ${formatarDataSimples(avaliacao.dataIso)}
+                    </small>
+                </div>
+
+                <div class="text-end fw-bold">
+                    ★ ${avaliacao.nota.toFixed(1).replace('.', ',')}
+                </div>
+
+            </a>
+        `;
+    }).join('');
+}
+</script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caixa de Entrada - Lojista</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body class="bootstrap-app">
+
+<div class="container py-3">
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-10 col-md-6 col-lg-4">
+
+            <!-- HEADER -->
+            <header class="black-header chat-history-header mb-3 p-3 text-center">
+                <h1 class="page-title mb-2">Caixa de Entrada</h1>
+                <p class="chat-subtitle mb-0">Faça a gestão dos contactos e orçamentos dos seus clientes.</p>
+            </header>
+
+            <!-- CONTENT -->
+            <main class="mb-5">
+                <div class="white-window chat-history-window p-3">
+
+                    <input id="pesquisaChatLojista"
+                           type="text"
+                           class="form-control mb-3 search-input"
+                           placeholder="Pesquisar por cliente ou serviço">
+
+                    <!-- LISTA -->
+                    <div id="listaChatsLojista" class="list-group">
+                        <!-- JS injeta aqui -->
+                    </div>
+
+                </div>
+            </main>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- NAVBAR INFERIOR -->
+<nav class="navbar fixed-bottom bg-light border-top">
+    <div class="container d-flex justify-content-around">
+
+        <a href="Perfil LojistaBT.html" class="text-center nav-item">
+            <img src="Casa e lupa minimalista_edited.png" class="home" alt="Início">
+        </a>
+
+        <a href="chat_lojistaBT.html" class="text-center nav-item">
+            <img src="chat.png" class="home" alt="Chats">
+        </a>
+
+        <a href="agendamento_lojistaBT.html" class="text-center nav-item">
+            <img src="star.png" class="home" alt="Agendamentos">
+        </a>
+
+    </div>
+</nav>
+
+<script src="dados.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const idLojistaLogado = localStorage.getItem("lojistaLogado");
+    
+    if (!idLojistaLogado) {
+        window.location.href = "indexBT.html";
+        return;
+    }
+
+    const lojista = lojistas.find(item => item.id === idLojistaLogado);
+    if (!lojista) {
+        window.location.href = "indexBT.html";
+        return;
+    }
+
+    const listaChats = document.getElementById('listaChatsLojista');
+    const pesquisaChat = document.getElementById('pesquisaChatLojista');
+
+    function criarResumo(chat) {
+        const ultima = typeof obterUltimaMensagem === 'function' 
+            ? obterUltimaMensagem(chat) 
+            : (chat.mensagens && chat.mensagens.length > 0 ? chat.mensagens[chat.mensagens.length - 1] : null);
+        
+        return ultima ? ultima.texto : 'A aguardar mensagem...';
+    }
+
+    function renderizarTags(tags = []) {
+        return (tags || []).slice(0, 3).map(tag => `<span class="review-service-chip">${tag}</span>`).join('');
+    }
+
+    function renderizarChats(termo = '') {
+        let todosChats = [];
+        try {
+            const bruto = localStorage.getItem('reparouChatsDemoV4') || localStorage.getItem('reparouChats') || localStorage.getItem('reparouChatsDemo');
+            if (bruto) todosChats = JSON.parse(bruto);
+        } catch (e) {
+            console.error("Erro ao ler os chats do sistema", e);
+        }
+
+        let chatsDoLojista = todosChats.filter(chat => {
+            const pertenceAoLojista = lojista.lojas && lojista.lojas.includes(chat.lojaId);
+            const naoERascunho = chat.mensagens && chat.mensagens.length > 0;
+            return pertenceAoLojista && naoERascunho;
+        });
+
+        if (termo) {
+            const t = termo.toLowerCase();
+            chatsDoLojista = chatsDoLojista.filter(chat => {
+                const servicoMatch = (chat.tituloServico || '').toLowerCase().includes(t);
+                const msgMatch = chat.mensagens.some(m => m.texto.toLowerCase().includes(t));
+                return servicoMatch || msgMatch;
+            });
+        }
+
+        if (!chatsDoLojista.length) {
+            listaChats.innerHTML = '<div class="text-center p-3 text-muted">Nenhum contacto de cliente encontrado.</div>';
+            return;
+        }
+
+        listaChats.innerHTML = chatsDoLojista.map(chat => {
+            const loja = (typeof lojas !== 'undefined' ? lojas.find(l => l.id === chat.lojaId) : null) || { nome: 'A sua loja' };
+            const nomeCliente = chat.clienteNome || "Cliente";
+
+            return `
+                <a href="responder_chat.html?chat=${chat.id}" 
+                   class="list-group-item list-group-item-action item-card chat-history-card">
+
+                    <div class="w-100">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h6 class="mb-0">
+                                ${nomeCliente}
+                                <span class="text-muted small">(${loja.nome})</span>
+                            </h6>
+                        </div>
+
+                        <p class="fw-bold mt-1 mb-1">${chat.tituloServico || 'Serviço Geral'}</p>
+
+                        <div class="mb-1">${renderizarTags(chat.tags)}</div>
+
+                        <p class="text-muted small text-truncate mb-1">
+                            ${criarResumo(chat)}
+                        </p>
+
+                        <span class="chat-status-badge ${chat.status || 'pendente'}">
+                            ${typeof obterStatusChatLabel === 'function' ? obterStatusChatLabel(chat.status) : (chat.status || 'Em andamento')}
+                        </span>
+                    </div>
+
+                </a>
+            `;
+        }).join('');
+    }
+
+    pesquisaChat.addEventListener('input', (event) => {
+        renderizarChats(event.target.value);
+    });
+
+    renderizarChats();
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

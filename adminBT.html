@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Administrador - Reparou</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        /* Mantido apenas visual */
+        .admin-kpi-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #eee;
+        }
+        .admin-kpi-card h3 { margin: 0; font-size: 24px; }
+        .admin-kpi-card p { margin: 0; font-size: 12px; font-weight: bold; }
+
+        .admin-tab-btn.active {
+            background: #333;
+            color: white;
+        }
+
+        .admin-list-item {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 15px;
+        }
+
+        .admin-badge {
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .badge-danger { background: #ffebee; color: #c62828; }
+        .badge-info { background: #e3f2fd; color: #1565c0; }
+
+        .admin-action-btn {
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .btn-ban { background: #ffebee; color: #c62828; }
+        .btn-ignore { background: #e0e0e0; color: #333; }
+    </style>
+</head>
+
+<body class="bootstrap-app">
+
+<div class="container py-3">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-10 col-md-6 col-lg-4">
+
+            <!-- HEADER -->
+            <header class="bg-black text-white p-3 rounded mb-3 text-center position-relative">
+                <a href="acessosBT.html" class="position-absolute start-0 top-50 translate-middle-y ms-3 text-white">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+                <h2 class="mb-0">ADMINISTRAÇÃO</h2>
+                <small class="text-light">Painel de Controle Central</small>
+            </header>
+
+            <!-- CONTEÚDO -->
+            <div class="card p-3 mb-3">
+
+                <!-- KPI -->
+                <div class="row g-2 mb-3">
+                    <div class="col-6">
+                        <div class="admin-kpi-card">
+                            <h3 id="total-lojas">0</h3>
+                            <p>Lojas</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="admin-kpi-card">
+                            <h3 id="total-denuncias">0</h3>
+                            <p>Denúncias</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TABS -->
+                <div class="d-flex gap-2 mb-3">
+                    <button class="btn btn-outline-dark w-100 admin-tab-btn active" id="tab-btn-denuncias">
+                        Denúncias
+                    </button>
+                    <button class="btn btn-outline-dark w-100 admin-tab-btn" id="tab-btn-lojas">
+                        Gestão de Lojas
+                    </button>
+                </div>
+
+                <!-- DENÚNCIAS -->
+                <div id="secao-denuncias">
+                    <h5 class="mb-3">Denúncias Recentes</h5>
+                    <div id="lista-denuncias" class="d-flex flex-column gap-3"></div>
+                </div>
+
+                <!-- LOJAS -->
+                <div id="secao-lojas" style="display:none;">
+                    <h5 class="mb-3">Lojas Registradas</h5>
+                    <div id="lista-todas-lojas" class="d-flex flex-column gap-3"></div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="dados.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    let denunciasMock = [
+        { id: 1, lojaNome: "LOJA DE REPARO X", lojaId: "loja-x", motivos: ["Fraude", "Não Gostou do Serviço"], descricao: "Cobraram por uma peça que não foi trocada.", data: "17/03/2026", status: "Pendente" },
+        { id: 2, lojaNome: "LOJA DE REPARO Y", lojaId: "loja-y", motivos: ["Assédio"], descricao: "Fui maltratado durante o atendimento no balcão.", data: "15/03/2026", status: "Pendente" }
+    ];
+
+    const totalLojas = typeof lojas !== 'undefined' ? lojas.length : 0;
+    document.getElementById('total-lojas').textContent = totalLojas;
+    document.getElementById('total-denuncias').textContent = denunciasMock.length;
+
+    const btnDenuncias = document.getElementById('tab-btn-denuncias');
+    const btnLojas = document.getElementById('tab-btn-lojas');
+    const secaoDenuncias = document.getElementById('secao-denuncias');
+    const secaoLojas = document.getElementById('secao-lojas');
+
+    btnDenuncias.addEventListener('click', () => {
+        btnDenuncias.classList.add('active');
+        btnLojas.classList.remove('active');
+        secaoDenuncias.style.display = 'block';
+        secaoLojas.style.display = 'none';
+    });
+
+    btnLojas.addEventListener('click', () => {
+        btnLojas.classList.add('active');
+        btnDenuncias.classList.remove('active');
+        secaoLojas.style.display = 'block';
+        secaoDenuncias.style.display = 'none';
+    });
+
+    function renderizarDenuncias() {
+        const container = document.getElementById('lista-denuncias');
+
+        if (denunciasMock.length === 0) {
+            container.innerHTML = '<p class="text-center text-muted">Não há denúncias pendentes.</p>';
+            return;
+        }
+
+        container.innerHTML = denunciasMock.map(d => `
+            <div class="admin-list-item">
+                <div class="d-flex justify-content-between">
+                    <span class="admin-badge badge-danger">Denúncia #${d.id}</span>
+                    <small class="text-muted">${d.data}</small>
+                </div>
+
+                <h6 class="mt-2">${d.lojaNome}</h6>
+
+                <p class="small text-muted mb-1"><strong>Motivos:</strong> ${d.motivos.join(', ')}</p>
+
+                <p class="small bg-light p-2 rounded border-start border-danger">
+                    "${d.descricao}"
+                </p>
+
+                <div class="d-flex gap-2 mt-2">
+                    <button class="btn btn-sm btn-ignore w-100" onclick="resolverDenuncia(${d.id}, 'Ignorada')">
+                        Ignorar
+                    </button>
+                    <button class="btn btn-sm btn-ban w-100" onclick="resolverDenuncia(${d.id}, 'Suspensa')">
+                        Suspender
+                    </button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function renderizarLojas() {
+        const container = document.getElementById('lista-todas-lojas');
+
+        if (typeof lojas === 'undefined' || lojas.length === 0) {
+            container.innerHTML = '<p class="text-center text-muted">Nenhuma loja registrada.</p>';
+            return;
+        }
+
+        container.innerHTML = lojas.map(loja => {
+            const avaliacoes = loja.avaliacoes ? loja.avaliacoes.length : (loja.quantidadeAvaliacoes || 0);
+            return `
+                <div class="admin-list-item">
+                    <span class="admin-badge badge-info">ID: ${loja.id}</span>
+                    <h6 class="mt-2">${loja.nome}</h6>
+
+                    <p class="small text-muted mb-1">
+                        <i class="fa-solid fa-star text-warning"></i>
+                        ${loja.media || 'S/N'} (${avaliacoes})
+                    </p>
+
+                    <p class="small text-muted">
+                        <i class="fa-solid fa-tags"></i>
+                        ${loja.tags ? loja.tags.length : 0} serviços
+                    </p>
+
+                    <button class="btn btn-sm btn-ban w-100">
+                        Bloquear Loja
+                    </button>
+                </div>
+            `;
+        }).join('');
+    }
+
+    window.resolverDenuncia = function(id, acao) {
+        if(confirm(`Tem certeza que deseja marcar como: ${acao}?`)) {
+            denunciasMock = denunciasMock.filter(d => d.id !== id);
+            document.getElementById('total-denuncias').textContent = denunciasMock.length;
+            renderizarDenuncias();
+            alert(`Ação '${acao}' aplicada!`);
+        }
+    };
+
+    renderizarDenuncias();
+    renderizarLojas();
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

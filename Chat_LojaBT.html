@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat com a Loja</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="custom.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<div class="container py-2">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-10 col-md-6 col-lg-4">
+
+            <!-- HEADER -->
+            <header class="black-header chat-header-v2 mb-2 p-3">
+
+                <div class="d-flex align-items-center mb-2">
+                    <a href="MensagensBT.html" id="chatBackLink" class="back-btn me-2">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </a>
+                    <h1 class="page-title chat-title mb-0">Chat</h1>
+                </div>
+
+                <!-- CARD LOJA -->
+                <div class="card chat-shop-card">
+                    <div class="card-body d-flex gap-2">
+                        <img src="imgtst.jpg" class="shop-img chat-shop-img" id="chatLojaImagem">
+
+                        <div>
+                            <h6 id="chatLojaNome" class="mb-1">Loja</h6>
+                            <p id="chatLojaEndereco" class="mb-1 small"></p>
+                            <p id="chatLojaTelefone" class="mb-1 small"></p>
+                            <span id="chatServiceChip" class="chat-service-chip-header d-block mb-1"></span>
+                            <div id="chatTagsRow" class="chat-tags-row"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </header>
+
+            <!-- CONTENT -->
+            <main class="mb-5">
+
+                <div id="chatStatusBox" class="chat-top-status mb-2"></div>
+
+                <!-- ÁREA DE CHAT -->
+                <div id="chat-area" class="chat-area chat-area-v2 mb-3"></div>
+
+                <!-- AVALIAÇÃO -->
+                <div id="avaliacaoCard" class="card chat-evaluation-card mb-3" style="display:none;">
+                    <div class="card-body">
+                        <h6>Avaliar serviço</h6>
+                        <p class="small">Deixe sua nota de 1 a 5 estrelas e um comentário.</p>
+
+                        <div id="avaliacaoTagsRow" class="chat-tags-row mb-2"></div>
+
+                        <div id="ratingStars" class="rating-stars mb-2"></div>
+
+                        <textarea id="avaliacaoTexto"
+                                  class="form-control chat-review-input mb-2 search-input"
+                                  rows="3"
+                                  placeholder="Descreva como foi o serviço"></textarea>
+
+                        <button id="salvarAvaliacaoBtn" class="btn btn-primary w-100 main-btn">
+                            Salvar avaliação
+                        </button>
+                    </div>
+                </div>
+
+                <!-- FINALIZADO -->
+                <div id="chatFinalizadoCard" class="card chat-finished-actions mb-3" style="display:none;">
+                    <div class="card-body text-center">
+                        <button id="novoChatBtn" class="btn btn-primary w-100 main-btn">
+                            Iniciar novo chat com esta loja
+                        </button>
+                    </div>
+                </div>
+
+            </main>
+
+            <!-- INPUT -->
+            <div class="input-group mb-5 chat-input chat-input-v2">
+                <input id="msg"
+                       class="form-control search-input chat-message-input"
+                       placeholder="Digite uma mensagem">
+
+                <button id="enviarBtn" class="btn btn-primary chat-send-btn">
+                    Enviar
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- NAVBAR INFERIOR -->
+<nav class="navbar fixed-bottom bg-light border-top">
+    <div class="container d-flex justify-content-around">
+
+        <a href="inicio_clienteBT.html" class="nav-item">
+            <img src="Casa e lupa minimalista_edited.png" class="home">
+        </a>
+
+        <a href="Historico_de_AvaliacaoBT.html" class="nav-item">
+            <img src="star.png" class="home">
+        </a>
+
+        <a href="MensagensBT.html" class="nav-item">
+            <img src="chat.png" class="home">
+        </a>
+
+    </div>
+</nav>
+
+<script src="dados.js"></script>
+
+<!-- JS ORIGINAL (NÃO MODIFICADO) -->
+<script>
+const params = new URLSearchParams(window.location.search);
+const origem = params.get('origem') || 'historico';
+const lojaIdOrigem = params.get('id') || 'loja-x';
+let chatId = params.get('chat');
+
+let chat = null;
+
+if (!chatId && params.get('nova') === '1') {
+    chat = criarRascunhoChat(lojaIdOrigem, 'generico');
+} else {
+    chat = obterChatPorId(chatId);
+}
+
+if (!chat) {
+    chat = criarRascunhoChat(lojaIdOrigem || 'loja-x', 'generico');
+}
+
+const loja = obterInformacoesLoja(chat.lojaId);
+const chatArea = document.getElementById('chat-area');
+const msgInput = document.getElementById('msg');
+const enviarBtn = document.getElementById('enviarBtn');
+const chatStatusBox = document.getElementById('chatStatusBox');
+const avaliacaoCard = document.getElementById('avaliacaoCard');
+const avaliacaoTexto = document.getElementById('avaliacaoTexto');
+const ratingStars = document.getElementById('ratingStars');
+const salvarAvaliacaoBtn = document.getElementById('salvarAvaliacaoBtn');
+const chatFinalizadoCard = document.getElementById('chatFinalizadoCard');
+const novoChatBtn = document.getElementById('novoChatBtn');
+const chatTagsRow = document.getElementById('chatTagsRow');
+const avaliacaoTagsRow = document.getElementById('avaliacaoTagsRow');
+let notaSelecionada = chat.avaliacao?.nota || 0;
+
+document.getElementById('chatLojaImagem').src = loja.imagem;
+document.getElementById('chatLojaNome').textContent = loja.nome;
+document.getElementById('chatLojaEndereco').textContent = loja.enderecoLinhas.join(' • ');
+document.getElementById('chatLojaTelefone').textContent = loja.telefones.join(' • ');
+document.getElementById('chatServiceChip').textContent = chat.tituloServico;
+
+const chatBackLink = document.getElementById('chatBackLink');
+chatBackLink.href = origem === 'loja' ? `Loja_XV2.html?id=${encodeURIComponent(chat.lojaId)}` : 'MensagensBT.html';
+
+function renderizarTagChips(tags = []) {
+    return (tags || []).slice(0, 3).map((tag) => `<span class="chat-service-chip-header chat-service-tag-mini">${tag}</span>`).join('');
+}
+
+function renderizarTagsDoChat() {
+    const tags = Array.isArray(chat.tags) && chat.tags.length ? chat.tags.slice(0, 3) : [chat.serviceTag];
+    chatTagsRow.innerHTML = renderizarTagChips(tags);
+    avaliacaoTagsRow.innerHTML = renderizarTagChips(tags);
+}
+
+function renderizarMensagens() {
+    chatArea.innerHTML = chat.mensagens.map((mensagem) => {
+        const classeWrapper = mensagem.autor === 'cliente' ? 'msg-out' : 'msg-in';
+        const classeBolha = mensagem.autor === 'cliente' ? 'chat-bubble cliente' : 'chat-bubble loja';
+        return `
+            <div class="chat-row ${classeWrapper}">
+                <div class="${classeBolha}">
+                    <p>${mensagem.texto}</p>
+                    <span>${formatarDataHora(mensagem.horario)}</span>
+                </div>
+            </div>
+        `;
+    }).join('');
+    chatArea.scrollTop = chatArea.scrollHeight;
+}
+
+function renderizarStatus() {
+    chatStatusBox.textContent = obterStatusChatLabel(chat.status);
+    chatStatusBox.className = `chat-top-status ${chat.status}`;
+
+    const finalizadoSemAvaliacao = chat.status === 'finalizado-sem-avaliacao' && !chat.avaliacao;
+    const finalizadoAvaliado = chat.status === 'finalizado-avaliado' && !!chat.avaliacao;
+
+    avaliacaoCard.style.display = finalizadoSemAvaliacao ? 'block' : 'none';
+    chatFinalizadoCard.style.display = finalizadoAvaliado ? 'block' : 'none';
+    msgInput.disabled = finalizadoSemAvaliacao || finalizadoAvaliado;
+    enviarBtn.disabled = finalizadoSemAvaliacao || finalizadoAvaliado;
+    msgInput.placeholder = finalizadoAvaliado ? 'Este chat já foi finalizado.' : (finalizadoSemAvaliacao ? 'Avalie o serviço para continuar.' : 'Digite uma mensagem');
+
+    if (chat.avaliacao) {
+        notaSelecionada = chat.avaliacao.nota;
+        avaliacaoTexto.value = chat.avaliacao.texto;
+        renderizarEstrelas();
+    }
+}
+
+function renderizarEstrelas() {
+    ratingStars.innerHTML = '';
+    for (let nota = 1; nota <= 5; nota += 1) {
+        const estrela = document.createElement('button');
+        estrela.type = 'button';
+        estrela.className = `star-select ${nota <= notaSelecionada ? 'active' : ''}`;
+        estrela.innerHTML = '★';
+        estrela.addEventListener('click', () => {
+            notaSelecionada = nota;
+            renderizarEstrelas();
+        });
+        ratingStars.appendChild(estrela);
+    }
+}
+
+function enviarMensagem() {
+    const texto = msgInput.value.trim();
+    if (!texto) return;
+
+    if (chat.rascunho) {
+        chatId = criarNovoChat(chat.lojaId, chat.autoTipo || 'generico', texto);
+        chat = obterChatPorId(chatId);
+        window.history.replaceState({}, '', construirLinkChat(chatId, origem));
+    } else {
+        const resultado = adicionarMensagemAoChat(chat.id, texto);
+        chat = resultado.chat;
+    }
+
+    msgInput.value = '';
+    renderizarTagsDoChat();
+    renderizarMensagens();
+    renderizarStatus();
+}
+
+enviarBtn.addEventListener('click', enviarMensagem);
+msgInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        enviarMensagem();
+    }
+});
+
+salvarAvaliacaoBtn.addEventListener('click', () => {
+    const texto = avaliacaoTexto.value.trim();
+    if (!notaSelecionada || !texto) {
+        alert('Selecione de 1 a 5 estrelas e escreva um comentário.');
+        return;
+    }
+    salvarAvaliacaoDoChat(chat.id, notaSelecionada, texto);
+    chat = obterChatPorId(chat.id);
+    renderizarTagsDoChat();
+    renderizarStatus();
+});
+
+novoChatBtn.addEventListener('click', () => {
+    window.location.href = construirLinkNovoChat(chat.lojaId, origem);
+});
+
+renderizarEstrelas();
+renderizarTagsDoChat();
+renderizarMensagens();
+renderizarStatus();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Perfil</title>
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Seu CSS refatorado -->
+<link rel="stylesheet" href="StyleBT.css">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="container py-3">
+
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-10 col-md-6 col-lg-4">
+
+            <!-- HEADER -->
+            <div class="profile-header mb-3 shadow-soft">
+
+                <a href="inicio_clienteBT.html" class="position-absolute top-0 start-0 m-3 text-white fs-4">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+
+                <img src="imgtst.jpg" class="profile-img mb-2">
+
+                <h4 id="perfil-usuario-nome">Nome do UsuarioX</h4>
+
+                <p id="perfil-usuario-local" class="profile-user-subinfo mb-0">
+                    Base de busca local não definida
+                </p>
+
+            </div>
+
+            <!-- MENU -->
+            <div class="list-group shadow-soft">
+
+                <a href="FavoritosBT.html" class="list-group-item list-group-item-action">
+                    Favoritos
+                </a>
+
+                <a href="Editar_Perfil_UsuarioBT.html" class="list-group-item list-group-item-action">
+                    Editar perfil
+                </a>
+
+                <a href="indexBT.html" class="list-group-item list-group-item-action text-danger">
+                    Sair da Conta
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- NAVBAR INFERIOR -->
+<nav class="navbar bottom-nav fixed-bottom">
+    <div class="container d-flex justify-content-around">
+
+        <a href="inicio_clienteBT.html">
+            <img src="Casa e lupa minimalista_edited.png">
+        </a>
+
+        <a href="Historico_de_AvaliacaoBT.html">
+            <img src="star.png">
+        </a>
+
+        <a href="MensagensBT.html">
+            <img src="chat.png">
+        </a>
+
+    </div>
+</nav>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- SEU JS ORIGINAL (INALTERADO) -->
+<script>
+(function () {
+  const STORAGE_KEY = 'reparouPerfilCliente';
+  const perfilPadrao = {
+    nome: 'Nome',
+    sobrenome: 'do UsuarioX',
+    dataNascimento: '',
+    localizacao: {
+      bairro: 'Méier',
+      municipio: 'Rio de Janeiro',
+      rua: '',
+      numero: '',
+      complemento: ''
+    }
+  };
+
+  function lerPerfil() {
+    try {
+      const salvo = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+      if (!salvo) return perfilPadrao;
+      return {
+        ...perfilPadrao,
+        ...salvo,
+        localizacao: {
+          ...perfilPadrao.localizacao,
+          ...(salvo.localizacao || {})
+        }
+      };
+    } catch {
+      return perfilPadrao;
+    }
+  }
+
+  function nomeCompleto(perfil) {
+    return [perfil.nome, perfil.sobrenome].filter(Boolean).join(' ').trim() || 'Nome do UsuarioX';
+  }
+
+  function resumoLocal(perfil) {
+    const local = perfil.localizacao || {};
+    const partes = [local.bairro, local.municipio].filter(Boolean);
+    return partes.length ? partes.join(' • ') : 'Base de busca local não definida';
+  }
+
+  const perfil = lerPerfil();
+  document.getElementById('perfil-usuario-nome').textContent = nomeCompleto(perfil);
+  document.getElementById('perfil-usuario-local').textContent = resumoLocal(perfil);
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico de Chats</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- CSS compatível -->
+    <link rel="stylesheet" href="custom.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<div class="container py-3">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-10 col-md-6 col-lg-4">
+
+            <!-- HEADER -->
+            <div class="profile-header mb-3 shadow-soft text-center position-relative">
+
+                <a href="inicio_clienteBT.html" class="position-absolute top-0 start-0 m-3 text-white fs-4">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+
+                <h4 class="mb-1">Chats</h4>
+                <p class="profile-user-subinfo mb-0">
+                    Acompanhe seus atendimentos e pesquise pelo que você já enviou.
+                </p>
+
+            </div>
+
+            <!-- CONTEÚDO -->
+            <div class="card rounded-custom shadow-soft p-3 mb-5">
+
+                <!-- INPUT -->
+                <input id="pesquisaChat" type="text" class="form-control mb-3"
+                       placeholder="Pesquisar por mensagem enviada">
+
+                <!-- LISTA -->
+                <div id="listaChats" class="list-group">
+                    <!-- renderizado por JS -->
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- NAVBAR INFERIOR -->
+<nav class="navbar bottom-nav fixed-bottom">
+    <div class="container d-flex justify-content-around">
+
+        <a href="inicio_clienteBT.html">
+            <img src="Casa e lupa minimalista_edited.png">
+        </a>
+
+        <a href="Historico_de_AvaliacaoBT.html">
+            <img src="star.png">
+        </a>
+
+        <a href="MensagensBT.html">
+            <img src="chat.png">
+        </a>
+
+    </div>
+</nav>
+
+<!-- JS DADOS -->
+<script src="dados.js"></script>
+
+<!-- JS ORIGINAL (INALTERADO) -->
+<script>
+const listaChats = document.getElementById('listaChats');
+const pesquisaChat = document.getElementById('pesquisaChat');
+
+function criarResumo(chat) {
+    const ultimaMensagem = obterUltimaMensagem(chat);
+    return ultimaMensagem ? ultimaMensagem.texto : 'Sem mensagens ainda.';
+}
+
+function renderizarTags(tags = []) {
+    return (tags || []).slice(0, 3).map((tag) => `<span class="review-service-chip">${tag}</span>`).join('');
+}
+
+function renderizarChats(termo = '') {
+    const chats = buscarChatsPorMensagemDoCliente(termo);
+
+    if (!chats.length) {
+        listaChats.innerHTML = '<div class="text-center text-muted p-3">Nenhum chat encontrado para essa pesquisa.</div>';
+        return;
+    }
+
+    listaChats.innerHTML = chats.map((chat) => {
+        const loja = obterInformacoesLoja(chat.lojaId);
+        const ultimaMensagem = obterUltimaMensagem(chat);
+        return `
+            <a href="${construirLinkChat(chat.id)}"
+               class="list-group-item d-flex gap-3 align-items-start">
+
+                <img src="${loja.imagem}" class="rounded" width="60" height="60" alt="${loja.nome}">
+
+                <div class="flex-grow-1">
+
+                    <div class="d-flex justify-content-between">
+                        <h6 class="mb-1">${loja.nome}</h6>
+                        <small class="text-muted">
+                            ${ultimaMensagem ? formatarDataHora(ultimaMensagem.horario) : ''}
+                        </small>
+                    </div>
+
+                    <div class="small text-muted">${chat.tituloServico}</div>
+
+                    <div class="mb-1">
+                        ${renderizarTags(chat.tags)}
+                    </div>
+
+                    <div class="small">${criarResumo(chat)}</div>
+
+                    <span class="badge bg-secondary mt-1 ${chat.status}">
+                        ${obterStatusChatLabel(chat.status)}
+                    </span>
+
+                </div>
+            </a>
+        `;
+    }).join('');
+}
+
+pesquisaChat.addEventListener('input', (event) => {
+    renderizarChats(event.target.value);
+});
+
+renderizarChats();
+</script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
