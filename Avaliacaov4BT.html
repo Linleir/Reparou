@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avaliações da Loja</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+    /* ================= Cor de Fundo (Tom de Bege/Cinza da 1ª Imagem) ================= */
+    body {
+        background-color: #b5b1aa; /* Cor base do fundo */
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        padding-bottom: 80px;
+    }
+
+    /* ================= Cabeçalho Preto (Alinhado à Esquerda) ================= */
+    .black-header {
+        background-color: #000;
+        color: #fff;
+        border-radius: 0 0 30px 30px; /* Bordas arredondadas apenas embaixo */
+        padding: 20px 20px 30px 20px;
+    }
+
+    /* Info da Loja no Topo */
+    .store-info-container {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        margin-top: 15px;
+    }
+
+    .profile-img {
+        width: 75px;
+        height: 75px;
+        border-radius: 20px; /* Quadrado arredondado como na foto 1 */
+        background-color: #fff;
+        object-fit: cover;
+        margin-right: 15px;
+        padding: 5px;
+    }
+
+    .header-top-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .rating-badge {
+        color: #ffc107;
+        font-weight: bold;
+        font-size: 0.95rem;
+    }
+
+    .btn-heart {
+        background-color: #e0e0e0;
+        color: #000;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        margin-left: 10px;
+    }
+
+    /* ================= Abas (Pílulas escuras) ================= */
+    .loja-tabs {
+        display: flex;
+        justify-content: flex-start;
+        gap: 10px;
+        margin-top: 25px;
+    }
+
+    .loja-tab {
+        background-color: #222;
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 600;
+        padding: 8px 18px;
+        border-radius: 20px; /* Formato de pílula */
+    }
+
+    .loja-tab-active {
+        background-color: #444; /* Destaque na aba ativa */
+        color: #fff;
+    }
+
+    /* ================= Título e Cartões ================= */
+    .section-title {
+        color: #000;
+        font-weight: bold;
+        margin: 20px 0 15px 5px;
+        font-size: 1.5rem;
+    }
+
+    /* Cartão de Filtro (Branco) */
+    .filter-card {
+        background-color: #fff;
+        border-radius: 20px;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .filter-chip {
+        border: none;
+        background-color: #f2f2f2;
+        color: #333;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        margin-right: 6px;
+        margin-bottom: 6px;
+        font-weight: 600;
+    }
+
+    .filter-chip.active {
+        background-color: #000;
+        color: #fff;
+    }
+
+    /* Cartões de Avaliação (Cinza claro com cantos arredondados) */
+    .review-card {
+        background-color: #dad7d1; /* Fundo cinza claro da foto 1 */
+        border-radius: 20px;
+        padding: 15px;
+        margin-bottom: 15px;
+        position: relative;
+    }
+
+    /* Avatar do Cliente (Branco quadrado-arredondado) */
+    .client-avatar {
+        width: 50px;
+        height: 50px;
+        background-color: #fff;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #0d6efd;
+        font-size: 1.5rem;
+        flex-shrink: 0;
+    }
+
+    /* Tags da Avaliação (Pílulas brancas) */
+    .review-tag-chip {
+        background-color: #fff;
+        color: #333;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        display: inline-block;
+    }
+
+    /* Nota da Avaliação (Amarelo, canto inferior direito) */
+    .review-rating {
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        color: #b58500; /* Dourado escuro para dar contraste */
+        font-weight: bold;
+        font-size: 0.95rem;
+    }
+
+    /* ================= Navbar e Botão Chat ================= */
+    .bottom-nav {
+        background-color: #000;
+        padding: 12px 0;
+    }
+    .bottom-nav img {
+        width: 26px;
+        height: 26px;
+    }
+    .store-chat-fab {
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        background-color: #000;
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+    .store-chat-fab span { display: none; }
+</style>
+</head>
+<body>
+
+<div class="container-fluid p-0">
+    <div class="black-header shadow-sm">
+        <div class="container col-12 col-sm-10 col-md-6 col-lg-4 p-0">
+            
+            <div class="header-top-row mb-2">
+                <a href="inicio_clienteBT.html" class="text-white fs-4"><i class="fa-solid fa-arrow-left"></i></a>
+                
+                <div class="d-flex align-items-center">
+                    <div id="storePageRating" class="rating-badge"></div>
+                    <button type="button" id="favoritoLojaBtn" class="btn-heart">
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="store-info-container">
+                <img src="" class="profile-img" id="lojaImagem" alt="Loja">
+                <div>
+                    <h5 id="lojaTitulo" class="mb-1 fw-bold text-uppercase"></h5>
+                    <p id="lojaEndereco1" class="small mb-0 opacity-75"></p>
+                    <p id="lojaEndereco2" class="small mb-0 opacity-75"></p>
+                    <p id="lojaTelefone1" class="small mb-0 opacity-75"></p>
+                    <p id="lojaTelefone2" class="small mb-0 opacity-75"></p>
+                </div>
+            </div>
+
+           
+
+        </div>
+    </div>
+</div>
+
+            <div class="nav nav-tabs mb-3 justify-content-center">
+        <a id="linkServicos" class="nav-link active">Serviços</a>
+
+        <a id="linkAvaliacoes" class="nav-link">Avaliações</a>
+        <a id="linkDenuncia" class="nav-link">Denúncia</a>
+      </div>
+
+
+
+
+<div class="container pb-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-10 col-md-6 col-lg-4">
+
+            <h4 class="section-title">Avaliações</h4>
+
+            <div class="filter-card shadow-sm">
+                <div class="mb-2 fw-bold text-dark" style="font-size: 0.9rem;">Filtrar por serviços / tags</div>
+                <div id="filtrosTagsAvaliacao" class="d-flex flex-wrap mt-2"></div>
+            </div>
+
+            <div id="listaAvaliacoes"></div>
+
+        </div>
+    </div>
+</div>
+
+<a href="MensagensBT.html" id="chatRapidoBtn" class="store-chat-fab">
+    <i class="fa-solid fa-comments"></i>
+</a>
+
+<nav class="navbar bottom-nav fixed-bottom">
+    <div class="container d-flex justify-content-around">
+        <a href="inicio_clienteBT.html"><img src="Casa e lupa minimalista_edited.png"></a>
+        <a href="Historico_de_AvaliacaoBT.html"><img src="star.png"></a>
+        <a href="MensagensBT.html"><img src="chat.png"></a>
+    </div>
+</nav>
+
+<script src="dados.js"></script>
+<script>
+    // Carregamento de Dados
+    const lojaAtual = obterDadosLojaAtual();
+    const lojaAtualId = obterLojaAtualId();
+
+    document.getElementById('linkServicos').href = montarLinkLoja('Loja_XBT.html');
+    document.getElementById('linkAvaliacoes').href = montarLinkLoja('avaliacaoBT.html');
+    document.getElementById('linkDenuncia').href = montarLinkLoja('DenunciaBT.html');
+    document.getElementById('chatRapidoBtn').href = construirLinkNovoChat(lojaAtualId, 'loja');
+
+    // Infos do Cabeçalho
+    document.getElementById('lojaImagem').src = lojaAtual.imagem;
+    document.getElementById('lojaTitulo').textContent = lojaAtual.titulo;
+    document.getElementById('lojaEndereco1').textContent = lojaAtual.enderecoLinhas[0] || '';
+    document.getElementById('lojaEndereco2').textContent = lojaAtual.enderecoLinhas[1] || '';
+    document.getElementById('lojaTelefone1').textContent = lojaAtual.telefones[0] || '';
+    document.getElementById('lojaTelefone2').textContent = lojaAtual.telefones[1] || '';
+    document.getElementById('storePageRating').innerHTML = `<i class="fa-solid fa-star"></i> ${lojaAtual.media} (${lojaAtual.quantidadeAvaliacoes})`;
+
+    // Favoritos
+    const favoritoLojaBtn = document.getElementById('favoritoLojaBtn');
+    function atualizarBotaoFavoritoLoja() {
+        const ativo = lojaEhFavorita(lojaAtualId);
+        const icon = favoritoLojaBtn.querySelector('i');
+        if(ativo) {
+            icon.classList.remove('fa-regular');
+            icon.classList.add('fa-solid');
+            icon.style.color = 'black';
+        } else {
+            icon.classList.remove('fa-solid');
+            icon.classList.add('fa-regular');
+            icon.style.color = 'black';
+        }
+    }
+    favoritoLojaBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        alternarFavorito(lojaAtualId);
+        atualizarBotaoFavoritoLoja();
+    });
+    atualizarBotaoFavoritoLoja();
+
+    // Filtros e Listagem
+    const listaAvaliacoes = document.getElementById('listaAvaliacoes');
+    const filtrosTagsAvaliacao = document.getElementById('filtrosTagsAvaliacao');
+    let tagsSelecionadas = [];
+
+    function renderizarTagsAvaliacao(tags = []) {
+        return (tags || []).slice(0, 3).map((tag) => `<span class="review-tag-chip">${tag}</span>`).join('');
+    }
+
+    function obterTagsDisponiveis() {
+        const tags = new Set((lojaAtual.servicos || []).map((servico) => String(servico.tag)).filter(Boolean));
+        return Array.from(tags).sort((a, b) => a.localeCompare(b, 'pt-BR'));
+    }
+
+    function alternarTagFiltro(tag) {
+        if (tagsSelecionadas.includes(tag)) {
+            tagsSelecionadas = tagsSelecionadas.filter((item) => item !== tag);
+        } else {
+            tagsSelecionadas.push(tag);
+        }
+        renderizarFiltrosTags();
+        renderizarAvaliacoes();
+    }
+
+    function renderizarFiltrosTags() {
+        const tags = obterTagsDisponiveis();
+        filtrosTagsAvaliacao.innerHTML = `
+            <button type="button" class="filter-chip ${tagsSelecionadas.length === 0 ? 'active' : ''}" data-tag="__all__">Todas</button>
+            ${tags.map((tag) => `<button type="button" class="filter-chip ${tagsSelecionadas.includes(tag) ? 'active' : ''}" data-tag="${tag}">${tag}</button>`).join('')}
+        `;
+
+        filtrosTagsAvaliacao.querySelectorAll('[data-tag]').forEach((botao) => {
+            botao.addEventListener('click', () => {
+                if (botao.dataset.tag === '__all__') {
+                    tagsSelecionadas = [];
+                    renderizarFiltrosTags();
+                    renderizarAvaliacoes();
+                    return;
+                }
+                alternarTagFiltro(botao.dataset.tag);
+            });
+        });
+    }
+
+    function avaliacaoCombinaTags(avaliacao) {
+        if (!tagsSelecionadas.length) return true;
+        const tags = (avaliacao.tags || [avaliacao.servicoTag]).map((tag) => String(tag));
+        return tagsSelecionadas.some((tag) => tags.includes(tag));
+    }
+
+    function renderizarAvaliacoes() {
+        const avaliacoesFiltradas = (lojaAtual.avaliacoes || []).filter(avaliacaoCombinaTags);
+
+        if (!avaliacoesFiltradas.length) {
+            listaAvaliacoes.innerHTML = '<div class="filter-card text-center text-muted">Nenhuma avaliação encontrada.</div>';
+            return;
+        }
+
+        // Gera os Cartões no Padrão da Primeira Imagem (Cinza, Avatar Quadrado-Arredondado, Tags Brancas)
+        listaAvaliacoes.innerHTML = avaliacoesFiltradas.map((avaliacao) => `
+            <div class="review-card shadow-sm">
+                <div class="d-flex align-items-start mb-2">
+                    <div class="client-avatar me-3">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div>
+                        <h6 class="mb-1 fw-bold text-dark">${avaliacao.cliente}</h6>
+                        <div class="d-flex flex-wrap">
+                            <span class="review-tag-chip">${avaliacao.servicoNome}</span>
+                            ${renderizarTagsAvaliacao(avaliacao.tags)}
+                        </div>
+                    </div>
+                </div>
+                <p class="mt-2 mb-4 text-dark" style="font-size: 0.9rem;">${avaliacao.comentario}</p>
+                <div class="review-rating">${formatarNota(avaliacao.nota)}<i class="fa-regular fa-star ms-1"></i></div>
+            </div>
+        `).join('');
+    }
+
+    renderizarFiltrosTags();
+    renderizarAvaliacoes();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

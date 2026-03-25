@@ -6,7 +6,7 @@
 <title>Editar Perfil</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="custom.css">
+<link rel="stylesheet" href="Test.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
@@ -23,7 +23,7 @@
         </a>
 
         <div class="profile-center profile-user-center">
-          <img src="imgtst.jpg" class="profile2-img mb-2" alt="Foto de perfil">
+          <img src="imgtst.jpg" class="profile-img mb-2" alt="Foto de perfil">
           <h5 class="mb-1">Editar perfil</h5>
           <p class="profile-user-subinfo small mb-0">Atualize seus dados pessoais e base de busca</p>
         </div>
@@ -121,17 +121,23 @@
   </div>
 </div>
 
-<!-- BOTTOM NAV -->
-<nav class="navbar fixed-bottom bg-light border-top justify-content-around py-2">
-  <a href="inicio_clienteBT.html" class="text-center">
-    <img src="Casa e lupa minimalista_edited.png" class="home">
-  </a>
-  <a href="Historico_de_AvaliacaoBT.html" class="text-center">
-    <img src="star.png" class="home">
-  </a>
-  <a href="MensagensBT.html" class="text-center">
-    <img src="chat.png" class="home">
-  </a>
+<!-- NAVBAR INFERIOR  alterar talvez-->
+<nav class="navbar bottom-nav fixed-bottom">
+  <div class="container d-flex justify-content-around">
+
+    <a href="inicio_clienteBT.html">
+      <img src="Casa e lupa minimalista_edited.png">
+    </a>
+
+    <a href="Historico_de_AvaliacaoBT.html">
+      <img src="star.png">
+    </a>
+
+    <a href="MensagensBT.html">
+      <img src="chat.png">
+    </a>
+
+  </div>
 </nav>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
@@ -241,7 +247,7 @@
 
     mostrarFeedback('Perfil atualizado com sucesso.', 'success');
     setTimeout(function () {
-      window.location.href = 'Perfil Usuario.html';
+      window.location.href = 'Perfil UsuarioBT.html';
     }, 900);
   });
 

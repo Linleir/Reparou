@@ -10,7 +10,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- CSS compatível -->
-<link rel="stylesheet" href="custom.css">
+<link rel="stylesheet" href="Test.css">
 
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -23,7 +23,7 @@
     <div class="col-12 col-sm-10 col-md-6 col-lg-4">
 
       <!-- HEADER -->
-      <div class="profile-header mb-3 shadow-soft text-center position-relative">
+      <div class="profile-header2 mb-3 shadow-soft text-center position-relative">
 
         <a href="inicio_clienteBT.html" class="position-absolute top-0 start-0 m-3 text-white fs-4">
           <i class="fa-solid fa-arrow-left"></i>
@@ -72,11 +72,11 @@
 
 <!-- BOTÃO CHAT -->
 <a href="MensagensBT.html" id="chatRapidoBtn"
-   class="btn btn-primary position-fixed bottom-0 end-0 m-4 rounded-pill shadow">
+   class="store-chat-fab">
    <i class="fa-solid fa-comments"></i> Chat
 </a>
 
-<!-- NAVBAR INFERIOR -->
+<!-- NAVBAR INFERIOR  alterar talvez-->
 <nav class="navbar bottom-nav fixed-bottom">
   <div class="container d-flex justify-content-around">
 
@@ -103,9 +103,9 @@
 const lojaAtual = obterDadosLojaAtual();
 const lojaAtualId = obterLojaAtualId();
 
-document.getElementById('linkServicos').href = montarLinkLoja('Loja_XV2.html');
-document.getElementById('linkAvaliacoes').href = montarLinkLoja('avaliacao.html');
-document.getElementById('linkDenuncia').href = montarLinkLoja('Denuncia.html');
+document.getElementById('linkServicos').href = montarLinkLoja('Loja_XBT.html');
+document.getElementById('linkAvaliacoes').href = montarLinkLoja('avaliacaoBT.html');
+document.getElementById('linkDenuncia').href = montarLinkLoja('DenunciaBT.html');
 document.getElementById('chatRapidoBtn').href = construirLinkNovoChat(lojaAtualId, 'loja');
 
 document.getElementById('lojaImagem').src = lojaAtual.imagem;

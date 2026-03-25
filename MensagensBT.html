@@ -60,7 +60,6 @@
         <a href="inicio_clienteBT.html">
             <img src="Casa e lupa minimalista_edited.png">
         </a>
-
         <a href="Historico_de_AvaliacaoBT.html">
             <img src="star.png">
         </a>
@@ -97,14 +96,29 @@ function renderizarChats(termo = '') {
         return;
     }
 
+    // Função para mapear status para classes Bootstrap
+    function mapearClasseStatus(status) {
+        switch (status) {
+            case 'aberto':
+                return 'bg-success';
+            case 'pendente':
+                return 'bg-warning text-dark';
+            case 'fechado':
+                return 'bg-secondary';
+            default:
+                return 'bg-secondary';
+        }
+    }
+
     listaChats.innerHTML = chats.map((chat) => {
         const loja = obterInformacoesLoja(chat.lojaId);
         const ultimaMensagem = obterUltimaMensagem(chat);
+        const statusClass = mapearClasseStatus(chat.status);
         return `
             <a href="${construirLinkChat(chat.id)}"
                class="list-group-item d-flex gap-3 align-items-start">
 
-                <img src="${loja.imagem}" class="rounded" width="60" height="60" alt="${loja.nome}">
+                <img src="${loja.imagem}" class="rounded" width="100" height="100" alt="${loja.nome}">
 
                 <div class="flex-grow-1">
 
@@ -123,7 +137,7 @@ function renderizarChats(termo = '') {
 
                     <div class="small">${criarResumo(chat)}</div>
 
-                    <span class="badge bg-secondary mt-1 ${chat.status}">
+                    <span class="badge mt-1 ${statusClass}">
                         ${obterStatusChatLabel(chat.status)}
                     </span>
 

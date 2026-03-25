@@ -554,21 +554,20 @@ function criarCardLojaHtml(loja, contexto = 'inicio') {
   const telefone1 = loja.telefones?.[0] || '';
   const telefone2 = loja.telefones?.[1] || '';
   return `
-    <a href="Loja_XV2.html?id=${encodeURIComponent(loja.id)}" class="item-card store-link-card" data-loja-card="${loja.id}">
-      <img src="${loja.imagem}" class="item-img" alt="${loja.nome}">
-      <div class="item-info">
-        <h3>${loja.nome}</h3>
-        <p>${endereco1}${endereco2 ? `<br>${endereco2}` : ''}</p>
-        <p>${telefone1}${telefone2 ? `<br>${telefone2}` : ''}</p>
-        <span class="store-inline-rating">${formatarNotaComQuantidade(loja.media, loja.quantidadeAvaliacoes)}</span>
-      </div>
-      <div class="store-card-actions">
-        <button type="button" class="favorite-toggle ${favorita ? 'active' : ''}" data-favorito-loja="${loja.id}" aria-label="Alternar favorito">
-          <i class="fa-${favorita ? 'solid' : 'regular'} fa-heart"></i>
-        </button>
-      </div>
-    </a>
-  `;
+  <a href="Loja_XBT.html?id=${encodeURIComponent(loja.id)}" 
+     class="card p-2 text-decoration-none text-dark d-flex flex-row align-items-center gap-2">
+
+    <img src="${loja.imagem}" 
+         class="item-img flex-shrink-0">
+
+    <div>
+      <h6 class="mb-1">${loja.nome}</h6>
+      <p class="mb-1 small">${loja.enderecoLinhas.join('<br>')}</p>
+      <small>${loja.telefones.join('<br>')}</small>
+    </div>
+
+  </a>
+`;
 }
 
 function conectarFavoritosNoEscopo(root = document) {
@@ -706,15 +705,15 @@ function adicionarMensagemAoChat(chatId, texto) {
 }
 
 function construirLinkChat(chatId, origem = 'historico') {
-  return `Chat_Loja.html?chat=${encodeURIComponent(chatId)}&origem=${encodeURIComponent(origem)}`;
+  return `Chat_LojaBT.html?chat=${encodeURIComponent(chatId)}&origem=${encodeURIComponent(origem)}`;
 }
 
 function construirLinkDetalheAvaliacao(avaliacaoId) {
-  return `Detalhe_Avaliacao.html?avaliacao=${encodeURIComponent(avaliacaoId)}`;
+  return `Detalhe_AvaliacaoBT.html?avaliacao=${encodeURIComponent(avaliacaoId)}`;
 }
 
 function construirLinkNovoChat(lojaId, origem = 'loja') {
-  return `Chat_Loja.html?nova=1&id=${encodeURIComponent(lojaId)}&origem=${encodeURIComponent(origem)}`;
+  return `Chat_LojaBT.html?nova=1&id=${encodeURIComponent(lojaId)}&origem=${encodeURIComponent(origem)}`;
 }
 
 enriquecerDadosLojas();

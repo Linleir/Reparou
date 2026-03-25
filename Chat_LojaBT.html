@@ -14,10 +14,11 @@
 
 <div class="container py-2">
     <div class="row justify-content-center">
+    
         <div class="col-12 col-sm-10 col-md-6 col-lg-4">
 
             <!-- HEADER -->
-            <header class="black-header chat-header-v2 mb-2 p-3">
+            <header class="black-header chat-header-v2 mb-2 p-3 shadow-soft rounded">
 
                 <div class="d-flex align-items-center mb-2">
                     <a href="MensagensBT.html" id="chatBackLink" class="back-btn me-2">
@@ -29,7 +30,7 @@
                 <!-- CARD LOJA -->
                 <div class="card chat-shop-card">
                     <div class="card-body d-flex gap-2">
-                        <img src="imgtst.jpg" class="shop-img chat-shop-img" id="chatLojaImagem">
+                        <img src class="shop-img chat-shop-img" id="chatLojaImagem">
 
                         <div>
                             <h6 id="chatLojaNome" class="mb-1">Loja</h6>
@@ -83,35 +84,39 @@
 
             </main>
 
-            <!-- INPUT -->
-            <div class="input-group mb-5 chat-input chat-input-v2">
-                <input id="msg"
-                       class="form-control search-input chat-message-input"
-                       placeholder="Digite uma mensagem">
+<!-- INPUT -->
+ <div class="container py-2">
+ <div class="row justify-content-center">
+    <div class="col-12 col-sm-10 col-md-6 col-lg-4">
+    <div class="input-group chat-input chat-input-fixed">
+  <input id="msg"
+         class="form-control search-input chat-message-input"
+         placeholder="Digite uma mensagem">
 
-                <button id="enviarBtn" class="btn btn-primary chat-send-btn">
-                    Enviar
-                </button>
-            </div>
-
-        </div>
-    </div>
+  <button id="enviarBtn" class="btn btn-primary chat-send-btn">
+    Enviar
+  </button>
+</div>
 </div>
 
+        </div>
+        </div>
+        </div>
+    </div>
 <!-- NAVBAR INFERIOR -->
-<nav class="navbar fixed-bottom bg-light border-top">
+<nav class="navbar bottom-nav fixed-bottom">
     <div class="container d-flex justify-content-around">
 
-        <a href="inicio_clienteBT.html" class="nav-item">
-            <img src="Casa e lupa minimalista_edited.png" class="home">
+        <a href="inicio_clienteBT.html">
+            <img src="Casa e lupa minimalista_edited.png">
         </a>
 
-        <a href="Historico_de_AvaliacaoBT.html" class="nav-item">
-            <img src="star.png" class="home">
+        <a href="Historico_de_AvaliacaoBT.html">
+            <img src="star.png">
         </a>
 
-        <a href="MensagensBT.html" class="nav-item">
-            <img src="chat.png" class="home">
+        <a href="MensagensBT.html">
+            <img src="chat.png">
         </a>
 
     </div>
@@ -160,7 +165,7 @@ document.getElementById('chatLojaTelefone').textContent = loja.telefones.join(' 
 document.getElementById('chatServiceChip').textContent = chat.tituloServico;
 
 const chatBackLink = document.getElementById('chatBackLink');
-chatBackLink.href = origem === 'loja' ? `Loja_XV2.html?id=${encodeURIComponent(chat.lojaId)}` : 'MensagensBT.html';
+chatBackLink.href = origem === 'loja' ? `Loja_XBT.html?id=${encodeURIComponent(chat.lojaId)}` : 'MensagensBT.html';
 
 function renderizarTagChips(tags = []) {
     return (tags || []).slice(0, 3).map((tag) => `<span class="chat-service-chip-header chat-service-tag-mini">${tag}</span>`).join('');

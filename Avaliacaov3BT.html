@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Avaliações da Loja</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+    /* ================= Cor de Fundo Escura ================= */
+    body {
+        background-color: #333333; /* Fundo cinza escuro */
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        padding-bottom: 80px; /* Espaço para a navbar inferior */
+    }
+
+    /* ================= Cabeçalho Preto ================= */
+    .profile-header {
+        background-color: #000;
+        color: #fff;
+        border-radius: 20px;
+        padding: 20px 20px 10px 20px;
+        margin-top: 15px;
+    }
+
+    .profile-img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        background-color: #fff;
+    }
+
+    .btn-custom {
+        color: #fff;
+        font-size: 1.2rem;
+    }
+
+    /* ================= Abas (Dentro do Cabeçalho) ================= */
+    .loja-tabs {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+        border-top: 1px solid #222; /* Linha sutil separando infos das abas */
+        padding-top: 10px;
+    }
+
+    .loja-tab {
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 600;
+        padding: 8px 16px;
+        border-radius: 10px;
+    }
+
+    .loja-tab-active {
+        background-color: #333333; /* Aba ativa com fundo cinza escuro */
+        color: #fff;
+    }
+
+    /* ================= Título da Seção ================= */
+    .section-title {
+        color: #111; /* Cor escura imitando o efeito da imagem */
+        font-weight: bold;
+        margin: 20px 0 10px 5px;
+        font-size: 1.3rem;
+    }
+
+    /* ================= Cartões Brancos ================= */
+    .white-card {
+        background-color: #fff;
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    /* ================= Chips de Filtro ================= */
+    .filter-chip {
+        border: none;
+        background-color: #e6e6e6;
+        color: #333;
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        margin-right: 8px;
+        margin-bottom: 8px;
+        transition: 0.2s;
+    }
+
+    .filter-chip.active {
+        background-color: #000;
+        color: #fff;
+    }
+
+    /* ================= Chips das Tags nas Avaliações ================= */
+    .review-tag-chip {
+        background-color: #f0f0f0;
+        color: #666;
+        padding: 3px 10px;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        margin-right: 5px;
+        display: inline-block;
+    }
+
+    /* ================= Estrela de Nota ================= */
+    .star-rating {
+        color: #ffc107;
+        font-weight: bold;
+    }
+
+    /* ================= Avatar Cliente (Genérico Azul) ================= */
+    .client-avatar {
+        width: 45px;
+        height: 45px;
+        background-color: #d1e7dd; /* Fundo azul claro/esverdeado */
+        color: #0d6efd; /* Ícone azul escuro */
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+    }
+
+    /* ================= Navbar e Botão Chat ================= */
+    .bottom-nav {
+        background-color: #000;
+        border-radius: 20px 20px 0 0;
+        padding: 10px 0;
+    }
+    .bottom-nav img {
+        width: 26px;
+        height: 26px;
+    }
+    .store-chat-fab {
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        background-color: #0d6efd;
+        color: white;
+        padding: 15px;
+        border-radius: 50%;
+        text-decoration: none;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+    }
+    .store-chat-fab span {
+        display: none;
+    }
+</style>
+</head>
+<body>
+
+<div class="container pb-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-10 col-md-6 col-lg-4">
+
+            <div class="profile-header text-center position-relative shadow">
+                <a href="inicio_clienteBT.html" class="position-absolute top-0 start-0 m-3 text-white fs-5">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+
+                <button type="button" id="favoritoLojaBtn" class="btn btn-custom position-absolute top-0 end-0 m-2 border-0">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+
+                <div id="storePageRating" class="mb-2 text-warning fw-bold"></div>
+
+                <img src="" class="profile-img mb-2" id="lojaImagem" alt="Imagem da loja">
+
+                <h5 id="lojaTitulo" class="mb-1 fw-bold"></h5>
+                <p id="lojaEndereco1" class="small mb-0 opacity-75"></p>
+                <p id="lojaEndereco2" class="small mb-0 opacity-75"></p>
+                <p id="lojaTelefone1" class="small mb-0 opacity-75"></p>
+                <p id="lojaTelefone2" class="small mb-0 opacity-75"></p>
+
+                <div class="loja-tabs">
+                    <a id="linkServicos" href="Loja_XBT.html" class="loja-tab">Serviços</a>
+                    <a id="linkAvaliacoes" href="avaliacaoBT.html" class="loja-tab loja-tab-active">Avaliações</a>
+                    <a id="linkDenuncia" href="DenunciaBT.html" class="loja-tab">Denúncia</a>
+                </div>
+            </div>
+
+            <h4 class="section-title">Avaliações</h4>
+
+            <div class="white-card">
+                <div class="mb-3 fw-bold text-dark">Filtrar por serviços / tags</div>
+                <div id="filtrosTagsAvaliacao" class="d-flex flex-wrap"></div>
+            </div>
+
+            <div id="listaAvaliacoes"></div>
+
+        </div>
+    </div>
+</div>
+
+<a href="MensagensBT.html" id="chatRapidoBtn" class="store-chat-fab">
+    <i class="fa-solid fa-comments"></i>
+</a>
+
+<nav class="navbar bottom-nav fixed-bottom">
+    <div class="container d-flex justify-content-around">
+        <a href="inicio_clienteBT.html"><img src="Casa e lupa minimalista_edited.png"></a>
+        <a href="Historico_de_AvaliacaoBT.html"><img src="star.png"></a>
+        <a href="MensagensBT.html"><img src="chat.png"></a>
+    </div>
+</nav>
+
+<script src="dados.js"></script>
+<script>
+    // Carregamento de Dados da Loja
+    const lojaAtual = obterDadosLojaAtual();
+    const lojaAtualId = obterLojaAtualId();
+
+    // Links de navegação
+    document.getElementById('linkServicos').href = montarLinkLoja('Loja_XBT.html');
+    document.getElementById('linkAvaliacoes').href = montarLinkLoja('avaliacaoBT.html');
+    document.getElementById('linkDenuncia').href = montarLinkLoja('DenunciaBT.html');
+    document.getElementById('chatRapidoBtn').href = construirLinkNovoChat(lojaAtualId, 'loja');
+
+    // Preenchendo Infos da Loja
+    document.getElementById('lojaImagem').src = lojaAtual.imagem;
+    document.getElementById('lojaTitulo').textContent = lojaAtual.titulo;
+    document.getElementById('lojaEndereco1').textContent = lojaAtual.enderecoLinhas[0] || '';
+    document.getElementById('lojaEndereco2').textContent = lojaAtual.enderecoLinhas[1] || '';
+    document.getElementById('lojaTelefone1').textContent = lojaAtual.telefones[0] || '';
+    document.getElementById('lojaTelefone2').textContent = lojaAtual.telefones[1] || '';
+    document.getElementById('storePageRating').innerHTML = `★ ${lojaAtual.media} (${lojaAtual.quantidadeAvaliacoes})`;
+
+    // Favoritar Loja
+    const favoritoLojaBtn = document.getElementById('favoritoLojaBtn');
+    function atualizarBotaoFavoritoLoja() {
+        const ativo = lojaEhFavorita(lojaAtualId);
+        favoritoLojaBtn.classList.toggle('active', ativo);
+        favoritoLojaBtn.innerHTML = `<i class="fa-${ativo ? 'solid' : 'regular'} fa-heart"></i>`;
+    }
+    favoritoLojaBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        alternarFavorito(lojaAtualId);
+        atualizarBotaoFavoritoLoja();
+    });
+    atualizarBotaoFavoritoLoja();
+
+    // Lógica das Avaliações e Filtros
+    const listaAvaliacoes = document.getElementById('listaAvaliacoes');
+    const filtrosTagsAvaliacao = document.getElementById('filtrosTagsAvaliacao');
+    let tagsSelecionadas = [];
+
+    // Transformar array de tags em HTML (chips)
+    function renderizarTagsAvaliacao(tags = []) {
+        return (tags || []).slice(0, 3).map((tag) => `<span class="review-tag-chip">${tag}</span>`).join('');
+    }
+
+    function obterTagsDisponiveis() {
+        const tags = new Set((lojaAtual.servicos || []).map((servico) => String(servico.tag)).filter(Boolean));
+        return Array.from(tags).sort((a, b) => a.localeCompare(b, 'pt-BR'));
+    }
+
+    function alternarTagFiltro(tag) {
+        if (tagsSelecionadas.includes(tag)) {
+            tagsSelecionadas = tagsSelecionadas.filter((item) => item !== tag);
+        } else {
+            tagsSelecionadas.push(tag);
+        }
+        renderizarFiltrosTags();
+        renderizarAvaliacoes();
+    }
+
+    function renderizarFiltrosTags() {
+        const tags = obterTagsDisponiveis();
+        filtrosTagsAvaliacao.innerHTML = `
+            <button type="button" class="filter-chip ${tagsSelecionadas.length === 0 ? 'active' : ''}" data-tag="__all__">Todas</button>
+            ${tags.map((tag) => `<button type="button" class="filter-chip ${tagsSelecionadas.includes(tag) ? 'active' : ''}" data-tag="${tag}">${tag}</button>`).join('')}
+        `;
+
+        filtrosTagsAvaliacao.querySelectorAll('[data-tag]').forEach((botao) => {
+            botao.addEventListener('click', () => {
+                if (botao.dataset.tag === '__all__') {
+                    tagsSelecionadas = [];
+                    renderizarFiltrosTags();
+                    renderizarAvaliacoes();
+                    return;
+                }
+                alternarTagFiltro(botao.dataset.tag);
+            });
+        });
+    }
+
+    function avaliacaoCombinaTags(avaliacao) {
+        if (!tagsSelecionadas.length) return true;
+        const tags = (avaliacao.tags || [avaliacao.servicoTag]).map((tag) => String(tag));
+        return tagsSelecionadas.some((tag) => tags.includes(tag));
+    }
+
+    function renderizarAvaliacoes() {
+        const avaliacoesFiltradas = (lojaAtual.avaliacoes || []).filter(avaliacaoCombinaTags);
+
+        if (!avaliacoesFiltradas.length) {
+            listaAvaliacoes.innerHTML = '<div class="white-card text-center text-muted">Nenhuma avaliação encontrada.</div>';
+            return;
+        }
+
+        // Gera os Blocos Brancos Individuais das Avaliações com a Foto Azul de Usuário
+        listaAvaliacoes.innerHTML = avaliacoesFiltradas.map((avaliacao) => `
+            <div class="white-card">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <div class="d-flex align-items-center">
+                        <div class="client-avatar me-3">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-0 fw-bold text-dark">${avaliacao.cliente}</h6>
+                            <div class="mt-1">${renderizarTagsAvaliacao(avaliacao.tags)}</div>
+                        </div>
+                    </div>
+                    <div class="star-rating">${formatarNota(avaliacao.nota)}★</div>
+                </div>
+                <p class="mt-3 mb-0 text-dark" style="font-size: 0.95rem;">${avaliacao.comentario}</p>
+            </div>
+        `).join('');
+    }
+
+    // Chamadas iniciais
+    renderizarFiltrosTags();
+    renderizarAvaliacoes();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

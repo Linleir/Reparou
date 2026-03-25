@@ -8,33 +8,10 @@
 
 <!-- Bootstrap -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
+<link rel="stylesheet" href="Test.css">
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-<style>
-body {
-    background: #333;
-}
-
-.profile-header {
-    background: black;
-    color: white;
-    padding: 20px;
-    position: relative;
-}
-
-.profile-img {
-    width: 80px;
-    height: 80px;
-    border-radius: 20px;
-    object-fit: cover;
-}
-
-.bottom-nav img {
-    width: 28px;
-}
-</style>
+<!-- passar isso para um css-->
 
 </head>
 
@@ -43,13 +20,13 @@ body {
 <div class="container py-3" style="max-width: 500px;">
 
     <!-- HEADER -->
-    <div class="profile-header rounded-4 mb-3 text-center">
+    <div class="profile-header2 rounded-4 mb-3 text-center">
 
         <a href="inicio_clienteBT.html" class="position-absolute top-0 start-0 m-3 text-white fs-4">
             <i class="fa-solid fa-arrow-left"></i>
         </a>
 
-        <img src="imgtst.jpg" class="profile-img mb-2">
+        <img src="imgtst.jpg" class="rounded-circle profile-img mb-2 ">
 
         <h4 id="perfil-usuario-nome">Nome do UsuarioX</h4>
         <p id="perfil-usuario-local" class="small text-white-50 mb-0">
@@ -77,7 +54,7 @@ body {
 </div>
 
 <!-- NAVBAR INFERIOR -->
-<nav class="navbar bg-dark fixed-bottom bottom-nav">
+<nav class="navbar bottom-nav fixed-bottom bottom-nav">
     <div class="container d-flex justify-content-around">
 
         <a href="inicio_clienteBT.html">
