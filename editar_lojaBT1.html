@@ -1,128 +1,101 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 <title>Editar Loja</title>
 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="custom.css">
+<link rel="stylesheet" href="Test.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
-<body class="bootstrap-app">
+<body class="bootstrap-app pb-5" style="background-color: #f4f4f4;">
 
 <div class="container py-3">
   <div class="row justify-content-center">
     <div class="col-12 col-sm-10 col-md-6 col-lg-4">
 
-      <!-- HEADER -->
-      <div class="black-header p-3 text-center mb-3 position-relative">
-
-        <a id="voltar-loja-link" href="perfil lojistaBT.html"
-           class="back-btn position-absolute start-0 top-50 translate-middle-y ms-2">
+      <div class="black-header p-3 text-center mb-3 position-relative shadow-sm rounded-4">
+        <a id="voltar-loja-link" href="Perfil LojistaBT.html" class="back-btn position-absolute start-0 top-50 translate-middle-y ms-3 text-white">
           <i class="fa-solid fa-arrow-left"></i>
         </a>
-
         <div class="profile-center">
-          <img src="imgtst.jpg" class ="mx-auto d-block rounded-circle img-fluid" width="100" height="100" >
-          <h5 id="titulo-pagina-loja" class="mb-0">Editar Loja</h5>
+          <img src="imgtst.jpg" class="mx-auto d-block rounded-circle img-fluid mb-2" width="80" height="80" style="object-fit: cover;">
+          <h5 id="titulo-pagina-loja" class="mb-0 text-white">Editar Loja</h5>
         </div>
-
       </div>
 
-      <!-- CONTEÚDO -->
-      <div class="white-window p-3 mb-5">
-
-        <form id="form-editar-loja">
-
-          <!-- Nome -->
+      <div class="card border-0 shadow-sm rounded-4 p-3 mb-4">
+        <form id="form-editar-loja" onsubmit="event.preventDefault(); alert('Alterações guardadas com sucesso!'); window.location.href='Perfil LojistaBT.html';">
+          
           <div class="mb-3">
-            <label for="editar-nome-loja" class="form-label"><strong>Nome da loja</strong></label>
-            <input type="text" id="editar-nome-loja" class="form-control" placeholder="Nome da loja">
+            <label class="form-label fw-bold small text-muted">Nome da Loja</label>
+            <input type="text" id="nome-loja" class="form-control bg-light rounded-3" placeholder="Nome">
           </div>
 
-          <!-- Endereços -->
-          <div class="d-flex justify-content-between align-items-center mb-2">
-            <label class="form-label mb-0"><strong>Endereço</strong></label>
-            <button type="button" id="adicionar-endereco" class="btn btn-sm btn-outline-secondary">
-              <i class="fa-solid fa-plus"></i>
-            </button>
-          </div>
-          <div id="lista-enderecos" class="mb-3"></div>
-
-          <!-- Telefones -->
-          <div class="d-flex justify-content-between align-items-center mb-2">
-            <label class="form-label mb-0"><strong>Telefone</strong></label>
-            <button type="button" id="adicionar-telefone" class="btn btn-sm btn-outline-secondary">
-              <i class="fa-solid fa-plus"></i>
-            </button>
-          </div>
-          <div id="lista-telefones" class="mb-3"></div>
-
-          <!-- Tags -->
-          <div class="mb-2">
-            <label class="form-label"><strong>Tags</strong></label>
-            <div id="tags-selecionadas" class="tags-selecionadas mb-2"></div>
-
-            <input
-              type="text"
-              id="pesquisa-tags"
-              class="form-control mb-2"
-              placeholder="Pesquisar tags"
-            >
-
-            <div id="tags-disponiveis" class="tags-disponiveis-box"></div>
+          <div class="mb-3">
+            <label class="form-label fw-bold small text-muted">Endereços</label>
+            <textarea id="enderecos-loja" class="form-control bg-light rounded-3" rows="2" placeholder="Digite os endereços..."></textarea>
           </div>
 
-          <!-- Mensagem -->
-          <p id="mensagem-edicao" class="small mb-3"></p>
-
-          <!-- Botões -->
-          <div class="d-flex gap-2">
-            <button type="submit" class="btn btn-primary w-100" id="botao-salvar-loja">
-              Salvar alterações
-            </button>
-
-            <a href="perfil lojistaBT.html" id="botao-cancelar-loja"
-               class="btn btn-outline-secondary w-100">
-              Cancelar
-            </a>
+          <div class="mb-3">
+            <label class="form-label fw-bold small text-muted">Telefones</label>
+            <textarea id="telefones-loja" class="form-control bg-light rounded-3" rows="2" placeholder="Digite os telefones..."></textarea>
           </div>
 
+          <div class="mb-3">
+            <label class="form-label fw-bold small text-muted">Serviços / Tags</label>
+            <div id="tags-selecionadas" class="d-flex flex-wrap gap-2 mb-2">
+              </div>
+            <input type="text" id="pesquisa-tags" class="form-control bg-light rounded-3 mb-2" placeholder="Procurar tags disponíveis...">
+            <div id="tags-disponiveis" class="bg-light border rounded-3 p-2 d-flex flex-wrap gap-1" style="max-height: 100px; overflow-y: auto;">
+              <span class="badge bg-secondary" style="cursor: pointer;">Troca de Tela +</span>
+              <span class="badge bg-secondary" style="cursor: pointer;">Bateria +</span>
+              <span class="badge bg-secondary" style="cursor: pointer;">Limpeza +</span>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-dark w-100 fw-bold rounded-pill mb-2 py-2">Salvar alterações</button>
+          <a href="Perfil LojistaBT.html" class="btn btn-outline-dark w-100 fw-bold rounded-pill py-2">Cancelar</a>
         </form>
-
       </div>
 
     </div>
   </div>
 </div>
 
-<!-- BOTTOM NAV -->
-<nav class="navbar fixed-bottom bg-light border-top justify-content-around py-2">
-  <a href="Perfil LojistaBT.html" class="text-center">
-    <img src="Casa e lupa minimalista_edited.png" class="home">
-  </a>
-  <a href="chat_lojistaBT.html" class="text-center">
-    <img src="chat.png" class="home">
-  </a>
-  <a href="agendamento_lojistaBT.html" class="text-center">
-    <img src="star.png" class="home">
-  </a>
+<nav class="navbar fixed-bottom bg-black border-top">
+    <div class="container d-flex justify-content-around text-center py-2">
+        <a href="Perfil LojistaBT.html" class="text-white fs-4"><i class="fa-solid fa-store"></i></a>
+        <a href="agendamento_lojistaBT.html" class="text-white fs-4"><i class="fa-solid fa-calendar-check"></i></a>
+        <a href="chat_lojistaBT.html" class="text-white fs-4"><i class="fa-solid fa-comments"></i></a>
+    </div>
 </nav>
 
 <script src="dados.js"></script>
-
-<!-- JS ORIGINAL MANTIDO -->
 <script>
-/* SEU JS ORIGINAL SEM ALTERAÇÃO */
+document.addEventListener("DOMContentLoaded", () => {
+    const idLojista = localStorage.getItem("lojistaLogado");
+    if (!idLojista) return;
+
+    // Simulação: Pegar a primeira loja do lojista
+    const lojaDoLojista = lojas.find(l => l.lojistaId === idLojista);
+    
+    if (lojaDoLojista) {
+        document.getElementById('nome-loja').value = lojaDoLojista.nome;
+        document.getElementById('enderecos-loja').value = lojaDoLojista.enderecos.join('\n');
+        document.getElementById('telefones-loja').value = lojaDoLojista.telefones.join('\n');
+        
+        const tagsContainer = document.getElementById('tags-selecionadas');
+        lojaDoLojista.tags.forEach(tag => {
+            tagsContainer.innerHTML += `<span class="badge bg-primary p-2">${tag} <i class="fa-solid fa-xmark ms-1"></i></span>`;
+        });
+    }
+});
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>
-
-

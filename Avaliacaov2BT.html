@@ -6,278 +6,144 @@
 
 <title>Serviços da Loja</title>
 
-<!-- Bootstrap -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- CSS compatível -->
 <link rel="stylesheet" href="custom.css">
 
-<!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    
-<div class="profile-header mb-3 shadow-soft text-center position-relative">
 
-        <a href="inicio_clienteBT.html" class="position-absolute top-0 start-0 m-3 text-white fs-4">
-          <i class="fa-solid fa-arrow-left"></i>
-        </a>
+<div class="container py-3">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-10 col-md-6 col-lg-4">
 
-        <div id="storePageRating" class="mb-2"></div>
+            <div class="profile-header mb-3 shadow-soft text-center position-relative">
+                <a href="inicio_clienteBT.html" class="position-absolute top-0 start-0 m-3 text-white fs-4">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
 
-        <button type="button" id="favoritoLojaBtn"
-                class="btn btn-custom position-absolute top-0 end-0 m-3">
-          <i class="fa-regular fa-heart"></i>
-        </button>
+                <div id="storePageRating" class="mb-2 text-warning fw-bold"></div>
 
-        <img src="imgtst.jpg" class="profile-img mb-2" id="lojaImagem" alt="Imagem da loja">
+                <button type="button" id="favoritoLojaBtn" class="btn btn-custom position-absolute top-0 end-0 m-3">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
 
-        <h5 id="lojaTitulo">LOJA DE REPARO X</h5>
-        <p id="lojaEndereco1" class="small mb-0"></p>
-        <p id="lojaEndereco2" class="small mb-0"></p>
-        <p id="lojaTelefone1" class="small mb-0"></p>
-        <p id="lojaTelefone2" class="small mb-0"></p>
+                <img src="imgtst.jpg" class="profile-img mb-2" id="lojaImagem" alt="Imagem da loja">
 
-      </div>
+                <h5 id="lojaTitulo" class="mb-1">Loja</h5>
+                <p id="lojaEndereco1" class="small mb-0 opacity-75"></p>
+                <p id="lojaEndereco2" class="small mb-0 opacity-75"></p>
+                <p id="lojaTelefone1" class="small mb-0 opacity-75"></p>
+                <p id="lojaTelefone2" class="small mb-0 opacity-75"></p>
+            </div>
 
+            <div class="nav nav-tabs mb-3 justify-content-center">
+                <a id="linkServicos" class="nav-link active" style="cursor: pointer;">Serviços</a>
+                <a id="linkAvaliacoes" class="nav-link" style="cursor: pointer;">Avaliações</a>
+                <a id="linkDenuncia" class="nav-link" style="cursor: pointer;">Denúncia</a>
+            </div>
 
-
-
-<!-- TABS -->
-      <div class="nav nav-tabs mb-3 justify-content-center">
-        <a id="linkServicos" class="nav-link active">Serviços</a>
-
-        <a id="linkAvaliacoes" class="nav-link">Avaliações</a>
-        <a id="linkDenuncia" class="nav-link">Denúncia</a>
-      </div>
-
-
-
-
-
-
-<div class="card">
-                    <div class="card-body p-2">
-                        <div id="listaAvaliacoes"></div>
-                    </div>
-                </div>
+            <div class="mb-3">
+                <input type="text" id="pesquisaServico" class="form-control mb-3 search-input" placeholder="Pesquisar serviço...">
+                <div class="list-group" id="listaServicos"></div>
             </div>
 
         </div>
     </div>
-
 </div>
 
-<!-- BOTÃO CHAT -->
 <a href="MensagensBT.html" id="chatRapidoBtn" class="store-chat-fab">
     <i class="fa-solid fa-comments"></i><span>Chat</span>
 </a>
 
-<!-- NAVBAR INFERIOR -->
-<nav class="navbar bottom-nav fixed-bottom bottom-nav">
+<nav class="navbar bottom-nav fixed-bottom">
     <div class="container d-flex justify-content-around">
-
         <a href="inicio_clienteBT.html">
-            <img src="Casa e lupa minimalista_edited.png">
+            <img src="Casa e lupa minimalista_edited.png" alt="Início">
         </a>
-
         <a href="Historico_de_AvaliacaoBT.html">
-            <img src="star.png">
+            <img src="star.png" alt="Avaliações">
         </a>
-
         <a href="MensagensBT.html">
-            <img src="chat.png">
+            <img src="chat.png" alt="Chat">
         </a>
-
     </div>
 </nav>
 
 <script src="dados.js"></script>
+
 <script>
-const lojaAtual = obterDadosLojaAtual();
-const lojaAtualId = obterLojaAtualId();
+    const lojaAtual = obterDadosLojaAtual();
+    const lojaAtualId = obterLojaAtualId();
 
-document.getElementById('linkVoltar').href = montarLinkLoja('Loja_XBT.html');
-document.getElementById('linkServicos').href = montarLinkLoja('Loja_XBT.html');
-document.getElementById('linkAvaliacoes').href = montarLinkLoja('avaliacaoBT.html');
-document.getElementById('linkDenuncia').href = montarLinkLoja('DenunciaBT.html');
-document.getElementById('chatRapidoBtn').href = construirLinkNovoChat(lojaAtualId, 'loja');
+    // Configuração dos Links
+    document.getElementById('linkServicos').href = montarLinkLoja('Avaliacaov2BT.html'); 
+    document.getElementById('linkAvaliacoes').href = montarLinkLoja('avaliacaoBT.html');
+    document.getElementById('linkDenuncia').href = montarLinkLoja('DenunciaBT.html');
+    document.getElementById('chatRapidoBtn').href = construirLinkNovoChat(lojaAtualId, 'loja');
 
-document.getElementById('lojaImagem').src = lojaAtual.imagem;
-document.getElementById('lojaTitulo').textContent = lojaAtual.titulo;
-document.getElementById('lojaEndereco1').textContent = lojaAtual.enderecoLinhas[0] || '';
-document.getElementById('lojaEndereco2').textContent = lojaAtual.enderecoLinhas[1] || '';
-document.getElementById('lojaTelefone1').textContent = lojaAtual.telefones[0] || '';
-document.getElementById('lojaTelefone2').textContent = lojaAtual.telefones[1] || '';
-document.getElementById('storePageRating').innerHTML = montarMarkupNotaLoja(lojaAtual.media, lojaAtual.quantidadeAvaliacoes);
+    // Preenchendo Informações da Loja
+    document.getElementById('lojaImagem').src = lojaAtual.imagem;
+    document.getElementById('lojaTitulo').textContent = lojaAtual.titulo;
+    document.getElementById('lojaEndereco1').textContent = lojaAtual.enderecoLinhas[0] || '';
+    document.getElementById('lojaEndereco2').textContent = lojaAtual.enderecoLinhas[1] || '';
+    document.getElementById('lojaTelefone1').textContent = lojaAtual.telefones[0] || '';
+    document.getElementById('lojaTelefone2').textContent = lojaAtual.telefones[1] || '';
+    
+    // Mostra a nota no topo
+    document.getElementById('storePageRating').innerHTML = `★ ${formatarNota(lojaAtual.media)} (${lojaAtual.quantidadeAvaliacoes})`;
 
-const favoritoLojaBtn = document.getElementById('favoritoLojaBtn');
-function atualizarBotaoFavoritoLoja() {
-    const ativo = lojaEhFavorita(lojaAtualId);
-    favoritoLojaBtn.classList.toggle('active', ativo);
-    favoritoLojaBtn.innerHTML = `<i class="fa-${ativo ? 'solid' : 'regular'} fa-heart"></i>`;
-}
+    // Elementos da Lista de Serviços
+    const listaServicos = document.getElementById('listaServicos');
+    const pesquisaServico = document.getElementById('pesquisaServico');
 
-favoritoLojaBtn.addEventListener('click', (event) => {
-    event.preventDefault();
-    alternarFavorito(lojaAtualId);
-    atualizarBotaoFavoritoLoja();
-});
-
-atualizarBotaoFavoritoLoja();
-
-const listaAvaliacoes = document.getElementById('listaAvaliacoes');
-const filtrosTagsAvaliacao = document.getElementById('filtrosTagsAvaliacao');
-let tagsSelecionadas = [];
-
-function renderizarTagsAvaliacao(tags = []) {
-    return (tags || []).slice(0, 3).map((tag) => `<span class="review-service-chip">${tag}</span>`).join('');
-}
-
-function obterTagsDisponiveis() {
-    const tags = new Set((lojaAtual.servicos || []).map((servico) => String(servico.tag)).filter(Boolean));
-    return Array.from(tags).sort((a, b) => a.localeCompare(b, 'pt-BR'));
-}
-
-function alternarTagFiltro(tag) {
-    if (tagsSelecionadas.includes(tag)) {
-        tagsSelecionadas = tagsSelecionadas.filter((item) => item !== tag);
-    } else {
-        tagsSelecionadas.push(tag);
+    // Sistema de Favoritos
+    const favoritoLojaBtn = document.getElementById('favoritoLojaBtn');
+    
+    function atualizarBotaoFavoritoLoja() {
+        const ativo = lojaEhFavorita(lojaAtualId);
+        favoritoLojaBtn.classList.toggle('active', ativo);
+        favoritoLojaBtn.innerHTML = `<i class="fa-${ativo ? 'solid' : 'regular'} fa-heart"></i>`;
     }
-    renderizarFiltrosTags();
-    renderizarAvaliacoes();
-}
 
-function renderizarFiltrosTags() {
-    const tags = obterTagsDisponiveis();
-    filtrosTagsAvaliacao.innerHTML = `
-        <button type="button" class="review-filter-chip ${tagsSelecionadas.length === 0 ? 'active' : ''}" data-tag="__all__">Todas</button>
-        ${tags.map((tag) => `<button type="button" class="review-filter-chip ${tagsSelecionadas.includes(tag) ? 'active' : ''}" data-tag="${tag}">${tag}</button>`).join('')}
-    `;
-
-    filtrosTagsAvaliacao.querySelectorAll('[data-tag]').forEach((botao) => {
-        botao.addEventListener('click', () => {
-            if (botao.dataset.tag === '__all__') {
-                tagsSelecionadas = [];
-                renderizarFiltrosTags();
-                renderizarAvaliacoes();
-                return;
-            }
-            alternarTagFiltro(botao.dataset.tag);
-        });
+    favoritoLojaBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        alternarFavorito(lojaAtualId);
+        atualizarBotaoFavoritoLoja();
     });
-}
 
-function avaliacaoCombinaTags(avaliacao) {
-    if (!tagsSelecionadas.length) return true;
-    const tags = (avaliacao.tags || [avaliacao.servicoTag]).map((tag) => String(tag));
-    return tagsSelecionadas.some((tag) => tags.includes(tag));
-}
-
-function renderizarAvaliacoes() {
-    const avaliacoesFiltradas = (lojaAtual.avaliacoes || []).filter(avaliacaoCombinaTags);
-
-    if (!avaliacoesFiltradas.length) {
-        listaAvaliacoes.innerHTML = '<p class="text-center">Nenhuma avaliação encontrada.</p>';
-        return;
-    }
-
-    listaAvaliacoes.innerHTML = avaliacoesFiltradas.map((avaliacao) => `
-    <div class="card mb-3">
-        <div class="card-body">
-            <div class="d-flex justify-content-between align-items-start">
-                <div class="d-flex">
-                    <img src="${lojaAtual.imagem}" class="shop-img me-3" style="width: 50px; height: 50px;">
-                    <div>
-                        <h6 class="mb-0"><strong>${avaliacao.cliente}</strong></h6>
-                        <div class="my-1">${renderizarTagsAvaliacao(avaliacao.tags)}</div>
-                    </div>
-                </div>
-                <div class="text-warning">${formatarNota(avaliacao.nota)}★</div>
-            </div>
-            <p class="mt-2 mb-0" style="font-size: 0.9rem; color: #444;">${avaliacao.comentario}</p>
-        </div>
-    </div>
-`).join('');
-}
-
-renderizarFiltrosTags();
-renderizarAvaliacoes();
-
-!-- JS DADOS -->
-<script src="dados.js"></script>
-
-<!-- JS ORIGINAL (INALTERADO) -->
-<script>
-const lojaAtual = obterDadosLojaAtual();
-const lojaAtualId = obterLojaAtualId();
-
-document.getElementById('linkServicos').href = montarLinkLoja('Loja_XV2.html');
-document.getElementById('linkAvaliacoes').href = montarLinkLoja('avaliacaoBT.html');
-document.getElementById('linkDenuncia').href = montarLinkLoja('DenunciaBT.html');
-document.getElementById('chatRapidoBtn').href = construirLinkNovoChat(lojaAtualId, 'loja');
-
-document.getElementById('lojaImagem').src = lojaAtual.imagem;
-document.getElementById('lojaTitulo').textContent = lojaAtual.titulo;
-document.getElementById('lojaEndereco1').textContent = lojaAtual.enderecoLinhas[0] || '';
-document.getElementById('lojaEndereco2').textContent = lojaAtual.enderecoLinhas[1] || '';
-document.getElementById('lojaTelefone1').textContent = lojaAtual.telefones[0] || '';
-document.getElementById('lojaTelefone2').textContent = lojaAtual.telefones[1] || '';
-document.getElementById('storePageRating').innerHTML = montarMarkupNotaLoja(lojaAtual.media, lojaAtual.quantidadeAvaliacoes);
-
-const listaServicos = document.getElementById('listaServicos');
-const pesquisaServico = document.getElementById('pesquisaServico');
-
-const favoritoLojaBtn = document.getElementById('favoritoLojaBtn');
-function atualizarBotaoFavoritoLoja() {
-    const ativo = lojaEhFavorita(lojaAtualId);
-    favoritoLojaBtn.classList.toggle('active', ativo);
-    favoritoLojaBtn.innerHTML = `<i class="fa-${ativo ? 'solid' : 'regular'} fa-heart"></i>`;
-}
-
-favoritoLojaBtn.addEventListener('click', (event) => {
-    event.preventDefault();
-    alternarFavorito(lojaAtualId);
     atualizarBotaoFavoritoLoja();
-});
 
-atualizarBotaoFavoritoLoja();
+    // Renderização dos Serviços
+    function renderizarServicos(filtro = '') {
+        const termo = filtro.trim().toLowerCase();
+        const servicosFiltrados = lojaAtual.servicos.filter((servico) => servico.nome.toLowerCase().includes(termo));
 
-function renderizarServicos(filtro = '') {
-    const termo = filtro.trim().toLowerCase();
-    const servicosFiltrados = lojaAtual.servicos.filter((servico) => servico.nome.toLowerCase().includes(termo));
+        if (!servicosFiltrados.length) {
+            listaServicos.innerHTML = '<div class="text-center text-muted p-3">Nenhum serviço encontrado.</div>';
+            return;
+        }
 
-    if (!servicosFiltrados.length) {
-        listaServicos.innerHTML = '<div class="text-center text-muted p-3">Nenhum serviço encontrado.</div>';
-        return;
+        listaServicos.innerHTML = servicosFiltrados.map((servico) => `
+            <div class="list-group-item d-flex justify-content-between align-items-center mb-2 shadow-sm rounded-custom border-0" style="background: #fff; color: #000;">
+                <div>
+                    <strong>${servico.nome}</strong>
+                    <div class="small text-muted">${servico.preco}</div>
+                </div>
+                <div class="text-end">
+                    <div class="text-warning fw-bold">${formatarNota(servico.media)} ★</div>
+                    <small class="text-muted">(${servico.quantidadeAvaliacoes})</small>
+                </div>
+            </div>
+        `).join('');
     }
 
-    listaServicos.innerHTML = servicosFiltrados.map((servico) => `
-        <div class="list-group-item d-flex justify-content-between align-items-center">
-            <div>
-                <strong>${servico.nome}</strong>
-                <div class="small text-muted">${servico.preco}</div>
-            </div>
-            <div class="text-end">
-                <div class="fw-bold">${formatarNota(servico.media)} ★</div>
-                <small class="text-muted">(${servico.quantidadeAvaliacoes})</small>
-            </div>
-        </div>
-    `).join('');
-}
-
-pesquisaServico.addEventListener('input', (event) => renderizarServicos(event.target.value));
-renderizarServicos();
-</script>
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
-</html>
-
-
+    // Listener para o campo de pesquisa
+    pesquisaServico.addEventListener('input', (event) => renderizarServicos(event.target.value));
+    
+    // Inicia a lista ao carregar a página
+    renderizarServicos();
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
