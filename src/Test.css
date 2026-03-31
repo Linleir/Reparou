@@ -1,0 +1,67 @@
+/* ================= BASE DO APLICATIVO ================= */
+body {
+    background-color: #f4f4f4; /* Cor de fundo suave para destacar os cards */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Adiciona um espaço no final da página para a navegação não cobrir o conteúdo */
+    padding-bottom: 90px; 
+}
+
+/* ================= CABEÇALHOS (HEADERS) ================= */
+.black-header {
+    background-color: #000;
+    color: #fff;
+    border-radius: 0 0 25px 25px; /* Arredondado apenas embaixo */
+    padding: 20px;
+}
+
+.profile-header, .profile-header2 {
+    background: #000;
+    color: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+/* ================= IMAGENS DE PERFIL ================= */
+.profile-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%; /* Deixa a foto redonda */
+    object-fit: cover;
+    border: 2px solid #fff;
+}
+
+.shop-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+/* ================= NAVEGAÇÃO INFERIOR ================= */
+.bottom-nav {
+    background: #000;
+    border-top: 1px solid #333;
+    height: 70px;
+}
+
+.bottom-nav img {
+    width: 26px;
+    height: auto;
+    transition: transform 0.2s;
+}
+
+.bottom-nav img:hover {
+    transform: scale(1.1);
+}
+
+.bottom-nav a {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}

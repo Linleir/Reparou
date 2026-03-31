@@ -1,0 +1,80 @@
+/* ================= CARDS E LISTAS ================= */
+.custom-card {
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.list-group-item {
+    background: #ffffff;
+    border: none;
+    border-radius: 15px !important;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.list-group-item:hover {
+    background: #f8f9fa;
+    transform: translateY(-2px);
+}
+
+/* ================= CHAT ================= */
+.chat-area {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chat-input-fixed {
+    position: fixed;
+    bottom: 70px; /* Fica exatamente acima da bottom-nav */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 540px; /* Alinhado com o col-sm-10 do Bootstrap */
+    z-index: 1050;
+    background: white;
+    padding: 10px 15px;
+    border-top: 1px solid #eee;
+}
+
+/* ================= BOTÕES ================= */
+.btn-custom {
+    background: #000;
+    color: #fff;
+    border-radius: 30px;
+    border: none;
+    font-weight: bold;
+    padding: 10px 20px;
+}
+
+.btn-custom:hover {
+    background: #333;
+    color: #fff;
+}
+
+/* Botão de voltar (seta) */
+.back-btn {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    transition: opacity 0.2s;
+}
+
+.back-btn:hover {
+    opacity: 0.7;
+    color: white;
+}
+
+/* ================= TAGS E CHIPS ================= */
+.review-service-chip {
+    background-color: #e9ecef;
+    color: #495057;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+}

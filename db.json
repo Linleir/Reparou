@@ -1,0 +1,36 @@
+{
+    "lojas": [
+      {
+        "id": "loja-x",
+        "nome": "LOJA DE REPARO X",
+        "lojistaId": "huguinho",
+        "imagem": "/imgtst.jpg",
+        "media": 4.8,
+        "quantidadeAvaliacoes": 120,
+        "enderecos": ["Av. Central, 145", "Copacabana, RJ"],
+        "telefones": ["(21) 97777-7777"],
+        "tags": ["Formatação", "Limpeza", "Notebook"],
+        "servicos": [
+          { "id": 1, "nome": "Formatação", "preco": "R$ 100", "media": 4.9, "quantidadeAvaliacoes": 50 },
+          { "id": 2, "nome": "Limpeza Interna", "preco": "R$ 80", "media": 4.7, "quantidadeAvaliacoes": 30 }
+        ]
+      },
+      {
+        "id": "loja-y",
+        "nome": "LOJA Y - Especializada",
+        "lojistaId": "zezinho",
+        "imagem": "/imgtst.jpg",
+        "media": 4.5,
+        "quantidadeAvaliacoes": 85,
+        "enderecos": ["Rua das Inovações, 52", "Tijuca, RJ"],
+        "telefones": ["(21) 95555-5555"],
+        "tags": ["Troca de Tela", "Celular"],
+        "servicos": [
+          { "id": 3, "nome": "Troca de Tela", "preco": "R$ 350", "media": 4.5, "quantidadeAvaliacoes": 20 }
+        ]
+      }
+    ],
+    "usuarios": [
+      { "id": "11122233344", "senha": "123", "nome": "Cliente Teste", "tipo": "cliente" }
+    ]
+  }
