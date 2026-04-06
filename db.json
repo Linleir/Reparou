@@ -1,0 +1,808 @@
+{
+  "admins": [
+    {
+      "id": "00000000000000",
+      "senha": "123",
+      "nome": "Admin Supremo",
+      "tipo": "admin"
+    }
+  ],
+  "clientes": [
+    {
+      "id": "11122233344",
+      "senha": "123",
+      "nome": "Alow",
+      "sobrenome": "Teste",
+      "documento": "11122233344",
+      "tipo": "cliente",
+      "perfil": {
+        "bairro": "Méiersddddffffffff",
+        "municipio": "Rio de Janeiro",
+        "rua": "Rua do Cliente",
+        "numero": "10",
+        "complemento": "Ap 102",
+        "dataNascimento": "2000-01-10"
+      },
+      "favoritos": [
+        "loja-x",
+        "loja-y",
+        "loja-p1",
+        "loja-j1"
+      ]
+    }
+  ],
+  "lojistas": [
+    {
+      "id": "huguinho",
+      "nomeLojaPrincipal": "Huguinho Informática",
+      "responsavel": "Huguinho Silva",
+      "cnpj": "22.222.222/2222-22",
+      "cnpjNumeros": "22222222222222",
+      "senha": "123",
+      "telefone": "(21) 98811-2200",
+      "email": "huguinho@reparou.com",
+      "enderecoBase": "Rua do Hardware, 120 - Méier, RJ",
+      "tags": [
+        "Notebook",
+        "Formatação",
+        "Upgrade"
+      ]
+    },
+    {
+      "id": "zezinho",
+      "nomeLojaPrincipal": "Zezinho Tech Center",
+      "responsavel": "Zezinho Oliveira",
+      "cnpj": "33.333.333/3333-33",
+      "cnpjNumeros": "33333333333333",
+      "senha": "123",
+      "telefone": "(21) 97722-3300",
+      "email": "zezinho@reparou.com",
+      "enderecoBase": "Avenida Digital, 455 - Tijuca, RJ",
+      "tags": [
+        "Desktop",
+        "Placa-mãe",
+        "Limpeza"
+      ]
+    },
+    {
+      "id": "luizinho",
+      "nomeLojaPrincipal": "Luizinho Solutions",
+      "responsavel": "Luizinho Pereira",
+      "cnpj": "44.444.444/4444-44",
+      "cnpjNumeros": "44444444444444",
+      "senha": "123",
+      "telefone": "(21) 96633-4400",
+      "email": "luizinho@reparou.com",
+      "enderecoBase": "Rua da Tecnologia, 890 - Copacabana, RJ",
+      "tags": [
+        "Games",
+        "Notebook",
+        "Periféricos"
+      ]
+    },
+    {
+      "id": "marquinho",
+      "nomeLojaPrincipal": "Marquinho Info House",
+      "responsavel": "Marquinho Souza",
+      "cnpj": "55.555.555/5555-55",
+      "cnpjNumeros": "55555555555555",
+      "senha": "123",
+      "telefone": "(21) 95511-5500",
+      "email": "marquinho@reparou.com",
+      "enderecoBase": "Rua do Upgrade, 230 - Madureira, RJ",
+      "tags": [
+        "Tela",
+        "Carcaça",
+        "Notebook"
+      ]
+    }
+  ],
+  "lojas": [
+    {
+      "id": "loja-a",
+      "nome": "Loja A",
+      "titulo": "LOJA DE REPARO A",
+      "lojistaId": "huguinho",
+      "imagem": "/imgtst.jpg",
+      "enderecos": [
+        "Rua do Processador, 15 - Méier, RJ"
+      ],
+      "enderecoLinhas": [
+        "Rua do Processador, 15",
+        "Méier, RJ"
+      ],
+      "telefones": [
+        "(21) 99111-1001"
+      ],
+      "tags": [
+        "Formatação",
+        "SSD",
+        "Memória RAM",
+        "Celular",
+        "Tela",
+        "Bateria",
+        "Notebook",
+        "Windows",
+        "Backup",
+        "Gamer",
+        "Limpeza",
+        "Upgrade",
+        "iPhone"
+      ],
+      "servicos": [
+        {
+          "id": "a1",
+          "tag": "SSD",
+          "nome": "Upgrade de SSD",
+          "preco": "R$ 180 - 260",
+          "nota": 4.8,
+          "quantidadeAvaliacoes": 22
+        },
+        {
+          "id": "a2",
+          "tag": "Formatação",
+          "nome": "Formatação Completa",
+          "preco": "R$ 120 - 180",
+          "nota": 4.7,
+          "quantidadeAvaliacoes": 30
+        },
+        {
+          "id": "a3",
+          "tag": "Memória RAM",
+          "nome": "Instalação de Memória RAM",
+          "preco": "R$ 80 - 120",
+          "nota": 4.9,
+          "quantidadeAvaliacoes": 19
+        },
+        {
+          "id": "a4",
+          "tag": "Notebook",
+          "nome": "Diagnóstico",
+          "preco": "R$ 70 - 110",
+          "nota": 4.5,
+          "quantidadeAvaliacoes": 15
+        },
+        {
+          "id": "loja-a-shared-battery",
+          "tag": "Bateria",
+          "nome": "Troca de Bateria",
+          "preco": "R$ 100 - 220",
+          "nota": 4.6,
+          "quantidadeAvaliacoes": 10
+        },
+        {
+          "id": "loja-a-shared-clean",
+          "tag": "Limpeza",
+          "nome": "Limpeza Preventiva",
+          "preco": "R$ 60 - 120",
+          "nota": 4.8,
+          "quantidadeAvaliacoes": 9
+        }
+      ],
+      "media": 4.8,
+      "quantidadeAvaliacoes": 50
+    },
+    {
+      "id": "loja-x",
+      "nome": "Loja X",
+      "titulo": "LOJA DE REPARO X",
+      "lojistaId": "huguinho",
+      "imagem": "/imgtst.jpg",
+      "enderecos": [
+        "Rua Tecnológica, 286 - Méier, RJ"
+      ],
+      "enderecoLinhas": [
+        "Rua Tecnológica, 286",
+        "Méier, RJ"
+      ],
+      "telefones": [
+        "(21) 99999-9999",
+        "(21) 98888-8888"
+      ],
+      "tags": [
+        "Placa de vídeo",
+        "Limpeza",
+        "Fonte"
+      ],
+      "servicos": [
+        {
+          "id": "x1",
+          "tag": "Placa de vídeo",
+          "nome": "Conserto de Placas de Vídeo",
+          "preco": "R$ 400 - 500",
+          "nota": 4.8,
+          "quantidadeAvaliacoes": 18
+        },
+        {
+          "id": "x2",
+          "tag": "Limpeza",
+          "nome": "Manutenção",
+          "preco": "R$ 150 - 220",
+          "nota": 4.7,
+          "quantidadeAvaliacoes": 21
+        },
+        {
+          "id": "x3",
+          "tag": "Fonte",
+          "nome": "Diagnóstico",
+          "preco": "R$ 100 - 200",
+          "nota": 4.6,
+          "quantidadeAvaliacoes": 9
+        },
+        {
+          "id": "x4",
+          "tag": "Fonte",
+          "nome": "Troca de Peças",
+          "preco": "R$ 100 - 150",
+          "nota": 4.5,
+          "quantidadeAvaliacoes": 10
+        },
+        {
+          "id": "loja-x-shared-format",
+          "tag": "Formatação",
+          "nome": "Formatação e Otimização",
+          "preco": "R$ 80 - 160",
+          "nota": 4.7,
+          "quantidadeAvaliacoes": 12
+        },
+        {
+          "id": "loja-x-shared-battery",
+          "tag": "Bateria",
+          "nome": "Troca de Bateria",
+          "preco": "R$ 100 - 220",
+          "nota": 4.6,
+          "quantidadeAvaliacoes": 10
+        }
+      ],
+      "media": 4.7,
+      "quantidadeAvaliacoes": 58
+    },
+    {
+      "id": "loja-y",
+      "nome": "Loja Y",
+      "titulo": "LOJA DE REPARO Y",
+      "lojistaId": "zezinho",
+      "imagem": "/imgtst.jpg",
+      "enderecos": [
+        "Av. Central, 145 - Copacabana, RJ"
+      ],
+      "enderecoLinhas": [
+        "Av. Central, 145",
+        "Copacabana, RJ"
+      ],
+      "telefones": [
+        "(21) 97777-7777",
+        "(21) 96666-6666"
+      ],
+      "tags": [
+        "Teclado",
+        "Mouse",
+        "Headset",
+        "Celular",
+        "Tela",
+        "Bateria"
+      ],
+      "servicos": [
+        {
+          "id": "y1",
+          "tag": "Teclado",
+          "nome": "Conserto de Teclado",
+          "preco": "R$ 140 - 210",
+          "nota": 4.9,
+          "quantidadeAvaliacoes": 16
+        },
+        {
+          "id": "y2",
+          "tag": "Mouse",
+          "nome": "Troca de Mouse",
+          "preco": "R$ 70 - 120",
+          "nota": 4.8,
+          "quantidadeAvaliacoes": 12
+        },
+        {
+          "id": "y3",
+          "tag": "Headset",
+          "nome": "Troca de Headset",
+          "preco": "R$ 100 - 180",
+          "nota": 4.6,
+          "quantidadeAvaliacoes": 14
+        },
+        {
+          "id": "y4",
+          "tag": "Limpeza",
+          "nome": "Limpeza Técnica",
+          "preco": "R$ 90 - 160",
+          "nota": 4.4,
+          "quantidadeAvaliacoes": 8
+        },
+        {
+          "id": "loja-y-shared-format",
+          "tag": "Formatação",
+          "nome": "Formatação e Otimização",
+          "preco": "R$ 80 - 160",
+          "nota": 4.7,
+          "quantidadeAvaliacoes": 12
+        },
+        {
+          "id": "loja-y-shared-battery",
+          "tag": "Bateria",
+          "nome": "Troca de Bateria",
+          "preco": "R$ 100 - 220",
+          "nota": 4.6,
+          "quantidadeAvaliacoes": 10
+        }
+      ],
+      "media": 4.8,
+      "quantidadeAvaliacoes": 42
+    },
+    {
+      "id": "loja-z",
+      "nome": "Loja Z",
+      "titulo": "LOJA DE REPARO Z",
+      "lojistaId": "luizinho",
+      "imagem": "/imgtst.jpg",
+      "enderecos": [
+        "Rua das Inovações, 52 - Tijuca, RJ"
+      ],
+      "enderecoLinhas": [
+        "Rua das Inovações, 52",
+        "Tijuca, RJ"
+      ],
+      "telefones": [
+        "(21) 95555-5555",
+        "(21) 94444-4444"
+      ],
+      "tags": [
+        "Console",
+        "Controle",
+        "HDMI",
+        "Notebook",
+        "SSD",
+        "Formatação"
+      ],
+      "servicos": [
+        {
+          "id": "z1",
+          "tag": "Console",
+          "nome": "Conserto de Console",
+          "preco": "R$ 200 - 350",
+          "nota": 4.7,
+          "quantidadeAvaliacoes": 20
+        },
+        {
+          "id": "z2",
+          "tag": "Controle",
+          "nome": "Reparo de Controle",
+          "preco": "R$ 100 - 170",
+          "nota": 4.6,
+          "quantidadeAvaliacoes": 11
+        },
+        {
+          "id": "z3",
+          "tag": "HDMI",
+          "nome": "Troca de HDMI",
+          "preco": "R$ 60 - 110",
+          "nota": 4.4,
+          "quantidadeAvaliacoes": 13
+        },
+        {
+          "id": "z4",
+          "tag": "Limpeza",
+          "nome": "Manutenção",
+          "preco": "R$ 180 - 260",
+          "nota": 4.7,
+          "quantidadeAvaliacoes": 10
+        },
+        {
+          "id": "loja-z-shared-format",
+          "tag": "Formatação",
+          "nome": "Formatação e Otimização",
+          "preco": "R$ 80 - 160",
+          "nota": 4.7,
+          "quantidadeAvaliacoes": 12
+        },
+        {
+          "id": "loja-z-shared-battery",
+          "tag": "Bateria",
+          "nome": "Troca de Bateria",
+          "preco": "R$ 100 - 220",
+          "nota": 4.6,
+          "quantidadeAvaliacoes": 10
+        }
+      ],
+      "media": 4.6,
+      "quantidadeAvaliacoes": 54
+    },
+    {
+      "id": "loja-m1",
+      "nome": "Marquinho Info House",
+      "titulo": "MARQUINHO INFO HOUSE",
+      "lojistaId": "marquinho",
+      "imagem": "/imgtst.jpg",
+      "enderecos": [
+        "Rua do Upgrade, 230 - Madureira, RJ"
+      ],
+      "enderecoLinhas": [
+        "Rua do Upgrade, 230",
+        "Madureira, RJ"
+      ],
+      "telefones": [
+        "(21) 95511-5500",
+        "(21) 95511-5511"
+      ],
+      "tags": [
+        "Tela",
+        "Carcaça",
+        "Notebook",
+        "Celular",
+        "Bateria",
+        "Windows",
+        "Backup",
+        "Formatação"
+      ],
+      "servicos": [
+        {
+          "id": "m1",
+          "tag": "Tela",
+          "nome": "Troca de Tela de Notebook",
+          "preco": "R$ 250 - 420",
+          "nota": 4.8,
+          "quantidadeAvaliacoes": 18
+        },
+        {
+          "id": "m2",
+          "tag": "Carcaça",
+          "nome": "Reparo de Carcaça",
+          "preco": "R$ 150 - 260",
+          "nota": 4.6,
+          "quantidadeAvaliacoes": 11
+        },
+        {
+          "id": "m3",
+          "tag": "Dobradiça",
+          "nome": "Troca de Dobradiça",
+          "preco": "R$ 120 - 210",
+          "nota": 4.7,
+          "quantidadeAvaliacoes": 9
+        },
+        {
+          "id": "m4",
+          "tag": "Notebook",
+          "nome": "Revisão Completa",
+          "preco": "R$ 140 - 220",
+          "nota": 4.7,
+          "quantidadeAvaliacoes": 15
+        },
+        {
+          "id": "loja-m1-shared-format",
+          "tag": "Formatação",
+          "nome": "Formatação e Otimização",
+          "preco": "R$ 80 - 160",
+          "nota": 4.7,
+          "quantidadeAvaliacoes": 12
+        },
+        {
+          "id": "loja-m1-shared-battery",
+          "tag": "Bateria",
+          "nome": "Troca de Bateria",
+          "preco": "R$ 100 - 220",
+          "nota": 4.6,
+          "quantidadeAvaliacoes": 10
+        },
+        {
+          "id": "loja-m1-shared-clean",
+          "tag": "Limpeza",
+          "nome": "Limpeza Preventiva",
+          "preco": "R$ 60 - 120",
+          "nota": 4.8,
+          "quantidadeAvaliacoes": 9
+        }
+      ],
+      "media": 4.7,
+      "quantidadeAvaliacoes": 53
+    },
+    {
+      "id": "loja-m2",
+      "nome": "Marquinho Express",
+      "titulo": "MARQUINHO EXPRESS",
+      "lojistaId": "marquinho",
+      "imagem": "/imgtst.jpg",
+      "enderecos": [
+        "Praça da Assistência, 17 - Irajá, RJ"
+      ],
+      "enderecoLinhas": [
+        "Praça da Assistência, 17",
+        "Irajá, RJ"
+      ],
+      "telefones": [
+        "(21) 95511-5522"
+      ],
+      "tags": [
+        "Teclado",
+        "Bateria",
+        "Touchpad",
+        "Gamer",
+        "Limpeza",
+        "Upgrade"
+      ],
+      "servicos": [
+        {
+          "id": "mx1",
+          "tag": "Teclado",
+          "nome": "Troca de Teclado",
+          "preco": "R$ 120 - 180",
+          "nota": 4.5,
+          "quantidadeAvaliacoes": 8
+        },
+        {
+          "id": "mx2",
+          "tag": "Bateria",
+          "nome": "Troca de Bateria",
+          "preco": "R$ 180 - 290",
+          "nota": 4.7,
+          "quantidadeAvaliacoes": 14
+        },
+        {
+          "id": "mx3",
+          "tag": "Touchpad",
+          "nome": "Reparo de Touchpad",
+          "preco": "R$ 100 - 160",
+          "nota": 4.4,
+          "quantidadeAvaliacoes": 7
+        },
+        {
+          "id": "mx4",
+          "tag": "Notebook",
+          "nome": "Diagnóstico Rápido",
+          "preco": "R$ 60 - 90",
+          "nota": 4.8,
+          "quantidadeAvaliacoes": 20
+        },
+        {
+          "id": "loja-m2-shared-format",
+          "tag": "Formatação",
+          "nome": "Formatação e Otimização",
+          "preco": "R$ 80 - 160",
+          "nota": 4.7,
+          "quantidadeAvaliacoes": 12
+        },
+        {
+          "id": "loja-m2-shared-clean",
+          "tag": "Limpeza",
+          "nome": "Limpeza Preventiva",
+          "preco": "R$ 60 - 120",
+          "nota": 4.8,
+          "quantidadeAvaliacoes": 9
+        }
+      ],
+      "media": 4.6,
+      "quantidadeAvaliacoes": 49
+    },
+    {
+      "id": "loja-m3",
+      "nome": "Marquinho Centro Tech",
+      "titulo": "MARQUINHO CENTRO TECH",
+      "lojistaId": "marquinho",
+      "imagem": "/imgtst.jpg",
+      "enderecos": [
+        "Rua do Hardware, 310 - Centro, RJ"
+      ],
+      "enderecoLinhas": [
+        "Rua do Hardware, 310",
+        "Centro, RJ"
+      ],
+      "telefones": [
+        "(21) 95511-5533"
+      ],
+      "tags": [
+        "SSD",
+        "Memória",
+        "Upgrade",
+        "Celular",
+        "Tela",
+        "Bateria",
+        "Notebook",
+        "Formatação",
+        "iPhone"
+      ],
+      "servicos": [
+        {
+          "id": "m31",
+          "tag": "SSD",
+          "nome": "Upgrade para SSD",
+          "preco": "R$ 160 - 300",
+          "nota": 4.9,
+          "quantidadeAvaliacoes": 21
+        },
+        {
+          "id": "m32",
+          "tag": "Memória",
+          "nome": "Expansão de Memória RAM",
+          "preco": "R$ 120 - 240",
+          "nota": 4.8,
+          "quantidadeAvaliacoes": 18
+        },
+        {
+          "id": "m33",
+          "tag": "Upgrade",
+          "nome": "Upgrade Completo",
+          "preco": "R$ 220 - 420",
+          "nota": 4.7,
+          "quantidadeAvaliacoes": 10
+        },
+        {
+          "id": "m34",
+          "tag": "Limpeza",
+          "nome": "Limpeza Técnica",
+          "preco": "R$ 70 - 120",
+          "nota": 4.6,
+          "quantidadeAvaliacoes": 13
+        },
+        {
+          "id": "loja-m3-shared-format",
+          "tag": "Formatação",
+          "nome": "Formatação e Otimização",
+          "preco": "R$ 80 - 160",
+          "nota": 4.7,
+          "quantidadeAvaliacoes": 12
+        },
+        {
+          "id": "loja-m3-shared-battery",
+          "tag": "Bateria",
+          "nome": "Troca de Bateria",
+          "preco": "R$ 100 - 220",
+          "nota": 4.6,
+          "quantidadeAvaliacoes": 10
+        }
+      ],
+      "media": 4.8,
+      "quantidadeAvaliacoes": 62
+    }
+  ],
+  "reviews": [
+    {
+      "id": "review-1",
+      "chatId": "chat-1",
+      "lojaId": "loja-x",
+      "cliente": "Mariana",
+      "tituloServico": "Conserto de Placas de Vídeo",
+      "serviceTag": "Placa de vídeo",
+      "tags": [
+        "Placa de vídeo",
+        "Fonte"
+      ],
+      "nota": 5,
+      "texto": "Atendimento rápido e explicaram todo o processo.",
+      "dataIso": "2026-03-18T15:30:00.000Z"
+    },
+    {
+      "id": "review-2",
+      "chatId": "chat-2",
+      "lojaId": "loja-x",
+      "cliente": "Carlos",
+      "tituloServico": "Manutenção",
+      "serviceTag": "Limpeza",
+      "tags": [
+        "Limpeza"
+      ],
+      "nota": 5,
+      "texto": "Gostei bastante do serviço e do prazo.",
+      "dataIso": "2026-04-05T21:00:03.453Z"
+    }
+  ],
+  "chats": [
+    {
+      "id": "chat-1",
+      "lojaId": "loja-x",
+      "clienteId": "11122233344",
+      "clienteNome": "Cliente Teste",
+      "serviceTag": "Placa de vídeo",
+      "tags": [
+        "Placa de vídeo",
+        "Fonte"
+      ],
+      "tituloServico": "Conserto de Placas de Vídeo",
+      "status": "ativo",
+      "mensagens": [
+        {
+          "autor": "cliente",
+          "texto": "Olá, minha placa de vídeo não está dando vídeo.",
+          "horario": "2026-03-30T14:00:00.000Z"
+        },
+        {
+          "autor": "loja",
+          "texto": "Recebemos sua mensagem. Pode trazer o equipamento para diagnóstico.",
+          "horario": "2026-03-30T14:01:00.000Z"
+        }
+      ],
+      "criadoEm": "2026-03-30T14:00:00.000Z",
+      "atualizadoEm": "2026-03-30T14:01:00.000Z",
+      "avaliacaoId": null
+    },
+    {
+      "id": "chat-2",
+      "lojaId": "loja-y",
+      "clienteId": "11122233344",
+      "clienteNome": "Cliente Teste",
+      "serviceTag": "Teclado",
+      "tags": [
+        "Teclado",
+        "Mouse"
+      ],
+      "tituloServico": "Conserto de Teclado",
+      "status": "finalizado-avaliado",
+      "mensagens": [
+        {
+          "autor": "cliente",
+          "texto": "Meu teclado está falhando em algumas teclas.",
+          "horario": "2026-03-20T09:00:00.000Z"
+        },
+        {
+          "autor": "loja",
+          "texto": "Obrigado por escolher nosso serviço. Seu atendimento foi concluído e sua avaliação já pode ser enviada.",
+          "horario": "2026-03-20T09:10:00.000Z"
+        }
+      ],
+      "criadoEm": "2026-03-20T09:00:00.000Z",
+      "atualizadoEm": "2026-03-20T09:10:00.000Z",
+      "avaliacaoId": "review-2"
+    }
+  ],
+  "denuncias": [
+    {
+      "id": "1",
+      "lojaId": "loja-x",
+      "lojaNome": "LOJA DE REPARO X",
+      "motivos": [
+        "Fraude",
+        "Serviço"
+      ],
+      "descricao": "Cobraram por uma peça que não foi trocada.",
+      "data": "2026-03-17",
+      "status": "Pendente"
+    },
+    {
+      "id": "2",
+      "lojaId": "loja-y",
+      "lojaNome": "LOJA DE REPARO Y",
+      "motivos": [
+        "Assédio"
+      ],
+      "descricao": "Fui maltratado durante o atendimento no balcão.",
+      "data": "2026-03-15",
+      "status": "Pendente"
+    }
+  ],
+  "agendamentos": [
+    {
+      "id": "ag-1",
+      "lojistaId": "huguinho",
+      "lojaId": "loja-a",
+      "cliente": "Mariana Costa",
+      "servico": "Formatação",
+      "data": "2026-04-08",
+      "hora": "10:30",
+      "status": "cancelado"
+    },
+    {
+      "id": "ag-2",
+      "lojistaId": "huguinho",
+      "lojaId": "loja-x",
+      "cliente": "Carlos Silva",
+      "servico": "Troca de Fonte",
+      "data": "2026-04-09",
+      "hora": "14:00",
+      "status": "cancelado"
+    },
+    {
+      "id": "ag-3",
+      "lojistaId": "zezinho",
+      "lojaId": "loja-y",
+      "cliente": "Ana Pereira",
+      "servico": "Troca de Headset",
+      "data": "2026-04-10",
+      "hora": "11:00",
+      "status": "pendente"
+    }
+  ]
+}
