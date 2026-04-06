@@ -14,7 +14,3 @@
 - Cliente: CPF `11122233344`, senha `123`
 - Lojista: CNPJ `22222222222222`, senha `123`
 - Admin: ID `00000000000000`, senha `123`
-
-## Observação
-
-O projeto foi reorganizado para React + Redux Toolkit, usando `json-server` como backend mockado. O visual foi mantido próximo ao Bootstrap original, priorizando o fluxo das páginas principais.
