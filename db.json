@@ -115,7 +115,6 @@
         "(21) 99111-1001"
       ],
       "tags": [
-        "Formatação",
         "SSD",
         "Memória RAM",
         "Celular",
@@ -125,34 +124,30 @@
         "Windows",
         "Backup",
         "Gamer",
-        "Limpeza",
         "Upgrade",
-        "iPhone"
+        "iPhone",
+        "Formatação"
       ],
       "servicos": [
-        {
-          "id": "a1",
-          "tag": "SSD",
-          "nome": "Upgrade de SSD",
-          "preco": "R$ 180 - 260",
-          "nota": 4.8,
-          "quantidadeAvaliacoes": 22
-        },
         {
           "id": "a2",
           "tag": "Formatação",
           "nome": "Formatação Completa",
           "preco": "R$ 120 - 180",
           "nota": 4.7,
-          "quantidadeAvaliacoes": 30
+          "quantidadeAvaliacoes": 30,
+          "precoMin": "120",
+          "precoMax": "180"
         },
         {
           "id": "a3",
           "tag": "Memória RAM",
           "nome": "Instalação de Memória RAM",
-          "preco": "R$ 80 - 120",
+          "preco": "R$ 70 - 120",
           "nota": 4.9,
-          "quantidadeAvaliacoes": 19
+          "quantidadeAvaliacoes": 19,
+          "precoMin": "70",
+          "precoMax": "120"
         },
         {
           "id": "a4",
@@ -160,7 +155,9 @@
           "nome": "Diagnóstico",
           "preco": "R$ 70 - 110",
           "nota": 4.5,
-          "quantidadeAvaliacoes": 15
+          "quantidadeAvaliacoes": 15,
+          "precoMin": "70",
+          "precoMax": "110"
         },
         {
           "id": "loja-a-shared-battery",
@@ -168,15 +165,9 @@
           "nome": "Troca de Bateria",
           "preco": "R$ 100 - 220",
           "nota": 4.6,
-          "quantidadeAvaliacoes": 10
-        },
-        {
-          "id": "loja-a-shared-clean",
-          "tag": "Limpeza",
-          "nome": "Limpeza Preventiva",
-          "preco": "R$ 60 - 120",
-          "nota": 4.8,
-          "quantidadeAvaliacoes": 9
+          "quantidadeAvaliacoes": 10,
+          "precoMin": "100",
+          "precoMax": "220"
         }
       ],
       "media": 4.8,
@@ -185,7 +176,7 @@
     {
       "id": "loja-x",
       "nome": "Loja X",
-      "titulo": "LOJA DE REPARO X",
+      "titulo": "LOJA X",
       "lojistaId": "huguinho",
       "imagem": "/imgtst.jpg",
       "enderecos": [
@@ -202,7 +193,12 @@
       "tags": [
         "Placa de vídeo",
         "Limpeza",
-        "Fonte"
+        "Fonte",
+        "Teclado",
+        "Placa-mãe",
+        "Cooler",
+        "Formatação",
+        "Bateria"
       ],
       "servicos": [
         {
@@ -252,6 +248,14 @@
           "preco": "R$ 100 - 220",
           "nota": 4.6,
           "quantidadeAvaliacoes": 10
+        },
+        {
+          "id": "servico-1777074220553-7648",
+          "tag": "Cooler",
+          "nome": "Cooler",
+          "preco": "",
+          "nota": 0,
+          "quantidadeAvaliacoes": 0
         }
       ],
       "media": 4.7,
@@ -688,6 +692,22 @@
       "nota": 5,
       "texto": "Gostei bastante do serviço e do prazo.",
       "dataIso": "2026-04-05T21:00:03.453Z"
+    },
+    {
+      "chatId": "chat-1777070963319",
+      "lojaId": "loja-m1",
+      "cliente": "Alow",
+      "tituloServico": "Troca de Dobradiça",
+      "serviceTag": "Dobradiça",
+      "tags": [
+        "Dobradiça",
+        "Tela",
+        "Carcaça"
+      ],
+      "nota": 5,
+      "texto": "sasdsad",
+      "dataIso": "2026-04-24T22:49:40.551Z",
+      "id": "wPtwTwo"
     }
   ],
   "chats": [
@@ -746,6 +766,30 @@
       "criadoEm": "2026-03-20T09:00:00.000Z",
       "atualizadoEm": "2026-03-20T09:10:00.000Z",
       "avaliacaoId": "review-2"
+    },
+    {
+      "id": "chat-1777070963319",
+      "lojaId": "loja-m1",
+      "clienteId": "11122233344",
+      "clienteNome": "Alow Teste",
+      "serviceTag": "Dobradiça",
+      "tags": [
+        "Dobradiça",
+        "Tela",
+        "Carcaça"
+      ],
+      "tituloServico": "Troca de Dobradiça",
+      "status": "finalizado-avaliado",
+      "mensagens": [
+        {
+          "autor": "cliente",
+          "texto": "dasfdfas",
+          "horario": "2026-04-24T22:49:23.319Z"
+        }
+      ],
+      "criadoEm": "2026-04-24T22:49:23.319Z",
+      "atualizadoEm": "2026-04-24T22:49:23.319Z",
+      "avaliacaoId": "wPtwTwo"
     }
   ],
   "denuncias": [

@@ -1,3 +1,4 @@
+import React from "react";
 export const normalize = (value = '') => String(value)
   .normalize('NFD')
   .replace(/[̀-ͯ]/g, '')

@@ -1,3 +1,4 @@
+import React from "react";
 export const selectClienteById = (state, id) => state.data.clientes.find((item) => item.id === id);
 export const selectLojistaById = (state, id) => state.data.lojistas.find((item) => item.id === id);
 export const selectLojaById = (state, id) => state.data.lojas.find((item) => item.id === id);

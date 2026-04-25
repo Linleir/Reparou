@@ -1,3 +1,4 @@
+import React from "react";
 const API = 'http://localhost:3001';
 
 export async function apiGet(resource) {

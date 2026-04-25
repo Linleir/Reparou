@@ -1,3 +1,4 @@
+import React from "react";
 import { createSlice } from '@reduxjs/toolkit';
 
 const saved = JSON.parse(localStorage.getItem('reparouAuth') || 'null');

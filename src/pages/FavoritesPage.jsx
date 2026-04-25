@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Layout, { BottomNavCliente } from '../components/Layout';
 import StoreCard from '../components/StoreCard';
 import { toggleFavorite } from '../features/dataSlice';
-import { useState } from 'react';
+import React, { useState } from "react";
 import { normalize } from '../utils/format';
 
 export default function FavoritesPage() {
