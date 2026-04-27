@@ -1,0 +1,431 @@
+{
+  "chats": [
+    {
+      "id": "1",
+      "lojaId": "loja-x",
+      "clienteId": "11122233344",
+      "mensagens": [
+        {
+          "autor": "cliente",
+          "texto": "Olá",
+          "horario": "2026-04-26T10:00:00"
+        }
+      ],
+      "atualizadoEm": "2026-04-26T10:00:00"
+    },
+    {
+      "clienteId": 4,
+      "mensagens": [
+        {
+          "autor": "cliente",
+          "texto": "sdsd",
+          "horario": "2026-04-26T23:40:44.397Z"
+        },
+        {
+          "autor": "cliente",
+          "texto": "dsdff",
+          "horario": "2026-04-26T23:40:49.131Z"
+        },
+        {
+          "autor": "cliente",
+          "texto": "ffff",
+          "horario": "2026-04-26T23:40:50.701Z"
+        },
+        {
+          "autor": "cliente",
+          "texto": "fffff",
+          "horario": "2026-04-26T23:40:52.503Z"
+        }
+      ],
+      "status": "ativo",
+      "avaliacaoId": null,
+      "criadoEm": "2026-04-26T23:40:32.064Z",
+      "atualizadoEm": "2026-04-26T23:40:52.503Z",
+      "id": "UcOVK0m"
+    },
+    {
+      "clienteId": 4,
+      "mensagens": [
+        {
+          "autor": "cliente",
+          "texto": "OD",
+          "horario": "2026-04-27T00:02:18.486Z",
+          "editado": true
+        },
+        {
+          "autor": "cliente",
+          "texto": "TUDO BEM",
+          "horario": "2026-04-27T00:02:27.326Z"
+        },
+        {
+          "autor": "cliente",
+          "texto": "ALOU",
+          "horario": "2026-04-27T00:02:30.533Z"
+        }
+      ],
+      "status": "ativo",
+      "avaliacaoId": null,
+      "criadoEm": "2026-04-27T00:02:15.631Z",
+      "atualizadoEm": "2026-04-27T00:02:48.439Z",
+      "id": "Ut6ukW9"
+    },
+    {
+      "clienteId": 4,
+      "mensagens": [
+        {
+          "autor": "cliente",
+          "texto": "a",
+          "horario": "2026-04-27T00:18:53.301Z"
+        }
+      ],
+      "status": "finalizado-avaliado",
+      "avaliacaoId": 1,
+      "criadoEm": "2026-04-27T00:18:47.956Z",
+      "atualizadoEm": "2026-04-27T00:19:05.201Z",
+      "id": "m_kSETB"
+    },
+    {
+      "clienteId": "guest",
+      "mensagens": [],
+      "status": "ativo",
+      "avaliacaoId": null,
+      "criadoEm": "2026-04-27T00:42:11.187Z",
+      "atualizadoEm": "2026-04-27T00:42:21.955Z",
+      "id": "RhowipJ"
+    }
+  ],
+  "admins": [
+    {
+      "id": "31415",
+      "senha": "123",
+      "nome": "Admin Supremo",
+      "tipo": "admin"
+    }
+  ],
+  "clientes": [
+    {
+      "cpf": "123",
+      "senha": "123",
+      "role": "cliente",
+      "favoritos": [],
+      "id": 1
+    },
+    {
+      "cpf": "123",
+      "senha": "123",
+      "role": "cliente",
+      "favoritos": [],
+      "id": 2
+    },
+    {
+      "cpf": "1234",
+      "senha": "123",
+      "role": "cliente",
+      "favoritos": [],
+      "id": 3
+    },
+    {
+      "cpf": "12345",
+      "senha": "123",
+      "role": "cliente",
+      "favoritos": [],
+      "id": 4
+    },
+    {
+      "cpf": "303",
+      "senha": "123",
+      "role": "cliente",
+      "favoritos": [],
+      "id": 5
+    },
+    {
+      "cpf": "12345",
+      "senha": "123",
+      "role": "cliente",
+      "favoritos": [],
+      "id": 6
+    }
+  ],
+  "lojistas": [
+    {
+      "id": "huguinho",
+      "nomeLojaPrincipal": "Huguinho Informática",
+      "responsavel": "Huguinho Silva",
+      "cnpj": "22.222.222/2222-22",
+      "cnpjNumeros": "22222222222222",
+      "senha": "123",
+      "telefone": "(21) 98811-2200",
+      "email": "huguinho@reparou.com",
+      "enderecoBase": "Rua do Hardware, 120 - Méier, RJ",
+      "tags": [
+        "Notebook",
+        "Formatação",
+        "Upgrade"
+      ]
+    },
+    {
+      "cnpj": "70770770724",
+      "senha": "123",
+      "role": "lojista",
+      "id": "kRoKlih"
+    },
+    {
+      "cnpj": "123",
+      "senha": "123",
+      "role": "lojista",
+      "id": "Vyq0VwX"
+    },
+    {
+      "cnpj": "",
+      "senha": "",
+      "role": "lojista",
+      "id": "79q7hsV"
+    },
+    {
+      "cnpj": "1234",
+      "senha": "123",
+      "role": "lojista",
+      "id": "rRpFBLX"
+    },
+    {
+      "cnpj": "",
+      "senha": "",
+      "role": "lojista",
+      "id": "iMU_UYY"
+    }
+  ],
+  "lojas": [
+    {
+      "id": "loja-a",
+      "nome": "Loja A",
+      "titulo": "LOJA DE REPARO A",
+      "lojistaId": "huguinho",
+      "imagem": "/imgtst.jpg",
+      "enderecos": [
+        "Rua do Processador, 15 - Méier, RJ"
+      ],
+      "enderecoLinhas": [
+        "Rua do Processador, 15",
+        "Méier, RJ"
+      ],
+      "telefones": [
+        "(21) 99111-1001"
+      ],
+      "tags": [
+        "SSD",
+        "Memória RAM",
+        "Celular",
+        "Tela",
+        "Bateria",
+        "Notebook",
+        "Windows",
+        "Backup",
+        "Gamer",
+        "Upgrade",
+        "iPhone",
+        "Formatação"
+      ],
+      "servicos": [
+        {
+          "id": "a2",
+          "tag": "Formatação",
+          "nome": "Formatação Completa",
+          "preco": "R$ 120 - 180",
+          "nota": 4.7,
+          "quantidadeAvaliacoes": 30,
+          "precoMin": "120",
+          "precoMax": "180"
+        },
+        {
+          "id": "a3",
+          "tag": "Memória RAM",
+          "nome": "Instalação de Memória RAM",
+          "preco": "R$ 70 - 120",
+          "nota": 4.9,
+          "quantidadeAvaliacoes": 19,
+          "precoMin": "70",
+          "precoMax": "120"
+        },
+        {
+          "id": "a4",
+          "tag": "Notebook",
+          "nome": "Diagnóstico",
+          "preco": "R$ 70 - 110",
+          "nota": 4.5,
+          "quantidadeAvaliacoes": 15,
+          "precoMin": "70",
+          "precoMax": "110"
+        },
+        {
+          "id": "loja-a-shared-battery",
+          "tag": "Bateria",
+          "nome": "Troca de Bateria",
+          "preco": "R$ 100 - 220",
+          "nota": 4.6,
+          "quantidadeAvaliacoes": 10,
+          "precoMin": "100",
+          "precoMax": "220"
+        }
+      ],
+      "media": 4.8,
+      "quantidadeAvaliacoes": 50
+    },
+    {
+      "id": "loja-x",
+      "nome": "Loja X",
+      "titulo": "LOJA X",
+      "lojistaId": "huguinho",
+      "imagem": "/imgtst.jpg",
+      "enderecos": [
+        "Rua Tecnológica, 286 - Méier, RJ"
+      ],
+      "enderecoLinhas": [
+        "Rua Tecnológica, 286",
+        "Méier, RJ"
+      ],
+      "telefones": [
+        "(21) 99999-9999",
+        "(21) 98888-8888"
+      ],
+      "tags": [
+        "Placa de vídeo",
+        "Limpeza",
+        "Fonte",
+        "Teclado",
+        "Placa-mãe",
+        "Cooler",
+        "Formatação",
+        "Bateria"
+      ],
+      "servicos": [
+        {
+          "id": "x1",
+          "tag": "Placa de vídeo",
+          "nome": "Conserto de Placas de Vídeo",
+          "preco": "R$ 400 - 500",
+          "nota": 4.8,
+          "quantidadeAvaliacoes": 18
+        },
+        {
+          "id": "x2",
+          "tag": "Limpeza",
+          "nome": "Manutenção",
+          "preco": "R$ 150 - 220",
+          "nota": 4.7,
+          "quantidadeAvaliacoes": 21
+        },
+        {
+          "id": "x3",
+          "tag": "Fonte",
+          "nome": "Diagnóstico",
+          "preco": "R$ 100 - 200",
+          "nota": 4.6,
+          "quantidadeAvaliacoes": 9
+        },
+        {
+          "id": "x4",
+          "tag": "Fonte",
+          "nome": "Troca de Peças",
+          "preco": "R$ 100 - 150",
+          "nota": 4.5,
+          "quantidadeAvaliacoes": 10
+        },
+        {
+          "id": "loja-x-shared-format",
+          "tag": "Formatação",
+          "nome": "Formatação e Otimização",
+          "preco": "R$ 80 - 160",
+          "nota": 4.7,
+          "quantidadeAvaliacoes": 12
+        },
+        {
+          "id": "loja-x-shared-battery",
+          "tag": "Bateria",
+          "nome": "Troca de Bateria",
+          "preco": "R$ 100 - 220",
+          "nota": 4.6,
+          "quantidadeAvaliacoes": 10
+        },
+        {
+          "id": "servico-1777074220553-7648",
+          "tag": "Cooler",
+          "nome": "Cooler",
+          "preco": "",
+          "nota": 0,
+          "quantidadeAvaliacoes": 0
+        }
+      ],
+      "media": 4.7,
+      "quantidadeAvaliacoes": 58
+    }
+  ],
+  "reviews": [
+    {
+      "chatId": "m_kSETB",
+      "cliente": "Cliente",
+      "tags": [],
+      "nota": 5,
+      "texto": "testando1",
+      "dataIso": "2026-04-27T00:19:05.153Z",
+      "id": 1
+    }
+  ],
+  "denuncias": [
+    {
+      "id": "1",
+      "lojaId": "loja-x",
+      "lojaNome": "LOJA DE REPARO X",
+      "motivos": [
+        "Fraude",
+        "Serviço"
+      ],
+      "descricao": "Cobraram por uma peça que não foi trocada.",
+      "data": "2026-03-17",
+      "status": "Pendente"
+    },
+    {
+      "id": "1777225163058",
+      "lojaId": "loja-x",
+      "lojaNome": "LOJA X",
+      "motivos": [
+        "Outro"
+      ],
+      "descricao": "",
+      "data": "2026-04-26",
+      "status": "Pendente"
+    },
+    {
+      "id": "1777225167513",
+      "lojaId": "loja-x",
+      "lojaNome": "LOJA X",
+      "motivos": [
+        "Outro"
+      ],
+      "descricao": "",
+      "data": "2026-04-26",
+      "status": "Pendente"
+    }
+  ],
+  "agendamentos": [
+    {
+      "id": "ag-1",
+      "lojistaId": "huguinho",
+      "lojaId": "loja-a",
+      "cliente": "Mariana Costa",
+      "servico": "Formatação",
+      "data": "2026-04-08",
+      "hora": "10:30",
+      "status": "cancelado"
+    },
+    {
+      "id": "ag-2",
+      "lojistaId": "huguinho",
+      "lojaId": "loja-x",
+      "cliente": "Carlos Silva",
+      "servico": "Troca de Fonte",
+      "data": "2026-04-09",
+      "hora": "14:00",
+      "status": "cancelado"
+    }
+  ]
+}
