@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico de Chats</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="mobile-container">
+        <header class="black-header chat-history-header">
+            <a href="inicio_cliente.html" class="back-btn" aria-label="Voltar">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+            <h1 class="page-title">Chats</h1>
+            <p class="chat-subtitle">Acompanhe seus atendimentos e pesquise pelo que você já enviou.</p>
+        </header>
+
+        <main class="content-area chat-history-content">
+            <div class="white-window chat-history-window">
+                <input id="pesquisaChat" type="text" class="search-input" placeholder="Pesquisar por mensagem enviada">
+                <div id="listaChats"></div>
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="inicio_cliente.html" class="nav-item"><img src="Casa e lupa minimalista_edited.png" class="home"></a>
+            <a href="Historico_de_Avaliacao.html" class="nav-item"><img src="star.png" class="home"></a>
+            <a href="Mensagems.html" class="nav-item"><img src="chat.png" class="home"></a>
+        </nav>
+    </div>
+
+    <script src="dados.js"></script>
+    <script>
+        const listaChats = document.getElementById('listaChats');
+        const pesquisaChat = document.getElementById('pesquisaChat');
+
+        function criarResumo(chat) {
+            const ultimaMensagem = obterUltimaMensagem(chat);
+            return ultimaMensagem ? ultimaMensagem.texto : 'Sem mensagens ainda.';
+        }
+
+        function renderizarTags(tags = []) {
+            return (tags || []).slice(0, 3).map((tag) => `<span class="review-service-chip">${tag}</span>`).join('');
+        }
+
+        function renderizarChats(termo = '') {
+            const chats = buscarChatsPorMensagemDoCliente(termo);
+
+            if (!chats.length) {
+                listaChats.innerHTML = '<div class="chat-empty-state">Nenhum chat encontrado para essa pesquisa.</div>';
+                return;
+            }
+
+            listaChats.innerHTML = chats.map((chat) => {
+                const loja = obterInformacoesLoja(chat.lojaId);
+                const ultimaMensagem = obterUltimaMensagem(chat);
+                return `
+                    <a href="${construirLinkChat(chat.id)}" class="item-card chat-history-card">
+                        <img src="${loja.imagem}" class="item-img" alt="${loja.nome}">
+                        <div class="chat-history-main">
+                            <div class="chat-history-top">
+                                <h4>${loja.nome}</h4>
+                                <span class="chat-date">${ultimaMensagem ? formatarDataHora(ultimaMensagem.horario) : ''}</span>
+                            </div>
+                            <p class="chat-service-label">${chat.tituloServico}</p>
+                            <div class="review-chip-row review-chip-row-inline">${renderizarTags(chat.tags)}</div>
+                            <p class="chat-preview">${criarResumo(chat)}</p>
+                            <span class="chat-status-badge ${chat.status}">${obterStatusChatLabel(chat.status)}</span>
+                        </div>
+                    </a>
+                `;
+            }).join('');
+        }
+
+        pesquisaChat.addEventListener('input', (event) => {
+            renderizarChats(event.target.value);
+        });
+
+        renderizarChats();
+    </script>
+</body>
+</html>

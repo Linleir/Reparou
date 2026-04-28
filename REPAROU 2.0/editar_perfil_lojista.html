@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>Editar Perfil do Lojista</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="bootstrap-app">
+  <div class="mobile-container">
+    
+    <div class="black-header profile-edit-header">
+        <a href="config_lojista.html" class="back-btn" aria-label="Voltar">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+
+        <div class="profile-center profile-edit-center text-center"> 
+            
+            <div class="profile-img-container d-flex align-items-center justify-content-center"> 
+                <img src="imgtst.jpg" class="profile2-img" alt="Foto de perfil">
+                <a href="#" class="profile-change-photo-link ms-3" style="font-size: 14px; text-decoration: none; color: #aaa;">Alterar Foto</a> 
+            </div>
+
+            <h2 id="header-nome-lojista" class="profile-user-name mt-3 mb-1">José Almeida</h2>
+            <p id="header-nome-loja" class="profile-store-subname text-muted" style="font-size: 14px;">Doces Sonhos</p>
+        </div>
+    </div>
+
+    <div class="content-area profile-edit-content-area">
+        <div class="white-window profile-edit-window">
+            
+            <div id="perfil-feedback" class="profile-feedback" style="display: none;" aria-live="polite"></div>
+
+            <div class="profile-form-group">
+                <label for="perfil-nome-lojista"><strong>Nome do Responsável</strong></label>
+                <input type="text" id="perfil-nome-lojista" class="search-input2" placeholder="Seu nome">
+            </div>
+
+            <div class="profile-form-group">
+                <label for="perfil-documento"><strong>CNPJ / Documento (Login)</strong></label>
+                <input type="text" id="perfil-documento" class="search-input2" placeholder="CNPJ ou CPF" disabled>
+                <small style="color: #666; font-size: 12px; margin-left: 10px;">O documento de login não pode ser alterado.</small>
+            </div>
+
+            <div class="profile-form-section">
+                <h3 style="margin-top: 20px; margin-bottom: 15px; font-size: 18px;">Trocar senha</h3>
+                <div class="profile-form-group">
+                    <label for="perfil-senha-atual"><strong>Senha atual</strong></label>
+                    <input type="password" id="perfil-senha-atual" class="search-input2" placeholder="Senha atual">
+                </div>
+                <div class="profile-form-group">
+                    <label for="perfil-senha-nova"><strong>Nova senha</strong></label>
+                    <input type="password" id="perfil-senha-nova" class="search-input2" placeholder="Nova senha">
+                </div>
+                <div class="profile-form-group">
+                    <label for="perfil-senha-confirmar"><strong>Confirmar nova senha</strong></label>
+                    <input type="password" id="perfil-senha-confirmar" class="search-input2" placeholder="Repita a nova senha">
+                </div>
+            </div>
+
+            <div class="btn-group profile-edit-actions">
+                <button id="salvar-perfil-btn" class="main-btn" type="button">Salvar alterações</button>
+                <a href="config_lojista.html" class="main-btn cancel-btn" style="text-align: center; text-decoration: none;">Cancelar</a>
+            </div>
+
+            <button id="excluir-perfil-btn" type="button" class="profile-delete-btn">Excluir conta de lojista</button>
+        </div>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="perfil_lojista.html" class="nav-item"><img src="Casa e lupa minimalista_edited.png" class="home"></a>
+        <a href="chat_lojista.html" class="nav-item"><img src="chat.png" class="home"></a>
+        <a href="agendamento_lojista.html" class="nav-item"><img src="star.png" class="home"></a>
+    </nav>
+
+  </div>
+
+  <script src="dados.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const idLojistaLogado = localStorage.getItem("lojistaLogado");
+
+      if (!idLojistaLogado) {
+        window.location.href = "index.html";
+        return;
+      }
+
+      // Busca o lojista no array global do dados.js
+      const lojista = lojistas.find(item => item.id === idLojistaLogado);
+
+      if (!lojista) {
+        window.location.href = "index.html";
+        return;
+      }
+
+      // Preenche os campos do formulário
+      document.getElementById('perfil-nome-lojista').value = lojista.responsavel || '';
+      document.getElementById('perfil-documento').value = lojista.id || ''; // Assumindo que o ID é o CNPJ/Documento
+
+      // --- NOVO: Preenche as informações de exibição do cabeçalho conforme a imagem ---
+      document.getElementById('header-nome-lojista').textContent = lojista.responsavel || '';
+
+      // Tenta pegar o nome da loja. Se o lojista tiver lojas, pega o nome da primeira.
+      if (lojista.lojas && lojista.lojas.length > 0) {
+          const idLoja = lojista.lojas[0];
+          const loja = lojas.find(item => item.id === idLoja);
+          if (loja) {
+              document.getElementById('header-nome-loja').textContent = loja.nome || 'Sem loja vinculada';
+          } else {
+              document.getElementById('header-nome-loja').textContent = 'Sem loja vinculada';
+          }
+      } else {
+          document.getElementById('header-nome-loja').textContent = 'Sem loja vinculada';
+      }
+      // ----------------------------------------------------------------------------------
+
+      function mostrarFeedback(texto, tipo) {
+        const box = document.getElementById('perfil-feedback');
+        box.textContent = texto;
+        box.className = 'profile-feedback ' + (tipo === 'error' ? 'auth-error' : 'success-text'); // Ajuste de classes de acordo com seu CSS
+        box.style.display = 'block';
+        box.style.color = tipo === 'error' ? 'red' : 'green';
+        box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      // Salvar alterações
+      document.getElementById('salvar-perfil-btn').addEventListener('click', function () {
+        const nome = document.getElementById('perfil-nome-lojista').value.trim();
+        const senhaAtual = document.getElementById('perfil-senha-atual').value;
+        const senhaNova = document.getElementById('perfil-senha-nova').value;
+        const senhaConfirmar = document.getElementById('perfil-senha-confirmar').value;
+
+        if (!nome) {
+          mostrarFeedback('O nome do responsável é obrigatório.', 'error');
+          return;
+        }
+
+        // Lógica de troca de senha
+        if (senhaAtual || senhaNova || senhaConfirmar) {
+          const senhaSalva = lojista.senha || '123'; // Puxa a senha do dados.js ou usa o padrão da sua demonstração
+          
+          if (senhaAtual !== senhaSalva) {
+            mostrarFeedback('A senha atual informada está incorreta.', 'error');
+            return;
+          }
+          if (!senhaNova || senhaNova.length < 3) {
+            mostrarFeedback('A nova senha precisa ter pelo menos 3 caracteres.', 'error');
+            return;
+          }
+          if (senhaNova !== senhaConfirmar) {
+            mostrarFeedback('A confirmação da nova senha não confere.', 'error');
+            return;
+          }
+          
+          lojista.senha = senhaNova; // Atualiza a senha no objeto
+        }
+
+        // Atualiza o nome no objeto e na exibição do cabeçalho
+        lojista.responsavel = nome;
+        document.getElementById('header-nome-lojista').textContent = nome;
+
+        document.getElementById('perfil-senha-atual').value = '';
+        document.getElementById('perfil-senha-nova').value = '';
+        document.getElementById('perfil-senha-confirmar').value = '';
+
+        mostrarFeedback('Perfil atualizado com sucesso!', 'success');
+        
+        // Pequeno delay para o feedback aparecer antes de redirecionar
+        setTimeout(function () {
+          window.location.href = 'config_lojista.html';
+        }, 1200);
+      });
+
+      // Excluir Conta
+      document.getElementById('excluir-perfil-btn').addEventListener('click', function () {
+        const confirmar = window.confirm('Tem certeza que deseja excluir sua conta de lojista? Esta ação é irreversível.');
+        if (!confirmar) return;
+
+        // Limpa o login do localStorage
+        localStorage.removeItem("lojistaLogado");
+        localStorage.removeItem("tipoUsuarioLogado");
+        
+        // Redireciona para o login
+        window.location.href = 'index.html';
+      });
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
