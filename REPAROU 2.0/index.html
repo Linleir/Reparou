@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<title>Reparou - Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bootstrap-app">
+  <div class="mobile-container auth-screen">
+    <div class="auth-header auth-header-center">
+      <h1>REPAROU</h1>
+      <p>Seu app de busca para<br>conserto de PCs e notebooks</p>
+    </div>
+
+    <div class="content-area">
+      <div class="white-window auth-window">
+        <form class="form-container" id="login-form">
+          <label for="login-documento"><strong>Login</strong></label>
+          <input
+            type="text"
+            class="search-input2"
+            id="login-documento"
+            placeholder="CPF ou CNPJ"
+            maxlength="18"
+          >
+
+          <div class="auth-inline-text">
+            <span>Não tem conta?</span>
+            <a href="cadastro.html">CRIAR CONTA</a>
+          </div>
+
+          <label for="login-senha"><strong>Senha</strong></label>
+          <input
+            type="password"
+            class="search-input2"
+            id="login-senha"
+            placeholder="Senha"
+          >
+
+          <a href="#" class="auth-link">Esqueceu sua senha?</a>
+
+          <p id="login-erro" class="auth-error"></p>
+
+          <button type="submit" class="auth-primary-btn">LOGIN</button>
+        </form>
+
+        <a href="inicio_sem_conta.html" class="auth-secondary-btn auth-btn-link">
+          Entrar sem conta
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="dados.js"></script>
+  <script src="auth.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

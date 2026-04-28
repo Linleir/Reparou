@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caixa de Entrada - Lojista</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="bootstrap-app">
+    <div class="mobile-container">
+        
+        <header class="black-header chat-history-header">
+            <h1 class="page-title" style="margin-top: 15px;">Caixa de Entrada</h1>
+            <p class="chat-subtitle">Faça a gestão dos contactos e orçamentos dos seus clientes.</p>
+        </header>
+
+        <main class="content-area chat-history-content">
+            <div class="white-window chat-history-window">
+                <input id="pesquisaChatLojista" type="text" class="search-input" placeholder="Pesquisar por cliente ou serviço">
+                <div id="listaChatsLojista">
+                    </div>
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="perfil_lojista.html" class="nav-item"><img src="Casa e lupa minimalista_edited.png" class="home" alt="Início"></a>
+            <a href="chat_lojista.html" class="nav-item"><img src="chat.png" class="home" alt="Chats"></a>
+            <a href="agendamento_lojista.html" class="nav-item"><img src="star.png" class="home" alt="Agendamentos"></a>
+        </nav>
+
+    </div>
+
+    <script src="dados.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const idLojistaLogado = localStorage.getItem("lojistaLogado");
+            
+            if (!idLojistaLogado) {
+                window.location.href = "index.html";
+                return;
+            }
+
+            // Busca o lojista no dados.js
+            const lojista = lojistas.find(item => item.id === idLojistaLogado);
+            if (!lojista) {
+                window.location.href = "index.html";
+                return;
+            }
+
+            const listaChats = document.getElementById('listaChatsLojista');
+            const pesquisaChat = document.getElementById('pesquisaChatLojista');
+
+            // Funções auxiliares (espelham as do cliente)
+            function criarResumo(chat) {
+                // Tenta usar a sua função do dados.js ou faz um fallback seguro
+                const ultima = typeof obterUltimaMensagem === 'function' 
+                    ? obterUltimaMensagem(chat) 
+                    : (chat.mensagens && chat.mensagens.length > 0 ? chat.mensagens[chat.mensagens.length - 1] : null);
+                
+                return ultima ? ultima.texto : 'A aguardar mensagem...';
+            }
+
+            function renderizarTags(tags = []) {
+                return (tags || []).slice(0, 3).map(tag => `<span class="review-service-chip">${tag}</span>`).join('');
+            }
+
+            // Lógica de Renderização
+            function renderizarChats(termo = '') {
+                let todosChats = [];
+                try {
+                    // Tenta puxar da mesma base de dados local onde salva as mensagens do cliente
+                    const bruto = localStorage.getItem('reparouChatsDemoV4') || localStorage.getItem('reparouChats') || localStorage.getItem('reparouChatsDemo');
+                    if (bruto) todosChats = JSON.parse(bruto);
+                } catch (e) {
+                    console.error("Erro ao ler os chats do sistema", e);
+                }
+
+                // 1. Filtra apenas os chats das lojas deste lojista específico
+                // 2. Garante que só mostra chats com pelo menos 1 mensagem (não mostra rascunhos do cliente)
+                let chatsDoLojista = todosChats.filter(chat => {
+                    const pertenceAoLojista = lojista.lojas && lojista.lojas.includes(chat.lojaId);
+                    const naoERascunho = chat.mensagens && chat.mensagens.length > 0;
+                    return pertenceAoLojista && naoERascunho;
+                });
+
+                // Pesquisa por texto do chat ou serviço
+                if (termo) {
+                    const t = termo.toLowerCase();
+                    chatsDoLojista = chatsDoLojista.filter(chat => {
+                        const servicoMatch = (chat.tituloServico || '').toLowerCase().includes(t);
+                        const msgMatch = chat.mensagens.some(m => m.texto.toLowerCase().includes(t));
+                        return servicoMatch || msgMatch;
+                    });
+                }
+
+                // Estado vazio
+                if (!chatsDoLojista.length) {
+                    listaChats.innerHTML = '<div class="chat-empty-state" style="text-align: center; padding: 20px; color: #666;">Nenhum contacto de cliente encontrado.</div>';
+                    return;
+                }
+
+                // Monta os cartões na listagem
+                listaChats.innerHTML = chatsDoLojista.map(chat => {
+                    // Descobre o nome da loja para mostrar (caso o lojista tenha mais do que uma)
+                    const loja = (typeof lojas !== 'undefined' ? lojas.find(l => l.id === chat.lojaId) : null) || { nome: 'A sua loja' };
+                    
+                    const nomeCliente = chat.clienteNome || "Cliente";
+
+                    // NOTA: O link encaminha para 'responder_chat.html' (que será a contraparte do Chat_Loja.html)
+                    return `
+                        <a href="responder_chat.html?chat=${chat.id}" class="item-card chat-history-card" style="text-decoration: none; color: inherit; display: block;">
+                            <div class="chat-history-main" style="width: 100%;">
+                                <div class="chat-history-top" style="display: flex; justify-content: space-between; align-items: center;">
+                                    <h4 style="margin: 0; font-size: 16px;">${nomeCliente} <span style="font-size: 12px; font-weight: normal; color: #888;">(${loja.nome})</span></h4>
+                                </div>
+                                <p class="chat-service-label" style="font-weight: bold; margin-top: 5px; font-size: 14px;">${chat.tituloServico || 'Serviço Geral'}</p>
+                                <div class="review-chip-row review-chip-row-inline" style="margin: 5px 0;">${renderizarTags(chat.tags)}</div>
+                                <p class="chat-preview" style="color: #555; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${criarResumo(chat)}</p>
+                                
+                                <span class="chat-status-badge ${chat.status || 'pendente'}" style="margin-top: 8px; display: inline-block;">
+                                    ${typeof obterStatusChatLabel === 'function' ? obterStatusChatLabel(chat.status) : (chat.status || 'Em andamento')}
+                                </span>
+                            </div>
+                        </a>
+                    `;
+                }).join('');
+            }
+
+            pesquisaChat.addEventListener('input', (event) => {
+                renderizarChats(event.target.value);
+            });
+
+            renderizarChats();
+        });
+    </script>
+</body>
+</html>

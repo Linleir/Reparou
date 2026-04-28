@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Editar Loja</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="mobile-container">
+
+<header class="black-header">
+    <a href="perfil_lojista.html" class="back-btn">←</a>
+    <h2 style="color:white; text-align:center;">Editar Loja</h2>
+</header>
+
+<form class="form-container">
+
+    <input type="text" class="input-field" placeholder="Nome da Loja">
+    <input type="text" class="input-field" placeholder="Endereço">
+
+    <div class="row">
+        <input type="text" class="input-field" placeholder="Abre às">
+        <input type="text" class="input-field" placeholder="Fecha às">
+    </div>
+
+    <label>Selecionar Tags:</label>
+
+    <div class="tag-container">
+
+        <input type="checkbox" id="tag1">
+        <label for="tag1" class="tag">Reparo SSD <span class="x">x</span></label>
+
+        <input type="checkbox" id="tag2">
+        <label for="tag2" class="tag">Diagnóstico <span class="x">x</span></label>
+
+        <input type="checkbox" id="tag3">
+        <label for="tag3" class="tag">Reballing <span class="x">x</span></label>
+
+        <input type="checkbox" id="tag4">
+        <label for="tag4" class="tag">Placa de Vídeo <span class="x">x</span></label>
+
+    </div>
+
+    <div class="btn-group">
+        <button type="submit" class="main-btn">Salvar</button>
+        <a href="perfil_lojista.html" class="main-btn cancel-btn">Cancelar</a>
+    </div>
+
+</form>
+
+</div>
+</body>
+</html>
