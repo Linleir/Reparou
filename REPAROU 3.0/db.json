@@ -1,0 +1,540 @@
+{
+  "chats": [
+    {
+      "id": "chat-1777397969599",
+      "lojaId": "loja-1777258501616",
+      "clienteId": 8,
+      "clienteNome": "João Silva",
+      "serviceTag": "Serviço",
+      "tags": [],
+      "tituloServico": "Serviço",
+      "status": "finalizado-avaliado",
+      "mensagens": [
+        {
+          "autor": "cliente",
+          "texto": "oi, tudo bem",
+          "horario": "2026-04-28T17:39:29.599Z",
+          "editado": true
+        }
+      ],
+      "criadoEm": "2026-04-28T17:39:29.599Z",
+      "atualizadoEm": "2026-04-28T17:39:58.064Z",
+      "avaliacaoId": 1
+    }
+  ],
+  "admins": [
+    {
+      "id": "31415",
+      "senha": "123",
+      "nome": "Admin Supremo",
+      "tipo": "admin"
+    }
+  ],
+  "clientes": [
+    {
+      "cpf": "40440440422",
+      "senha": "123",
+      "role": "cliente",
+      "favoritos": [],
+      "id": 7,
+      "nome": "1231233312"
+    },
+    {
+      "cpf": "188",
+      "senha": "2324",
+      "role": "cliente",
+      "favoritos": [
+        "loja-1777382621409",
+        "loja-x",
+        "loja-1777258505373"
+      ],
+      "id": 8,
+      "nome": "Joao",
+      "sobrenome": "Silva",
+      "perfil": {
+        "bairro": "Lugar X",
+        "municipio": "Municipio Tal",
+        "telefone1": "21 999999-9999",
+        "telefone2": "21 999999-9999",
+        "telefones": [
+          "21 999999-9999",
+          "21 999999-9999"
+        ]
+      }
+    }
+  ],
+  "lojistas": [
+    {
+      "id": "huguinho",
+      "nomeLojaPrincipal": "Huguinho Informática",
+      "responsavel": "Huguinho Silva",
+      "cnpj": "22.222.222/2222-22",
+      "cnpjNumeros": "22222222222222",
+      "senha": "123",
+      "telefone": "(21) 98811-2200",
+      "email": "huguinho@reparou.com",
+      "enderecoBase": "Rua do Hardware, 120 - Méier, RJ",
+      "tags": [
+        "Notebook",
+        "Formatação",
+        "Upgrade"
+      ]
+    },
+    {
+      "cnpj": "70770770724",
+      "senha": "123",
+      "role": "lojista",
+      "id": "kRoKlih",
+      "responsavel": "Davi ddd",
+      "email": "davi@gmail",
+      "telefone": "21 999999999999"
+    },
+    {
+      "cnpj": "123",
+      "senha": "123",
+      "role": "lojista",
+      "id": "Vyq0VwX"
+    },
+    {
+      "cnpj": "",
+      "senha": "",
+      "role": "lojista",
+      "id": "79q7hsV"
+    },
+    {
+      "cnpj": "1234",
+      "senha": "123",
+      "role": "lojista",
+      "id": "rRpFBLX"
+    },
+    {
+      "cnpj": "",
+      "senha": "",
+      "role": "lojista",
+      "id": "iMU_UYY"
+    },
+    {
+      "cnpj": "123456",
+      "senha": "123",
+      "role": "lojista",
+      "id": "67o79_I"
+    },
+    {
+      "cnpj": "60660660623",
+      "senha": "123",
+      "role": "lojista",
+      "id": "waRVUgq"
+    },
+    {
+      "cnpj": "1",
+      "senha": "1",
+      "role": "lojista",
+      "id": "vTqYtOP"
+    },
+    {
+      "cnpj": "lojista",
+      "senha": "1234",
+      "role": "lojista",
+      "id": "uwH-_46"
+    },
+    {
+      "cnpj": "40440440422",
+      "senha": "123",
+      "role": "lojista",
+      "id": "w5lMoaR"
+    },
+    {
+      "cnpj": "lojistateste",
+      "senha": "123",
+      "role": "lojista",
+      "id": "sYiOJTW"
+    },
+    {
+      "cnpj": "1234567",
+      "senha": "123",
+      "role": "lojista",
+      "id": "wMEJAR0"
+    }
+  ],
+  "lojas": [
+    {
+      "id": "loja-a",
+      "nome": "a",
+      "titulo": "a",
+      "lojistaId": "huguinho",
+      "imagem": "/imgtst.jpg",
+      "enderecos": [
+        "Rua do Processador, 15 - Méier, RJ"
+      ],
+      "enderecoLinhas": [
+        "Rua do Processador, 15",
+        "Méier, RJ"
+      ],
+      "telefones": [
+        "(21) 99111-1001"
+      ],
+      "tags": [
+        "SSD",
+        "Memória RAM",
+        "Celular",
+        "Tela",
+        "Bateria",
+        "Notebook",
+        "Windows",
+        "Backup",
+        "Gamer",
+        "Upgrade",
+        "iPhone",
+        "Formatação"
+      ],
+      "servicos": [
+        {
+          "id": "a2",
+          "tag": "Formatação",
+          "nome": "Formatação Completa",
+          "preco": "R$ 120 - 180",
+          "nota": 4.7,
+          "quantidadeAvaliacoes": 30,
+          "precoMin": "120",
+          "precoMax": "180"
+        },
+        {
+          "id": "a3",
+          "tag": "Memória RAM",
+          "nome": "Instalação de Memória RAM",
+          "preco": "R$ 70 - 120",
+          "nota": 4.9,
+          "quantidadeAvaliacoes": 19,
+          "precoMin": "70",
+          "precoMax": "120"
+        },
+        {
+          "id": "a4",
+          "tag": "Notebook",
+          "nome": "Diagnóstico",
+          "preco": "R$ 70 - 110",
+          "nota": 4.5,
+          "quantidadeAvaliacoes": 15,
+          "precoMin": "70",
+          "precoMax": "110"
+        },
+        {
+          "id": "loja-a-shared-battery",
+          "tag": "Bateria",
+          "nome": "Troca de Bateria",
+          "preco": "R$ 100 - 220",
+          "nota": 4.6,
+          "quantidadeAvaliacoes": 10,
+          "precoMin": "100",
+          "precoMax": "220"
+        }
+      ],
+      "media": 4.8,
+      "quantidadeAvaliacoes": 50
+    },
+    {
+      "id": "loja-x",
+      "nome": "Loja X",
+      "titulo": "LOJA X",
+      "lojistaId": "huguinho",
+      "imagem": "/imgtst.jpg",
+      "enderecos": [
+        "Rua Tecnológica, 286 - Méier, RJ"
+      ],
+      "enderecoLinhas": [
+        "Rua Tecnológica, 286",
+        "Méier, RJ"
+      ],
+      "telefones": [
+        "(21) 99999-9999",
+        "(21) 98888-8888"
+      ],
+      "tags": [
+        "Placa de vídeo",
+        "Limpeza",
+        "Fonte",
+        "Teclado",
+        "Placa-mãe",
+        "Cooler",
+        "Formatação",
+        "Bateria"
+      ],
+      "servicos": [
+        {
+          "id": "x1",
+          "tag": "Placa de vídeo",
+          "nome": "Conserto de Placas de Vídeo",
+          "preco": "R$ 400 - 500",
+          "nota": 4.8,
+          "quantidadeAvaliacoes": 18
+        },
+        {
+          "id": "x2",
+          "tag": "Limpeza",
+          "nome": "Manutenção",
+          "preco": "R$ 150 - 220",
+          "nota": 4.7,
+          "quantidadeAvaliacoes": 21
+        },
+        {
+          "id": "x3",
+          "tag": "Fonte",
+          "nome": "Diagnóstico",
+          "preco": "R$ 100 - 200",
+          "nota": 4.6,
+          "quantidadeAvaliacoes": 9
+        },
+        {
+          "id": "x4",
+          "tag": "Fonte",
+          "nome": "Troca de Peças",
+          "preco": "R$ 100 - 150",
+          "nota": 4.5,
+          "quantidadeAvaliacoes": 10
+        },
+        {
+          "id": "loja-x-shared-format",
+          "tag": "Formatação",
+          "nome": "Formatação e Otimização",
+          "preco": "R$ 80 - 160",
+          "nota": 4.7,
+          "quantidadeAvaliacoes": 12
+        },
+        {
+          "id": "loja-x-shared-battery",
+          "tag": "Bateria",
+          "nome": "Troca de Bateria",
+          "preco": "R$ 100 - 220",
+          "nota": 4.6,
+          "quantidadeAvaliacoes": 10
+        },
+        {
+          "id": "servico-1777074220553-7648",
+          "tag": "Cooler",
+          "nome": "Cooler",
+          "preco": "",
+          "nota": 0,
+          "quantidadeAvaliacoes": 0
+        }
+      ],
+      "media": 4.7,
+      "quantidadeAvaliacoes": 58
+    },
+    {
+      "id": "loja-1777258501616",
+      "nome": "Loja Principal",
+      "titulo": "LOJA PRINCIPAL",
+      "lojistaId": "kRoKlih",
+      "imagem": "/imgtst.jpg",
+      "enderecos": [],
+      "enderecoLinhas": [
+        "Endereço principal",
+        "RJ"
+      ],
+      "telefones": [],
+      "tags": [],
+      "servicos": [],
+      "media": 0,
+      "quantidadeAvaliacoes": 0
+    },
+    {
+      "id": "loja-1777258505373",
+      "nome": "Loja 2",
+      "titulo": "LOJA 2",
+      "lojistaId": "kRoKlih",
+      "imagem": "/imgtst.jpg",
+      "enderecos": [],
+      "enderecoLinhas": [
+        "Endereço principal",
+        "RJ"
+      ],
+      "telefones": [],
+      "tags": [],
+      "servicos": [],
+      "media": 0,
+      "quantidadeAvaliacoes": 0
+    },
+    {
+      "id": "loja-1777258524223",
+      "nome": "s",
+      "titulo": "S",
+      "lojistaId": "kRoKlih",
+      "imagem": "/imgtst.jpg",
+      "enderecos": [
+        "s"
+      ],
+      "enderecoLinhas": [
+        "s"
+      ],
+      "telefones": [
+        "1"
+      ],
+      "tags": [],
+      "servicos": [],
+      "media": 0,
+      "quantidadeAvaliacoes": 0
+    },
+    {
+      "id": "loja-1777382621409",
+      "nome": "Loja teste 3",
+      "titulo": "LOJA TESTE 3",
+      "lojistaId": "w5lMoaR",
+      "imagem": "/imgtst.jpg",
+      "enderecos": [
+        "endereço Tal"
+      ],
+      "enderecoLinhas": [
+        "endereço Tal"
+      ],
+      "telefones": [
+        "21 33221100",
+        "21 99027179"
+      ],
+      "tags": [
+        "Placa-mãe",
+        "Limpeza"
+      ],
+      "servicos": [
+        {
+          "id": "servico-1777387478687-1961",
+          "tag": "Placa-mãe",
+          "nome": "Placa-mãe",
+          "preco": "",
+          "precoMin": "",
+          "precoMax": "",
+          "nota": 0,
+          "quantidadeAvaliacoes": 0
+        },
+        {
+          "id": "servico-1777387479149-2012",
+          "tag": "Limpeza",
+          "nome": "Limpeza",
+          "preco": "",
+          "precoMin": "",
+          "precoMax": "",
+          "nota": 0,
+          "quantidadeAvaliacoes": 0
+        }
+      ],
+      "media": 0,
+      "quantidadeAvaliacoes": 0
+    },
+    {
+      "id": "loja-1777390385990",
+      "nome": "1",
+      "titulo": "1",
+      "lojistaId": "kRoKlih",
+      "imagem": "/imgtst.jpg",
+      "enderecos": [],
+      "enderecoLinhas": [
+        "Endereço principal",
+        "RJ"
+      ],
+      "telefones": [],
+      "tags": [],
+      "servicos": [],
+      "media": 0,
+      "quantidadeAvaliacoes": 0
+    },
+    {
+      "id": "loja-1777390391647",
+      "nome": "2",
+      "titulo": "2",
+      "lojistaId": "kRoKlih",
+      "imagem": "/imgtst.jpg",
+      "enderecos": [],
+      "enderecoLinhas": [
+        "Endereço principal",
+        "RJ"
+      ],
+      "telefones": [],
+      "tags": [],
+      "servicos": [],
+      "media": 0,
+      "quantidadeAvaliacoes": 0
+    }
+  ],
+  "reviews": [
+    {
+      "chatId": "chat-1777397969599",
+      "lojaId": "loja-1777258501616",
+      "cliente": "Joao Silva",
+      "tituloServico": "Serviço",
+      "serviceTag": "Serviço",
+      "tags": [],
+      "nota": 3,
+      "texto": "teste1",
+      "dataIso": "2026-04-28T17:39:51.932Z",
+      "id": 1
+    }
+  ],
+  "denuncias": [
+    {
+      "id": "1",
+      "lojaId": "loja-x",
+      "lojaNome": "LOJA DE REPARO X",
+      "motivos": [
+        "Fraude",
+        "Serviço"
+      ],
+      "descricao": "Cobraram por uma peça que não foi trocada.",
+      "data": "2026-03-17",
+      "status": "Pendente"
+    },
+    {
+      "id": "1777225163058",
+      "lojaId": "loja-x",
+      "lojaNome": "LOJA X",
+      "motivos": [
+        "Outro"
+      ],
+      "descricao": "",
+      "data": "2026-04-26",
+      "status": "Pendente"
+    },
+    {
+      "id": "1777225167513",
+      "lojaId": "loja-x",
+      "lojaNome": "LOJA X",
+      "motivos": [
+        "Outro"
+      ],
+      "descricao": "",
+      "data": "2026-04-26",
+      "status": "Pendente"
+    },
+    {
+      "id": "1777383248095",
+      "lojaId": "loja-1777382621409",
+      "lojaNome": "LOJA TESTE 1",
+      "motivos": [
+        "Serviço"
+      ],
+      "descricao": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "data": "2026-04-28",
+      "status": "Pendente"
+    }
+  ],
+  "agendamentos": [
+    {
+      "id": "ag-1",
+      "lojistaId": "huguinho",
+      "lojaId": "loja-a",
+      "cliente": "Mariana Costa",
+      "servico": "Formatação",
+      "data": "2026-04-08",
+      "hora": "10:30",
+      "status": "cancelado"
+    },
+    {
+      "id": "ag-2",
+      "lojistaId": "huguinho",
+      "lojaId": "loja-x",
+      "cliente": "Carlos Silva",
+      "servico": "Troca de Fonte",
+      "data": "2026-04-09",
+      "hora": "14:00",
+      "status": "cancelado"
+    }
+  ]
+}
