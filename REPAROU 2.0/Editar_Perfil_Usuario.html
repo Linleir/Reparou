@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Editar Perfil</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+<div class="mobile-container">
+    <div class="black-header profile-edit-header">
+        <a href="Perfil Usuario.html" class="back-btn" aria-label="Voltar">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+
+        <div class="profile-center profile-user-center">
+            <img src="imgtst.jpg" class="profile2-img" alt="Foto de perfil">
+            <h2>Editar perfil</h2>
+            <p class="profile-user-subinfo">Atualize seus dados pessoais e base de busca</p>
+        </div>
+    </div>
+
+    <div class="content-area profile-edit-content-area">
+        <div class="white-window profile-edit-window">
+            <div id="perfil-feedback" class="profile-feedback" aria-live="polite"></div>
+
+            <div class="profile-form-group">
+                <label for="perfil-nome"><strong>Nome</strong></label>
+                <input type="text" id="perfil-nome" class="search-input2" placeholder="Seu nome">
+            </div>
+
+            <div class="profile-form-group">
+                <label for="perfil-sobrenome"><strong>Sobrenome</strong></label>
+                <input type="text" id="perfil-sobrenome" class="search-input2" placeholder="Seu sobrenome">
+            </div>
+
+            <div class="profile-form-group">
+                <label for="perfil-data"><strong>Data de nascimento</strong></label>
+                <input type="date" id="perfil-data" class="search-input2">
+            </div>
+
+            <div class="profile-form-section">
+                <h3>Base das pesquisas por local</h3>
+                <div class="profile-form-group">
+                    <label for="perfil-bairro"><strong>Bairro</strong></label>
+                    <input type="text" id="perfil-bairro" class="search-input2" placeholder="Ex.: Méier">
+                </div>
+                <div class="profile-form-group">
+                    <label for="perfil-municipio"><strong>Município</strong></label>
+                    <input type="text" id="perfil-municipio" class="search-input2" placeholder="Ex.: Rio de Janeiro">
+                </div>
+                <div class="profile-form-group">
+                    <label for="perfil-rua"><strong>Rua</strong></label>
+                    <input type="text" id="perfil-rua" class="search-input2" placeholder="Ex.: Rua Tecnológica">
+                </div>
+                <div class="profile-form-split">
+                    <div class="profile-form-group">
+                        <label for="perfil-numero"><strong>Número</strong></label>
+                        <input type="text" id="perfil-numero" class="search-input2" placeholder="123">
+                    </div>
+                    <div class="profile-form-group">
+                        <label for="perfil-complemento"><strong>Complemento</strong></label>
+                        <input type="text" id="perfil-complemento" class="search-input2" placeholder="Apto, bloco...">
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-form-section">
+                <h3>Trocar senha</h3>
+                <div class="profile-form-group">
+                    <label for="perfil-senha-atual"><strong>Senha atual</strong></label>
+                    <input type="password" id="perfil-senha-atual" class="search-input2" placeholder="Senha atual">
+                </div>
+                <div class="profile-form-group">
+                    <label for="perfil-senha-nova"><strong>Nova senha</strong></label>
+                    <input type="password" id="perfil-senha-nova" class="search-input2" placeholder="Nova senha">
+                </div>
+                <div class="profile-form-group">
+                    <label for="perfil-senha-confirmar"><strong>Confirmar nova senha</strong></label>
+                    <input type="password" id="perfil-senha-confirmar" class="search-input2" placeholder="Repita a nova senha">
+                </div>
+            </div>
+
+            <div class="btn-group profile-edit-actions">
+                <button id="salvar-perfil-btn" class="main-btn" type="button">Salvar alterações</button>
+                <a href="Perfil Usuario.html" class="main-btn cancel-btn">Cancelar</a>
+            </div>
+
+            <button id="excluir-perfil-btn" type="button" class="profile-delete-btn">Excluir perfil</button>
+        </div>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="inicio_cliente.html" class="nav-item"><img src="Casa e lupa minimalista_edited.png" class="home"></a>
+        <a href="Historico_de_Avaliacao.html" class="nav-item"><img src="star.png" class="home"></a>
+        <a href="Mensagems.html" class="nav-item"><img src="chat.png" class="home"></a>
+    </nav>
+</div>
+
+<script>
+(function () {
+  const STORAGE_KEY = 'reparouPerfilCliente';
+  const PASSWORD_KEY = 'reparouSenhaCliente';
+  const padrao = {
+    nome: 'Nome',
+    sobrenome: 'do UsuarioX',
+    dataNascimento: '',
+    localizacao: {
+      bairro: 'Méier',
+      municipio: 'Rio de Janeiro',
+      rua: '',
+      numero: '',
+      complemento: ''
+    }
+  };
+
+  function lerPerfil() {
+    try {
+      const salvo = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+      if (!salvo) return JSON.parse(JSON.stringify(padrao));
+      return {
+        ...padrao,
+        ...salvo,
+        localizacao: {
+          ...padrao.localizacao,
+          ...(salvo.localizacao || {})
+        }
+      };
+    } catch {
+      return JSON.parse(JSON.stringify(padrao));
+    }
+  }
+
+  function salvarPerfil(perfil) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(perfil));
+  }
+
+  function mostrarFeedback(texto, tipo) {
+    const box = document.getElementById('perfil-feedback');
+    box.textContent = texto;
+    box.className = 'profile-feedback ' + (tipo || 'success');
+    box.style.display = 'block';
+    box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  const perfil = lerPerfil();
+  document.getElementById('perfil-nome').value = perfil.nome || '';
+  document.getElementById('perfil-sobrenome').value = perfil.sobrenome || '';
+  document.getElementById('perfil-data').value = perfil.dataNascimento || '';
+  document.getElementById('perfil-bairro').value = perfil.localizacao?.bairro || '';
+  document.getElementById('perfil-municipio').value = perfil.localizacao?.municipio || '';
+  document.getElementById('perfil-rua').value = perfil.localizacao?.rua || '';
+  document.getElementById('perfil-numero').value = perfil.localizacao?.numero || '';
+  document.getElementById('perfil-complemento').value = perfil.localizacao?.complemento || '';
+
+  document.getElementById('salvar-perfil-btn').addEventListener('click', function () {
+    const nome = document.getElementById('perfil-nome').value.trim();
+    const sobrenome = document.getElementById('perfil-sobrenome').value.trim();
+    const dataNascimento = document.getElementById('perfil-data').value;
+    const bairro = document.getElementById('perfil-bairro').value.trim();
+    const municipio = document.getElementById('perfil-municipio').value.trim();
+    const rua = document.getElementById('perfil-rua').value.trim();
+    const numero = document.getElementById('perfil-numero').value.trim();
+    const complemento = document.getElementById('perfil-complemento').value.trim();
+    const senhaAtual = document.getElementById('perfil-senha-atual').value;
+    const senhaNova = document.getElementById('perfil-senha-nova').value;
+    const senhaConfirmar = document.getElementById('perfil-senha-confirmar').value;
+
+    if (!nome || !sobrenome) {
+      mostrarFeedback('Preencha nome e sobrenome para salvar o perfil.', 'error');
+      return;
+    }
+
+    if ((senhaAtual || senhaNova || senhaConfirmar)) {
+      const senhaSalva = localStorage.getItem(PASSWORD_KEY) || '123';
+      if (senhaAtual !== senhaSalva) {
+        mostrarFeedback('A senha atual informada está incorreta.', 'error');
+        return;
+      }
+      if (!senhaNova || senhaNova.length < 3) {
+        mostrarFeedback('A nova senha precisa ter pelo menos 3 caracteres.', 'error');
+        return;
+      }
+      if (senhaNova !== senhaConfirmar) {
+        mostrarFeedback('A confirmação da nova senha não confere.', 'error');
+        return;
+      }
+      localStorage.setItem(PASSWORD_KEY, senhaNova);
+    }
+
+    salvarPerfil({
+      nome,
+      sobrenome,
+      dataNascimento,
+      localizacao: { bairro, municipio, rua, numero, complemento }
+    });
+
+    document.getElementById('perfil-senha-atual').value = '';
+    document.getElementById('perfil-senha-nova').value = '';
+    document.getElementById('perfil-senha-confirmar').value = '';
+
+    mostrarFeedback('Perfil atualizado com sucesso.', 'success');
+    setTimeout(function () {
+      window.location.href = 'Perfil Usuario.html';
+    }, 900);
+  });
+
+  function obterChatsSalvos() {
+    const possiveisChaves = [
+      'reparouChatsDemoV4',
+      'reparouChatsDemoV3',
+      'reparouChatsDemoV2',
+      'reparouChatsDemo',
+      'reparouChatsCliente',
+      'reparouChats'
+    ];
+
+    for (const chave of possiveisChaves) {
+      try {
+        const bruto = localStorage.getItem(chave);
+        if (!bruto) continue;
+        const valor = JSON.parse(bruto);
+        if (Array.isArray(valor)) return valor;
+      } catch {}
+    }
+
+    return [];
+  }
+
+  function existeChatPendenteOuEmAndamento() {
+    return obterChatsSalvos().some((chat) => {
+      const status = String(chat?.status || '').trim().toLowerCase();
+      return status && status !== 'finalizado-avaliado';
+    });
+  }
+
+  document.getElementById('excluir-perfil-btn').addEventListener('click', function () {
+    if (existeChatPendenteOuEmAndamento()) {
+      mostrarFeedback('Você só pode excluir sua conta quando não houver chats em andamento ou ainda não finalizados.', 'error');
+      return;
+    }
+
+    const confirmar = window.confirm('Tem certeza que deseja excluir o perfil? Esta ação vai limpar os dados salvos localmente neste navegador.');
+    if (!confirmar) return;
+
+    localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(PASSWORD_KEY);
+    localStorage.removeItem('tipoUsuarioLogado');
+    localStorage.removeItem('clienteLocalBusca');
+    window.location.href = 'index.html';
+  });
+})();
+</script>
+</body>
+</html>
