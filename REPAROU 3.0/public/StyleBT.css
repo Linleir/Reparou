@@ -1,0 +1,88 @@
+/* ================= BASE ================= */
+body {
+    background: #333;
+}
+
+/* ================= HEADER ================= */
+.profile-header {
+    background: #000;
+    color: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+}
+
+.profile-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+/* ================= TEXTOS ================= */
+.profile-user-subinfo {
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+}
+
+/* ================= CARDS ================= */
+.custom-card {
+    background: #dbd8d8;
+    border-radius: 12px;
+    padding: 15px;
+    transition: 0.2s;
+}
+
+.custom-card:hover {
+    background: #cfcaca;
+}
+
+/* ================= LIST GROUP (ADAPTADO) ================= */
+.list-group-item {
+    background: #dbd8d8;
+    border: none;
+    border-radius: 12px !important;
+    margin-bottom: 10px;
+    transition: 0.2s;
+}
+
+.list-group-item:hover {
+    background: #cfcaca;
+}
+
+/* ================= BOTÕES ================= */
+.btn-custom {
+    background: #d9d9d9;
+    border-radius: 30px;
+    border: none;
+    color: #000;
+}
+
+.btn-custom:hover {
+    background: #cfcaca;
+}
+
+/* ================= INPUTS ================= */
+.form-control {
+    border-radius: 12px;
+}
+
+/* ================= NAVBAR INFERIOR ================= */
+.bottom-nav {
+    background: #000;
+}
+
+.bottom-nav img {
+    width: 26px;
+    height: 26px;
+}
+
+/* ================= UTILITÁRIOS ================= */
+.rounded-custom {
+    border-radius: 20px;
+}
+
+.shadow-soft {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
