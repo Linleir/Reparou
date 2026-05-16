@@ -11,7 +11,7 @@ import { apiPatch, apiPost } from "../utils/api";
 export const adminDeleteMessage = createAsyncThunk(
   "admin/deleteMessage",
   async ({ chatId, indexMensagem }) => {
-    const res = await fetch(`http://localhost:3001/chats/${chatId}`);
+    const res = await fetch(`http://localhost:5001/chats/${chatId}`);
     const chat = await res.json();
 
     const mensagensAtualizadas = (chat.mensagens || []).filter(
@@ -24,7 +24,7 @@ export const adminDeleteMessage = createAsyncThunk(
       atualizadoEm: new Date().toISOString(),
     };
 
-    await fetch(`http://localhost:3001/chats/${chatId}`, {
+    await fetch(`http://localhost:5001/chats/${chatId}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
@@ -41,7 +41,7 @@ export const adminDeleteMessage = createAsyncThunk(
 export const adminEditMessage = createAsyncThunk(
   "admin/editMessage",
   async ({ chatId, indexMensagem, novoTexto }) => {
-    const res = await fetch(`http://localhost:3001/chats/${chatId}`);
+    const res = await fetch(`http://localhost:5001/chats/${chatId}`);
 
     const chat = await res.json();
 
@@ -61,7 +61,7 @@ export const adminEditMessage = createAsyncThunk(
       atualizadoEm: new Date().toISOString(),
     };
 
-    await fetch(`http://localhost:3001/chats/${chatId}`, {
+    await fetch(`http://localhost:5001/chats/${chatId}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
@@ -113,7 +113,7 @@ export const deleteMessage = createAsyncThunk(
       atualizadoEm: new Date().toISOString(),
     };
 
-    await fetch(`http://localhost:3001/chats/${chat.id}`, {
+    await fetch(`http://localhost:5001/chats/${chat.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -147,7 +147,7 @@ export const sendMessage = createAsyncThunk(
       atualizadoEm: now,
     };
 
-    await fetch(`http://localhost:3001/chats/${chat.id}`, {
+    await fetch(`http://localhost:5001/chats/${chat.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

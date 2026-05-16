@@ -1,4 +1,4 @@
-const API = "http://localhost:3001";
+const API = "http://localhost:5001";
 
 export async function apiGet(resource) {
   const response = await fetch(`${API}/${resource}`);

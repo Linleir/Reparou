@@ -22,7 +22,7 @@
       "serviceTag": "Serviço",
       "tags": [],
       "tituloServico": "Serviço",
-      "status": "finalizado-avaliado",
+      "status": "finalizado",
       "mensagens": [
         {
           "autor": "cliente",
@@ -37,7 +37,7 @@
       ],
       "criadoEm": "2026-05-15T22:03:37.468Z",
       "atualizadoEm": "2026-05-15T23:07:55.902Z",
-      "avaliacaoId": 1
+      "avaliacaoId": null
     },
     {
       "id": "chat-1778886454669",
@@ -52,15 +52,9 @@
       ],
       "tituloServico": "Conserto de Placas de Vídeo",
       "status": "finalizado-avaliado",
-      "mensagens": [
-        {
-          "autor": "cliente",
-          "texto": "ola",
-          "horario": "2026-05-15T23:07:34.669Z"
-        }
-      ],
+      "mensagens": [],
       "criadoEm": "2026-05-15T23:07:34.670Z",
-      "atualizadoEm": "2026-05-15T23:08:24.471Z",
+      "atualizadoEm": "2026-05-16T06:53:59.159Z",
       "avaliacaoId": 2
     },
     {
@@ -146,6 +140,251 @@
       "criadoEm": "2026-05-15T23:09:07.645Z",
       "atualizadoEm": "2026-05-16T00:29:51.905Z",
       "avaliacaoId": 3
+    },
+    {
+      "id": "chat-1778893784981",
+      "lojaId": "loja-1778873571138",
+      "clienteId": 11,
+      "clienteNome": "daviteste luizteste",
+      "serviceTag": "Serviço",
+      "tags": [],
+      "tituloServico": "Serviço",
+      "status": "ativo",
+      "mensagens": [
+        {
+          "autor": "cliente",
+          "texto": "Quais são seus serviços",
+          "horario": "2026-05-16T01:09:44.982Z"
+        }
+      ],
+      "criadoEm": "2026-05-16T01:09:44.982Z",
+      "atualizadoEm": "2026-05-16T01:09:44.982Z",
+      "avaliacaoId": null
+    },
+    {
+      "id": "chat-1778893956320",
+      "lojaId": "loja-1778886084454",
+      "clienteId": 11,
+      "clienteNome": "daviteste luizteste",
+      "serviceTag": "Tela",
+      "tags": [
+        "Tela",
+        "Placa-mãe"
+      ],
+      "tituloServico": "Reparo de tela de iphone",
+      "status": "ativo",
+      "mensagens": [
+        {
+          "autor": "cliente",
+          "texto": "Ola, vc faz reparo de tela?",
+          "horario": "2026-05-16T01:12:36.320Z"
+        }
+      ],
+      "criadoEm": "2026-05-16T01:12:36.320Z",
+      "atualizadoEm": "2026-05-16T07:00:39.583Z",
+      "avaliacaoId": null
+    },
+    {
+      "id": "chat-1778896021251",
+      "lojaId": "loja-1777382621409",
+      "clienteId": 11,
+      "clienteNome": "daviteste luizteste",
+      "serviceTag": "Placa-mãe",
+      "tags": [
+        "Placa-mãe",
+        "Limpeza"
+      ],
+      "tituloServico": "Placa-mãe",
+      "status": "finalizado-avaliado",
+      "mensagens": [
+        {
+          "autor": "cliente",
+          "texto": "teste2",
+          "horario": "2026-05-16T01:47:01.251Z"
+        }
+      ],
+      "criadoEm": "2026-05-16T01:47:01.251Z",
+      "atualizadoEm": "2026-05-16T01:47:09.187Z",
+      "avaliacaoId": 4
+    },
+    {
+      "id": "chat-1778910922025",
+      "lojaId": "loja-1777390391647",
+      "clienteId": 11,
+      "clienteNome": "daviteste luizteste",
+      "serviceTag": "Serviço",
+      "tags": [],
+      "tituloServico": "Serviço",
+      "status": "finalizado",
+      "mensagens": [
+        {
+          "autor": "cliente",
+          "texto": "teste1",
+          "horario": "2026-05-16T05:55:22.025Z"
+        }
+      ],
+      "criadoEm": "2026-05-16T05:55:22.025Z",
+      "atualizadoEm": "2026-05-16T05:55:22.025Z",
+      "avaliacaoId": null
+    },
+    {
+      "id": "chat-1778910971013",
+      "lojaId": "loja-1778886084454",
+      "clienteId": 11,
+      "clienteNome": "daviteste luizteste",
+      "serviceTag": "Tela",
+      "tags": [
+        "Tela",
+        "Placa-mãe"
+      ],
+      "tituloServico": "Reparo de tela de iphone",
+      "status": "finalizado",
+      "mensagens": [
+        {
+          "autor": "cliente",
+          "texto": "teste1",
+          "horario": "2026-05-16T05:56:11.013Z"
+        }
+      ],
+      "criadoEm": "2026-05-16T05:56:11.013Z",
+      "atualizadoEm": "2026-05-16T05:56:11.013Z",
+      "avaliacaoId": null
+    },
+    {
+      "id": "chat-1778911267313",
+      "lojaId": "loja-x",
+      "clienteId": 11,
+      "clienteNome": "daviteste luizteste",
+      "serviceTag": "Placa de vídeo",
+      "tags": [
+        "Placa de vídeo",
+        "Limpeza",
+        "Fonte"
+      ],
+      "tituloServico": "Conserto de Placas de Vídeo",
+      "status": "finalizado",
+      "mensagens": [
+        {
+          "autor": "cliente",
+          "texto": "a",
+          "horario": "2026-05-16T06:01:07.313Z"
+        }
+      ],
+      "criadoEm": "2026-05-16T06:01:07.313Z",
+      "atualizadoEm": "2026-05-16T06:01:10.028Z",
+      "avaliacaoId": null
+    },
+    {
+      "id": "chat-1778911798422",
+      "lojaId": "loja-x",
+      "clienteId": 11,
+      "clienteNome": "daviteste luizteste",
+      "serviceTag": "Placa de vídeo",
+      "tags": [
+        "Placa de vídeo",
+        "Limpeza",
+        "Fonte"
+      ],
+      "tituloServico": "Conserto de Placas de Vídeo",
+      "status": "finalizado",
+      "mensagens": [
+        {
+          "autor": "cliente",
+          "texto": "teste1",
+          "horario": "2026-05-16T06:09:58.422Z"
+        }
+      ],
+      "criadoEm": "2026-05-16T06:09:58.422Z",
+      "atualizadoEm": "2026-05-16T06:09:58.422Z",
+      "avaliacaoId": null
+    },
+    {
+      "id": "chat-1778911899543",
+      "lojaId": "loja-1777390391647",
+      "clienteId": 11,
+      "clienteNome": "daviteste luizteste",
+      "serviceTag": "Serviço",
+      "tags": [],
+      "tituloServico": "Serviço",
+      "status": "ativo",
+      "mensagens": [
+        {
+          "autor": "cliente",
+          "texto": "alo",
+          "horario": "2026-05-16T06:11:39.543Z"
+        },
+        {
+          "autor": "cliente",
+          "texto": "ola",
+          "horario": "2026-05-16T06:51:42.213Z"
+        }
+      ],
+      "criadoEm": "2026-05-16T06:11:39.543Z",
+      "atualizadoEm": "2026-05-16T06:51:42.213Z",
+      "avaliacaoId": null
+    },
+    {
+      "id": "chat-1778911947974",
+      "lojaId": "loja-1778873571138",
+      "clienteId": 11,
+      "clienteNome": "daviteste luizteste",
+      "serviceTag": "Serviço",
+      "tags": [],
+      "tituloServico": "Serviço",
+      "status": "ativo",
+      "mensagens": [
+        {
+          "autor": "cliente",
+          "texto": "a",
+          "horario": "2026-05-16T06:12:27.974Z"
+        }
+      ],
+      "criadoEm": "2026-05-16T06:12:27.974Z",
+      "atualizadoEm": "2026-05-16T06:12:27.974Z",
+      "avaliacaoId": null
+    },
+    {
+      "id": "chat-1778912318489",
+      "lojaId": "loja-1777382621409",
+      "clienteId": 11,
+      "clienteNome": "daviteste luizteste",
+      "serviceTag": "Placa-mãe",
+      "tags": [
+        "Placa-mãe",
+        "Limpeza"
+      ],
+      "tituloServico": "Placa-mãe",
+      "status": "finalizado",
+      "mensagens": [
+        {
+          "autor": "cliente",
+          "texto": "b",
+          "horario": "2026-05-16T06:18:38.489Z"
+        }
+      ],
+      "criadoEm": "2026-05-16T06:18:38.489Z",
+      "atualizadoEm": "2026-05-16T06:18:38.489Z",
+      "avaliacaoId": null
+    },
+    {
+      "id": "chat-1778912431566",
+      "lojaId": "loja-1777390385990",
+      "clienteId": 11,
+      "clienteNome": "daviteste luizteste",
+      "serviceTag": "Serviço",
+      "tags": [],
+      "tituloServico": "Serviço",
+      "status": "finalizado",
+      "mensagens": [
+        {
+          "autor": "cliente",
+          "texto": "Testando",
+          "horario": "2026-05-16T06:20:31.566Z"
+        }
+      ],
+      "criadoEm": "2026-05-16T06:20:31.566Z",
+      "atualizadoEm": "2026-05-16T06:20:31.566Z",
+      "avaliacaoId": null
     }
   ],
   "admins": [
@@ -163,7 +402,7 @@
       "role": "cliente",
       "favoritos": [],
       "id": 9,
-      "nome": "aaa"
+      "nome": "aaas"
     },
     {
       "cpf": "11111111111",
@@ -171,7 +410,7 @@
       "role": "cliente",
       "favoritos": [],
       "id": 10,
-      "nome": "davidII",
+      "nome": "a",
       "sobrenome": "",
       "perfil": {
         "bairro": "",
@@ -186,22 +425,34 @@
       "senha": "123",
       "role": "cliente",
       "favoritos": [
-        "loja-x"
+        "loja-x",
+        "loja-1778873571138",
+        "loja-1778886084454",
+        "loja-1777382621409",
+        "loja-1777258524223",
+        "loja-1777258501616"
       ],
       "id": 11,
-      "nome": "daviteste",
-      "sobrenome": "luizteste",
+      "nome": "davitesteII",
+      "sobrenome": "luiztesteII",
       "perfil": {
         "bairro": "teste",
-        "municipio": "sp",
+        "municipio": "spa",
         "telefone1": "(22) 22222-22225",
-        "telefone2": "(33) 33333-2131",
+        "telefone2": "(21) 0999-999",
         "telefones": [
-          "(22) 22222-2222",
-          "(33) 33333-2131"
+          "(22) 22222-22225",
+          "(21) 0999-999"
         ]
       },
       "email": ""
+    },
+    {
+      "cpf": "99999999999",
+      "senha": "123",
+      "role": "cliente",
+      "favoritos": [],
+      "id": 12
     }
   ],
   "lojistas": [
@@ -339,9 +590,9 @@
       "senha": "123",
       "role": "lojista",
       "id": "A85bs3I",
-      "responsavel": "aaaaaaaaaMexido",
-      "email": "aaaaaaaaamexido",
-      "telefone": "(11) 11111-1111",
+      "responsavel": "Fulano",
+      "email": "de_tal",
+      "telefone": "(22) 33333-3333",
       "endereco": "oi",
       "bairro": "oi",
       "municipio": "oi"
@@ -659,8 +910,8 @@
     },
     {
       "id": "loja-1778886084454",
-      "nome": "te",
-      "titulo": "te",
+      "nome": "teste6",
+      "titulo": "TESTE6",
       "lojistaId": "A85bs3I",
       "imagem": "/imgtst.jpg",
       "enderecos": [
@@ -673,6 +924,58 @@
         "(11) 11111-14541",
         "(22) 22222-2222"
       ],
+      "tags": [
+        "Tela",
+        "Placa-mãe",
+        "Mouse"
+      ],
+      "servicos": [
+        {
+          "id": "servico-1778893889981-7668",
+          "tag": "Tela",
+          "nome": "Reparo de tela de iphone",
+          "preco": "R$ 100 - 400",
+          "precoMin": "100",
+          "precoMax": "400",
+          "nota": 0,
+          "quantidadeAvaliacoes": 0
+        },
+        {
+          "id": "servico-1778893908064-8100",
+          "tag": "Placa-mãe",
+          "nome": "Troca de placa",
+          "preco": "R$ 40 - 300",
+          "precoMin": "40",
+          "precoMax": "300",
+          "nota": 0,
+          "quantidadeAvaliacoes": 0
+        },
+        {
+          "id": "servico-1778914703906-2333",
+          "tag": "Mouse",
+          "nome": "comprar mouse",
+          "preco": "R$ 111 - 222",
+          "precoMin": "111",
+          "precoMax": "222",
+          "nota": 0,
+          "quantidadeAvaliacoes": 0
+        }
+      ],
+      "media": 0,
+      "quantidadeAvaliacoes": 0
+    },
+    {
+      "id": "loja-1778914776787",
+      "nome": "loja2 de fulano",
+      "titulo": "LOJA2 DE FULANO",
+      "lojistaId": "A85bs3I",
+      "imagem": "/imgtst.jpg",
+      "enderecos": [],
+      "enderecoLinhas": [
+        "Endereço principal",
+        "RJ"
+      ],
+      "telefones": [],
       "tags": [],
       "servicos": [],
       "media": 0,
@@ -680,18 +983,6 @@
     }
   ],
   "reviews": [
-    {
-      "chatId": "chat-1778882617468",
-      "lojaId": "loja-1778873571138",
-      "cliente": "Cliente",
-      "tituloServico": "Serviço",
-      "serviceTag": "Serviço",
-      "tags": [],
-      "nota": 3,
-      "texto": "dfd",
-      "dataIso": "2026-05-15T22:13:47.849Z",
-      "id": 1
-    },
     {
       "chatId": "chat-1778886454669",
       "lojaId": "loja-x",
@@ -720,9 +1011,127 @@
         "Fonte"
       ],
       "nota": 1,
-      "texto": "a",
+      "texto": "ai",
       "dataIso": "2026-05-15T23:09:11.171Z",
       "id": 3
+    },
+    {
+      "chatId": "chat-1778896021251",
+      "lojaId": "loja-1777382621409",
+      "cliente": "daviteste",
+      "tituloServico": "Placa-mãe",
+      "serviceTag": "Placa-mãe",
+      "tags": [
+        "Placa-mãe",
+        "Limpeza"
+      ],
+      "nota": 3,
+      "texto": "teste3",
+      "dataIso": "2026-05-16T01:47:09.154Z",
+      "id": 4
+    },
+    {
+      "chatId": "chat-1778910922025",
+      "lojaId": "loja-1777390391647",
+      "cliente": "daviteste",
+      "tituloServico": "Serviço",
+      "serviceTag": "Serviço",
+      "tags": [],
+      "nota": 3,
+      "texto": "teste4",
+      "dataIso": "2026-05-16T05:55:34.568Z",
+      "id": 13
+    },
+    {
+      "chatId": "chat-1778910971013",
+      "lojaId": "loja-1778886084454",
+      "cliente": "daviteste",
+      "tituloServico": "Reparo de tela de iphone",
+      "serviceTag": "Tela",
+      "tags": [
+        "Tela",
+        "Placa-mãe"
+      ],
+      "nota": 5,
+      "texto": "teste2",
+      "dataIso": "2026-05-16T05:56:37.746Z",
+      "id": 28
+    },
+    {
+      "chatId": "chat-1778911798422",
+      "lojaId": "loja-x",
+      "cliente": "daviteste",
+      "tituloServico": "Conserto de Placas de Vídeo",
+      "serviceTag": "Placa de vídeo",
+      "tags": [
+        "Placa de vídeo",
+        "Limpeza",
+        "Fonte"
+      ],
+      "nota": 3,
+      "texto": "teste2",
+      "dataIso": "2026-05-16T06:10:02.314Z",
+      "id": 29
+    },
+    {
+      "chatId": "chat-1778911899543",
+      "lojaId": "loja-1777390391647",
+      "cliente": "daviteste",
+      "tituloServico": "Serviço",
+      "serviceTag": "Serviço",
+      "tags": [],
+      "nota": 3,
+      "texto": "Teste5(ele salva avaliação mais não responde)",
+      "dataIso": "2026-05-16T06:11:56.965Z",
+      "id": 36
+    },
+    {
+      "chatId": "chat-1778911947974",
+      "lojaId": "loja-1778873571138",
+      "cliente": "daviteste",
+      "tituloServico": "Serviço",
+      "serviceTag": "Serviço",
+      "tags": [],
+      "nota": 4,
+      "texto": "salva mais não responde, precisa dar f5",
+      "dataIso": "2026-05-16T06:12:45.167Z",
+      "id": 37
+    },
+    {
+      "chatId": "chat-1778912431566",
+      "lojaId": "loja-1777390385990",
+      "cliente": "daviteste",
+      "tituloServico": "Serviço",
+      "serviceTag": "Serviço",
+      "tags": [],
+      "nota": 3,
+      "texto": "teste3",
+      "dataIso": "2026-05-16T06:20:36.065Z",
+      "id": 38
+    },
+    {
+      "chatId": "chat-1778912431566",
+      "lojaId": "loja-1777390385990",
+      "cliente": "daviteste",
+      "tituloServico": "Serviço",
+      "serviceTag": "Serviço",
+      "tags": [],
+      "nota": 5,
+      "texto": "testando avaliação 5",
+      "dataIso": "2026-05-16T06:21:38.287Z",
+      "id": 39
+    },
+    {
+      "chatId": "chat-1778911899543",
+      "lojaId": "loja-1777390391647",
+      "cliente": "daviteste",
+      "tituloServico": "Serviço",
+      "serviceTag": "Serviço",
+      "tags": [],
+      "nota": 3,
+      "texto": "testando",
+      "dataIso": "2026-05-16T06:51:49.417Z",
+      "id": 40
     }
   ],
   "denuncias": [
@@ -806,6 +1215,39 @@
       "descricao": "sdsd",
       "data": "2026-05-15",
       "status": "Resolvida"
+    },
+    {
+      "id": "1778893708806",
+      "lojaId": "loja-x",
+      "lojaNome": "LOJA X",
+      "motivos": [
+        "Fraude"
+      ],
+      "descricao": "a",
+      "data": "2026-05-16",
+      "status": "Pendente"
+    },
+    {
+      "id": "1778897244786",
+      "lojaId": "loja-1778874075488",
+      "lojaNome": "DA",
+      "motivos": [
+        "Serviço"
+      ],
+      "descricao": "a",
+      "data": "2026-05-16",
+      "status": "Pendente"
+    },
+    {
+      "id": "1778914287819",
+      "lojaId": "loja-x",
+      "lojaNome": "LOJA X",
+      "motivos": [
+        "Serviço"
+      ],
+      "descricao": "g",
+      "data": "2026-05-16",
+      "status": "Pendente"
     }
   ],
   "agendamentos": [

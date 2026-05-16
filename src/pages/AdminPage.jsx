@@ -99,6 +99,9 @@ export default function AdminPage() {
   const [loadingId, setLoadingId] =
     useState(null);
 
+    const [mensagemAdmin, setMensagemAdmin] =
+  useState({});
+
   const [search, setSearch] =
     useState("");
 
@@ -1636,51 +1639,122 @@ const lojasMaisAtivas =
 
 )}
 
-      {/* DENUNCIAS */}
+ {/* ========================================= */
+/* DENUNCIAS */
+/* ========================================= */}
 
-      {activeTab ===
-        "denuncias" && (
+{activeTab === "denuncias" && (
+  <>
+    {denuncias.map((denuncia) => {
 
-        <>
-          {denuncias.map(
-            (denuncia) => (
+      // CHAT RELACIONADO (corrigido)
+      const chat = chats.find(
+        (c) => String(c.id) === String(denuncia.chatId)
+      );
 
-              <div
-                key={denuncia.id}
-                className="card p-3 mb-3"
-              >
+      return (
+        <div
+          key={denuncia.id}
+          className="card p-3 mb-3"
+        >
+          {/* LOJA */}
+          <strong>
+            {denuncia.lojaNome}
+          </strong>
 
-                <strong>
-                  {
-                    denuncia.lojaNome
-                  }
-                </strong>
+          {/* STATUS */}
+          <div className="mb-2">
+            Status: {denuncia.status}
+          </div>
 
-                <div>
-                  {
-                    denuncia.status
-                  }
-                </div>
+          {/* MOTIVOS */}
+          <div className="mb-2">
+            <strong>Motivos:</strong>{" "}
+            {denuncia.motivos?.join(", ")}
+          </div>
 
-                <button
-                  className="btn btn-success btn-sm mt-2"
-                  onClick={() =>
-                    resolverDenuncia(
-                      denuncia
-                    )
-                  }
-                >
-                  Resolver
-                </button>
+          {/* DESCRIÇÃO */}
+          <div className="mb-3">
+            <strong>Descrição:</strong>{" "}
+            {denuncia.descricao}
+          </div>
 
+          {/* CHAT */}
+          <div className="border rounded p-2 mb-3 bg-light">
+            <h6 className="mb-3">Conversa</h6>
+
+            {!chat ? (
+              <div className="small text-muted">
+                Nenhum chat encontrado.
               </div>
+            ) : (
+              chat.mensagens?.map((msg, index) => (
+                <div
+                  key={index}
+                  className="border rounded p-2 mb-2 bg-white"
+                >
+                  <strong>{msg.autor}</strong>
+                  <div>{msg.texto}</div>
+                </div>
+              ))
+            )}
 
-            )
-          )}
-        </>
+            {/* INPUT ADMIN */}
+            <input
+              className="form-control mb-2"
+              placeholder="Responder cliente"
+              value={mensagemAdmin[denuncia.id] || ""}
+              onChange={(e) =>
+                setMensagemAdmin({
+                  ...mensagemAdmin,
+                  [denuncia.id]: e.target.value,
+                })
+              }
+            />
 
-      )}
+            {/* BOTÃO ENVIAR */}
+            <button
+              className="btn btn-dark btn-sm"
+              onClick={async () => {
+                const texto = mensagemAdmin[denuncia.id];
 
+                if (!chat) {
+                  alert("Chat não encontrado.");
+                  return;
+                }
+
+                if (!texto) return;
+
+                await dispatch(
+                  sendMessage({
+                    chat,
+                    text: texto,
+                    author: "admin",
+                  })
+                );
+
+                setMensagemAdmin({
+                  ...mensagemAdmin,
+                  [denuncia.id]: "",
+                });
+              }}
+            >
+              Enviar resposta
+            </button>
+          </div>
+
+          {/* BOTÃO RESOLVER */}
+          <button
+            className="btn btn-success btn-sm"
+            onClick={() => resolverDenuncia(denuncia)}
+          >
+            Resolver
+          </button>
+        </div>
+      );
+    })}
+  </>
+)}
       {/* ========================================= */
 /* CHATS */
 /* ========================================= */}

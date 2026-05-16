@@ -4,7 +4,7 @@ import { apiGet, apiPatch, apiPost } from "../utils/api";
 import { loadData } from "./loadThunks";
 
 
-const BASE_URL = "http://localhost:3001";
+const BASE_URL = "http://localhost:5002";
 const initialState = {
   clientes: [],
   lojistas: [],
@@ -159,7 +159,7 @@ export const updateCliente = createAsyncThunk(
 export const deleteCliente = createAsyncThunk(
   "data/deleteCliente",
   async (id) => {
-    await fetch(`http://localhost:3001/clientes/${id}`, {
+    await fetch(`http://localhost:5002/clientes/${id}`, {
       method: "DELETE",
     });
     return id;
@@ -169,7 +169,7 @@ export const deleteCliente = createAsyncThunk(
 export const deleteLojista = createAsyncThunk(
   "data/deleteLojista",
   async (id) => {
-    await fetch(`http://localhost:3001/lojistas/${id}`, {
+    await fetch(`http://localhost:5002/lojistas/${id}`, {
       method: "DELETE",
     });
 
@@ -182,7 +182,7 @@ export const deleteLojista = createAsyncThunk(
 export const deleteReview = createAsyncThunk(
   'data/deleteReview',
   async ({ reviewId, chatId }) => {
-    const baseUrl = 'http://localhost:3001';
+    const baseUrl = 'http://localhost:5001';
 
     // apaga review
     await fetch(`${baseUrl}/reviews/${reviewId}`, {
@@ -246,7 +246,7 @@ export const deleteMessage = createAsyncThunk(
       mensagens: novasMensagens
     };
 
-    await fetch(`http://localhost:3001/chats/${chat.id}`, {
+    await fetch(`http://localhost:5002/chats/${chat.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -296,7 +296,7 @@ export const sendMessage = createAsyncThunk(
       atualizadoEm: now,
     };
 
-    await fetch(`http://localhost:3001/chats/${chat.id}`, {
+    await fetch(`http://localhost:5002/chats/${chat.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -324,7 +324,7 @@ export const saveReview = createAsyncThunk(
       : await apiPost('reviews', review);
 
     // buscar chat atual primeiro (evita overwrite)
-    const chatRes = await fetch(`http://localhost:3001/chats/${chatId}`);
+    const chatRes = await fetch(`http://localhost:5002/chats/${chatId}`);
     const chat = await chatRes.json();
 
     const updatedChat = {
@@ -334,7 +334,7 @@ export const saveReview = createAsyncThunk(
       atualizadoEm: new Date().toISOString(),
     };
 
-    await fetch(`http://localhost:3001/chats/${chatId}`, {
+    await fetch(`http://localhost:5002/chats/${chatId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updatedChat),
@@ -344,31 +344,26 @@ export const saveReview = createAsyncThunk(
   }
 );
 
-export const saveDenuncia = createAsyncThunk(
-  'data/saveDenuncia',
-  async (payload) => {
-    if (payload.id) {
-      return apiPatch(
-        'denuncias',
-        payload.id,
+export const saveDenuncia =
+  createAsyncThunk(
+
+    "data/saveDenuncia",
+
+    async (payload) => {
+
+      return apiPost(
+        "denuncias",
         payload
       );
     }
-
-    return apiPost(
-      'denuncias',
-      payload
-    );
-  }
-);
-
+  );
 export const saveLoja = createAsyncThunk('data/saveLoja', async ({ id, payload }) => {
   if (id) return apiPatch('lojas', id, payload);
   return apiPost('lojas', payload);
 });
 
 export const deleteLoja = createAsyncThunk('data/deleteLoja', async (lojaId) => {
-  const baseUrl = 'http://localhost:3001';
+  const baseUrl = 'http://localhost:5001';
 
   const [clientes, chats, reviews] = await Promise.all([
     fetch(`${baseUrl}/clientes`).then((r) => r.json()),

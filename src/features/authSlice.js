@@ -19,7 +19,7 @@ const saved = JSON.parse(localStorage.getItem("reparouAuth") || "null");
 export const loginCliente = createAsyncThunk(
   "auth/loginCliente",
   async ({ cpf, senha }) => {
-    const res = await fetch("http://localhost:3001/clientes");
+    const res = await fetch("http://localhost:5001/clientes");
     const clientes = await res.json();
 
     const user = clientes.find(

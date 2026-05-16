@@ -320,32 +320,21 @@ textarea {
 .star-select {
 
   background: transparent;
-
   border: none;
-
   font-size: 1.8rem;
-
   line-height: 1;
-
   margin-right: 4px;
-
   padding: 0 2px;
-
   cursor: pointer;
-
   transition: 0.2s;
-
   /* estrela apagada */
   color: #cfcfcf;
-
   text-shadow: none;
 }
 
 /* estrela ativa */
 .star-select.active {
-
   color: #f4b400;
-
   text-shadow:
     0 1px 0 #c58a00,
     0 0 2px rgba(0,0,0,0.12);
@@ -353,7 +342,6 @@ textarea {
 
 /* hover */
 .star-select:hover {
-
   transform: scale(1.12);
 }
 
