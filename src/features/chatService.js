@@ -1,5 +1,5 @@
 
-const BASE_URL = "http://localhost:3001/chats";
+const BASE_URL = "http://localhost:5001/chats";
 
 export const getChatById = async (chatId) => {
   const res = await fetch(`${BASE_URL}/${chatId}`);

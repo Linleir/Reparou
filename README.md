@@ -11,6 +11,7 @@
 
 ## Acessos de teste
 
+
 - Cliente: CPF `11122233344`, senha `123`
 - Lojista: CNPJ `22222222222222`, senha `123`
 - Admin: ID `00000000000000`, senha `123`

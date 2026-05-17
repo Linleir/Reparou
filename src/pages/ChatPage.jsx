@@ -362,7 +362,7 @@ export default function ChatPage() {
       )
         return;
 
-      await dispatch(
+      const result = await dispatch(
 
         saveReview({
 
@@ -409,8 +409,9 @@ export default function ChatPage() {
 
       ).unwrap();
 
+      // Redireciona para a página de edição/detalhes da avaliação criada
       navigate(
-        "/avaliacoes/historico"
+        `/avaliacoes/${result.review.id}`
       );
     };
 

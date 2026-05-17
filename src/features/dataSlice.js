@@ -4,7 +4,7 @@ import { apiGet, apiPatch, apiPost } from "../utils/api";
 import { loadData } from "./loadThunks";
 
 
-const BASE_URL = "http://localhost:5002";
+const BASE_URL = "http://localhost:5001";
 const initialState = {
   clientes: [],
   lojistas: [],
@@ -212,51 +212,7 @@ export const deleteReview = createAsyncThunk(
 
 
 
-export const editMessage = createAsyncThunk(
-  
-  'data/editMessage',
-  async ({ chat, indexMensagem, novoTexto }) => {
-    const now = new Date().toISOString();
-
-    const updated = {
-      ...chat,
-      mensagens: chat.mensagens.map((msg, index) =>
-        index === indexMensagem
-          ? { ...msg, texto: novoTexto, editado: true }
-          : msg
-      ),
-      atualizadoEm: now,
-    };
-
-    await apiPatch('chats', chat.id, updated);
-
-    return updated;
-  }
-);
-
-export const deleteMessage = createAsyncThunk(
-  'data/deleteMessage',
-  async ({ chat, indexMensagem }) => {
-    const novasMensagens = chat.mensagens.filter(
-      (_, i) => i !== indexMensagem
-    );
-
-    const chatAtualizado = {
-      ...chat,
-      mensagens: novasMensagens
-    };
-
-    await fetch(`http://localhost:5002/chats/${chat.id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(chatAtualizado)
-    });
-
-    return chatAtualizado;
-  }
-);
+// Removido: editMessage está em chatThunks.js
 
 
 
@@ -296,7 +252,7 @@ export const sendMessage = createAsyncThunk(
       atualizadoEm: now,
     };
 
-    await fetch(`http://localhost:5002/chats/${chat.id}`, {
+    await fetch(`http://localhost:5001/chats/${chat.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -324,7 +280,7 @@ export const saveReview = createAsyncThunk(
       : await apiPost('reviews', review);
 
     // buscar chat atual primeiro (evita overwrite)
-    const chatRes = await fetch(`http://localhost:5002/chats/${chatId}`);
+    const chatRes = await fetch(`http://localhost:5001/chats/${chatId}`);
     const chat = await chatRes.json();
 
     const updatedChat = {
@@ -334,7 +290,7 @@ export const saveReview = createAsyncThunk(
       atualizadoEm: new Date().toISOString(),
     };
 
-    await fetch(`http://localhost:5002/chats/${chatId}`, {
+    await fetch(`http://localhost:5001/chats/${chatId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updatedChat),
