@@ -159,7 +159,7 @@ export const updateCliente = createAsyncThunk(
 export const deleteCliente = createAsyncThunk(
   "data/deleteCliente",
   async (id) => {
-    await fetch(`http://localhost:5002/clientes/${id}`, {
+    await fetch(`${BASE_URL}/clientes/${id}`, {
       method: "DELETE",
     });
     return id;
@@ -169,7 +169,7 @@ export const deleteCliente = createAsyncThunk(
 export const deleteLojista = createAsyncThunk(
   "data/deleteLojista",
   async (id) => {
-    await fetch(`http://localhost:5002/lojistas/${id}`, {
+    await fetch(`${BASE_URL}/lojistas/${id}`, {
       method: "DELETE",
     });
 

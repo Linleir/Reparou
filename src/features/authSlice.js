@@ -134,10 +134,24 @@ const slice = createSlice({
       .addCase(registerCliente.fulfilled, (state, action) => {
         state.user = action.payload;
         state.role = "cliente";
+        localStorage.setItem(
+          "reparouAuth",
+          JSON.stringify({
+            user: action.payload,
+            role: "cliente",
+          })
+        );
       })
       .addCase(registerLojista.fulfilled, (state, action) => {
         state.user = action.payload;
         state.role = "lojista";
+        localStorage.setItem(
+          "reparouAuth",
+          JSON.stringify({
+            user: action.payload,
+            role: "lojista",
+          })
+        );
       });
   },
 });
