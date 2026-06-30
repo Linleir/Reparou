@@ -31,9 +31,13 @@ function InfoRow({ icon, label, value }) {
 export default function ClienteProfilePage() {
   const { user } = useSelector((state) => state.auth);
   const cliente = useSelector((state) =>
-    state.data.clientes.find((item) => item.id === user.id)
+    state.data.clientes.find((item) => item.id === user?.id)
   );
   const dispatch = useDispatch();
+
+  if (!user) {
+    return null;
+  }
 
   const nomeCompleto = `${cliente?.nome || ''} ${cliente?.sobrenome || ''}`.trim();
   const perfil = cliente?.perfil || {};

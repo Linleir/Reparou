@@ -7,7 +7,12 @@ const loginLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   skip: (req) => {
-    return req.ip === '127.0.0.1' || req.ip === 'localhost';
+    return (
+      req.ip === '127.0.0.1' ||
+      req.ip === 'localhost' ||
+      req.ip === '::1' ||
+      req.ip === '::ffff:127.0.0.1'
+    );
   },
   handler: (req, res) => {
     res.status(429).json({

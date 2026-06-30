@@ -37,12 +37,12 @@ function validarCNPJ(cnpj) {
   let numeros = cnpjLimpo.substring(0, tamanho);
   const digitos = cnpjLimpo.substring(tamanho);
   let soma = 0;
-  let pos = 0;
+  let pos = 1;
 
   for (let i = tamanho - 1; i >= 0; i--) {
     pos++;
     soma += numeros.charAt(i) * pos;
-    if (pos === 9) pos = 2;
+    if (pos === 9) pos = 1;
   }
 
   let resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
@@ -51,12 +51,12 @@ function validarCNPJ(cnpj) {
   tamanho = tamanho + 1;
   numeros = cnpjLimpo.substring(0, tamanho);
   soma = 0;
-  pos = 0;
+  pos = 1;
 
   for (let i = tamanho - 1; i >= 0; i--) {
     pos++;
     soma += numeros.charAt(i) * pos;
-    if (pos === 9) pos = 2;
+    if (pos === 9) pos = 1;
   }
 
   resultado = soma % 11 < 2 ? 0 : 11 - (soma % 11);
@@ -85,9 +85,7 @@ const validateLogin = [
     .trim(),
   body('senha')
     .notEmpty()
-    .withMessage('Senha é obrigatória')
-    .isLength({ min: 6 })
-    .withMessage('Senha deve ter pelo menos 6 caracteres'),
+    .withMessage('Senha é obrigatória'),
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -210,10 +208,42 @@ const validateRegisterLojista = [
   },
 ];
 
+const validateRegisterLojistaInicial = [
+  body('cnpj')
+    .notEmpty()
+    .withMessage('CNPJ é obrigatório')
+    .custom((cnpj) => {
+      if (!validarCNPJ(cnpj)) {
+        throw new Error('CNPJ inválido');
+      }
+      return true;
+    }),
+  body('senha')
+    .notEmpty()
+    .withMessage('Senha é obrigatória')
+    .custom((senha) => {
+      if (!validarSenhaForte(senha)) {
+        throw new Error('Senha fraca. Mínimo 8 caracteres, com maiúscula, minúscula e número');
+      }
+      return true;
+    }),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        error: 'Validação falhou',
+        details: errors.array(),
+      });
+    }
+    next();
+  },
+];
+
 module.exports = {
   validateLogin,
   validateRegisterCliente,
   validateRegisterLojista,
+  validateRegisterLojistaInicial,
   validarCPF,
   validarCNPJ,
   validarSenhaForte,

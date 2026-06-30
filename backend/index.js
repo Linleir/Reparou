@@ -329,21 +329,29 @@ async function aplicarDadosObrigatoriosDaAutenticacao(collection, payload, usuar
 }
 
 function exigeAutenticacaoParaEscrita(collection, req, res, next) {
-  if (collection === 'clientes' && req.method === 'POST') return next();
-  if (collection === 'lojistas' && req.method === 'POST') return next();
+  // Cadastro de clientes/lojistas deve passar pelas rotas oficiais /auth/register/*,
+  // que hasheiam a senha e validam os dados. O CRUD genérico exige autenticação
+  // (e, para criação, apenas admin — ver garantirPermissaoDeCriacao).
   return autenticarJwt(req, res, next);
 }
 
 function garantirPermissaoDeCriacao(collection, usuario) {
-  if (collection === 'clientes' || collection === 'lojistas') return true;
   if (!usuario) return false;
   if (usuario.role === 'admin') return true;
+  if (collection === 'clientes' || collection === 'lojistas') return false;
   if (collection === 'lojas') return usuario.role === 'lojista';
   if (collection === 'chats') return usuario.role === 'cliente';
   if (collection === 'reviews') return usuario.role === 'cliente';
   if (collection === 'denuncias') return usuario.role === 'cliente';
   if (collection === 'agendamentos') return usuario.role === 'cliente' || usuario.role === 'lojista';
   return false;
+}
+
+async function hashSenhaSeNecessario(collection, payload) {
+  if (!['clientes', 'lojistas', 'admins'].includes(collection)) return payload;
+  if (!payload.senha) return payload;
+  if (/^\$2[aby]\$/.test(payload.senha)) return payload; // já é hash bcrypt
+  return { ...payload, senha: await hashPassword(payload.senha) };
 }
 
 async function buscarUsuarioPorCredenciais(documento, senha) {
@@ -494,10 +502,11 @@ function registrarRotasCrud(collection, model, singularName) {
       }
 
       const payloadControlado = await aplicarDadosObrigatoriosDaAutenticacao(collection, req.body, req.user);
-      const novoDocumento = {
+      let novoDocumento = {
         ...payloadControlado,
         id: await gerarProximoId(collection, payloadControlado),
       };
+      novoDocumento = await hashSenhaSeNecessario(collection, novoDocumento);
 
       if (collection === 'reviews' && req.user?.role === 'cliente') {
         const chat = await models.chats.findOne(criarFiltroPorId(novoDocumento.chatId)).lean();
@@ -528,7 +537,7 @@ function registrarRotasCrud(collection, model, singularName) {
 
       const payloadControlado = await aplicarDadosObrigatoriosDaAutenticacao(collection, req.body, req.user);
       const atualizacao = {
-        ...payloadControlado,
+        ...(await hashSenhaSeNecessario(collection, payloadControlado)),
         id: existente.id,
       };
 
@@ -559,7 +568,7 @@ function registrarRotasCrud(collection, model, singularName) {
 
       const payloadControlado = await aplicarDadosObrigatoriosDaAutenticacao(collection, req.body, req.user);
       const atualizacao = {
-        ...payloadControlado,
+        ...(await hashSenhaSeNecessario(collection, payloadControlado)),
         id: existente.id,
       };
 
