@@ -351,8 +351,6 @@ async function buscarUsuarioPorCredenciais(documento, senha) {
 
   const admins = await models.admins.find({}).lean();
   for (const admin of admins) {
-    console.log("Quantidade admins:", admins.length);
-  console.log("Primeiro admin:", admins[0]);
     if (idsIguais(admin.id, documento) || idsIguais(somenteNumeros(admin.id), docLimpo)) {
       const senhaValida = await comparePassword(senha, admin.senha);
       if (senhaValida) return { usuario: admin, role: 'admin' };
