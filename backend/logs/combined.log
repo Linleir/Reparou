@@ -1,0 +1,27 @@
+{"level":"info","message":"Backend iniciado em porta 5001","service":"reparou-backend","timestamp":"2026-06-30 05:41:09"}
+{"level":"info","message":"GET /data","service":"reparou-backend","timestamp":"2026-06-30 05:45:56"}
+{"level":"info","message":"GET /data","service":"reparou-backend","timestamp":"2026-06-30 05:45:56"}
+{"level":"info","message":"PATCH /clientes/6","service":"reparou-backend","timestamp":"2026-06-30 05:46:46"}
+{"level":"info","message":"POST /auth/refresh","service":"reparou-backend","timestamp":"2026-06-30 05:46:46"}
+{"level":"info","message":"Token refreshed for user: 6","service":"reparou-backend","timestamp":"2026-06-30 05:46:46"}
+{"level":"info","message":"PATCH /clientes/6","service":"reparou-backend","timestamp":"2026-06-30 05:46:47"}
+{"level":"info","message":"PATCH /clientes/6","service":"reparou-backend","timestamp":"2026-06-30 05:46:48"}
+{"level":"info","message":"PATCH /clientes/6","service":"reparou-backend","timestamp":"2026-06-30 05:46:48"}
+{"level":"info","message":"PATCH /clientes/6","service":"reparou-backend","timestamp":"2026-06-30 05:46:48"}
+{"level":"info","message":"PATCH /clientes/6","service":"reparou-backend","timestamp":"2026-06-30 05:46:49"}
+{"level":"info","message":"PATCH /clientes/6","service":"reparou-backend","timestamp":"2026-06-30 05:46:49"}
+{"level":"info","message":"PATCH /clientes/6","service":"reparou-backend","timestamp":"2026-06-30 05:46:49"}
+{"level":"info","message":"GET /data","service":"reparou-backend","timestamp":"2026-06-30 05:47:09"}
+{"level":"info","message":"GET /data","service":"reparou-backend","timestamp":"2026-06-30 05:47:09"}
+{"level":"info","message":"PATCH /clientes/6","service":"reparou-backend","timestamp":"2026-06-30 05:47:15"}
+{"level":"info","message":"GET /data","service":"reparou-backend","timestamp":"2026-06-30 05:47:15"}
+{"level":"info","message":"PATCH /clientes/6","service":"reparou-backend","timestamp":"2026-06-30 05:47:20"}
+{"level":"info","message":"PATCH /clientes/6","service":"reparou-backend","timestamp":"2026-06-30 05:47:21"}
+{"level":"info","message":"POST /chats","service":"reparou-backend","timestamp":"2026-06-30 05:47:45"}
+{"level":"info","message":"PATCH /chats/chat-1782809265528","service":"reparou-backend","timestamp":"2026-06-30 05:47:54"}
+{"level":"info","message":"POST /reviews","service":"reparou-backend","timestamp":"2026-06-30 05:48:04"}
+{"level":"info","message":"GET /chats/chat-1782809265528","service":"reparou-backend","timestamp":"2026-06-30 05:48:04"}
+{"level":"info","message":"PUT /chats/chat-1782809265528","service":"reparou-backend","timestamp":"2026-06-30 05:48:04"}
+{"level":"info","message":"PATCH /reviews/42","service":"reparou-backend","timestamp":"2026-06-30 05:48:07"}
+{"level":"info","message":"GET /chats/chat-1782809265528","service":"reparou-backend","timestamp":"2026-06-30 05:48:07"}
+{"level":"info","message":"PUT /chats/chat-1782809265528","service":"reparou-backend","timestamp":"2026-06-30 05:48:07"}
