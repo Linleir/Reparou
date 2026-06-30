@@ -1,0 +1,370 @@
+.
+├── .gitignore
+├── README.md
+├── REPAROU 2.0
+│   ├── 17973908.jpg
+│   ├── 5b03c209-7a6a-4a9d-8c03-75035b629b9e.jpg
+│   ├── Casa e lupa minimalista_edited.png
+│   ├── Chat_Loja.html
+│   ├── Denuncia.html
+│   ├── Detalhe_Avaliacao.html
+│   ├── Editar Loja.html
+│   ├── Editar_Perfil_Usuario.html
+│   ├── Favoritos.html
+│   ├── Historico_de_Avaliacao.html
+│   ├── Loja_XV2.html
+│   ├── Mensagems.html
+│   ├── Perfil Usuario.html
+│   ├── README.md
+│   ├── Star 9.png
+│   ├── acessos.html
+│   ├── admin.html
+│   ├── agendamento_lojista.html
+│   ├── auth.js
+│   ├── avaliacao.html
+│   ├── cadastro.html
+│   ├── cadastro_loja.html
+│   ├── cadastro_lojista.html
+│   ├── cadastro_sucesso.html
+│   ├── chat.png
+│   ├── chat_lojista.html
+│   ├── config_lojista.html
+│   ├── dados.js
+│   ├── editar_loja.html
+│   ├── editar_perfil_lojista.html
+│   ├── filtro.html
+│   ├── filtro2.html
+│   ├── imgtst.jpg
+│   ├── index.html
+│   ├── inicio_cliente.html
+│   ├── inicio_sem_conta.html
+│   ├── login.html
+│   ├── loja.html
+│   ├── loja_x.html
+│   ├── loja_y.html
+│   ├── loja_z.html
+│   ├── mensagems.png
+│   ├── perfil.html
+│   ├── perfil_lojista.html
+│   ├── planilha.png
+│   ├── star.png
+│   ├── style.css
+│   └── teste
+├── REPAROU 3.0
+│   ├── .gitignore
+│   ├── README.md
+│   ├── backend
+│   │   ├── .env.example
+│   │   ├── config
+│   │   │   ├── db.js
+│   │   │   └── passport.js
+│   │   ├── data
+│   │   │   └── db.json
+│   │   ├── index.js
+│   │   ├── middlewares
+│   │   │   └── auth.js
+│   │   ├── models
+│   │   │   ├── genericModel.js
+│   │   │   └── index.js
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   └── scripts
+│   │       └── seed.js
+│   └── frontend
+│       ├── fix-react-imports.cjs
+│       ├── index.html
+│       ├── jsdoc.json
+│       ├── package-lock.json
+│       ├── package.json
+│       ├── public
+│       │   ├── 17973908.jpg
+│       │   ├── 5b03c209-7a6a-4a9d-8c03-75035b629b9e.jpg
+│       │   ├── Casa e lupa minimalista_edited.png
+│       │   ├── StyleBT.css
+│       │   ├── Test.css
+│       │   ├── chat.png
+│       │   ├── custom.css
+│       │   ├── imgtst.jpg
+│       │   ├── planilha.png
+│       │   └── star.png
+│       └── src
+│           ├── App.jsx
+│           ├── app
+│           │   └── store.js
+│           ├── components
+│           │   ├── Layout.jsx
+│           │   ├── LoadingState.jsx
+│           │   ├── ProtectedRoute.jsx
+│           │   └── StoreCard.jsx
+│           ├── features
+│           │   ├── authActions.js
+│           │   ├── authSlice.js
+│           │   ├── chatService.js
+│           │   ├── chatSlice.js
+│           │   ├── chatThunks.js
+│           │   ├── dataSlice.js
+│           │   └── loadThunks.js
+│           ├── main.jsx
+│           ├── pages
+│           │   ├── AccessPage.jsx
+│           │   ├── AdminPage.jsx
+│           │   ├── AdminUsersPage.jsx
+│           │   ├── AgendamentosPage.jsx
+│           │   ├── ChatPage.jsx
+│           │   ├── ClienteProfilePage.jsx
+│           │   ├── ComplaintPage.jsx
+│           │   ├── EditClienteProfilePage.jsx
+│           │   ├── EditLojaPage.jsx
+│           │   ├── EditLojistaPage.jsx
+│           │   ├── EditTagsServicesPage.jsx
+│           │   ├── FavoritesPage.jsx
+│           │   ├── HomePage.jsx
+│           │   ├── LoginPage.jsx
+│           │   ├── LojaLojistaPage.jsx
+│           │   ├── LojistaChatsPage.jsx
+│           │   ├── LojistaProfilePage.jsx
+│           │   ├── MessagesPage.jsx
+│           │   ├── RegisterLojistaPage.jsx
+│           │   ├── RegisterPage.jsx
+│           │   ├── ReviewDetailPage.jsx
+│           │   ├── ReviewHistoryPage.jsx
+│           │   ├── ReviewsPage.jsx
+│           │   ├── StorePage.jsx
+│           │   └── Untitled-1.txt
+│           ├── styles.css
+│           └── utils
+│               ├── api.js
+│               ├── format.js
+│               └── selectors.js
+├── Reparou-vers-o_final_inacabada
+│   ├── .gitignore
+│   ├── README.md
+│   ├── backend
+│   │   ├── config
+│   │   │   ├── db.js
+│   │   │   ├── logger.js
+│   │   │   └── passport.js
+│   │   ├── controllers
+│   │   │   ├── agendamentosController.js
+│   │   │   ├── baseController.js
+│   │   │   └── dataController.js
+│   │   ├── data
+│   │   │   └── db.json
+│   │   ├── index.js
+│   │   ├── logs
+│   │   │   ├── combined.log
+│   │   │   └── error.log
+│   │   ├── middlewares
+│   │   │   ├── auth.js
+│   │   │   ├── errorHandler.js
+│   │   │   ├── rateLimiter.js
+│   │   │   ├── sanitize.js
+│   │   │   └── validate.js
+│   │   ├── models
+│   │   │   ├── Admin.js
+│   │   │   ├── Agendamento.js
+│   │   │   ├── BlacklistedToken.js
+│   │   │   ├── Chat.js
+│   │   │   ├── Cliente.js
+│   │   │   ├── Denuncia.js
+│   │   │   ├── Loja.js
+│   │   │   ├── Lojista.js
+│   │   │   ├── Review.js
+│   │   │   └── index.js
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   ├── routes
+│   │   │   ├── api.js
+│   │   │   └── auth.js
+│   │   ├── scripts
+│   │   │   ├── migratePasswords.js
+│   │   │   └── seed.js
+│   │   └── utils
+│   │       ├── dbHelpers.js
+│   │       ├── hashPassword.js
+│   │       ├── tokenBlacklist.js
+│   │       └── tokenManager.js
+│   ├── frontend
+│   │   ├── fix-react-imports.cjs
+│   │   ├── index.html
+│   │   ├── jsdoc.json
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   ├── public
+│   │   │   ├── 17973908.jpg
+│   │   │   ├── 5b03c209-7a6a-4a9d-8c03-75035b629b9e.jpg
+│   │   │   ├── Casa e lupa minimalista_edited.png
+│   │   │   ├── StyleBT.css
+│   │   │   ├── Test.css
+│   │   │   ├── chat.png
+│   │   │   ├── custom.css
+│   │   │   ├── imgtst.jpg
+│   │   │   ├── planilha.png
+│   │   │   └── star.png
+│   │   └── src
+│   │       ├── App.jsx
+│   │       ├── app
+│   │       │   └── store.js
+│   │       ├── components
+│   │       │   ├── Layout.jsx
+│   │       │   ├── LoadingState.jsx
+│   │       │   ├── ProtectedRoute.jsx
+│   │       │   └── StoreCard.jsx
+│   │       ├── features
+│   │       │   ├── authActions.js
+│   │       │   ├── authSlice.js
+│   │       │   ├── chatService.js
+│   │       │   ├── chatSlice.js
+│   │       │   ├── chatThunks.js
+│   │       │   ├── dataSlice.js
+│   │       │   └── loadThunks.js
+│   │       ├── main.jsx
+│   │       ├── pages
+│   │       │   ├── AccessPage.jsx
+│   │       │   ├── AdminPage.jsx
+│   │       │   ├── AdminUsersPage.jsx
+│   │       │   ├── AgendamentosPage.jsx
+│   │       │   ├── ChatPage.jsx
+│   │       │   ├── ClienteProfilePage.jsx
+│   │       │   ├── ComplaintPage.jsx
+│   │       │   ├── EditClienteProfilePage.jsx
+│   │       │   ├── EditLojaPage.jsx
+│   │       │   ├── EditLojistaPage.jsx
+│   │       │   ├── EditTagsServicesPage.jsx
+│   │       │   ├── FavoritesPage.jsx
+│   │       │   ├── HomePage.jsx
+│   │       │   ├── LoginPage.jsx
+│   │       │   ├── LojaLojistaPage.jsx
+│   │       │   ├── LojistaChatsPage.jsx
+│   │       │   ├── LojistaProfilePage.jsx
+│   │       │   ├── MessagesPage.jsx
+│   │       │   ├── RegisterLojistaPage.jsx
+│   │       │   ├── RegisterPage.jsx
+│   │       │   ├── ReviewDetailPage.jsx
+│   │       │   ├── ReviewHistoryPage.jsx
+│   │       │   ├── ReviewsPage.jsx
+│   │       │   ├── StorePage.jsx
+│   │       │   └── Untitled-1.txt
+│   │       ├── styles.css
+│   │       └── utils
+│   │           ├── api.js
+│   │           ├── format.js
+│   │           └── selectors.js
+│   └── package-lock.json
+├── backend
+│   ├── config
+│   │   ├── db.js
+│   │   ├── logger.js
+│   │   └── passport.js
+│   ├── controllers
+│   │   ├── agendamentosController.js
+│   │   ├── baseController.js
+│   │   └── dataController.js
+│   ├── data
+│   │   └── db.json
+│   ├── index.js
+│   ├── logs
+│   │   ├── combined.log
+│   │   └── error.log
+│   ├── middlewares
+│   │   ├── auth.js
+│   │   ├── errorHandler.js
+│   │   ├── rateLimiter.js
+│   │   ├── sanitize.js
+│   │   └── validate.js
+│   ├── models
+│   │   ├── Admin.js
+│   │   ├── Agendamento.js
+│   │   ├── BlacklistedToken.js
+│   │   ├── Chat.js
+│   │   ├── Cliente.js
+│   │   ├── Denuncia.js
+│   │   ├── Loja.js
+│   │   ├── Lojista.js
+│   │   ├── Review.js
+│   │   ├── genericModel.js
+│   │   └── index.js
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── routes
+│   │   ├── api.js
+│   │   └── auth.js
+│   ├── scripts
+│   │   ├── migratePasswords.js
+│   │   └── seed.js
+│   └── utils
+│       ├── dbHelpers.js
+│       ├── hashPassword.js
+│       ├── tokenBlacklist.js
+│       └── tokenManager.js
+├── estrutura_nova.txt
+├── frontend
+│   ├── fix-react-imports.cjs
+│   ├── index.html
+│   ├── jsdoc.json
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── public
+│   │   ├── 17973908.jpg
+│   │   ├── 5b03c209-7a6a-4a9d-8c03-75035b629b9e.jpg
+│   │   ├── Casa e lupa minimalista_edited.png
+│   │   ├── StyleBT.css
+│   │   ├── Test.css
+│   │   ├── chat.png
+│   │   ├── custom.css
+│   │   ├── imgtst.jpg
+│   │   ├── planilha.png
+│   │   └── star.png
+│   └── src
+│       ├── App.jsx
+│       ├── app
+│       │   └── store.js
+│       ├── components
+│       │   ├── ActivitySidebar.jsx
+│       │   ├── Layout.jsx
+│       │   ├── LoadingState.jsx
+│       │   ├── ProtectedRoute.jsx
+│       │   └── StoreCard.jsx
+│       ├── features
+│       │   ├── authActions.js
+│       │   ├── authSlice.js
+│       │   ├── chatService.js
+│       │   ├── chatSlice.js
+│       │   ├── chatThunks.js
+│       │   ├── dataSlice.js
+│       │   └── loadThunks.js
+│       ├── main.jsx
+│       ├── pages
+│       │   ├── AccessPage.jsx
+│       │   ├── AdminPage.jsx
+│       │   ├── AdminUsersPage.jsx
+│       │   ├── AgendamentosPage.jsx
+│       │   ├── ChatPage.jsx
+│       │   ├── ClienteProfilePage.jsx
+│       │   ├── ComplaintPage.jsx
+│       │   ├── EditClienteProfilePage.jsx
+│       │   ├── EditLojaPage.jsx
+│       │   ├── EditLojistaPage.jsx
+│       │   ├── EditTagsServicesPage.jsx
+│       │   ├── FavoritesPage.jsx
+│       │   ├── HomePage.jsx
+│       │   ├── LoginPage.jsx
+│       │   ├── LojaLojistaPage.jsx
+│       │   ├── LojistaChatsPage.jsx
+│       │   ├── LojistaProfilePage.jsx
+│       │   ├── MessagesPage.jsx
+│       │   ├── RegisterLojistaPage.jsx
+│       │   ├── RegisterPage.jsx
+│       │   ├── ReviewDetailPage.jsx
+│       │   ├── ReviewHistoryPage.jsx
+│       │   ├── ReviewsPage.jsx
+│       │   ├── StorePage.jsx
+│       │   └── Untitled-1.txt
+│       ├── styles.css
+│       └── utils
+│           ├── api.js
+│           ├── format.js
+│           └── selectors.js
+└── package-lock.json
+
+54 directories, 314 files
