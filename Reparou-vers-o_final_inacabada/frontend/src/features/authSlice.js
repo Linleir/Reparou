@@ -6,28 +6,36 @@ const saved = JSON.parse(localStorage.getItem("reparouAuth") || "null");
 export const loginComCredenciais = createAsyncThunk(
   "auth/loginComCredenciais",
   async ({ documento, senha }) => {
-    return await apiPost("auth/login", { documento, senha });
+    return await apiPost("auth/login", { documento, senha }, { skipRefresh: true });
   }
 );
 
 export const registerCliente = createAsyncThunk(
   "auth/registerCliente",
   async (payload) => {
-    return await apiPost("auth/register/cliente", {
-      ...payload,
-      role: "cliente",
-      favoritos: [],
-    });
+    return await apiPost(
+      "auth/register/cliente",
+      {
+        ...payload,
+        role: "cliente",
+        favoritos: [],
+      },
+      { skipRefresh: true }
+    );
   }
 );
 
 export const registerLojista = createAsyncThunk(
   "auth/registerLojista",
   async (payload) => {
-    return await apiPost("auth/register/lojista", {
-      ...payload,
-      role: "lojista",
-    });
+    return await apiPost(
+      "auth/register/lojista",
+      {
+        ...payload,
+        role: "lojista",
+      },
+      { skipRefresh: true }
+    );
   }
 );
 
@@ -120,12 +128,6 @@ const slice = createSlice({
   extraReducers: (builder) => {
   builder
     .addCase(loginComCredenciais.fulfilled, (state, action) => {
-      alert(JSON.stringify(action.payload, null, 2));
-      console.log(
-        "LOGIN RESPONSE:",
-        JSON.stringify(action.payload, null, 2)
-      );
-
       state.user = action.payload.usuario;
       state.role = action.payload.usuario?.role;
       state.accessToken = action.payload.accessToken;

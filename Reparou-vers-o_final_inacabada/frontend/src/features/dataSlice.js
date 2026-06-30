@@ -521,7 +521,8 @@ const slice = createSlice({
          REGISTER CLIENTE
       ===================================== */
       .addCase(registerCliente.fulfilled, (state, action) => {
-        const cliente = action.payload.user;
+        const cliente = action.payload?.usuario;
+        if (!cliente) return;
         const exists = state.clientes.some((item) => idsIguais(item.id, cliente.id));
         if (!exists) state.clientes.push(cliente);
       })
@@ -530,7 +531,8 @@ const slice = createSlice({
          REGISTER LOJISTA
       ===================================== */
       .addCase(registerLojista.fulfilled, (state, action) => {
-        const lojista = action.payload.user;
+        const lojista = action.payload?.usuario;
+        if (!lojista) return;
         const exists = state.lojistas.some((item) => idsIguais(item.id, lojista.id));
         if (!exists) state.lojistas.push(lojista);
       })

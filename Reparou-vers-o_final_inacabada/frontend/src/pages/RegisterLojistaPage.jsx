@@ -25,32 +25,13 @@ export default function RegisterLojistaPage() {
   // -------------------------
   const formatarCnpj = (valor) => {
 
-    // remove tudo que não for número
     valor = valor.replace(/\D/g, "");
-
-    // limita em 14 números
     valor = valor.slice(0, 14);
 
-    // máscara CNPJ
-    valor = valor.replace(
-      /^(\d{2})(\d)/,
-      "$1.$2"
-    );
-
-    valor = valor.replace(
-      /^(\d{2})\.(\d{3})(\d)/,
-      "$1.$2.$3"
-    );
-
-    valor = valor.replace(
-      /\.(\d{3})(\d)/,
-      ".$1/$2"
-    );
-
-    valor = valor.replace(
-      /(\d{4})(\d)/,
-      "$1-$2"
-    );
+    valor = valor.replace(/^(\d{2})(\d)/, "$1.$2");
+    valor = valor.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
+    valor = valor.replace(/\.(\d{3})(\d)/, ".$1/$2");
+    valor = valor.replace(/(\d{4})(\d)/, "$1-$2");
 
     return valor;
   };
@@ -60,42 +41,51 @@ export default function RegisterLojistaPage() {
   // -------------------------
   const handleRegister = async () => {
 
-    // remove máscara
-    const cnpjLimpo =
-      cnpj.replace(/\D/g, "");
+    const cnpjLimpo = cnpj.replace(/\D/g, "");
 
-    // valida CNPJ
     if (cnpjLimpo.length !== 14) {
-
-      alert(
-        "Digite um CNPJ válido."
-      );
-
+      alert("Digite um CNPJ válido.");
       return;
     }
 
-    // valida senha
+    if (!senha) {
+      alert("Preencha a senha.");
+      return;
+    }
+
     if (senha !== confirm) {
-
-      alert(
-        "Senhas não conferem"
-      );
-
+      alert("Senhas não conferem.");
       return;
     }
 
-    await dispatch(
-      registerLojista({
+    const senhaForte =
+      senha.length >= 8 &&
+      /[A-Z]/.test(senha) &&
+      /[a-z]/.test(senha) &&
+      /[0-9]/.test(senha);
 
-        cnpj: cnpjLimpo,
+    if (!senhaForte) {
+      alert("Senha fraca. Use no mínimo 8 caracteres com maiúscula, minúscula e número.");
+      return;
+    }
 
-        senha,
-      })
-    );
+    try {
+      await dispatch(
+        registerLojista({
+          cnpj: cnpjLimpo,
+          senha,
+        })
+      ).unwrap();
 
-    alert(
-      "Lojista cadastrado com sucesso!"
-    );
+      alert("Lojista cadastrado com sucesso!");
+
+    } catch (err) {
+      const mensagem =
+        err?.details?.[0]?.msg ||
+        err?.error ||
+        "Erro ao cadastrar. Tente novamente.";
+      alert(mensagem);
+    }
   };
 
   return (
@@ -110,65 +100,39 @@ export default function RegisterLojistaPage() {
 
         {/* CNPJ */}
         <div className="mb-3">
-
           <input
             className="form-control"
-
             placeholder="CNPJ"
-
             value={cnpj}
-
             onChange={(e) =>
-              setCnpj(
-                formatarCnpj(
-                  e.target.value
-                )
-              )
+              setCnpj(formatarCnpj(e.target.value))
             }
           />
-
         </div>
 
         {/* SENHA */}
         <div className="mb-3">
-
           <input
             className="form-control"
-
             placeholder="Senha"
-
             type="password"
-
             value={senha}
-
-            onChange={(e) =>
-              setSenha(
-                e.target.value
-              )
-            }
+            onChange={(e) => setSenha(e.target.value)}
           />
-
+          <small className="text-muted">
+            Mínimo 8 caracteres, com maiúscula, minúscula e número.
+          </small>
         </div>
 
         {/* CONFIRMAR SENHA */}
         <div className="mb-3">
-
           <input
             className="form-control"
-
             placeholder="Confirmar senha"
-
             type="password"
-
             value={confirm}
-
-            onChange={(e) =>
-              setConfirm(
-                e.target.value
-              )
-            }
+            onChange={(e) => setConfirm(e.target.value)}
           />
-
         </div>
 
         {/* BOTÃO */}
@@ -178,14 +142,6 @@ export default function RegisterLojistaPage() {
         >
           Criar conta
         </button>
-
-        {/* ALERTA */}
-        <div className="alert alert-secondary">
-
-          Tela mantida para o fluxo
-          original.
-
-        </div>
 
         {/* VOLTAR */}
         <Link

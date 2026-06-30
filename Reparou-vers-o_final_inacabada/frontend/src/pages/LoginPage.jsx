@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Layout from "../components/Layout";
 import { loginComCredenciais, loginSuccess } from "../features/authSlice";
-import { loadData } from "../features/loadThunks";
 
 export default function LoginPage() {
   const [documento, setDocumento] = useState("");
@@ -39,17 +38,16 @@ export default function LoginPage() {
   const handleGuestLogin = async () => {
     dispatch(
       loginSuccess({
-        user: {
+        usuario: {
           id: "guest",
           nome: "Convidado",
           role: "guest",
         },
-        role: "guest",
-        token: null,
+        accessToken: null,
+        refreshToken: null,
       })
     );
 
-    await dispatch(loadData());
     navigate("/inicio");
   };
 
@@ -64,29 +62,29 @@ export default function LoginPage() {
     }
 
     try {
-      const auth = await dispatch(
-        loginComCredenciais({
-          documento: doc,
-          senha,
-        })
-      ).unwrap();
+  const auth = await dispatch(
+    loginComCredenciais({
+      documento: doc,
+      senha,
+    })
+  ).unwrap();
 
-      await dispatch(loadData());
+  const role = auth.usuario?.role; // ✅ role está dentro de usuario
 
-      if (auth.role === "admin") {
-        navigate("/admin");
-        return;
-      }
+  if (role === "admin") {
+    navigate("/admin");
+    return;
+  }
 
-      if (auth.role === "lojista") {
-        navigate("/lojista/perfil");
-        return;
-      }
+  if (role === "lojista") {
+    navigate("/lojista/perfil");
+    return;
+  }
 
-      navigate("/inicio");
-    } catch (error) {
-      setErro("Credenciais inválidas.");
-    }
+  navigate("/inicio");
+} catch (error) {
+  setErro("Credenciais inválidas.");
+}
   };
 
   return (

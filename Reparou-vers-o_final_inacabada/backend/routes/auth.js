@@ -4,7 +4,7 @@ const router = express.Router();
 
 const { autenticarJwt } = require('../middlewares/auth');
 const { loginLimiter, registerLimiter, refreshLimiter } = require('../middlewares/rateLimiter');
-const { validateLogin, validateRegisterCliente, validateRegisterLojista } = require('../middlewares/validate');
+const { validateLogin, validateRegisterCliente } = require('../middlewares/validate');
 const { hashPassword, comparePassword } = require('../utils/hashPassword');
 const { criarAccessToken, criarRefreshToken, verificarToken, decodificarToken } = require('../utils/tokenManager');
 const tokenBlacklist = require('../utils/tokenBlacklist');
@@ -20,6 +20,11 @@ function somenteNumeros(str) {
 function idsIguais(id1, id2) {
   if (!id1 || !id2) return false;
   return String(id1).toLowerCase() === String(id2).toLowerCase();
+}
+
+function formatarCnpj(cnpjNumeros) {
+  if (!cnpjNumeros || cnpjNumeros.length !== 14) return cnpjNumeros || '';
+  return cnpjNumeros.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
 }
 
 async function gerarProximoId(collection, dados) {
@@ -47,9 +52,15 @@ function criarRespostaAutenticacao(usuario, role, res) {
     maxAge: 7 * 24 * 60 * 60 * 1000,
   });
 
+  let nomeExibicao = usuario.nome || usuario.responsavel;
+  if (!nomeExibicao && role === 'lojista') {
+    const cnpjNumeros = usuario.cnpjNumeros || somenteNumeros(usuario.cnpj);
+    nomeExibicao = cnpjNumeros ? `Lojista ${formatarCnpj(cnpjNumeros)}` : 'Lojista';
+  }
+
   const usuarioSanitizado = {
     id: usuario.id,
-    nome: usuario.nome || usuario.responsavel,
+    nome: nomeExibicao,
     email: usuario.email,
     role,
   };
@@ -95,13 +106,6 @@ async function buscarUsuarioPorCredenciais(documento, senha) {
 
 // POST /auth/login
 router.post('/login', loginLimiter, validateLogin, async (req, res, next) => {
-  console.log("=== LOGIN RECEBIDO ===");
-  console.log(req.body);
-console.log("BODY:", req.body);
-const { documento, senha } = req.body;
-
-console.log("DOCUMENTO:", documento);
-console.log("SENHA:", senha);
   try {
     const { documento, senha } = req.body;
 
@@ -111,7 +115,6 @@ console.log("SENHA:", senha);
 
     if (!resultado) {
       logger.warn(`Failed login attempt for: ${documento}`);
-      console.log("ERRO Linha 109:");
       return res.status(401).json({ error: 'Credenciais inválidas.' });
     }
 
@@ -133,8 +136,6 @@ router.post('/register/cliente', registerLimiter, validateRegisterCliente, async
     const existente = await models.clientes.findOne({ cpf }).lean();
     if (existente) {
       logger.warn(`Client registration failed - CPF already exists: ${cpf}`);
-      console.log("ERRO LOGIN:131");
-      
       return res.status(409).json({ error: 'Já existe cliente cadastrado com este CPF.' });
     }
 
@@ -158,7 +159,7 @@ router.post('/register/cliente', registerLimiter, validateRegisterCliente, async
 });
 
 // POST /auth/register/lojista
-router.post('/register/lojista', registerLimiter, validateRegisterLojista, async (req, res, next) => {
+router.post('/register/lojista', registerLimiter, async (req, res, next) => {
   try {
     const cnpjNumeros = somenteNumeros(req.body.cnpj || req.body.cnpjNumeros);
 
@@ -167,7 +168,6 @@ router.post('/register/lojista', registerLimiter, validateRegisterLojista, async
     const existente = await models.lojistas.findOne({ $or: [{ cnpjNumeros }, { cnpj: cnpjNumeros }] }).lean();
     if (existente) {
       logger.warn(`Shop registration failed - CNPJ already exists: ${cnpjNumeros}`);
-      console.log("ERRO linha 165:" );
       return res.status(409).json({ error: 'Já existe lojista cadastrado com este CNPJ.' });
     }
 
@@ -201,13 +201,11 @@ router.post('/refresh', refreshLimiter, (req, res, next) => {
     const refreshToken = req.cookies.refreshToken || req.body.refreshToken;
 
     if (!refreshToken) {
-      console.log("ERRO :199");
       return res.status(401).json({ error: 'Refresh token não fornecido.' });
     }
 
     if (tokenBlacklist.contains(refreshToken)) {
       logger.warn('Refresh token attempt with blacklisted token');
-      console.log("ERRO LOGIN:205");
       return res.status(401).json({ error: 'Refresh token foi revogado.' });
     }
 
@@ -215,7 +213,6 @@ router.post('/refresh', refreshLimiter, (req, res, next) => {
 
     if (!payload || payload.type !== 'refresh') {
       logger.warn('Invalid refresh token attempt');
-      console.log("ERRO LOGIN:213");
       return res.status(401).json({ error: 'Refresh token inválido ou expirado.' });
     }
 

@@ -31,13 +31,14 @@ import EditClientProfilePage from "./pages/EditClienteProfilePage";
 export default function App() {
   const dispatch = useDispatch();
   const { status, error } = useSelector((state) => state.data);
+  const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    dispatch(loadData());
-  }, [dispatch]);
+    if (user) dispatch(loadData());
+  }, [dispatch, user]);
 
-  if (status === 'loading') return <LoadingState />;
-  if (status === 'failed') return <LoadingState text={`Erro ao carregar dados: ${error}`} />;
+  if (user && status === 'loading') return <LoadingState />;
+  if (user && status === 'failed') return <LoadingState text={`Erro ao carregar dados: ${error}`} />;
 
   return (
     <div className="app-shell">
