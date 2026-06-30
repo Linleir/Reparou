@@ -1,2 +1,0 @@
-{"level":"error","message":"Login error: motivo is not defined","service":"reparou-backend","timestamp":"2026-06-20 21:44:27"}
-{"level":"error","message":"Falha ao conectar/iniciar: bad auth : authentication failed","service":"reparou-backend","timestamp":"2026-06-28 21:19:33"}
