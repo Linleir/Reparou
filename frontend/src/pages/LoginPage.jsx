@@ -83,7 +83,13 @@ export default function LoginPage() {
 
   navigate("/inicio");
 } catch (error) {
-  setErro("Credenciais inválidas.");
+  if (error?.status === 401) {
+    setErro("Credenciais inválidas.");
+  } else if (error?.status === 429) {
+    setErro("Muitas tentativas. Aguarde alguns minutos e tente novamente.");
+  } else {
+    setErro(error?.serverError || error?.message || "Erro ao fazer login. Tente novamente.");
+  }
 }
   };
 

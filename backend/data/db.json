@@ -390,7 +390,7 @@
   "admins": [
     {
       "id": "31415",
-      "senha": "123",
+      "senha": "$2b$10$bNxORclJf4lFfkbSHGGw1.1NHJ2GXdXhy2BI68VlZ6n/aOyIXFkUu",
       "nome": "Admin Supremo",
       "tipo": "admin"
     }
@@ -398,7 +398,7 @@
   "clientes": [
     {
       "cpf": "25.174.938/0001-58",
-      "senha": "123",
+      "senha": "$2b$10$T3jADGnRjuYSsWDxS65tfO.1ol8z6/3QI7Ab7SGjfwtPItKtyTItS",
       "role": "cliente",
       "favoritos": [],
       "id": 9,
@@ -406,7 +406,7 @@
     },
     {
       "cpf": "11111111111",
-      "senha": "123",
+      "senha": "$2b$10$4fAarHQi9h4D6LX0KllDz.mN6uzxZubrfxJkg1qx4hiRYj9jBl3jG",
       "role": "cliente",
       "favoritos": [],
       "id": 10,
@@ -422,7 +422,7 @@
     },
     {
       "cpf": "77777777777",
-      "senha": "123",
+      "senha": "$2b$10$7ITsOVilXcTbyznusmrtI.B5Rx4Yqvd1/yvvsxZYuPpGf9YvttWDy",
       "role": "cliente",
       "favoritos": [
         "loja-x",
@@ -449,7 +449,7 @@
     },
     {
       "cpf": "99999999999",
-      "senha": "123",
+      "senha": "$2b$10$Tunm3hjI9GGhhSkMZ/QSsO.P.44wRvo4cKkttmzaqTk/2kWd.eciy",
       "role": "cliente",
       "favoritos": [],
       "id": 12
@@ -462,7 +462,7 @@
       "responsavel": "Huguinho Silva",
       "cnpj": "22.222.222/2222-22",
       "cnpjNumeros": "22222222222222",
-      "senha": "123",
+      "senha": "$2b$10$jSq.f2MnoQT8HhjKCqnRsufwL1ErHTMMzxHfQ6TPA7ZdXxJY5lihm",
       "telefone": "(21) 98811-2200",
       "email": "huguinho@reparou.com",
       "enderecoBase": "Rua do Hardware, 120 - Méier, RJ",
@@ -474,7 +474,7 @@
     },
     {
       "cnpj": "70770770724",
-      "senha": "123",
+      "senha": "$2b$10$Z60MFiHNraWGCXz8S/WPvu6mTvam0KV7o5nrla8atx9c3OMB5E0V6",
       "role": "lojista",
       "id": "kRoKlih",
       "responsavel": "Davi ddd",
@@ -483,7 +483,7 @@
     },
     {
       "cnpj": "123",
-      "senha": "123",
+      "senha": "$2b$10$3WVSsOXmc12c3ETsz2TEneVg6EByvuxNf89wudy15FuZviPO4JT4G",
       "role": "lojista",
       "id": "Vyq0VwX"
     },
@@ -499,7 +499,7 @@
     },
     {
       "cnpj": "1234",
-      "senha": "123",
+      "senha": "$2b$10$/iN9KTv9JzRfk/hNaWkkFeO7YVtJ6392pjBEhwHEz6J.rcWPKJAe2",
       "role": "lojista",
       "id": "rRpFBLX"
     },
@@ -511,31 +511,31 @@
     },
     {
       "cnpj": "123456",
-      "senha": "123",
+      "senha": "$2b$10$hNIsBchDCaTTPfeoXMfWWuEzO603zd2CU6xFEH/Gdr7j/EbB2ARjq",
       "role": "lojista",
       "id": "67o79_I"
     },
     {
       "cnpj": "60660660623",
-      "senha": "123",
+      "senha": "$2b$10$4uTF.4iapeplWHRt2ngmrO.GVAKu9kj/Ew0/3nI1KFPP3T7qQotzu",
       "role": "lojista",
       "id": "waRVUgq"
     },
     {
       "cnpj": "1",
-      "senha": "1",
+      "senha": "$2b$10$N2CfG1YbxOHhlJvp/AHdTuMQwz3Cv.MAdsuxlPC1z1Dsm.BCLPBM.",
       "role": "lojista",
       "id": "vTqYtOP"
     },
     {
       "cnpj": "lojista",
-      "senha": "1234",
+      "senha": "$2b$10$7Op3YpcLHRx54Zaz1.baKeyhViClwEmG.oyAtZ2u.ei6fKdjwaXtq",
       "role": "lojista",
       "id": "uwH-_46"
     },
     {
       "cnpj": "40440440422",
-      "senha": "123",
+      "senha": "$2b$10$rAptHslOW/M.6SyS2oMaTer1p77Dc4U.wmwLJP0.XkkzoMxuqdcey",
       "role": "lojista",
       "id": "w5lMoaR",
       "responsavel": "",
@@ -544,19 +544,19 @@
     },
     {
       "cnpj": "lojistateste",
-      "senha": "123",
+      "senha": "$2b$10$6uEukJgmmDV0lBiB9ZvVeuxrKIkdS0TEtdwkF1uonn/XUHl80RF6e",
       "role": "lojista",
       "id": "sYiOJTW"
     },
     {
       "cnpj": "1234567",
-      "senha": "123",
+      "senha": "$2b$10$uvaJDc8.WBdeWoO38bI4/OSmDJR4MnoCEDw8ut3DYa7.RMaw3nLRe",
       "role": "lojista",
       "id": "wMEJAR0"
     },
     {
       "cnpj": "25.174.938/0001-59",
-      "senha": "123",
+      "senha": "$2b$10$a1Me.CTYHcIMA0h.3uReSeqQD88xUFmOaZLKEfgPZ809rpTn6G0YS",
       "role": "lojista",
       "id": "_PUvhuI",
       "responsavel": "davi",
@@ -566,7 +566,7 @@
     {
       "nome": "davi",
       "cnpj": "11111111111111",
-      "senha": "123",
+      "senha": "$2b$10$HskTctTl5/NvTubbYYm7iOYlpH61RQNIs/ot7kDRnACsFhla2Lbou",
       "role": "lojista",
       "id": "e-y9nKr",
       "responsavel": "gar",
@@ -575,7 +575,7 @@
     },
     {
       "cnpj": "99999999999999",
-      "senha": "123",
+      "senha": "$2b$10$f8UyDli3bMqrZJ7P8BtlUuherZydjGbu3yecq6HKRSDHJLWZEEPhO",
       "role": "lojista",
       "id": "ru2XyYj",
       "responsavel": "Dahib",
@@ -587,7 +587,7 @@
     },
     {
       "cnpj": "66666666666666",
-      "senha": "123",
+      "senha": "$2b$10$xpINvZAZBLJ/aIrnY5Srgeuw9NTHCH.WjFlzR0QBGwt1UyOa8QUAu",
       "role": "lojista",
       "id": "A85bs3I",
       "responsavel": "Fulano",

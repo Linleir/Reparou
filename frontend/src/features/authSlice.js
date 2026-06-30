@@ -5,37 +5,63 @@ const saved = JSON.parse(localStorage.getItem("reparouAuth") || "null");
 
 export const loginComCredenciais = createAsyncThunk(
   "auth/loginComCredenciais",
-  async ({ documento, senha }) => {
-    return await apiPost("auth/login", { documento, senha }, { skipRefresh: true });
+  async ({ documento, senha }, { rejectWithValue }) => {
+    try {
+      return await apiPost("auth/login", { documento, senha }, { skipRefresh: true });
+    } catch (error) {
+      return rejectWithValue({
+        status: error?.status,
+        serverError: error?.serverError,
+        message: error?.message,
+      });
+    }
   }
 );
 
 export const registerCliente = createAsyncThunk(
   "auth/registerCliente",
-  async (payload) => {
-    return await apiPost(
-      "auth/register/cliente",
-      {
-        ...payload,
-        role: "cliente",
-        favoritos: [],
-      },
-      { skipRefresh: true }
-    );
+  async (payload, { rejectWithValue }) => {
+    try {
+      return await apiPost(
+        "auth/register/cliente",
+        {
+          ...payload,
+          role: "cliente",
+          favoritos: [],
+        },
+        { skipRefresh: true }
+      );
+    } catch (error) {
+      return rejectWithValue({
+        status: error?.status,
+        serverError: error?.serverError,
+        details: error?.details,
+        message: error?.message,
+      });
+    }
   }
 );
 
 export const registerLojista = createAsyncThunk(
   "auth/registerLojista",
-  async (payload) => {
-    return await apiPost(
-      "auth/register/lojista",
-      {
-        ...payload,
-        role: "lojista",
-      },
-      { skipRefresh: true }
-    );
+  async (payload, { rejectWithValue }) => {
+    try {
+      return await apiPost(
+        "auth/register/lojista",
+        {
+          ...payload,
+          role: "lojista",
+        },
+        { skipRefresh: true }
+      );
+    } catch (error) {
+      return rejectWithValue({
+        status: error?.status,
+        serverError: error?.serverError,
+        details: error?.details,
+        message: error?.message,
+      });
+    }
   }
 );
 

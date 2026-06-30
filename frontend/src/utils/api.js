@@ -30,8 +30,8 @@ export function getAuthHeaders(extraHeaders = {}) {
   };
 }
 
-async function handleResponse(response, resource, actionMessage) {
-  if (response.status === 401) {
+async function handleResponse(response, resource, actionMessage, options = {}) {
+  if (response.status === 401 && !options.skipRefresh) {
     try {
       const newToken = await refreshAccessToken();
       if (newToken) {
@@ -45,15 +45,23 @@ async function handleResponse(response, resource, actionMessage) {
 
   if (!response.ok) {
     let detail = "";
+    let serverError = "";
+    let serverDetails = null;
 
     try {
       const data = await response.json();
-      detail = data?.error ? `: ${data.error}` : "";
+      serverError = data?.error || "";
+      serverDetails = Array.isArray(data?.details) ? data.details : null;
+      detail = serverError ? `: ${serverError}` : "";
     } catch (_) {
       detail = "";
     }
 
-    throw new Error(`${actionMessage} ${resource}${detail}`);
+    const error = new Error(`${actionMessage} ${resource}${detail}`);
+    error.status = response.status;
+    error.serverError = serverError;
+    error.details = serverDetails;
+    throw error;
   }
 
   return response.json();
@@ -92,7 +100,7 @@ export async function apiGet(resource) {
   throw new Error("Token expirado. Por favor, faça login novamente.");
 }
 
-export async function apiPost(resource, payload) {
+export async function apiPost(resource, payload, options = {}) {
   const response = await fetch(`${API}/${resource}`, {
     method: "POST",
     headers: getAuthHeaders({ "Content-Type": "application/json" }),
@@ -100,7 +108,7 @@ export async function apiPost(resource, payload) {
     body: JSON.stringify(payload),
   });
 
-  const data = await handleResponse(response, resource, "Falha ao salvar em");
+  const data = await handleResponse(response, resource, "Falha ao salvar em", options);
   if (data) return data;
 
   throw new Error("Token expirado. Por favor, faça login novamente.");

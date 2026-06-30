@@ -4,7 +4,7 @@ const router = express.Router();
 
 const { autenticarJwt } = require('../middlewares/auth');
 const { loginLimiter, registerLimiter, refreshLimiter } = require('../middlewares/rateLimiter');
-const { validateLogin, validateRegisterCliente } = require('../middlewares/validate');
+const { validateLogin, validateRegisterCliente, validateRegisterLojistaInicial } = require('../middlewares/validate');
 const { hashPassword, comparePassword } = require('../utils/hashPassword');
 const { criarAccessToken, criarRefreshToken, verificarToken, decodificarToken } = require('../utils/tokenManager');
 const tokenBlacklist = require('../utils/tokenBlacklist');
@@ -159,7 +159,7 @@ router.post('/register/cliente', registerLimiter, validateRegisterCliente, async
 });
 
 // POST /auth/register/lojista
-router.post('/register/lojista', registerLimiter, async (req, res, next) => {
+router.post('/register/lojista', registerLimiter, validateRegisterLojistaInicial, async (req, res, next) => {
   try {
     const cnpjNumeros = somenteNumeros(req.body.cnpj || req.body.cnpjNumeros);
 

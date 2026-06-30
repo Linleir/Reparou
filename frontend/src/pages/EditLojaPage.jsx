@@ -85,7 +85,7 @@ export default function EditLojaPage() {
         (nome || 'NOVA LOJA')
           .toUpperCase(),
 
-      lojistaId: user.id,
+      lojistaId: user?.id,
 
       imagem:
         loja?.imagem ||

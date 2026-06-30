@@ -67,7 +67,7 @@ export default function AdminPage() {
   // PROTEÇÃO
   // =========================================
 
-  if (!user || user.tipo !== "admin") {
+  if (!user || user.role !== "admin") {
 
 
     return (

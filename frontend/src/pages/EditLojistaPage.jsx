@@ -18,7 +18,7 @@ export default function EditLojistaPage() {
   const lojista = useSelector(
     (state) =>
       state.data.lojistas.find(
-        (item) => item.id === user.id
+        (item) => item.id === user?.id
       )
   );
 

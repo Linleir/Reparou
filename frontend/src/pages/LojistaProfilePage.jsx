@@ -7,12 +7,16 @@ import { logout, logoutUsuario } from '../features/authSlice';
 export default function LojistaProfilePage() {
   const { user } = useSelector((state) => state.auth);
   const lojas = useSelector((state) =>
-    state.data.lojas.filter((item) => item.lojistaId === user.id)
+    state.data.lojas.filter((item) => item.lojistaId === user?.id)
   );
   const lojista = useSelector((state) =>
-    state.data.lojistas.find((item) => item.id === user.id)
+    state.data.lojistas.find((item) => item.id === user?.id)
   );
   const dispatch = useDispatch();
+
+  if (!user) {
+    return null;
+  }
 
   return (
     <Layout bottom={<BottomNavLojista />}>

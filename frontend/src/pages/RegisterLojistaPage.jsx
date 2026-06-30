@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Layout from "../components/Layout";
 
@@ -10,6 +10,7 @@ import { registerLojista } from "../features/authSlice";
 export default function RegisterLojistaPage() {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // -------------------------
   // STATES
@@ -77,12 +78,12 @@ export default function RegisterLojistaPage() {
         })
       ).unwrap();
 
-      alert("Lojista cadastrado com sucesso!");
+      navigate("/lojista/perfil");
 
     } catch (err) {
       const mensagem =
         err?.details?.[0]?.msg ||
-        err?.error ||
+        err?.serverError ||
         "Erro ao cadastrar. Tente novamente.";
       alert(mensagem);
     }
