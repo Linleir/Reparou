@@ -1,0 +1,7 @@
+{"level":"info","message":"Backend iniciado em porta 5001","service":"reparou-backend","timestamp":"2026-06-30 18:30:01"}
+{"level":"info","message":"GET /data","service":"reparou-backend","timestamp":"2026-06-30 18:31:09"}
+{"level":"info","message":"GET /data","service":"reparou-backend","timestamp":"2026-06-30 18:31:09"}
+{"level":"info","message":"POST /auth/login","service":"reparou-backend","timestamp":"2026-06-30 18:31:13"}
+{"level":"info","message":"Login attempt for: 31415","service":"reparou-backend","timestamp":"2026-06-30 18:31:13"}
+{"level":"info","message":"Successful login for user: 31415 (admin)","service":"reparou-backend","timestamp":"2026-06-30 18:31:13"}
+{"level":"info","message":"GET /data","service":"reparou-backend","timestamp":"2026-06-30 18:31:13"}
