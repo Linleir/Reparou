@@ -1,0 +1,38 @@
+{"level":"info","message":"Backend iniciado em porta 5001","service":"reparou-backend","timestamp":"2026-06-30 18:50:55"}
+{"level":"info","message":"GET /data","service":"reparou-backend","timestamp":"2026-06-30 18:52:03"}
+{"level":"info","message":"GET /data","service":"reparou-backend","timestamp":"2026-06-30 18:52:03"}
+{"level":"info","message":"POST /auth/login","service":"reparou-backend","timestamp":"2026-06-30 18:52:09"}
+{"level":"info","message":"Login attempt for: 31415","service":"reparou-backend","timestamp":"2026-06-30 18:52:09"}
+{"level":"info","message":"Successful login for user: 31415 (admin)","service":"reparou-backend","timestamp":"2026-06-30 18:52:09"}
+{"level":"info","message":"GET /data","service":"reparou-backend","timestamp":"2026-06-30 18:52:09"}
+{"level":"info","message":"POST /auth/register/lojista","service":"reparou-backend","timestamp":"2026-06-30 18:52:34"}
+{"level":"info","message":"Shop registration attempt for CNPJ: 32686496000195","service":"reparou-backend","timestamp":"2026-06-30 18:52:34"}
+{"level":"info","message":"Shop registered successfully: 92","service":"reparou-backend","timestamp":"2026-06-30 18:52:34"}
+{"level":"info","message":"GET /data","service":"reparou-backend","timestamp":"2026-06-30 18:52:34"}
+{"level":"info","message":"POST /lojas","service":"reparou-backend","timestamp":"2026-06-30 18:52:48"}
+{"level":"info","message":"PATCH /lojas/loja-1782856368477","service":"reparou-backend","timestamp":"2026-06-30 18:53:02"}
+{"level":"info","message":"POST /auth/logout","service":"reparou-backend","timestamp":"2026-06-30 18:53:15"}
+{"level":"info","message":"User logged out: 92","service":"reparou-backend","timestamp":"2026-06-30 18:53:15"}
+{"level":"info","message":"GET /data","service":"reparou-backend","timestamp":"2026-06-30 18:53:26"}
+{"level":"info","message":"POST /auth/logout","service":"reparou-backend","timestamp":"2026-06-30 18:53:31"}
+{"level":"info","message":"POST /auth/refresh","service":"reparou-backend","timestamp":"2026-06-30 18:53:31"}
+{"level":"info","message":"POST /auth/register/cliente","service":"reparou-backend","timestamp":"2026-06-30 18:54:27"}
+{"level":"info","message":"Client registration attempt for CPF: 62867211000","service":"reparou-backend","timestamp":"2026-06-30 18:54:27"}
+{"level":"info","message":"Client registered successfully: 9","service":"reparou-backend","timestamp":"2026-06-30 18:54:27"}
+{"level":"info","message":"GET /data","service":"reparou-backend","timestamp":"2026-06-30 18:54:27"}
+{"level":"info","message":"POST /auth/login","service":"reparou-backend","timestamp":"2026-06-30 18:54:34"}
+{"level":"info","message":"Login attempt for: 62867211000","service":"reparou-backend","timestamp":"2026-06-30 18:54:34"}
+{"level":"info","message":"Successful login for user: 9 (cliente)","service":"reparou-backend","timestamp":"2026-06-30 18:54:34"}
+{"level":"info","message":"GET /data","service":"reparou-backend","timestamp":"2026-06-30 18:54:34"}
+{"level":"info","message":"POST /auth/logout","service":"reparou-backend","timestamp":"2026-06-30 18:54:43"}
+{"level":"info","message":"User logged out: 9","service":"reparou-backend","timestamp":"2026-06-30 18:54:43"}
+{"level":"info","message":"POST /auth/register/lojista","service":"reparou-backend","timestamp":"2026-06-30 18:55:41"}
+{"level":"info","message":"Shop registration attempt for CNPJ: 33881568000118","service":"reparou-backend","timestamp":"2026-06-30 18:55:41"}
+{"level":"info","message":"Shop registered successfully: 93","service":"reparou-backend","timestamp":"2026-06-30 18:55:42"}
+{"level":"info","message":"GET /data","service":"reparou-backend","timestamp":"2026-06-30 18:55:42"}
+{"level":"info","message":"POST /auth/logout","service":"reparou-backend","timestamp":"2026-06-30 18:55:43"}
+{"level":"info","message":"User logged out: 93","service":"reparou-backend","timestamp":"2026-06-30 18:55:43"}
+{"level":"info","message":"GET /data","service":"reparou-backend","timestamp":"2026-06-30 19:08:54"}
+{"level":"info","message":"Backend iniciado em porta 5001","service":"reparou-backend","timestamp":"2026-06-30 19:43:13"}
+{"level":"info","message":"Backend iniciado em porta 5001","service":"reparou-backend","timestamp":"2026-06-30 20:01:38"}
+{"level":"info","message":"Backend iniciado em porta 5001","service":"reparou-backend","timestamp":"2026-06-30 20:02:13"}

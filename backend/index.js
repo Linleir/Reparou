@@ -34,7 +34,6 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 app.use(sanitizer);
-app.use(configurarPassport().initialize());
 
 // Logger de requisições
 app.use((req, res, next) => {
@@ -629,9 +628,13 @@ const PORT = process.env.PORT || 5001;
 async function iniciarServidor() {
   try {
     await connectDB();
+
+    // Passport inicializado após a conexão com o banco estar estabelecida
+    app.use(configurarPassport().initialize());
+
     await seedInicialSeBancoEstiverVazio();
 
-    http.createServer(app).listen(PORT, 'localhost', () => {
+    http.createServer(app).listen(PORT, () => {
       console.log(`✅ Backend rodando em http://localhost:${PORT}`);
       console.log('☁️  Dados armazenados no MongoDB Atlas');
       console.log('🔐 Rotas protegidas com Passport e JWT');
